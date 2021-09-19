@@ -1,0 +1,626 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* footer nav bottom css */
+
+.mob-footer {
+    position: absolute;
+    left: 0;
+}
+
+.mob-footer span {
+    padding: 10px
+}
+
+.down-cursor {
+    position: absolute;
+    right: 0;
+    padding: 4px;
+    font-size: 21px;
+    top: -1px !important;
+
+
+}
+
+.item {
+    left: 51%;
+    top: 10%;
+    height: 1rem;
+    width: 1rem;
+    color: red !important;
+    font-size: 15px;
+}
+
+
+/* fronte category icon landing page  */
+.category_image_icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 5px;
+}
+
+/* css of frntend banner */
+
+.res {
+    display: none;
+}
+
+
+/* feauture products css */
+
+.feature-col {
+    max-width: 20%;
+    min-width: 20%;
+    text-align: center;
+
+
+}
+
+.feature-col :hover {
+    opacity: .5;
+
+}
+
+.feature-col img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: .5rem;
+    padding: .5rem;
+    border-radius: 1rem;
+}
+
+
+.title-img {
+    margin-left: .5rem;
+    margin-right: .5rem;
+    position: relative;
+    bottom: 1.8rem;
+    display: block;
+    font-family: "Lucida Console", "Courier New", monospace;
+    color: white;
+    background: black;
+    opacity: 0.6;
+    border-radius: 0 0 .5rem .5rem;
+}
+
+.title-img span {
+    width: 90%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    margin-left: .5rem;
+}
+
+
+
+/* trending product css is here */
+
+ul li:hover {
+    background-color: #ddd;
+}
+
+.trending_sub_c_li {
+    border-bottom: 1px solid #ddd;
+    padding: 5px;
+}
+
+.trending_sub_c_li a {
+    color: #000;
+}
+
+.ec-arrow-right-categproes {
+    float: right;
+    margin-top: 5px
+}
+
+.trending_p_container {
+    margin: 12px !important;
+}
+
+
+/* campaign page css start form here */
+
+.centered {
+    position: absolute;
+    top: 55%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 30px;
+}
+
+/* cart page css */
+
+.floating-cart {
+    display: none;
+}
+
+.vhl-item {
+    width: 20% !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.product-item {
+    width: 100% !important;
+}
+
+.img_under_banner {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 21/04/21  */
+.cart_qty {
+    padding: 8px;
+}
+
+@media(min-width: 1480px) {
+    .res {
+        display: inline;
+    }
+
+}
+
+
+
+@media screen and (max-width:768px) {
+
+    /* price section */
+    .flex-center-between {
+        margin-top: 10px !important;
+    }
+
+    /* feauture products css */
+    .feature-col {
+        max-width: 50%;
+        min-width: 50%;
+        text-align: center;
+    }
+
+    /* general product container */
+
+
+    .product-item {
+        height: 250px !important;
+    }
+
+    /* single related product container */
+    .gdot4 {
+        width: 48% !important;
+        margin: 3px !important;
+
+    }
+
+    .product-item__title a {
+        font-size: 14px !important;
+    }
+
+    /* campaign page responsive css start form here */
+    .centered {
+        top: 11%;
+        left: 50%;
+    }
+
+    /* cart page css  */
+
+    /* hiding pages link  */
+    .bg-gray-14 {
+        display: none;
+    }
+
+    /* displaying menu icons in small view */
+    .__footer-menu {
+        display: block;
+    }
+
+}
+
+.__footer_nav {
+    display: none;
+}
+
+ul.__responsive_search {
+    display: none;
+}
+
+@media screen and (max-width:600px) {
+
+    .right_side_of_slider {
+        display: none;
+    }
+
+    .owl-dots {
+        margin-top: -15px !important;
+    }
+
+    .vhl-list .vhl-item {
+        width: 50% !important;
+    }
+
+    .img-fluid {
+        max-width: 100%;
+        height: 150px;
+    }
+
+    .single_product_image {
+        width: 100%;
+    }
+
+    /* today /* 21/04/21  */
+    .text-gray-90 {
+        color: #199EFF;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .cart_image {
+        margin-left: -18%;
+    }
+
+    .cart_remover {
+        position: absolute;
+        margin-left: 20%;
+        font-size: 35px;
+        margin-top: -5%;
+    }
+
+    .cart_qty {
+        padding: 5px;
+        margin-top: 30px;
+        position: absolute;
+        margin-left: -22px;
+    }
+
+    .cart_qty_up {
+        border-radius: 5px;
+        margin-top: 60px;
+        position: absolute;
+        margin-left: -25px;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    .slider-img {
+        height: auto !important;
+    }
+
+    .cart-icon {
+        display: none;
+    }
+
+    body {
+        overflow-x: none;
+    }
+
+    .__footer_nav {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        background: #fff;
+        height: 3.5rem;
+        z-index: 9999999;
+        left: 0;
+        box-shadow: 5px 10px 18px #000;
+        padding-top: 0.45rem;
+        color: #333;
+        display: block;
+    }
+
+    .__footer_nav ul {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+    }
+
+    .__footer_nav ul li {
+        font-size: 1.55rem;
+        color: #2783c2 !important;
+        width: 20%;
+    }
+
+    .__footer_nav ul li a {
+
+        color: #2783c2 !important;
+    }
+
+    .__header_facebook {
+        margin-left: auto;
+    }
+
+    .__header_search i {
+        color: #1776b9;
+    }
+
+    ul.__responsive_search {
+        position: absolute;
+        z-index: 999999;
+        background: #fff;
+        left: 10%;
+        width: 80%;
+        border: 1px solid #ddd;
+        padding: 10px;
+        height: 100px;
+        border-radius: 10px;
+        top: 70px;
+
+        display: none;
+    }
+
+    .rSearchBtn {
+        position: absolute;
+        right: 0;
+        border: none;
+        background: #1a75bc;
+        width: 60px;
+        height: 100%;
+        border-radius: 0px 50px 50px 0px;
+    }
+
+    .rSearchBtn i {
+        color: #fff !important;
+    }
+
+    .__footer_menu {
+        position: fixed;
+        width: 75%;
+        height: 100%;
+        background: #fff;
+        z-index: 999999;
+        top: 0;
+        left: 0;
+        box-shadow: 0px 0px 10px #eee;
+        padding: 0px 15px;
+        overflow-y: auto;
+        display: none;
+    }
+
+    .__footer_menu .__header {
+        width: 100%;
+        display: flex;
+        list-style: none;
+    }
+
+    .__footer_menu .__header li {
+        padding: 5px 15px;
+        margin-top: 10px;
+    }
+
+    .__footer_menu li.active {
+        background: #5da2d1;
+        color: #fff;
+        border-radius: 18px;
+        height: 30px;
+        text-align: center;
+    }
+
+    ul.__footer_menu_nav {
+        list-style: none;
+        padding: 15px 15px;
+    }
+
+    ul.__footer_menu_nav li {
+        border-bottom: 1px solid #5da2d1;
+        padding: 5px 0px;
+    }
+
+    ul.__footer_menu_nav li:last-child {
+        border: none;
+    }
+
+    ul.__footer_menu_nav li a {
+        color: #000;
+    }
+
+    .__footer_mneu_footer {
+        list-style: none;
+        padding: 5px 6px;
+    }
+
+    .__footer_menu_s_link a {
+        color: #000;
+    }
+
+    ul.__footer_category {
+        list-style: none;
+        padding: 12px;
+    }
+
+    li.__footer_category_item {
+        position: relative;
+        width: 100%;
+        padding: 5px 2px;
+        border-bottom: 1px solid #2783c2;
+    }
+
+    li.__footer_category_item:last-child {
+        border: none;
+    }
+
+    li.__footer_category_item a {
+        color: #000;
+    }
+
+    li.__footer_category_item i {
+        float: right;
+        font-size: 20px;
+    }
+
+    ul.__footer_c_sub {
+        list-style: none;
+        padding: 3px 8px;
+        display: none;
+    }
+
+    ul.__footer_c_sub.__show li {
+        border-bottom: 1px solid #000;
+        padding: 3px;
+    }
+
+    ul.__footer_c_sub.__show li:last-child {
+        border-bottom: none;
+    }
+
+    ul.__footer_c_sub_sub {
+        padding: 0px 10px;
+        list-style: none;
+        display: none;
+    }
+
+    .v-toast {
+        width: 90% !important;
+        left: 10% !important;
+    }
+
+    .cart_row {
+        background: #fff;
+    }
+
+    thead.cart_t_head {
+        display: none;
+    }
+
+
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+.__serach_box {
+    position: relative;
+}
+
+.search_icon {
+    position: absolute;
+    right: 1%;
+}
+
+.font-1-5 {
+    font-size: 1.5rem;
+}
+
+.color-g {
+    color: #32AB00;
+}
+
+li.__nav_list_highlight_link {
+    height: 36px;
+    padding: 8px 15px !important;
+    transition: .3s;
+
+}
+
+li.__nav_list_highlight_link:hover {
+    background: #2277b2 !important;
+}
+
+li.__user_account.pointer {
+    position: relative;
+}
+
+ul.user-account-link-drop-down-link {
+    position: absolute;
+    background: #fff;
+    width: 160px;
+    height: 100px;
+    z-index: 99;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    top: 100%;
+}
+
+ul.user-account-link-drop-down-link li {
+    color: #000;
+    font-size: 16px;
+    border-bottom: 1px solid #7897de;
+    padding: 6px 40px;
+}
+
+.col-lg-6.campaign_img {
+    padding: 10px;
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    width: 80%;
+    margin-right: 0%;
+}
+
+
+
+.campaign_img {
+    width: 98%;
+    position: relative;
+    background: #fff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    /* margin-right: 1px; */
+    box-shadow: 3px 3px 3px #eee;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.campaign_img img {
+    max-width: 98%;
+}
+
+.cmpoverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #008cba26;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+    border-radius: 1rem;
+}
+
+.campaign_img:hover>.cmpoverlay {
+    overflow: visible;
+
+}
+
+.__show {
+    display: block !important;
+}
+
+.slider-img {
+    width: 98% !important;
+    border-radius: 10px;
+
+}
+
+.section-title {
+    font-weight: 600 !important;
+}
+
+.font-weight-600 {
+     font-weight: 600;
+}
+
+ul.__cart-product-list li {
+    margin-bottom: 10px;
+ }
+
+
+
+
+.vue-horizontal-list {
+
+    overflow-x: hidden;
+}

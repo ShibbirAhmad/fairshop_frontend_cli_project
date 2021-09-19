@@ -1,0 +1,432 @@
+<template>
+  <header id="header" class="u-header u-header-left-aligned-nav">
+    <div class="header-items">
+      <div class="container">
+        <ul class="d-flex">
+          <li>
+            <router-link to="/">
+              <img
+                src="../assets/images/Chahida-E-shop-Logo.png"
+                class="img-fluid site_logo"
+              />
+            </router-link>
+          </li>
+          <li class="__serach_box">
+            <form @submit.prevent="search_products">
+              <input
+                type="text"
+                placeholder="search products"
+                class="search-box"
+                v-model="search"
+              />
+              <button
+                type="buttton"
+                class="btn btn-dark height-42 py-2 px-3 rounded-right-pill search_icon"
+              >
+                <i class="fa fa-search"></i>
+              </button>
+            </form>
+          </li>
+          <li
+            class="__user_account pointer"
+            @click="show_user_account_dropdown"
+          >
+            <img
+              src="https://chahidaeshop.com/images/user.png"
+              width="25px"
+              height="25px"
+              id="user_account_d"
+            />
+            <ul
+              class="user-account-link-drop-down-link"
+              v-if="Object.keys($store.state.user).length <= 0"
+            >
+              <li>
+                <router-link to="/login">Sign In </router-link>
+              </li>
+              <li>
+                <router-link to="/register">Sign Up</router-link>
+              </li>
+            </ul>
+
+            <ul
+              class="user-account-link-drop-down-link"
+              style="height: 120px"
+              v-else
+            >
+              <div class="__prifile_name">
+                {{ $store.user ? $store.user.name : "" }}
+              </div>
+              <div class="__prifile_link">
+                <li>
+                  <router-link to="/profile">Profile</router-link>
+                </li>
+                <li>
+                  <router-link to="/order">Order List</router-link>
+                </li>
+
+                <li>
+                  <a @click.prevent="logout" href=""> Logout </a>
+                </li>
+              </div>
+            </ul>
+          </li>
+          <li class="font-1-5 __header_facebook">
+            <a href="https://www.facebook.com/chahidaeshop/" target="_blank">
+              <i class="fab fa-facebook-f"></i
+            ></a>
+          </li>
+          <li class="font-1-5">
+            <a href="https://www.facebook.com/groups/chahida" target="_blank">
+              <i class="fas fa-users font-icon color-g"></i
+            ></a>
+          </li>
+
+          <li class="font-1-5 r_search" @click.prevent="show_responsive_search">
+            <i class="fas fa-search" style="color: #199EFF"></i>
+
+            <ul class="__responsive_search" id="__responsive_search">
+              <form style="display: flex; position: relative; margin-top: 10px">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search Products"
+                />
+                <button class="rSearchBtn">
+                  <i class="fa fa-search"></i>
+                </button>
+              </form>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="__nav" id="__nav">
+      <ul class="__nav_resp_menu">
+        <li class="__nav_resp_menu_close_active" @click="respMenuControl">
+          Menu
+        </li>
+        <li @click="respMenuControl">Caetgory</li>
+        <li @click="hideShowMenu" class="__nav_resp_menu_close">
+          <i class="ec ec-close-remove"></i>
+        </li>
+        <li></li>
+      </ul>
+      <div class="container d-flex">
+        <ul class="__category_nav">
+          <li
+            @click="showMenu"
+            class="c-link pointer __nav_list_highlight_link"
+            id="__c_link"
+          >
+            All Departments
+
+            <i class="fa fa-angle-down"></i>
+          </li>
+          <div class="__category-menu d-none" id="__category-menu">
+            <li class="c-item" v-for="(category, cdx) in categories" :key="cdx">
+              <router-link
+                :to="{
+                  name: 'categoryProducts',
+                  params: { slug: category.slug },
+                }"
+              >
+                {{ category.name }}
+              </router-link>
+              <i class="fa fa-angle-right c-icon" @click="nextElement"></i>
+              <ul class="__c_sub" v-if="category.sub_category.length > 0">
+                <li
+                  v-for="(sub_category, scdx) in category.sub_category"
+                  :key="scdx"
+                >
+                  <router-link
+                    :to="{
+                      name: 'SubCategoryProduct',
+                      params: {
+                        categortSlug: category.slug,
+                        slug: sub_category.slug,
+                      },
+                    }"
+                  >
+                    {{ sub_category.name }}</router-link
+                  >
+
+                  <ul
+                    class="__c_sub_sub"
+                    v-if="sub_category.sub_sub_category.length > 0"
+                  >
+                    <li
+                      v-for="(
+                        sub_sub_category, sscdx
+                      ) in sub_category.sub_sub_category"
+                      :key="sscdx"
+                    >
+                      <router-link
+                        :to="{
+                          name: 'SubSubCategoryProduct',
+                          params: {
+                            categortSlug: category.slug,
+                            SubCategortSlug: sub_category.slug,
+                            slug: sub_sub_category.slug,
+                          },
+                        }"
+                        >{{ sub_sub_category.name }}</router-link
+                      >
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </div>
+        </ul>
+        <ul class="__nav_list" id="__nav_list">
+          <li class="__nav_list_highlight_link">
+            <router-link to="/">Home</router-link>
+          </li>
+          <li class="__nav_list_highlight_link">
+            <router-link :to="{ name: 'shop' }">Shop</router-link>
+          </li>
+          <li class="__nav_list_highlight_link">
+            <router-link :to="{ name: 'campaign' }">Campaign</router-link>
+          </li>
+          <li class="__nav_list_highlight_link">
+            <router-link to="/gift/card">Gift Card</router-link>
+          </li>
+
+          <li class="__nav_list_highlight_link">
+            <a href="https://chahida.com.bd/" target="_blank">Chahida bazar</a>
+          </li>
+        </ul>
+        <ul class="__nav_list_right">
+          <li class="__nav_list_highlight_link">
+            <a href="tel:01817770060">
+              <i class="fa fa-phone"></i> 09639 155 660, 01817 770 060</a
+            >
+          </li>
+          <li class="__nav_list_highlight_link">
+            <router-link to="/reseller">Reseller Zone</router-link>
+          </li>
+          <li class="__nav_list_highlight_link">
+            <router-link to="/blog">Blog</router-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- cart -->
+
+    <div class="cart-icon" @click="showCart">
+      <h4 style="margin-left: 5px; font-size: 35px; display: flex">
+        <i class="ec ec-shopping-bag cart-icon-fa font-size-22"></i>
+        <span
+          class="width-22 height-22 bg-dark position-absolute d-flex align-items-center justify-content-center rounded-circle left-12 top-8 font-weight-bold font-size-12 text-white"
+        >
+          {{ cart ? cart.item_count : 0 }}
+        </span>
+
+        <span
+          id="__cart_total"
+          style="font-size: 16px; margin-top: 6px; margin-left: 10px"
+        >
+          ৳{{ cart ? cart.cart_total : 0 }}
+        </span>
+      </h4>
+
+      <!-- <span>
+        {{  }}
+      </span> -->
+    </div>
+
+    <div class="__cart" id="__cart">
+      <div class="__cart_header d-flex">
+        <img
+          src="https://chahidaeshop.com/icon/my cart.png"
+          alt=""
+          width="50px"
+        />
+        <h5>My Cart</h5>
+        <i class="ec ec-close-remove pointer" @click="showCart"></i>
+      </div>
+      <div class="__cartcart_body">
+        <ul class="__cart-product-list" v-if="cart.item_count > 0">
+          <li
+            class="d-flex"
+            v-for="(item, idx) in cart.cart_content.cart"
+            :key="idx"
+          >
+            <img :src="$imageBaseUrl2 + item.product_image" />
+            <div class="__cart_product_desc">
+              <h6>
+                <strong>{{ item.product_name }}</strong>
+              </h6>
+              <span> {{ item.price }}x{{ item.quantity }} </span>
+            </div>
+            <i class="fa fa-close" @click="remove_cart_item(item.id)"></i>
+          </li>
+        </ul>
+      </div>
+
+      <div class="__cart_sub_total">
+        Sub Total: ৳{{ cart ? cart.cart_total : 0 }}
+      </div>
+      <div class="__cart__footer">
+        <router-link :to="{ name: 'cart' }" class="btn btn-primary cart">
+          Cart
+        </router-link>
+
+        <router-link :to="{ name: 'checkout' }" class="btn btn-primary">
+          Checkout
+        </router-link>
+      </div>
+    </div>
+  </header>
+</template>
+<style>
+.user-account-link-drop-down-link {
+  display: none;
+}
+</style>
+<script>
+export default {
+  name: "Header",
+  data() {
+    return {
+      search: "",
+    };
+  },
+  methods: {
+    showMenu() {
+      document.getElementById("__category-menu").classList.toggle("d-none");
+      document.getElementById("__category-menu").classList.toggle("fadeInUp");
+    },
+    remove_cart_item(id) {
+      if (confirm("Are You Sure ? Remove This Item !!")) {
+        this.$axios
+          .get("cart/item/remove/" + id, {
+            headers: this.$apiHeader,
+          })
+          .then((resp) => {
+            if (resp.data.success == "OK") {
+              this.$toast.open({
+                message: resp.data.message,
+                type: "info",
+                position: "bottom",
+                duration: 4000,
+              });
+            }
+            this.$store.dispatch("cart");
+          });
+      }
+    },
+    showCart() {
+      let cart_elemnets = document.getElementById("__cart");
+      cart_elemnets.classList.toggle("__cart_collapse");
+      cart_elemnets.classList.toggle('fadeInRight')
+    },
+    respMenuControl(e) {
+      let elemens = document.getElementsByClassName(
+        "__nav_resp_menu_close_active"
+      );
+      for (let index = 0; index < elemens.length; index++) {
+        elemens[index].classList.remove("__nav_resp_menu_close_active");
+      }
+
+      e.target.classList.toggle("__nav_resp_menu_close_active");
+      document.getElementById("__category-menu").classList.toggle("d-flex");
+      let menu = document.getElementById("__nav_list");
+      menu.style.display = menu.style.display != "none" ? "none" : "flex";
+    },
+    nextElement(e) {
+      let element = e.target.nextSibling.nextElementSibling;
+      element.classList.toggle("d-flex");
+      // element.style.display = (element.style.display != 'none') ? 'none' : 'flex';
+    },
+    hideShowMenu() {
+      document.getElementById("__nav").classList.toggle("__show_menu");
+    },
+    show_user_account_dropdown() {
+      document
+        .getElementsByClassName("user-account-link-drop-down-link")[0]
+        .classList.toggle("__show");
+    },
+    handleBodyClick(e) {
+      //// hide user drow down lick
+      let user_dropdown_link = document.getElementsByClassName(
+        "user-account-link-drop-down-link"
+      )[0];
+      let user_account_d = document.getElementById("user_account_d");
+      if (
+        user_dropdown_link !== e.target &&
+        !user_dropdown_link.contains(e.target) &&
+        e.target !== user_account_d
+      ) {
+        if (user_dropdown_link.classList.contains("__show")) {
+          user_dropdown_link.classList.remove("__show");
+        }
+      }
+
+      ///hide the category mennu, when click the out side of element
+      let catagory_menu = document.getElementById("__category-menu");
+      let c_link = document.getElementById("__c_link");
+      if (
+        catagory_menu !== e.target &&
+        !catagory_menu.contains(e.target) &&
+        e.target !== c_link
+      ) {
+        catagory_menu.classList.add("d-none");
+      }
+
+      ////hide cart element
+      let cart = document.getElementById("__cart");
+      let cart_icon = document.getElementsByClassName("cart-icon")[0];
+      let r_icon = document.getElementById("__r_cart_icon");
+      if (
+        cart !== e.target &&
+        !cart.contains(e.target) &&
+        e.target !== cart_icon &&
+        !cart_icon.contains(e.target) &&
+        e.target !== r_icon &&
+        !r_icon.contains(e.target)
+      ) {
+        cart.classList.remove("__cart_collapse");
+      }
+    },
+    show_responsive_search() {
+      let element = document.getElementById("__responsive_search");
+
+      element.classList.toggle("__show");
+    },
+
+    logout() {
+      localStorage.removeItem("user_token");
+
+      this.$router.push({ name: "login" });
+    },
+    search_products() {
+      if (this.search.length <= 0) {
+        alert("Please Write Something");
+        return;
+      }
+
+      this.$router.push({ name: "search", params: { search: this.search } });
+    },
+  },
+  created() {
+    this.$store.dispatch("categories");
+    this.$store.dispatch("cart");
+    this.$store.dispatch("user");
+    window.addEventListener("click", this.handleBodyClick);
+  },
+  computed: {
+    categories() {
+      return this.$store.state.categories;
+    },
+    cart() {
+      return this.$store.state.cart;
+    },
+    user() {
+      return this.$store.state.user;
+    },
+  },
+};
+</script>
