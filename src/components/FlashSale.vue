@@ -73,13 +73,13 @@
                         <div class="flex-center-between mb-1">
                           <div class="font-weight-bold">
                             <del class="font-size-13 text-gray-9"
-                              >৳{{ flas_sale_product.sale_price }}</del
+                              >৳{{ flas_sale_product.discount_price }}</del
                             >
                             <span
                               class="saletag"
                               v-if="
-                                flas_sale_product.price <
-                                flas_sale_product.sale_price
+                                flas_sale_product.regular_price <
+                                flas_sale_product.discount_price
                               "
                             >
                               {{ discount_percent(flas_sale_product) }}
@@ -88,18 +88,11 @@
 
                           <div class="prodcut-price">
                             <div class="font-size-15 text-gray-100">
-                              ৳{{ flas_sale_product.price }}
+                              ৳{{ flas_sale_product.regular_price }}
                             </div>
                           </div>
 
-                          <div class="d-none d-xl-block prodcut-add-cart">
-                            <a
-                              style="cursor: pointer"
-                              onclick="addtocart()"
-                              class="btn-add-cart btn-primary transition-3d-hover addtocart"
-                              ><i class="ec ec-add-to-cart"></i
-                            ></a>
-                          </div>
+          
                         </div>
                       </div>
                     </div>

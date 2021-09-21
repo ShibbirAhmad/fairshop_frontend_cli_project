@@ -18,25 +18,10 @@
     <div class="container">
       <div id="content">
         <div id="content">
-          <p
-            style="
-              margin: 15px 0px 10px;
-              padding: 0px;
-              color: gray;
-              text-align: justify;
-              font-family: SolaimanLipi, helvetica, verdana;
-              font-size: 14px;
-            "
-          >
-            দেশের সর্বোচ্চ বিশ্বস্ত অনলাইন শপিং মল চাহিদা ই-শপে আপনার নিত্যদিনের
-            প্রয়োজনীয় বিভিন্ন পন্যসামগ্রী যেমনঃ গ্যাজেটস, এক্সেসরিজ,ফ্যাশন ও
-            লাইফস্টাইল পন্য, হেলথকেয়ার পন্য, হোম অ্যাপ্লায়েন্স ইত্যাদির
-            চাহিদায়, "চাহিদা ই-শপ" নিরলস কার্যক্রম চালাচ্ছে। সঠিক মূল্যে ও সঠিক
-            সময়ে সঠিক পণ্য পেতে যা জানা দরকার।
-          </p>
+
           <p style="margin: 15px 0px 10px; padding: 0px">
             <b
-              >চাহিদা ই-শপ থেকে&nbsp;<span style="text-align: left"
+              > শপ থেকে&nbsp;<span style="text-align: left"
                 >যেভাবে পণ্য অর্ডার করবেনঃ</span
               ></b
             >

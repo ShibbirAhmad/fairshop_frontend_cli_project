@@ -3,10 +3,14 @@
     <footer>
       <div class="bg-gray-14 py-2 hide">
         <div class="container">
-          <div class="foooter">
-            <div class="row justify-content-center">
-             <div class="col-lg-4 text-center">
+          <div class="foooter desktop_footer">
 
+      <div class="fpart-first">
+        <div class="container">
+          <div class="row">
+            <div class="contact col-lg-3 col-md-3 col-sm-12 col-xs-12">
+              <ul>
+                <li style="list-style-type:none" class="address">
 
               <router-link to="/">
                 <img
@@ -15,39 +19,127 @@
                 />
               </router-link>
 
-
-              <p class="p-3">
-                Fairshop.com is a complete e-commerce website in Bengali and English. Here, consumers of all ages can buy every essential product of the day, from gadgets, electronics, home appliances, leather goods, jewelry, baby accessories, cosmetics, fashion and lifestyle products to affordable prices at home
-              </p>
-
-
-             </div>
-             <div class="col-lg-4 ">
-               <h4 class="text-center mb-5 mt-2">
-                 Links
-               </h4>
-               <ul class="text-center" style="list-style:none;">
-               <li class="mt-5">
-                  <a href="/">Home</a>
-
-               </li>
-               <li>
-                  <a href="/shops">Products</a>
-
-               </li>
-               <li>
-                  <a href="/campaign">Campaign</a>
-
-               </li>
-               <li>
-                  <a href="/merchant/login">Merchant</a>
-
-               </li>
-               </ul>
-
-             </div>
-             
+                  <p class="short_desc">
+                    <span
+                      style="
+                        font-size: 16px;
+                        color: #199EFF;
+                        font-weight: 700;
+                      "
+                      >fairshop.com.bd</span
+                    >
+                    is a complete e-commerce market place.
+                    Here, consumers of all ages can buy every essential product
+                    of the day, from gadgets, electronics, home appliances,
+                    leather goods, jewelry, baby accessories, cosmetics, fashion
+                    and lifestyle products to affordable prices at home
+                  </p>
+                </li>
+              </ul>
             </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+             <div class="quick_link_container">
+                <div class="quick_link">
+                  <h5>Quick Links</h5>
+                  <div class="line"></div>
+                  <ul class="link_line">
+                    <li><a href="/" class="router-link-active">Home</a></li>
+                    <li><a href="/about/us" class="">About Us</a></li>
+                    <li><a href="/contact/us" class="">Contact Us</a></li>
+                  </ul>
+                </div>
+
+              <div class="quick_link">
+                <h5>Information</h5>
+                <div class="line"></div>
+                <ul class="link_line">
+                  <li><a href="/how/to/buy" class="">How to order</a></li>
+                  <li><a href="/return/policy" class="">Return Policy</a></li>
+                  <li><a href="/shipment" class="">Shipment </a></li>
+                  <li><a href="/about/seller" class="">About Seller </a></li>
+                </ul>
+              </div>
+
+             </div>
+            </div>
+
+            <div class=" col-lg-4 col-md-4 col-sm-12 col-xs-12">
+              <div class="news_letter">
+                <h5>Follow Us</h5>
+                <div class="line"></div>
+                <form>
+                  <div class="row">
+                    <div class="subscribe_container">
+                      <form @submit.prevent="subscribe()">
+                        <div class="form-group s_form">
+                          <label
+                            for="subscribe"
+                            class="form-label"
+                            >submit email to recieve latest offer .</label
+                          >
+                          <input
+                            type="email"
+                            required
+                            placeholder="example@gmail.com"
+                            class="form-control"
+                            v-model="email"
+                          />
+
+                            <button type="submit" class="email_btn">
+                              <i class="fas fa-envelope-open"></i>
+                            </button>
+
+                        </div>
+
+                    </form>
+                    <div class="social-icon" >
+                        <a
+                          href="https://www.youtube.com/"
+                          target="_blank"
+                          class="social-wrape"
+                          ><i class="fab fa-youtube-square f-icon"></i >
+
+                          </a>
+                        <a
+                          href="#"
+                          target="_blank"
+                          class="social-wrape"
+                          style="margin-top: 10px"
+                          >
+                          <i class="fab fa-twitter f-icon"></i>
+                          </a>
+                        <a
+                          href="https://linkedin.com/"
+                          target="_blank"
+                          class="social-wrape"
+                          style="margin-top: 10px"
+                          ><i class="fab fa-linkedin f-icon"></i></a>
+                      </div>
+                    </div>
+
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+        <div class="row">
+          <div class="end_footer">
+            <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+              <p class="f_info_left">
+                Copyright © fairshop.com.bd 2021. All rights reserved.
+              </p>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+              <p class="f_info_right">
+                Design &amp; Developed by: Mohasagor it Solution
+              </p>
+            </div>
+          </div>
+        </div>
           </div>
         </div>
       </div>
@@ -64,7 +156,7 @@
               width="1em"
               height="1em"
               fill="currentColor"
-              class="bi bi-house-door"
+              class="fa fa-house-door"
               viewBox="0 0 16 16"
             >
               <path
@@ -83,7 +175,7 @@
             width="1em"
             height="1em"
             fill="currentColor"
-            class="bi bi-grid"
+            class="fa fa-grid"
             viewBox="0 0 16 16"
           >
             <path
@@ -119,7 +211,7 @@
               width="1em"
               height="1em"
               viewBox="0 0 16 16"
-              class="bi bi-cart2"
+              class="fa fa-cart2"
               fill="currentColor"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -134,7 +226,7 @@
             width="1em"
             height="1em"
             viewBox="0 0 16 16"
-            class="bi bi-person"
+            class="fa fa-person"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -331,9 +423,37 @@ export default {
       category_show: false,
       show_footer_nav: false,
       show_footer_cart: false,
+      email:''
     };
   },
   methods: {
+
+    subscribe(){
+         this.axios.post('add/subscriber',{
+             email: this.email ,
+         })
+         .then((resp)=>{
+           console.log(resp);
+            if (resp.data.success == "OK") {
+            this.email = "";
+            this.$toast.open({
+              message: resp.data.message,
+              type: "success",
+              position: "bottom",
+              duration: 3000,
+           });
+          } else {
+            this.email = "";
+             this.$toast.open({
+              message: resp.data.message,
+              type: "warning",
+              position: "bottom",
+              duration: 3000,
+           });
+          }
+         })
+      },
+
     hideShowMenu() {
       document.getElementById("__nav").classList.toggle("__show_menu");
     },
@@ -393,10 +513,236 @@ export default {
 };
 </script>
 
+
+
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .foooter {
     background: #eee;
     padding: 20px;
 }
+
+
+
+
+   .fpart-first {
+        background-color: #eee;
+    }
+
+   .fpart-first {
+        padding-top: 50px;
+        padding-bottom: 10px;
+    }
+
+   .fpart-second {
+        color: #000;
+        background-color: #eee;
+    }
+
+   h5 {
+        color: #000;
+    }
+
+
+   .fpart-first a {
+        color: #000;
+    }
+
+
+    .short_desc {
+      color: #000;
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+    .payment-card {
+      padding-top: 20px;
+    }
+
+    .payment-card img {
+      width:100% ;
+      height: auto ;
+    }
+
+
+    .quick_link_container {
+        display: flex;
+      }
+
+
+    .quick_link {
+        margin: 0px 25px;
+      }
+
+
+
+    .link_line li{
+        padding: 6px 0px;
+        width: 100%;
+        border-bottom: 1px solid #ddd;
+        display: -webkit-flex;
+        display: flex;
+        transition: all .2s ease;
+    }
+
+    .link_line li:hover {
+        background-color: #2a2b2b;
+        padding-left: 0.275rem;
+    }
+
+
+    .line {
+      width: 72px;
+      height: 2px;
+      background: #199EFF;
+      margin-top: -10px;
+      margin-bottom: 12px;
+    }
+
+    .subscribe_container{
+      display: flex;
+      box-shadow: 0 1pt 12pt rgb(150 165 237);
+      padding: 10px 0px;
+      margin-bottom: 10px;
+    }
+
+    .s_form {
+      width: 400px;
+      padding:10px;
+      margin-top: 22px;
+    }
+
+  .email_btn {
+      width: 62px;
+      height: 44px;
+      background: #199EFF;
+      margin-top: -44px;
+      border: none;
+      float: right;
+      border-radius: 0px 10px 10px 0px;
+  }
+
+    .email_btn i
+    {
+        color: #fff;
+        font-size: 26px;
+    }
+
+    .social_container{
+      display: flex;
+      margin: 10px 0px;
+      box-shadow: 0 1pt 12pt rgb(150 165 237);
+      padding: 5px 0px;
+    }
+
+    .social-icon {
+      margin: 10px;
+    }
+
+    .social-wrape {
+      float: left;
+      width: 40px;
+      height: 40px;
+      border: 1.5px dashed;
+      border-radius: 50%;
+      margin-left: 10px;
+    }
+
+    .social-wrape:hover {
+      background: #199EFF;
+    }
+
+    .social-wrape:hover > i {
+      color: #fff ;
+    }
+
+
+    .f-icon {
+        font-size: 26px;
+        cursor: pointer;
+        color: #199EFF;
+        position: absolute;
+        margin: 6px 6px;
+    }
+
+
+    .end_footer {
+      display: flex;
+      background: #199EFF;
+      height: 50px;
+      width: 100%;
+    }
+
+    .f_info_left {
+      margin-left: 70px !important;
+      color: #fff;
+      margin-top: 10px;
+      margin-left: 5px;
+      font-family: serif;
+      font-size: 16px;
+    }
+
+    .f_info_right {
+      float: right;
+      color: #fff;
+      margin-top: 10px;
+      margin-left: 120px;
+      font-size: 16px;
+      font-family: serif;
+      margin-right: 20px ;
+    }
+
+
+
+
+    @media only screen and (max-width:768px) {
+
+      .s_form {
+          width: 330px;
+        }
+
+      .social-wrape {
+        margin-left: 12px;
+        margin-top: 10px;
+      }
+
+      .social_container{
+        margin: 60px 0px;
+      }
+
+      .social-icon {
+        margin: 45% 20%;
+        position: absolute;
+      }
+
+      .end_footer {
+        display: none;
+      }
+
+        .short_desc {
+            margin-left: -20px;
+            padding: 5px;
+        }
+
+        .news_letter {
+          padding:0px 20px;
+        }
+
+        .payment-card {
+            padding-top: 20px;
+            margin-top: -20px;
+            margin-bottom: 35px;
+        }
+
+
+
+      }
+
+
+
+
+
+
+
+
 </style>

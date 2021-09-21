@@ -16,7 +16,8 @@ const state = {
     cart: {},
     user: {},
     campaign: {},
-    sliders: {},
+    sliders: '',
+    banner: '',
     variants: [],
     show_collpase_cart: false,
 
@@ -161,8 +162,9 @@ const actions = {
             headers: this.$apiHeader,
         })
             .then(resp => {
-               // console.log(resp);
-                context.commit('sliders', resp.data)
+                console.log(resp);
+                context.commit('sliders', resp.data.sliders)
+                context.commit('banner', resp.data.banner)
             })
 
     }
@@ -199,6 +201,9 @@ const mutations = {
     },
     sliders(state, payload) {
         return state.sliders = payload;
+    },
+    banner(state, payload) {
+        return state.banner = payload;
     },
     variants(state, payload) {
         return state.variants = payload;

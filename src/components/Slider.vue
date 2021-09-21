@@ -11,10 +11,10 @@
             :nav="false"
             :autoplay="true"
             :autoplayTimeout="2000"
-            v-if="sliders.sliders"
+            v-if="sliders"
           >
             <a
-              v-for="(slider, i) in sliders.sliders"
+              v-for="(slider, i) in sliders"
               :key="i"
               :href="slider.url"
             >
@@ -27,12 +27,26 @@
           </carousel>
         </div>
 
-    
+
 
         <!-- End Banner -->
       </div>
 
-     
+       <div v-if="banner.status == 1" class="row banner_row">
+
+          <div class="col-md-6 col-lg-6 col-xs-6">
+               <a :href="banner.url_1">
+                 <img  class="advertise_banner_1" :src="$imageBaseUrl+banner.banner_1">
+                </a>
+          </div>
+
+             <div class="col-md-6 col-lg-6 col-xs-6">
+               <a :href="banner.url_2">
+                 <img  class="advertise_banner_2" :src="$imageBaseUrl+banner.banner_2">
+                </a>
+          </div>
+
+       </div>
     </div>
   </div>
 </template>
@@ -52,6 +66,9 @@ export default {
   computed: {
     sliders() {
       return this.$store.state.sliders;
+    },
+     banner() {
+      return this.$store.state.banner;
     },
   },
 };

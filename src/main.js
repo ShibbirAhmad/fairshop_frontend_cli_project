@@ -27,8 +27,8 @@ Vue.prototype.$apiHeader = {
     "API_TOKEN": "JHKJA78411AJF"
 };
 //
-Vue.prototype.$imageBaseUrl = "http://app.fairshop.com.bd/storage/app/public/";
-Vue.prototype.$imageBaseUrl2 = "http://app.fairshop.com.bd/storage/app/public/";
+Vue.prototype.$imageBaseUrl = "https://app.fairshop.com.bd/storage/app/public/";
+Vue.prototype.$imageBaseUrl2 = "https://app.fairshop.com.bd/storage/app/public/";
 
 
 

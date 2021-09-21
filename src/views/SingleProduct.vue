@@ -39,13 +39,19 @@
       <div v-else>
         <div class="row">
           <div class="col-md-4 mb-4 mb-md-0">
-            <img
+            <!-- <img
               v-if="product.product_image.length > 0"
               :src="$imageBaseUrl + product.product_image[0].product_image"
-              :alt="product.name"
               class="single_product_image"
               id="__single_product_image"
-            />
+            /> -->
+
+                <image-zoom
+                  :regular="$imageBaseUrl + product.product_image[0].product_image"
+                  img-class="single_product_image"
+                 >
+              </image-zoom>
+
             <div
               class="thumnail_img-box"
               v-if="product.product_image.length > 0"
@@ -58,20 +64,15 @@
                 alt=""
               />
             </div>
-            <!-- 
-            <ProductZoomer
-            v-if="Object.keys(product_images).length > 0"
-              :base-images="product_images"
-              :base-zoomer-options="zoomerOptions"
-              
-            /> -->
+
+
           </div>
 
           <div class="snglepdt col-md-5 mb-md-6 mb-lg-0">
             <div class="mb-2">
               <div class="border-bottom pb-md-1">
-             
-               
+
+
                 <h2 class="font-size-25 text-lh-1dot2 font-weight-600">
                   {{ product.name }}
                 </h2>
@@ -109,13 +110,13 @@
                 <div id="priceSection">
                   <div class="d-flex align-items-baseline">
                     <ins class="font-size-36 text-decoration-none">
-                      ৳ <span id="oprice">{{ product.discount_price }}</span>
+                      ৳<span id="oprice">{{ product.discount_price }}</span>
                     </ins>
                     <del
-                     
+
                       class="font-size-20 ml-2 text-gray-6"
                     >
-                      ৳ {{ product.regular_price }}
+                      ৳{{ product.regular_price }}
                     </del>
                     <span style="font-size: 1.5rem; padding-left: 0.5rem">
                       {{ $discount_percent(product) }}
@@ -230,14 +231,36 @@
         </div>
         <div class="row mt-5 bg-white p-5 shadow">
           <div class="col-md-12 mb-md-12 mb-lg-0" style="overflow: hidden">
-            <div class="" id="details">
-              <div class="border-bottom">
-                <h2 class="font-size-25 text-lh-1dot2">Product Details</h2>
-              </div>
-              <br />
 
-              <p v-html="product.details"></p>
-            </div>
+             <div class="product-details-tabe">
+               <ul class="details-tab-menu-list">
+                  <li class="details-tab-menu-item"  @click="tab_content=1" :class="{'tab-menu-item-active':tab_content==1}">Description</li>
+                    <li class="details-tab-menu-item" @click="tab_content=2" :class="{'tab-menu-item-active':tab_content==2}" >How To Buy</li>
+                      <li class="details-tab-menu-item"  @click="tab_content=3" :class="{'tab-menu-item-active':tab_content==3}">Return Policy</li>
+                 </ul>
+              <div class="product-tab-content">
+                <div v-html="product.details" class="product-details" :class="{block:tab_content==1}"></div>
+                <div class="how-to-buy" :class="{block:tab_content==2}">
+                  <ul>
+                    <li class="h-b-li">Select number of product you want to buy.</li>
+                    <li class="h-b-li">Click <strong>Add To Cart</strong> Button</li>
+                    <li class="h-b-li">Then go to checkout page</li>
+                    <li class="h-b-li">If you are a new user, please click on Sign Up.provide us uour valid inormation information.</li>
+                    <li class="h-b-li">Complete your checkout, we received your order, and for order confirmation or customer service contact with you</li>
+                  </ul>
+                </div>
+                 <div class="how-to-buy"  :class="{block:tab_content==3}">
+                  <ul>
+                    <li class="h-b-li">If your product is damaged, defective, incorrect or incomplete at the time of delivery, please file a return request on call to customer care support number within 3 days of the delivery date</li>
+                    <li class="h-b-li">Change of mind is not applicable as a Return Reason for this product</li>
+
+                  </ul>
+                </div>
+
+              </div>
+              </div>
+
+
           </div>
         </div>
 
@@ -306,8 +329,7 @@
 <script>
 import Products from "../components/products.vue";
 import Cart from "../components/Cart";
-// import ProductZoomer from "vue-product-zoomer";
-// Vue.use(ProductZoomer)
+import imageZoom from 'vue-image-zoomer';
 
 export default {
   name: "single-product",
@@ -323,6 +345,7 @@ export default {
       variant_id: "",
       cart_show: false,
       loading: true,
+      tab_content:1,
     };
   },
   methods: {
@@ -352,7 +375,7 @@ export default {
       document.getElementById("__single_product_image").src = e.target.src;
     },
     handleBodyClick(e){
-      
+
       ////hide cart element
       let cart = document.getElementById("__cart");
       let cart_icon = document.getElementsByClassName("cart-icon")[0];
@@ -419,6 +442,55 @@ export default {
   components: {
     Products,
     Cart,
+    imageZoom,
   },
 };
 </script>
+
+<style scoped>
+
+.product-details-tabe {
+    background: #fff;
+    margin-top: 25px;
+    padding: px;
+    box-shadow: 3px 3px 3px #ddd;
+    border-radius: 10px;
+}
+ul.details-tab-menu-list {
+    width: 100%;
+    display: flex;
+    text-transform: uppercase;
+    background: #ddd;
+    border-radius: 2px;
+}
+
+.details-tab-menu-item {
+    padding: 10px;
+    color: #000;
+    cursor: pointer;
+    list-style-type: none;
+}
+
+
+.tab-menu-item-active {
+    border-bottom: 4px solid #199EFF;
+}
+.product-tab-content {
+    padding: 15px 15px;
+    min-height: 250px;
+}
+.product-details{
+    display: none;
+}
+.how-to-buy{
+    display: none;
+}
+.block{
+    display: block;
+}
+li.h-b-li {
+    list-style-type: square;
+    padding: 2px;
+
+}
+</style>
