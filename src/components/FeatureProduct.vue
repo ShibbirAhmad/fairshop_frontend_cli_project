@@ -5,14 +5,22 @@
         class="d-flex justify-content-between border-bottom border-color-1 flex-lg-nowrap flex-wrap border-md-down-top-0 border-md-down-bottom-0 mb-3"
       >
         <h3 class="section-title section-title__full mb-0 pb-2 font-size-22">
-          Special Offer Products
+          Feature Products
         </h3>
       </div>
-      <div class="row">
+      <div class="row feature_product_row">
+        <carousel
+            :nav="false"
+            :autoplay="true"
+            :items="5"
+            :autoplayTimeout="2000"
+             v-if="FeatureProduct.length>0"
+             :responsive="{ 0: { items: 2 }, 600: { items: 5 } }"
+            >
         <div
           v-for="(product, fpdx) in FeatureProduct"
           :key="fpdx"
-          class="feature-col"
+          class="feature-col "
         >
           <router-link
             :to="{
@@ -22,18 +30,25 @@
           >
             <img :src="$imageBaseUrl2 + product.thumnail" :alt="product.name" />
             <div class="title-img">
-              <span> {{ product.name }} </span>
+              <span> {{ product.name.substring(0,15) }} </span>
+                <span v-if="product.name.length > 15"> ... </span>
             </div>
           </router-link>
         </div>
+
+       </carousel>
       </div>
     </div>
   </div>
 </template>
 <script>
+import carousel from "vue-owl-carousel";
 export default {
   created() {
     this.getFeatureProducts();
+  },
+  components:{
+    carousel
   },
   data() {
     return {

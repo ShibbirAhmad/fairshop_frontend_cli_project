@@ -44,7 +44,7 @@
                title="user login"
                 href="/login" >
                 <img
-                :src="$imageBaseUrl2 + 'user.png'"
+                src="../assets/images/user.png"
                 width="40px"
                 height="40px"
                 id="user_account_d"
@@ -53,7 +53,7 @@
 
               <img
                  @click="show_user_account_dropdown"
-                :src="$imageBaseUrl2 + $store.state.user.image"
+                :src=" user.image ?  $imageBaseUrl2 + $store.state.user.image : '../assets/images/user.png'"
                 width="40px"
                 height="40px"
                 id="user_account_d"
@@ -78,7 +78,7 @@
                 </div>
               </ul>
 
-               <a class="facebook_link_btn" title="facebook page" href=""> <img src="../assets/images/facebook.png" >  </a>
+               <a class="facebook_link_btn" title="facebook page" href="https://www.facebook.com/fairshop.com.bd"> <img src="../assets/images/facebook.png" >  </a>
 
                <a class="merchant_link_btn" title="Merchant Login" href="https://www.app.fairshop.com.bd/merchant/login"> <img src="../assets/images/merchant.png" >  </a>
 
@@ -87,7 +87,7 @@
 
             <li class="font-1-5 r_search" id="r_search">
               <i
-                class="fas fa-search"
+                class="fa fa-search"
                 @click.prevent="
                   responsove_search_form = !responsove_search_form
                 "
@@ -135,7 +135,6 @@
         <div class="container d-flex">
           <ul class="__category_nav">
             <li
-              @mouseover.prevent="showMenu"
               class="c-link pointer __nav_list_highlight_link"
               id="__c_link"
             >
@@ -235,14 +234,14 @@
 
           </ul>
           <ul class="__nav_list_right">
-            <li class="__nav_list_highlight_link">
-              <a href="tel:01911074172">
+            <li style="margin-top:-5px" class="__nav_list_highlight_link">
+              <a href="tel:01762424333">
                 <i
                   style="text-transform: lowercase"
                   class="ec ec-support font-size-30"
                   aria-hidden="true"
                 ></i>
-                01911074172</a
+                01762424333</a
               >
             </li>
 
@@ -312,8 +311,11 @@ export default {
   },
   methods: {
     showMenu() {
-      document.getElementById("__category-menu").classList.toggle("d-none");
-      document.getElementById("__category-menu").classList.toggle("fadeInUp");
+      document.getElementById("__category-menu").style.display='block';
+
+    },
+    hideMegamenu(){
+      document.getElementById("__category-menu").style.display='none';
     },
     remove_cart_item(id) {
       if (confirm("Are You Sure ? Remove This Item !!")) {
@@ -359,11 +361,11 @@ export default {
     hideShowMenu() {
       document.getElementById("__nav").classList.toggle("__show_menu");
     },
-    // show_user_account_dropdown() {
-    //   document
-    //     .getElementsByClassName("user-account-link-drop-down-link")[0]
-    //     .classList.toggle("__show");
-    // },
+    show_user_account_dropdown() {
+      document
+        .getElementsByClassName("user-account-link-drop-down-link")[0]
+        .classList.toggle("__show");
+    },
     handleBodyClick(e) {
       //// hide user drow down lick
       let user_dropdown_link = document.getElementsByClassName(

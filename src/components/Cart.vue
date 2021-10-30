@@ -41,8 +41,8 @@
               </h6>
               <span>{{ item.quantity }} X {{ item.price }} ৳</span>
             </div>
-            <i
-              class="ec ec-close-remove sideCartClose"
+            <i style="cursor:pointer"
+              class="fa fa-close sideCartClose"
               @click="remove_cart_item(item.id)"
             ></i>
           </li>

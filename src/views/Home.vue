@@ -116,7 +116,8 @@
                           class="d-block text-center"
                         >
                         <h4>
-                          {{ product.name }}
+                          {{ product.name.substring(0,15) }}
+                             <span v-if="product.name.length > 15"> ... </span>
                           </h4>
                           </router-link>
                         <p class="price">
@@ -149,7 +150,6 @@
 import Slider from "../components/Slider";
 import FeatureProduct from "../components/FeatureProduct";
 import FlashSale from "../components/FlashSale";
-// import VueHorizontalList from "vue-horizontal-list";
 import InfiniteLoading from "vue-infinite-loading";
 import carousel from "vue-owl-carousel";
 
@@ -159,23 +159,6 @@ export default {
   data() {
     return {
       categories: [],
-      // response_options: {
-      //   responsive: [
-      //     { end: 576, size: 1 },
-      //     { start: 576, end: 768, size: 2 },
-      //     { start: 768, end: 992, size: 10 },
-      //     { start: 992, end: 1200, size: 10 },
-      //     { start: 1200, size: 10 },
-      //   ],
-      //   list: {
-      //     windowed: 1200,
-      //     padding: 10,
-      //   },
-      //   position: {
-      //     start: 1,
-      //   },
-      //   autoplay: { play: true, repeat: true, speed: 3000 },
-      // },
       page: 1,
     };
   },
@@ -191,7 +174,6 @@ export default {
           if (resp.data.data.length) {
             this.page += 1;
             this.categories.push(...resp.data.data);
-
             $state.loaded();
           } else {
             $state.complete();

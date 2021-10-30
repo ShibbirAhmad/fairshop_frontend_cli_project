@@ -19,7 +19,7 @@
             aria-labelledby="pills-one-example1-tab"
             data-target-group="groups"
           >
-          
+
           </div>
         </div>
       </ul>
@@ -54,14 +54,15 @@
                           class="d-block text-center"
                         >
                         <h4>
-                          {{ product.name }}
+                          {{ product.name.substring(0,15) }}
+                             <span v-if="product.name.length > 15"> ... </span>
                           </h4>
                           </router-link>
                         <p class="price">
                           <span
-                            >৳ <del>{{ product.regular_price }}</del></span
+                            >৳<del>{{ product.regular_price }}</del></span
                           >
-                          ৳ {{ product.discount_price }}
+                           ৳{{ product.discount_price }}
                         </p>
                       </div>
                     </div>

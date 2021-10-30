@@ -58,7 +58,6 @@ export default {
 @import "./assets/css/font-awesome/css/fontawesome-all.min.css"; */
 
 @import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
- @import "http://old.chahidaeshop.com/frontend/assets/vendor/font-awesome/css/fontawesome-all.min.css";
 
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap");
 /* @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"); */

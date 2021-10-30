@@ -8,17 +8,17 @@
             class="
               breadcrumb
               flex-nowrap flex-xl-wrap
-              overflow-auto overflow-xl-visble
+              overflow-auto overflow-xl-visible
             "
           >
-            <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
+            <li class="breadcrumb-item ">
               <a href="/">Home</a>
             </li>
 
-            <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
+            <li class="breadcrumb-item ">
               <router-link :to="'/shop'">Shop</router-link>
             </li>
-            <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
+            <li class="breadcrumb-item ">
               <a href="#">{{ product.name }}</a>
             </li>
           </ol>
@@ -38,19 +38,18 @@
       </div>
       <div v-else>
         <div class="row">
-          <div class="col-md-4 mb-4 mb-md-0">
+          <div class="col-md-5 mb-5 mb-md-0">
             <!-- <img
               v-if="product.product_image.length > 0"
               :src="$imageBaseUrl + product.product_image[0].product_image"
               class="single_product_image"
               id="__single_product_image"
             /> -->
-
-                <image-zoom
-                  :regular="$imageBaseUrl + product.product_image[0].product_image"
-                  img-class="single_product_image"
-                 >
-              </image-zoom>
+           <image-zoom v-if="zooming_img.length"
+                    :regular="zooming_img"
+                    img-class="single_product_image"
+                    >
+             </image-zoom>
 
             <div
               class="thumnail_img-box"
@@ -58,10 +57,10 @@
             >
               <img
                 v-for="(image, imgdx) in product.product_image"
+                :class="{__active_border :imgdx==0}"
                 :key="imgdx"
                 :src="$imageBaseUrl + image.product_image"
-                @click="changePreview"
-                alt=""
+                @click="displayeImageFromBox"
               />
             </div>
 
@@ -245,15 +244,17 @@
                     <li class="h-b-li">Select number of product you want to buy.</li>
                     <li class="h-b-li">Click <strong>Add To Cart</strong> Button</li>
                     <li class="h-b-li">Then go to checkout page</li>
-                    <li class="h-b-li">If you are a new user, please click on Sign Up.provide us uour valid inormation information.</li>
+                    <li class="h-b-li">If you are a new user, please click on Sign Up.provide us your valid  information.</li>
                     <li class="h-b-li">Complete your checkout, we received your order, and for order confirmation or customer service contact with you</li>
                   </ul>
                 </div>
                  <div class="how-to-buy"  :class="{block:tab_content==3}">
                   <ul>
-                    <li class="h-b-li">If your product is damaged, defective, incorrect or incomplete at the time of delivery, please file a return request on call to customer care support number within 3 days of the delivery date</li>
-                    <li class="h-b-li">Change of mind is not applicable as a Return Reason for this product</li>
-
+                    <li class="h-b-li"> After receiving the product you will be able to accept the modified product in case of any problem of the product (eg: product broken, torn, product not working, product does not match with the photo, etc.). In that case you have to e-mail support@fairshop.com.bd within maximum 48 hours after receiving the product or you have to inform us on our hotline number 880 1762424333. Note that you have to bear the cost of courier to replace any product as a result of your change of mind and fairshop.com.bd will bear the cost of any product by fairshop.com.bd.
+                    </li>
+                    <li class="h-b-li">
+                        Let us know your - questions - comments - complaints - phone: 880 1762424333, e-mail: support@fairshop.com.bd
+                    </li>
                   </ul>
                 </div>
 
@@ -337,7 +338,6 @@ export default {
     this.$store.dispatch("product", this.$route.params.slug);
     window.scroll(0, 0);
         window.addEventListener("click", this.handleBodyClick);
-
   },
   data() {
     return {
@@ -346,6 +346,7 @@ export default {
       cart_show: false,
       loading: true,
       tab_content:1,
+      zooming_img:'',
     };
   },
   methods: {
@@ -371,9 +372,22 @@ export default {
       this.$add_to_cart($event, product, qty, variant_id,true);
       this.cart_show = !this.cart_show;
     },
-    changePreview(e) {
-      document.getElementById("__single_product_image").src = e.target.src;
+
+    displayeImageFromBox(e){
+      let target_element = e.target;
+      let active_images = document.getElementsByClassName("__active_border");
+
+      if (active_images.length > 0) {
+        for (let i = 0; i < active_images.length; i++) {
+          active_images[i].classList.remove("__active_border");
+        }
+      }
+
+         target_element.classList.add("__active_border");
+         this.zooming_img=target_element.src
+
     },
+
     handleBodyClick(e){
 
       ////hide cart element
@@ -424,8 +438,12 @@ export default {
         this.loading = false;
       } else {
         this.loading = true;
+        if(value.product_image.length>0){
+            this.zooming_img=this.$imageBaseUrl+value.product_image[0].product_image;
+        }
       }
     },
+
   },
   computed: {
     product() {
@@ -492,5 +510,9 @@ li.h-b-li {
     list-style-type: square;
     padding: 2px;
 
+}
+
+.__active_border {
+  border: 1px solid #199eff ;
 }
 </style>

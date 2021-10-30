@@ -11282,8 +11282,9 @@ button.bg-indigo:focus {
 }
 
 .d-none {
-  display: none !important;
+  display: none ;
 }
+
 
 .d-inline {
   display: inline !important;
@@ -43283,9 +43284,13 @@ ul.__nav_list_right li {
   box-shadow: 2px 2px 2px #eee;
   border-radius: 5px;
   margin-top: 22px;
+  display: none;
 
 }
 
+.__category_nav:hover .__category-menu {
+  display: block;
+}
 
 .__category-menu a {
   color: #199eff;
@@ -43643,6 +43648,9 @@ ul.__nav_resp_menu {
     opacity: 1;
   }
 
+  .__show{
+    display: block;
+  }
   .__cartcart_body {
     max-height: 280px !important;
   }

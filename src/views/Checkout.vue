@@ -449,7 +449,8 @@ export default {
     },
     checkout() {
       if (this.validation() == false) {
-        this.form.post("checkout").then((resp) => {
+         this.form.post("checkout")
+         .then((resp) => {
           console.log(resp);
           if (resp.data.status == "SUCCESS") {
             this.$toast.open({
@@ -459,7 +460,6 @@ export default {
               duration: 4000,
             });
             this.$store.dispatch("cart");
-
             this.$router.push({ name: "order" });
           }
         });

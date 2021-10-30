@@ -39,7 +39,7 @@
                     Shipping Cost
                       <span class="o_value"> &#2547; {{ order.shipping_cost }} </span>
                     </p>
-               
+
                     <p>
                       Total
                       <span class="o_value">
@@ -51,14 +51,14 @@
                     </p>
                   </tbody>
                 </table>
-             
+
                   <router-link  :to="{
                             name: 'order_details',
                             params: { id: order.id },
                           }" class="btn btn-secondary"> Pay Later </router-link>
 
                 <form style="    display: inline-block;
-    width: 200px;" action="https://admin.chahidaeshop.com/pay" method="POST">
+                  width: 200px;" action="" method="POST">
                   <input type="hidden" name="orderId" :value="order.id" />
 
                   <button type="submit" class="btn btn-primary payment_btn">
@@ -66,9 +66,9 @@
                     {{ parseInt(order.total) + parseInt(order.shipping_cost) }}
                   </button>
                 </form>
-               
+
               </div>
-              <div class="card-footer text-muted">chahidaeshop.com</div>
+              <div class="card-footer text-muted">fairshop.com.bd</div>
             </div>
           </div>
         </div>

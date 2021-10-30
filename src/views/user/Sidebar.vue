@@ -1,5 +1,5 @@
 <template>
- 
+
 
   <div class="thumbnail __user_sidebar">
     <div class="card mycard">
@@ -87,6 +87,7 @@ label.__update_img {
 import Vue from "vue";
 import { Form } from "vform";
 import ObjectToFD from "vue-object-to-formdata";
+import axios from "axios";
 Vue.use(ObjectToFD);
 export default {
   created() {
@@ -104,7 +105,7 @@ export default {
     };
   },
   methods: {
-  
+
 
     uploadImage(e) {
       const file = e.target.files[0];
@@ -136,6 +137,31 @@ export default {
           this.getUserInfo();
         }
       });
+    },
+       getUserInfo() {
+      if (localStorage.getItem("user_token")) {
+        axios
+          .get("user", {
+            headers: this.$apiHeader,
+            params: {
+              user_token: localStorage.getItem("user_token"),
+            },
+          })
+          .then((resp) => {
+            //  console.log(resp);
+            this.user_id = resp.data.user.id;
+            this.form.name = resp.data.user.name
+              ? resp.data.user.name
+              : "add name";
+            this.form.mobile_no = resp.data.user.mobile_no;
+            this.form.email = resp.data.user.email
+              ? resp.data.user.email
+              : "add email";
+            this.form.address = resp.data.user.address
+              ? resp.data.user.address
+              : "add address";
+          });
+      }
     },
     logout() {
       localStorage.removeItem("user_token");

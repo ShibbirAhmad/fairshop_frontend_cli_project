@@ -46,6 +46,7 @@
                     <li><a href="/" class="router-link-active">Home</a></li>
                     <li><a href="/about/us" class="">About Us</a></li>
                     <li><a href="/contact/us" class="">Contact Us</a></li>
+                    <li><a href="/privacy/policy" class="">Privacy </a></li>
                   </ul>
                 </div>
 
@@ -86,7 +87,7 @@
                           />
 
                             <button type="submit" class="email_btn">
-                              <i class="fas fa-envelope-open"></i>
+                              <i class="fa fa-envelope-open"></i>
                             </button>
 
                         </div>
@@ -94,26 +95,26 @@
                     </form>
                     <div class="social-icon" >
                         <a
-                          href="https://www.youtube.com/"
+                          href="https://www.youtube.com/channel/UCTE_0AVcFBp-GDI5HuuG1TQ"
                           target="_blank"
                           class="social-wrape"
-                          ><i class="fab fa-youtube-square f-icon"></i >
+                          ><i class="fa fa-youtube-square f-icon"></i >
 
                           </a>
                         <a
-                          href="#"
+                          href="www.pinterest.com/fairshop21"
                           target="_blank"
                           class="social-wrape"
                           style="margin-top: 10px"
                           >
-                          <i class="fab fa-twitter f-icon"></i>
+                          <i class="fa fa-pinterest f-icon"></i>
                           </a>
                         <a
-                          href="https://linkedin.com/"
+                          href="https://www.linkedin.com/company/fairshop/"
                           target="_blank"
                           class="social-wrape"
                           style="margin-top: 10px"
-                          ><i class="fab fa-linkedin f-icon"></i></a>
+                          ><i class="fa fa-linkedin f-icon"></i></a>
                       </div>
                     </div>
 
@@ -377,7 +378,7 @@
                 class="ec ec-support font-size-30"
                 aria-hidden="true"
               ></i>
-              09639 155 660, 01817 770 060</a
+              01762424333</a
             >
           </li>
           <li class="__footer_menu_s_link">
@@ -387,6 +388,7 @@
               <router-link to="/faq" href="">FAQ & Help</router-link>
 
               <router-link to="/contact-us">Contact Us</router-link>
+
             </ul>
           </li>
           <li

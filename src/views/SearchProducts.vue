@@ -87,7 +87,7 @@
                               params: { slug: product.slug },
                             }"
                             class="text-blue font-weight-bold"
-                            >{{ product.name }}</router-link
+                            >{{ product.name.substring(0.15) }}   <span v-if="product.name.length > 15"> ... </span> </router-link
                           >
                         </h5>
                       </div>

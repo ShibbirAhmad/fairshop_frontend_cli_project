@@ -11,7 +11,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/about',
+    path: '/about/us',
     name: 'About',
     // route level code-splittingNfoun
     // this generates a separate chunk (about.[hash].js) for this route
@@ -47,13 +47,34 @@ const routes = [
   },
 
   {
-    path: '/contact-us',
+    path: '/contact/us',
     name: 'contact-us',
-    // route level code-splittingNfoun
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */'../views/StaticPages/ContactUs')
+    component: () => import(/* webpackChunkName: "about" */'../views/StaticPages/ContactUs.vue')
   },
+
+   {
+    path: '/how/to/buy',
+    name: 'how_to_buy',
+    component: () => import(/* webpackChunkName: "how_to_buy" */'../views/StaticPages/howToBuy.vue')
+  },
+
+ {
+    path: '/shipment',
+    name: 'shipment_policy',
+    component: () => import(/* webpackChunkName: "shipment_policy" */'../views/StaticPages/shipmentPolicy.vue')
+  },
+
+ {
+    path: 'privacy/policy',
+    name: 'privacy_policy',
+    component: () => import(/* webpackChunkName: "privacy_policy" */'../views/StaticPages/PrivacyPolicy.vue')
+  },
+  {
+    path: '/campaign',
+    name: 'campaign',
+    component: () => import(/* webpackChunkName: "campaign" */'../views/Campaign.vue')
+  },
+
 
 
   {

@@ -280,7 +280,7 @@
 export default {
   created() {
     if (Object.keys(this.$store.state.user).length > 0) {
-      this.$router.push({ name: "profile" });
+      this.$router.push({ name: "checkout" });
     }
   },
   data() {
@@ -376,9 +376,9 @@ export default {
             this.$store.dispatch("user");
             if (this.$store.state.cart.item_count > 0) {
               // this.$router.push({ name: "checkout" });
-              this.$router.push({ name: "order" });
+              this.$router.push({ name: "checkout" });
             } else {
-              this.$router.push({ name: "order" });
+              this.$router.push({ name: "checkout" });
             }
           } else {
             this.$toast.open({
@@ -431,9 +431,9 @@ export default {
             localStorage.setItem("user_token", resp.data.user.token);
             this.$store.dispatch("user");
             if (this.$store.state.cart.item_count > 0) {
-              this.$router.push({ name: "order" });
+              this.$router.push({ name: "checkout" });
             } else {
-              this.$router.push({ name: "order" });
+              this.$router.push({ name: "checkout" });
             }
           } else {
             this.$toast.open({

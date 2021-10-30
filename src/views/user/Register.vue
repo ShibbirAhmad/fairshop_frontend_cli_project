@@ -4,7 +4,7 @@
       <div id="login">
         <!-- Title -->
         <header class="text-center mb-7" style="margin-top: 5%">
-          <h2 class="h4 mb-0">Welcome to Chahida Eshop</h2>
+          <h2 class="h4 mb-0">Welcome to Fairshop.com</h2>
           <p>Sign Up for the next step of processing</p>
         </header>
         <!-- End Title -->
@@ -188,7 +188,7 @@
     color: #77838f!important;
     text-align: center;
     font-size: 19px;
-">Already have an account?</h4>        
+">Already have an account?</h4>
         <router-link
           :to="{ name: 'login' }"
           style="background: rgb(10 98 162)"
