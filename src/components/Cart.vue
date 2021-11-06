@@ -7,7 +7,6 @@
       <div class="__cart_header d-flex">
         <img
           src="https://chahidaeshop.com/icon/my cart.png"
-          alt=""
           width="50px"
         />
         <h5>My Cart</h5>

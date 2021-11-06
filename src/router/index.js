@@ -126,11 +126,21 @@ const routes = [
     path: '/checkout',
     name: 'checkout',
     meta: {
-      requiresAuthUser: true,
+      // requiresAuthUser: true,
       title: 'Checkout'
     },
     component: () => import(/* webpackChunkName: "checkout" */'../views/Checkout.vue')
   },
+      {
+        path: '/user/checkout/success',
+        component: () =>  import( /* webpackChunkName: "order_success" */ '../views/OrderSuccess.vue'),
+        name: 'order_success',
+        meta: {
+            title: 'order success',
+            // requiresAuthUser: true,
+        }
+    },
+
   {
     path: '/cart',
     name: 'cart',

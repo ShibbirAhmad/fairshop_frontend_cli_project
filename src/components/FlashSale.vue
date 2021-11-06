@@ -75,15 +75,7 @@
                             <del class="font-size-13 text-gray-9"
                               >৳{{ flas_sale_product.discount_price }}</del
                             >
-                            <span
-                              class="saletag"
-                              v-if="
-                                flas_sale_product.regular_price <
-                                flas_sale_product.discount_price
-                              "
-                            >
-                              {{ discount_percent(flas_sale_product) }}
-                            </span>
+                  
                           </div>
 
                           <div class="prodcut-price">
@@ -92,7 +84,7 @@
                             </div>
                           </div>
 
-          
+
                         </div>
                       </div>
                     </div>

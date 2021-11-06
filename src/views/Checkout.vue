@@ -71,7 +71,6 @@
                         name="name"
                         v-model="form.name"
                         placeholder="Customer Name"
-                        autocomplete="off"
                         ref="name"
                       />
                     </div>
@@ -106,7 +105,6 @@
                         v-model="form.mobile_number"
                         data-error-class="u-has-error"
                         data-success-class="u-has-success"
-                        autocomplete="off"
                         ref="mobile"
                       />
                     </div>
@@ -460,7 +458,7 @@ export default {
               duration: 4000,
             });
             this.$store.dispatch("cart");
-            this.$router.push({ name: "order" });
+            this.$router.push({ name: "order_success" });
           }
         });
       }

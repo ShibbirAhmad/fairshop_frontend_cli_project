@@ -117,9 +117,7 @@
                     >
                       ৳{{ product.regular_price }}
                     </del>
-                    <span style="font-size: 1.5rem; padding-left: 0.5rem">
-                      {{ $discount_percent(product) }}
-                    </span>
+
                   </div>
                 </div>
               </div>
@@ -156,7 +154,7 @@
                   </div>
                 </div>
 
-                <div class="addtobtn d-md-flex align-items-end mb-3">
+                <div class="addtobtn  align-items-end mb-3">
                   <div class="qnttbox max-width-150 mb-4 mb-md-0">
                     <!-- Quantity -->
                     <div class="qntt rounded-pill py-2 px-3 border-color-1">
@@ -209,20 +207,63 @@
 
                     <!-- End Quantity -->
                   </div>
-
+                  <br>
                   <div class="ml-md-3" id="tocart">
-                    <button
-                      @click.prevent="
-                        add_to_cart($event, product, qty, variant_id)
-                      "
-                      id="__Add_to_cart"
-                      class="adtocrtphn btn px-5 btn-primary-dark"
-                    >
-                      <i class="ec ec-add-to-cart font-size-20"></i>
 
-                      Add to Cart
-                    </button>
+                   <div style="display:flex" class="cart_buy_conainer">
+                      <button style="background:#3645d3"
+                        @click.prevent="
+                          buyNow($event, product, qty, variant_id)
+                        "
+                        class="adtocrtphn mr-2 btn px-5 btn-primary-dark"
+                      >
+                        <i class="ec ec-add-to-cart font-size-20"></i>
+                        Buy Now
+                      </button>
+
+                          <button
+                        @click.prevent="
+                          add_to_cart($event, product, qty, variant_id)
+                        "
+                        id="__Add_to_cart"
+                        class="adtocrtphn btn px-5 btn-primary-dark"
+                      >
+                        <i class="ec ec-add-to-cart font-size-20"></i>
+
+                        Add to Cart
+                      </button>
+
+                   </div>
+
+
+
+            <div>
+
+            <div class="order_now_container">
+              <p>
+                <i class="fa fa-check"></i> Order today and receive it within 02
+                - 05 days
+              </p>
+            </div>
+
+            <div class="call_now_container">
+              <p>Have question about this product ? please call</p>
+              <h4>
+                <a href="tel:01762424333"
+                  ><i class="fa fa-phone"></i> 01762424333
+                </a>
+            </h4>
+            <h4>
+                <a href="tel:01723669292"
+                  ><i class="fa fa-phone"></i> 01723669292
+                </a> <sup style="font-size:12px;border:1px dashed #199eff;padding:2px">Bkash Merchant</sup>
+            </h4>
+
+            </div>
+          </div>
+
                   </div>
+
                 </div>
               </div>
             </div>
@@ -368,6 +409,12 @@ export default {
         this.qty += 1;
       }
     },
+
+      buyNow($event, product, qty, variant_id) {
+      this.$add_to_cart($event, product, qty, variant_id,true);
+      this.$router.push({ path: '/checkout' })
+    },
+
     add_to_cart($event, product, qty, variant_id) {
       this.$add_to_cart($event, product, qty, variant_id,true);
       this.cart_show = !this.cart_show;
@@ -514,5 +561,10 @@ li.h-b-li {
 
 .__active_border {
   border: 1px solid #199eff ;
+}
+
+
+p{
+  line-height: 1.0 !important;
 }
 </style>

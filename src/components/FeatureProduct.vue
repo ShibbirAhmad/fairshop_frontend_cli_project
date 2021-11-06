@@ -1,19 +1,15 @@
 <template>
   <div class="row" v-if="FeatureProduct.length > 0">
-    <div class="col-md-12 mt-4 mb-4">
-      <div
-        class="d-flex justify-content-between border-bottom border-color-1 flex-lg-nowrap flex-wrap border-md-down-top-0 border-md-down-bottom-0 mb-3"
-      >
-        <h3 class="section-title section-title__full mb-0 pb-2 font-size-22">
+
+         <h3 class="section-title section-title__full mb-0 pb-2 font-size-22">
           Feature Products
         </h3>
-      </div>
-      <div class="row feature_product_row">
+      <div class=" feature_product_row">
         <carousel
             :nav="false"
             :autoplay="true"
             :items="5"
-            :autoplayTimeout="2000"
+            :autoplayTimeout="3000"
              v-if="FeatureProduct.length>0"
              :responsive="{ 0: { items: 2 }, 600: { items: 5 } }"
             >
@@ -38,7 +34,7 @@
 
        </carousel>
       </div>
-    </div>
+<br>
   </div>
 </template>
 <script>

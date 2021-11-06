@@ -11,6 +11,14 @@ import { HasError, AlertError } from 'vform'
 
 import 'animate.css';
 
+
+import VueSweetalert2 from 'vue-sweetalert2';
+// If you don't need the styles, do not connect
+import 'sweetalert2/dist/sweetalert2.min.css';
+
+Vue.use(VueSweetalert2);
+
+
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 Vue.use(VueToast);

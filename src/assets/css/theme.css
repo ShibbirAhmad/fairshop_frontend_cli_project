@@ -42910,8 +42910,13 @@ a.nav-link.u-header__sub-menu-nav-link {
   }
 
   #tocart {
-    position: absolute;
-    right: 3%;
+      position: absolute;
+      right: 4%;
+      top: 240px;
+  }
+
+  .snglepdt {
+    height: 600px;
   }
 
   .addtobtn {
