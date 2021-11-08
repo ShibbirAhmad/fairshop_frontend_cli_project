@@ -5,12 +5,12 @@
   >
     <div class="__cart" id="__cart" v-show="show_cart">
       <div class="__cart_header d-flex">
-        <img
-          src="https://chahidaeshop.com/icon/my cart.png"
-          width="50px"
+        <img @click="hideCart" style="cursor:pointer;margin-right:5px"
+          src="../assets/images/close_sign.png"
+          width="30px" height="30"
         />
         <h5>My Cart</h5>
-        <i class="ec ec-close-remove pointer" @click="hideCart"></i>
+        <i class="fa fa-close pointer" @click="hideCart"></i>
       </div>
       <div class="__cartcart_body">
         <ul class="__cart-product-list" v-if="cart.item_count > 0">
@@ -56,9 +56,9 @@
           <p style="text-align: center">
             <img
               class="img-fluid"
-              :src="$imageBaseUrl + 'emptycart.png'"
+              src="../assets/images/empty_cart.png"
               alt="Empty Cart"
-              width="250px"
+              max-width="250px"
               style="margin-top: 80px"
             />
           </p>

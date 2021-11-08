@@ -234,12 +234,9 @@
 
           </ul>
           <ul class="__nav_list_right">
-            <li style="margin-top:-5px" class="__nav_list_highlight_link">
+            <li  class="__nav_list_highlight_link">
               <a href="tel:01762424333">
-                <i
-                  style="text-transform: lowercase"
-                  class="ec ec-support font-size-30"
-                  aria-hidden="true"
+                <i class="fa fa-phone"
                 ></i>
                 01762424333</a
               >

@@ -210,7 +210,7 @@
                   <br>
                   <div class="ml-md-3" id="tocart">
 
-                   <div style="display:flex" class="cart_buy_conainer">
+                   <div style="display:flex" class="cart_buy_container">
                       <button style="background:#3645d3"
                         @click.prevent="
                           buyNow($event, product, qty, variant_id)
@@ -411,6 +411,15 @@ export default {
     },
 
       buyNow($event, product, qty, variant_id) {
+       if (Object.keys(this.variants).length > 0 && variant_id.length=='') {
+          this.$toast.open({
+          message: `select product variant`,
+          type: "info",
+          position: "top",
+          duration: 4000,
+        });
+        return;
+       }
       this.$add_to_cart($event, product, qty, variant_id,true);
       this.$router.push({ path: '/checkout' })
     },

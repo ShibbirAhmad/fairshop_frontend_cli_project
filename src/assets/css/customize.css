@@ -798,6 +798,11 @@ ul.__cart-product-list li img {
     }
 
 
+    .cart_buy_container {
+        display: flex;
+        margin-top: 27px;
+    }
+
 
 }
 

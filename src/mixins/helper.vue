@@ -17,6 +17,8 @@ export default {
         return "";
       }
     },
+
+    
     $add_to_cart(e, product, qty, variant_id, from_single_page) {
       let quantity = qty ? qty : 1;
       if (product.stock <= 0) {
@@ -42,7 +44,6 @@ export default {
         })
         .then((resp) => {
           //     e.target.innerText = "Add to cart";
-
           if (resp.data.status == "SUCCESS") {
             if (from_single_page) {
               this.$toast.open({
