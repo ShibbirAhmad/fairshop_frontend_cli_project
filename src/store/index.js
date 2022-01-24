@@ -134,11 +134,14 @@ const actions = {
                 }
             })
                 .then(resp => {
-                    //  console.log(resp.data.user);
+                    console.log(resp.data.user);
                     if (resp.data.status == "AUTHORIZED") {
                         context.commit('user', resp.data.user)
                     }
 
+                })
+                .catch(err=>{
+                    console.log(err);
                 })
         }
 

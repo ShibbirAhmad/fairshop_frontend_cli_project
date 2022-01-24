@@ -51,14 +51,15 @@
               />
               </a>
 
-              <img
-                 @click="show_user_account_dropdown"
-                :src=" user.image ?  $imageBaseUrl2 + $store.state.user.image : '../assets/images/user.png'"
+             <a  v-else href="/order">
+    
+                <img 
+                 src="../assets/images/user.png"
                 width="40px"
                 height="40px"
-                id="user_account_d"
-                v-else
               />
+              </a>
+             
 
               <ul
                 v-if="Object.keys($store.state.user).length <= 0"
@@ -74,7 +75,7 @@
 
                   <router-link to="/order">Order List</router-link>
 
-                  <a @click.prevent="logout" href=""> Logout </a>
+                  <a @click.prevent="logout" href="#"> Logout </a>
                 </div>
               </ul>
 

@@ -273,33 +273,42 @@
           <div class="col-md-12 mb-md-12 mb-lg-0" style="overflow: hidden">
 
              <div class="product-details-tabe">
-               <ul class="details-tab-menu-list">
-                  <li class="details-tab-menu-item"  @click="tab_content=1" :class="{'tab-menu-item-active':tab_content==1}">Description</li>
-                    <li class="details-tab-menu-item" @click="tab_content=2" :class="{'tab-menu-item-active':tab_content==2}" >How To Buy</li>
+               <ul v-if="product.video" class="details-tab-menu-list">
+                      <li class="details-tab-menu-item"  @click="tab_content=1" :class="{'tab-menu-item-active':tab_content==1}">Video</li>
+                      <li class="details-tab-menu-item"  @click="tab_content=2" :class="{'tab-menu-item-active':tab_content==2}">Description</li>
+                      <li class="details-tab-menu-item" @click="tab_content=3" :class="{'tab-menu-item-active':tab_content==3}" >How To Buy</li>
+                      <li class="details-tab-menu-item"  @click="tab_content=4" :class="{'tab-menu-item-active':tab_content==4}">Return Policy</li>
+                 </ul>
+                  <ul v-else class="details-tab-menu-list">
+                      <li class="details-tab-menu-item"  @click="tab_content=1" :class="{'tab-menu-item-active':tab_content==1}">Description</li>
+                      <li class="details-tab-menu-item" @click="tab_content=2" :class="{'tab-menu-item-active':tab_content==2}" >How To Buy</li>
                       <li class="details-tab-menu-item"  @click="tab_content=3" :class="{'tab-menu-item-active':tab_content==3}">Return Policy</li>
                  </ul>
-              <div class="product-tab-content">
-                <div v-html="product.details" class="product-details" :class="{block:tab_content==1}"></div>
-                <div class="how-to-buy" :class="{block:tab_content==2}">
-                  <ul>
-                    <li class="h-b-li">Select number of product you want to buy.</li>
-                    <li class="h-b-li">Click <strong>Add To Cart</strong> Button</li>
-                    <li class="h-b-li">Then go to checkout page</li>
-                    <li class="h-b-li">If you are a new user, please click on Sign Up.provide us your valid  information.</li>
-                    <li class="h-b-li">Complete your checkout, we received your order, and for order confirmation or customer service contact with you</li>
-                  </ul>
-                </div>
-                 <div class="how-to-buy"  :class="{block:tab_content==3}">
-                  <ul>
-                    <li class="h-b-li"> After receiving the product you will be able to accept the modified product in case of any problem of the product (eg: product broken, torn, product not working, product does not match with the photo, etc.). In that case you have to e-mail support@fairshop.com.bd within maximum 48 hours after receiving the product or you have to inform us on our hotline number 880 1762424333. Note that you have to bear the cost of courier to replace any product as a result of your change of mind and fairshop.com.bd will bear the cost of any product by fairshop.com.bd.
-                    </li>
-                    <li class="h-b-li">
-                        Let us know your - questions - comments - complaints - phone: 880 1762424333, e-mail: support@fairshop.com.bd
-                    </li>
-                  </ul>
-                </div>
+                <div class="product-tab-content">
+                  <div v-html="product.details" class="product-details" :class="{block:tab_content==1}"></div>
+                  <div class="how-to-buy" :class="{block:tab_content==2}">
+                    <ul>
+                      <li class="h-b-li">Select number of product you want to buy.</li>
+                      <li class="h-b-li">Click <strong>Add To Cart</strong> Button</li>
+                      <li class="h-b-li">Then go to checkout page</li>
+                      <li class="h-b-li">If you are a new user, please click on Sign Up.provide us your valid  information.</li>
+                      <li class="h-b-li">Complete your checkout, we received your order, and for order confirmation or customer service contact with you</li>
+                    </ul>
+                  </div>
+                  <div class="how-to-buy"  :class="{block:tab_content==3}">
+                    <ul>
+                      <li class="h-b-li"> After receiving the product you will be able to accept the modified product in case of any problem of the product (eg: product broken, torn, product not working, product does not match with the photo, etc.). In that case you have to e-mail support@fairshop.com.bd within maximum 48 hours after receiving the product or you have to inform us on our hotline number 880 1762424333. Note that you have to bear the cost of courier to replace any product as a result of your change of mind and fairshop.com.bd will bear the cost of any product by fairshop.com.bd.
+                      </li>
+                      <li class="h-b-li">
+                          Let us know your - questions - comments - complaints - phone: 880 1762424333, e-mail: support@fairshop.com.bd
+                      </li>
+                    </ul>
+                  </div>
+                  <div v-if="product.video" v-html="product.video" class="product-details"  :class="{block:tab_content==1}">
+                    {{product.video}}
+                  </div>
 
-              </div>
+                </div>
               </div>
 
 
