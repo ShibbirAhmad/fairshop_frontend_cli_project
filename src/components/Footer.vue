@@ -222,7 +222,7 @@
               ></path></svg
           ></a>
         </li>
-        
+
         <li @click="go_to_login">
           <svg
             width="1em"
@@ -238,10 +238,8 @@
             ></path>
           </svg>
         </li>
-        
-        <li >
-          
-          <a href="tel:+ 01762424333"><i class="fa fa-phone"></i></a>
+        <li>
+          <a href="tel:+01762424333"></a> <i class="fa fa-phone"></i>
         </li>
       </ul>
     </div>
@@ -252,13 +250,7 @@
     >
       <div v-show="show_footer_nav" class="__footer_menu" id="__footer_menu">
         <div class="__header">
-          <li
-            @click="category_show = false"
-            :class="{ active: !category_show }"
-          >
-            Menu
-          </li>
-          <li @click="category_show = true" :class="{ active: category_show }">
+          <li @click="category_show = true" :class="{ active: category_show==true }">
             Category
           </li>
           <li @click="show_footer_nav = !show_footer_nav">
@@ -277,23 +269,8 @@
         </div>
 
         <div class="__footer_mneu_body">
-          <ul class="__footer_menu_nav" v-if="!category_show">
-            <li @click="hideMenu">
-              <router-link to="/">Home</router-link>
-            </li>
-            <li @click="hideMenu">
-              <router-link to="/shop">Shop</router-link>
-            </li>
-            <li @click="hideMenu">
-              <router-link to="/campaign">Campaign</router-link>
-            </li>
 
-
-            <li @click="hideMenu">
-              <router-link to="/blog">Blog</router-link>
-            </li>
-          </ul>
-          <ul class="__footer_category" v-else>
+          <ul class="__footer_category">
             <li
 
               v-for="(category, fcdx) in categories"
@@ -371,43 +348,7 @@
             </li>
           </ul>
         </div>
-        <div class="__footer_mneu_footer">
-          <li>
-            <a
-              class="nav-link u-header__nav-link"
-              aria-haspopup="true"
-              aria-expanded="false"
-              aria-labelledby="blogSubMenu"
-            >
-              <i
-                style="font-size: 20px; color: #5da2d1"
-                class="ec ec-support font-size-30"
-                aria-hidden="true"
-              ></i>
-              01762424333</a
-            >
-          </li>
-          <li class="__footer_menu_s_link">
-            <ul style="padding: 15px 5px">
-              <router-link to="/return/policy">Return & Refund</router-link>
-              <router-link to="/privacy/policy">Privacy & Polciy</router-link>
-              <router-link to="/faq" href="">FAQ & Help</router-link>
 
-              <router-link to="/contact-us">Contact Us</router-link>
-
-            </ul>
-          </li>
-          <li
-            style="padding: 10px; border: 1px solid #afd1e8; border-radius: 5px"
-          >
-            <img
-              class="mCS_img_loaded"
-              style="width: 100%"
-              :src="$imageBaseUrl + 'SSLCommerz-Pay-With-logo-All-Size-04.png'"
-              alt="Image Description"
-            />
-          </li>
-        </div>
       </div>
     </transition>
 

@@ -90,10 +90,12 @@ export default {
     },
   },
   methods: {
+
     hideCart() {
       this.show_cart = false;
       this.$emit("update:show:cart");
     },
+    
     remove_cart_item(id) {
       if (confirm("Are You Sure ? Remove This Item !!")) {
         this.$axios

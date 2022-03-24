@@ -154,12 +154,33 @@
                   </div>
                 </div>
 
-                <div class="addtobtn  align-items-end mb-3">
-                  <div class="qnttbox max-width-150 mb-4 mb-md-0">
+                <div  class="addtobtn  align-items-end mb-3">
+
+                  <div class=" max-width-300 mb-4 mb-md-0">
+
+                    <div class="row">
+                      <div class="col-md-6 col-xs-6">
+                          <h4 for="quantity">Quantity</h4>
+                      </div>
+                      <div class="col-xl-6 col-md-6 col-xs-6">
                     <!-- Quantity -->
                     <div class="qntt rounded-pill py-2 px-3 border-color-1">
                       <div class="js-quantity row align-items-center">
-                        <div class="qnttInput col">
+                        <div class="col-auto pr-1">
+                                <a
+                            type="button"
+                            @click.prevent="qtyChange(-1)"
+                            class="
+                              js-minus
+                              btn btn-icon btn-xs btn-outline-secondary
+                              rounded-circle
+                              border-0
+                            "
+                          >
+                            <i class="fa fa-minus"></i>
+                          </a>
+                        </div>
+                        <div class="qnttInput col ml-2">
                           <input
                             class="
                               js-result
@@ -177,18 +198,7 @@
                           />
                         </div>
                         <div class="col-auto pr-1">
-                          <a
-                            type="button"
-                            @click.prevent="qtyChange(-1)"
-                            class="
-                              js-minus
-                              btn btn-icon btn-xs btn-outline-secondary
-                              rounded-circle
-                              border-0
-                            "
-                          >
-                            <i class="fa fa-minus"></i>
-                          </a>
+
                           <a
                             type="button"
                             class="
@@ -206,6 +216,9 @@
                     </div>
 
                     <!-- End Quantity -->
+                      </div>
+                    </div>
+
                   </div>
                   <br>
                   <div class="ml-md-3" id="tocart">
@@ -244,6 +257,7 @@
                 <i class="fa fa-check"></i> Order today and receive it within 02
                 - 05 days
               </p>
+              <p> <i class="fa fa-check"></i> 130 টাকা অগ্রিম পেমেন্ট করতে হবে (ঢাকার বাহিরের কাস্টমারদের জন্য ) </p>
             </div>
 
             <div class="call_now_container">
@@ -269,7 +283,7 @@
             </div>
           </div>
         </div>
-        <div class="row mt-5 bg-white p-5 shadow">
+        <div class="row mt-5 bg-white p-5 shadow  product_details_row">
           <div class="col-md-12 mb-md-12 mb-lg-0" style="overflow: hidden">
 
              <div class="product-details-tabe">
@@ -387,7 +401,7 @@ export default {
   created() {
     this.$store.dispatch("product", this.$route.params.slug);
     window.scroll(0, 0);
-        window.addEventListener("click", this.handleBodyClick);
+    window.addEventListener("click", this.handleBodyClick);
   },
   data() {
     return {

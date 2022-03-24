@@ -22,8 +22,9 @@
                 />
                 <button
                   type="buttton"
+                  style="background:#199eff;color:#fff"
                   class="
-                    btn btn-dark
+                    btn
                     height-42
                     py-2
                     px-3
@@ -41,7 +42,7 @@
 
               <a
                v-if="Object.keys($store.state.user).length <= 0"
-               title="user login"
+               title="user login "
                 href="/login" >
                 <img
                 src="../assets/images/user.png"
@@ -49,17 +50,18 @@
                 height="40px"
                 id="user_account_d"
               />
+              Login/Register
               </a>
 
              <a  v-else href="/order">
-    
-                <img 
+
+                <img
                  src="../assets/images/user.png"
                 width="40px"
                 height="40px"
               />
               </a>
-             
+
 
               <ul
                 v-if="Object.keys($store.state.user).length <= 0"
@@ -79,12 +81,22 @@
                 </div>
               </ul>
 
-               <a class="facebook_link_btn" title="facebook page" href="https://www.facebook.com/fairshop.com.bd"> <img src="../assets/images/facebook.png" >  </a>
 
-               <a class="merchant_link_btn" title="Merchant Login" href="https://www.app.fairshop.com.bd/merchant/login"> <img src="../assets/images/merchant.png" >  </a>
+            </li>
+            <li>
+              <div style="width:60px;">
+                 <router-link class="tacking_link_btn" :to="{name:'order_tracking'}"> <img  src="../../assets/images/tracking.png" ></router-link>
+                 <router-link class="tacking_link" :to="{name:'order_tracking'}"> Order Track </router-link>
+              </div>
 
             </li>
 
+            <li>
+               <a class="merchant_link_btn" title="Merchant Login" href="https://www.app.fairshop.com.bd/merchant/login"> <img src="../assets/images/merchant.png" > Merchant  </a>
+            </li>
+            <li>
+               <a class="facebook_link_btn" title="facebook page" href="https://www.facebook.com/fairshop.com.bd"> <img src="../../assets/images/facebook.png" > Facebook  </a>
+            </li>
 
             <li class="font-1-5 r_search" id="r_search">
               <i

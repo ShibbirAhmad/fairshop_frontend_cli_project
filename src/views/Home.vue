@@ -9,7 +9,7 @@
 
             :nav="false"
             :autoplay="true"
-            :autoplayTimeout="2000"
+            :autoplayTimeout="4000"
             v-if="only_categories.length>0"
              :responsive="{ 0: { items: 3 }, 600: { items: 8 } }"
             >
@@ -33,9 +33,9 @@
       </div>
 
       <FeatureProduct />
-      <!-- start feature product setion  -->
+      <!-- start feature product section  -->
 
-      <!-- end feature product setion  -->
+      <!-- end feature product section  -->
 
       <!-- start flash deals here -->
       <FlashSale />
@@ -48,29 +48,15 @@
           <div class="col-lg-12">
             <div class="category-heading">
               <h3>{{ category.name }}</h3>
-              <router-link
-                class="d-block viewallcatlink"
-                :to="{
-                  name: 'categoryProducts',
-                  params: { slug: category.slug },
-                }"
-                >VIEW ALL<i class="ec ec-arrow-right-categproes"></i
-              ></router-link>
-            </div>
-          </div>
-          <div class="col-lg-12">
-            <div class="row">
-              <!-- <div class="col-lg-2">
                 <ul
-                  class="__category_list_sidebar"
+                  class="landing_sub_c_list" :id="'landing_sub_category_'+category.id"
                   v-if="category.sub_categories.length > 0"
                 >
                   <li
-                    class="trending_sub_c_li"
                     v-for="(sub_category, sbx) in category.sub_categories"
                     :key="sbx"
                   >
-                    <router-link
+                    <router-link v-if="sbx < 5"
                       :to="{
                         name: 'SubCategoryProduct',
                         params: {
@@ -80,11 +66,23 @@
                       }"
                     >
                       {{ sub_category.name }}
-                      <i class="ec ec-arrow-right-categproes"></i>
+
                     </router-link>
                   </li>
                 </ul>
-              </div> -->
+                <button @click="toggleSubCategories(category.id)" class="btn btn-sm landing_sub_c "> <i class="fa fa-list"></i> </button>
+              <router-link
+                class="d-block viewallcatlink"
+                :to="{
+                  name: 'categoryProducts',
+                  params: { slug: category.slug },
+                }"
+                >VIEW ALL
+              </router-link>
+            </div>
+          </div>
+          <div class="col-lg-12 col-xl-12 col-md-12">
+            <div class="row">
               <div class="col-lg-12 col-md-12">
                 <div class="row" v-if="category.products.length > 0">
                   <div
@@ -121,8 +119,7 @@
                           </h4>
                           </router-link>
                         <p class="price">
-                          <span
-                            >৳<del>{{ product.regular_price }}</del></span
+                          <span><del>৳{{ product.regular_price }}</del></span
                           >
                           ৳{{ product.discount_price }}
                         </p>
@@ -164,6 +161,10 @@ export default {
   },
 
   methods: {
+
+    toggleSubCategories(id){
+       document.getElementById('landing_sub_category_'+id).classList.toggle('landing_sub_c_list_toggle');
+    },
     getCategoryProdductS($state) {
       this.$axios
         .get("category/wise/all/products?page=" + this.page, {

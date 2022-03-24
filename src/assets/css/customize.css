@@ -34,6 +34,11 @@ p{
     color: #000 !important;
 }
 
+#content{
+  margin-top: 35px;
+}
+
+
 /* footer nav bottom css */
 
 .mob-footer {
@@ -62,13 +67,33 @@ p{
     font-size: 15px;
 }
 
+
+.tacking_link_btn {
+    padding: 0px 10px;
+}
+
+.tacking_link_btn img {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    margin-left: -18px;
+    margin-top: -22px;
+}
+
+.tacking_link {
+    padding: 0px 10px;
+    margin-left: -40px;
+    position: absolute;
+    margin-top: 20px;
+}
+
 .facebook_link_btn  {
      padding: 0px 10px;
 }
 
 .facebook_link_btn img {
-    width: 45px;
-    height: 45px;
+    width: 37px;
+    height: 37px;
 }
 
 .merchant_link_btn {
@@ -76,8 +101,8 @@ p{
 }
 
 .merchant_link_btn img {
-    width: 35px;
-    height: 35px;
+    width: 37px;
+    height: 37px;
 }
 
 /* fronte category icon landing page  */
@@ -884,12 +909,56 @@ ul.__cart-product-list li img {
         max-height: 50px !important;
     }
 
+    .header-items ul li {
+        padding: 0px 5px;
+    }
+
 
     .cart_buy_container {
         display: flex;
         margin-top: 27px;
     }
 
+
+    .tacking_link_btn {
+        padding: 0px 10px;
+    }
+
+    .tacking_link_btn img {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        margin-left: 5px;
+        margin-top: -15px;
+    }
+
+    .tacking_link {
+        padding: 0px 10px;
+        margin-left: -30px;
+        position: absolute;
+        margin-top: 16px;
+        font-size: 12px;
+    }
+
+    .facebook_link_btn {
+        padding: 0px 10px;
+        font-size: 12px;
+    }
+
+    .facebook_link_btn img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .merchant_link_btn {
+        padding: 0px 10px;
+          font-size: 12px;
+    }
+
+    .merchant_link_btn img {
+        width: 30px;
+        height: 30px;
+    }
 
 }
 
@@ -911,6 +980,7 @@ ul.__cart-product-list li img {
 
 img#user_account_d {
     border-radius: 50%;
+     margin-left: 20px;
 }
 
 .tab-content {
@@ -1093,13 +1163,13 @@ ul.list-unstyled.mb-0.view-all.__category_list_sidebar {
     margin: 0!important;
 }
 @media (min-width: 768px){
-.ctgleft.col-md-2 {
+.col.col-md-2 {
     margin: 0!important;
     margin-right: 30px!important;
 }
 .vue-horizontal-list .trending_p_container {
     margin: 0 12px!important;
-}
+  }
 }
 
 

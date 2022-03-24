@@ -122,6 +122,16 @@ const routes = [
     name: 'single_product',
     component: () => import(/* webpackChunkName: "single_product" */'../views/SingleProduct.vue')
   },
+
+    {
+      path: '/order-tracking',
+      name: 'order_tracking',
+      meta: {
+        title: 'order tracking'
+      },
+      component: () => import( /* webpackChunkName: "order_tracking" */ '../views/StaticPages/OrderTracking.vue')
+    },
+
   {
     path: '/checkout',
     name: 'checkout',

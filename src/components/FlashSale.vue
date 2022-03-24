@@ -72,14 +72,14 @@
                         </div>
                         <div class="flex-center-between mb-1">
                           <div class="font-weight-bold">
-                            <del class="font-size-13 text-gray-9"
+                            <del class="font-size-14"
                               >৳{{ flas_sale_product.regular_price }}</del
                             >
 
                           </div>
 
                           <div class="prodcut-price">
-                            <div class="font-size-15 text-gray-100">
+                            <div style="color:black !important;" class="font-size-14  ">
                               ৳{{ flas_sale_product.discount_price }}
                             </div>
                           </div>

@@ -10,7 +10,7 @@
             :items="1"
             :nav="false"
             :autoplay="true"
-            :autoplayTimeout="2000"
+            :autoplayTimeout="5000"
             v-if="sliders"
           >
             <a

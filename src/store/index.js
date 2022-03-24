@@ -47,16 +47,13 @@ const actions = {
         axios.get("category/" + payload, {
             headers: this.$apiHeader,
         })
-            .then(resp => {
-
-                if (resp.data.category) {
-                    context.commit('category', resp.data)
-
-                } else {
-                    router.push('/')
-                }
-
-            })
+        .then(resp => {
+            if (resp.data.category) {
+                context.commit('category', resp.data)
+            } else {
+                router.push('/')
+            }
+        })
     },
     sub_category(context, payload) {
         //   console.log(payload)
@@ -70,11 +67,9 @@ const actions = {
                // console.log(resp)
                 if (resp.data.sub_category) {
                     context.commit('sub_category', resp.data)
-
                 } else {
                    router.push('/')
                 }
-
             })
     },
     sub_sub_category(context, payload) {
