@@ -6,7 +6,7 @@
     <div class="__cart" id="__cart" v-show="show_cart">
       <div class="__cart_header d-flex">
         <img @click="hideCart" style="cursor:pointer;margin-right:5px"
-          src="../assets/images/close_sign.png"
+          src="../../assets/images/close_sign.png"
           width="30px" height="30"
         />
         <h5>My Cart</h5>
@@ -56,7 +56,7 @@
           <p style="text-align: center">
             <img
               class="img-fluid"
-              src="../assets/images/empty_cart.png"
+              src="../../assets/images/empty_cart.png"
               alt="Empty Cart"
               max-width="250px"
               style="margin-top: 80px"

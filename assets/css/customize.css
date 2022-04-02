@@ -318,6 +318,7 @@ ul li:hover {
     .__footer-menu {
         display: block;
     }
+    
 }
 
 .__footer_nav {
@@ -385,7 +386,7 @@ ul li:hover {
         position: fixed;
         bottom: 0;
         background: #fff;
-        height: 3.5rem;
+        height: 4.5rem;
         z-index: 9999999;
         left: 0;
         box-shadow: 5px 10px 18px #333e48;
@@ -1107,8 +1108,8 @@ ul.list-unstyled.mb-0.view-all.__category_list_sidebar {
 
 .category-icon img {
 
-    width: 60px !important;
-    height: 60px;
+    width: 75px !important;
+    height: 75px;
     border-radius: 50%;
     border: 1.5px dashed;
     margin:auto;
@@ -1119,7 +1120,7 @@ ul.list-unstyled.mb-0.view-all.__category_list_sidebar {
     width: 120px;
     background: #fff;
     padding: 10px 0px;
-    height: 120px;
+    height: 130px;
     margin-bottom: 30px;
     text-align: center;
     box-shadow: 3px 3px 3px #ddd;

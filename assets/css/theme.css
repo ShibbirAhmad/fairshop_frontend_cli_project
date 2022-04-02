@@ -41989,7 +41989,7 @@ span.text-gray-90 {
 }
 
 .top-8 {
-  top: 1.3rem;
+  top: 2.2rem;
 }
 
 .top-10 {
@@ -42516,10 +42516,7 @@ span.text-gray-90 {
   }
 }
 
-#content {
-  background: #f7f8fa !important;
-  padding-top: 1.5rem;
-}
+
 
 @media (min-width: 1480px) {
   .col-wd-2gdot4-only {
@@ -43232,7 +43229,7 @@ input.search-box {
 }
 
 .header-items ul {
-  padding: 0;
+  padding: 0 70px;
   align-items: center;
 }
 
