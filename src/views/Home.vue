@@ -3,7 +3,7 @@
     <Slider />
     <div class="container">
       <!-- <div class="browse-by-category">browse by category</div> -->
-
+      <h4 class="text-center">Categories</h4>
       <div class="category-icon-box">
          <carousel
 
@@ -200,5 +200,32 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+    #content {
+        background: #f7f8fa !important;
+        padding-top: 0px !important;
+    }
+    .category-icon img {
+
+      width: 75px !important;
+      height: 75px;
+      border-radius: 50%;
+      border: 1.5px dashed;
+      margin:auto;
+
+  }
+  .category-icon{
+    height: 130px;
+  }
+  @media (max-width: 768px) {
+    #content {
+        margin-top: 15px;
+    }
+    .facebook_link_btn{
+      display: none;
+    }
+  }
+</style>
 
 

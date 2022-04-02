@@ -599,4 +599,7 @@ li.h-b-li {
 p{
   line-height: 1.0 !important;
 }
+.form-control {
+  border-radius: 0% !important;
+}
 </style>

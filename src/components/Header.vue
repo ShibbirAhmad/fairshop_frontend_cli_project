@@ -7,7 +7,7 @@
             <li>
               <router-link to="/">
                 <img
-                  src="../assets/images/logo.png"
+                  src="../../assets/images/logo.png"
                   class="img-fluid site_logo"
                 />
               </router-link>
@@ -45,18 +45,19 @@
                title="user login "
                 href="/login" >
                 <img
-                src="../assets/images/user.png"
+                src="../../assets/images/user.png"
                 width="40px"
                 height="40px"
                 id="user_account_d"
               />
+              <br>
               Login/Register
               </a>
 
              <a  v-else href="/order">
 
                 <img
-                 src="../assets/images/user.png"
+                 src="../../assets/images/user.png"
                 width="40px"
                 height="40px"
               />
@@ -91,11 +92,11 @@
 
             </li>
 
+            <!-- <li>
+               <a class="merchant_link_btn" title="Merchant Login" href="https://www.app.fairshop.com.bd/merchant/login"> <img src="../../assets/images/merchant.png" > Merchant  </a>
+            </li> -->
             <li>
-               <a class="merchant_link_btn" title="Merchant Login" href="https://www.app.fairshop.com.bd/merchant/login"> <img src="../assets/images/merchant.png" > Merchant  </a>
-            </li>
-            <li>
-               <a class="facebook_link_btn" title="facebook page" href="https://www.facebook.com/fairshop.com.bd"> <img src="../../assets/images/facebook.png" > Facebook  </a>
+               <a class="facebook_link_btn" title="facebook page" href="https://www.facebook.com/fairshop.com.bd"> <img src="../../assets/images/facebook.png" > <br> Facebook  </a>
             </li>
 
             <li class="font-1-5 r_search" id="r_search">
@@ -107,7 +108,6 @@
                 style="color: #199EFF"
                 id="r_search_i"
               ></i>
-
               <transition
                 enter-active-class="animate__animated animate__fadeInDown"
                 leave-active-class="animate__animated animate__fadeOutUp"
@@ -248,8 +248,8 @@
           </ul>
           <ul class="__nav_list_right">
             <li  class="__nav_list_highlight_link">
-              <a href="tel:01762424333">
-                <i class="fa fa-phone"
+              <a href="https://wa.me/01762424333" target="_blank">
+                <i class="fa fa-whatsapp" style="font-size: 18px;"
                 ></i>
                 01762424333</a
               >
@@ -285,7 +285,7 @@
 
         <span
           id="__cart_total"
-          style="font-size: 16px; margin-top: 6px; margin-left: 5px"
+          style="font-size: 16px; margin-top: 0px; margin-left: 5px"
         >
           ৳{{ cart ? cart.cart_total : 0 }}
         </span>
@@ -481,3 +481,50 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .top-8 {
+    top: 2.2rem;
+  }
+  .header-items ul {
+    padding: 0 70px;
+    align-items: center;
+  }
+  .facebook_link_btn {
+      padding: 0px 10px;
+      color: #189EFF;
+  }
+  .__user_account a{
+    color: #189EFF !important;
+  }
+  .tacking_link{
+    color: #189EFF !important;
+  }
+  @media (max-width: 768px) {
+    .facebook_link_btn{
+      display: none;
+    }
+    .tacking_link{
+      margin-top: 22px;
+      margin-left: -15px;
+      color: #27A4FF;
+    }
+    .tacking_link_btn img{
+      margin-top: -6px;
+    }
+    .tacking_link{
+      margin-top: 28px;
+    }
+    header#header li{
+      margin-left: 17px;
+    }
+    #r_search_i{
+      font-size: 30px;
+    }
+    .header-items ul {
+    padding: 0 0px;
+    align-items: center;
+  }
+  
+  }
+</style>
