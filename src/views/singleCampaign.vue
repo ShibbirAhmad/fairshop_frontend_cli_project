@@ -131,8 +131,24 @@ export default {
   },
 };
 </script>
-<style>
+
+<style scoped>
 .vuejs-countdown .digit {
   font-size: 18px !important;
 }
+  .breadcrumb-item+.breadcrumb-item::before {
+    display: inline-block;
+    padding-right: 1rem;
+    color: #333e48;
+    content: ">";
+    padding-right: 5px;
+    }
+    .breadcrumb-item+.breadcrumb-item a {
+        background-color: transparent;
+        border-radius: 0.313rem;
+        margin-top: 3px;
+    }
+    .breadcrumb-item+.breadcrumb-item {
+        padding-left: 5px;
+    }
 </style>

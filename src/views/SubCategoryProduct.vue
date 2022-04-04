@@ -11,14 +11,14 @@
               <router-link to="/">Home </router-link>
             </li>
 
-            <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
+            <!-- <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
               <router-link
                 :to="{
                   name: 'shop',
                 }"
                 >shop
               </router-link>
-            </li>
+            </li> -->
 
             <li
               v-if="sub_category.sub_category"
@@ -147,3 +147,26 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .breadcrumb-item+.breadcrumb-item::before {
+    display: inline-block;
+    padding-right: 1rem;
+    color: #333e48;
+    content: ">";
+  }
+  .breadcrumb-item+.breadcrumb-item a {
+      background-color: transparent;
+      border-radius: 0.313rem;
+      margin-top: 3px;
+  }
+  .breadcrumb-item+.breadcrumb-item {
+      padding-left: 5px;
+  }
+  .breadcrumb-item+.breadcrumb-item[data-v-63742c3d]::before {
+      display: inline-block;
+      padding-right: 5px;
+      color: #333e48;
+      content: ">";
+  }
+</style>

@@ -95,6 +95,12 @@
 
                     </form>
                     <div class="social-icon" >
+                       <a
+                          href="https://www.facebook.com/fairshop.com.bd/"
+                          target="_blank"
+                          class="social-wrape facebook-icon"
+                          style="margin-top: 10px; margin-bottom: 10px;"
+                          ><i class="fa fa-facebook f-icon facebook-icon"></i></a>
                         <a
                           href="https://www.youtube.com/channel/UCTE_0AVcFBp-GDI5HuuG1TQ"
                           target="_blank"
@@ -102,20 +108,20 @@
                           ><i class="fa fa-youtube-square f-icon"></i >
 
                           </a>
-                        <a
+                        <!-- <a
                           href="www.pinterest.com/fairshop21"
                           target="_blank"
                           class="social-wrape"
                           style="margin-top: 10px"
                           >
                           <i class="fa fa-pinterest f-icon"></i>
-                          </a>
-                        <a
+                          </a> -->
+                        <!-- <a
                           href="https://www.linkedin.com/company/fairshop/"
                           target="_blank"
                           class="social-wrape"
                           style="margin-top: 10px"
-                          ><i class="fa fa-linkedin f-icon"></i></a>
+                          ><i class="fa fa-linkedin f-icon"></i></a> -->
                       </div>
                     </div>
 
@@ -245,7 +251,7 @@
           <h6 class="footer_nav_name">Login</h6>
         </li>
         <li>
-          <a href="tel:+01762424333"></a> <i class="fa fa-phone"></i>
+          <a href="tel:01762424333"><i class="fa fa-phone"></i></a> 
           <h6 class="footer_nav_call">Call</h6>
         </li>
       </ul>
@@ -596,12 +602,13 @@ export default {
     }
 
     .social-wrape {
-      float: left;
-      width: 40px;
-      height: 40px;
-      border: 1.5px dashed;
-      border-radius: 50%;
-      margin-left: 10px;
+          float: left;
+          width: 40px;
+          height: 40px;
+          border: 1.5px dashed;
+          border-radius: 50%;
+          margin-left: 10px;
+          background: #199EFF;
     }
 
     .social-wrape:hover {
@@ -616,7 +623,7 @@ export default {
     .f-icon {
         font-size: 26px;
         cursor: pointer;
-        color: #199EFF;
+        color: #fff;
         position: absolute;
         margin: 6px 6px;
     }

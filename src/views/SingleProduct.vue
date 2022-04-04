@@ -15,11 +15,9 @@
               <a href="/">Home</a>
             </li>
 
+            
             <li class="breadcrumb-item ">
-              <router-link :to="'/shop'">Shop</router-link>
-            </li>
-            <li class="breadcrumb-item ">
-              <a href="#">{{ product.name }}</a>
+              <a href="#">{{ product.name}}</a>
             </li>
           </ol>
         </nav>
@@ -287,7 +285,7 @@
           <div class="col-md-12 mb-md-12 mb-lg-0" style="overflow: hidden">
 
              <div class="product-details-tabe">
-               <ul v-if="product.video" class="details-tab-menu-list">
+                <ul v-if="product.video" class="details-tab-menu-list">
                       <li class="details-tab-menu-item"  @click="tab_content=1" :class="{'tab-menu-item-active':tab_content==1}">Video</li>
                       <li class="details-tab-menu-item"  @click="tab_content=2" :class="{'tab-menu-item-active':tab_content==2}">Description</li>
                       <li class="details-tab-menu-item" @click="tab_content=3" :class="{'tab-menu-item-active':tab_content==3}" >How To Buy</li>
@@ -379,10 +377,17 @@
             class="row list-unstyled products-group no-gutters filters"
             id="br_id"
           >
-            <Products :products="related_products"></Products>
+            <Products :products="products"></Products>
           </ul>
         </div>
       </div>
+        <InfiniteLoading
+        spinner="waveDots"
+        @distange="0.5"
+        @infinite="relatedProducts"
+      >
+        <div slot="no-more"></div>
+      </InfiniteLoading>
     </div>
 
     <!-- End Brand Carousel -->
@@ -395,6 +400,7 @@
 import Products from "../components/products.vue";
 import Cart from "../components/Cart";
 import imageZoom from 'vue-image-zoomer';
+import InfiniteLoading from "vue-infinite-loading";
 
 export default {
   name: "single-product",
@@ -411,9 +417,36 @@ export default {
       loading: true,
       tab_content:1,
       zooming_img:'',
+      products:[],
+      page:1,
     };
   },
   methods: {
+
+  relatedProducts($state) {
+      this.$axios
+        .get(
+          "related/products/" +
+            this.$route.params.slug +
+            "?page=" +
+            this.page,
+          {
+            headers: this.$apiHeader,
+          }
+        )
+        .then((resp) => {
+          console.log(resp)
+          if (resp.data.products.data.length > 0) {
+            this.products.push(...resp.data.products.data);
+            this.page += 1;
+            $state.loaded();
+          } else {
+            $state.complete();
+          }
+        });
+    },
+
+
     qtyChange(type) {
       if (parseInt(this.product.stock) <= 0) {
         this.$toast.open({
@@ -529,14 +562,13 @@ export default {
       return this.$store.state.product;
     },
 
-    related_products() {
-      return this.$store.state.related_products;
-    },
+
     variants() {
       return this.$store.state.variants;
     },
   },
   components: {
+    InfiniteLoading,
     Products,
     Cart,
     imageZoom,
@@ -545,6 +577,9 @@ export default {
 </script>
 
 <style scoped>
+.product-details p {
+    line-height: 20px !important;
+}
 
 .product-details-tabe {
     background: #fff;
@@ -602,4 +637,30 @@ p{
 .form-control {
   border-radius: 0% !important;
 }
+
+.breadcrumb-item+.breadcrumb-item::before {
+    display: inline-block;
+    padding-right: 1rem;
+    color: #333e48;
+    content: ">";
+}
+.breadcrumb-item+.breadcrumb-item a {
+    background-color: transparent;
+    border-radius: 0.313rem;
+    margin-top: 3px;
+}
+.breadcrumb-item+.breadcrumb-item {
+    padding-left: 5px;
+}
+.breadcrumb-item+.breadcrumb-item[data-v-63742c3d]::before {
+    display: inline-block;
+    padding-right: 5px;
+    color: #333e48;
+    content: ">";
+}
+
+.pr-5, .px-5{
+  padding-right: 2.5rem !important;
+}
+
 </style>

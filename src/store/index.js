@@ -101,7 +101,7 @@ const actions = {
                 if (resp.data.status == "SUCCESS") {
                     context.commit('product', resp.data.product)
                     context.commit('variants', resp.data.variants)
-                    context.commit('related_products', resp.data.related_products.data)
+                    // context.commit('related_products', resp.data.related_products.data)
                 } else {
                     router.push('/')
                 }
