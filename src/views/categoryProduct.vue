@@ -96,10 +96,7 @@ export default {
     allProducts($state) {
       this.$axios
         .get(
-          "category/wise/product/" +
-            this.$route.params.slug +
-            "?page=" +
-            this.page,
+          "category/wise/product/" + this.$route.params.slug + "?page=" +  this.page,
           {
             headers: this.$apiHeader,
           }

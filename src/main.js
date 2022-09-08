@@ -30,12 +30,13 @@ Vue.mixin(helper);
 
 //Vue.use(axios)
 axios.defaults.baseURL = 'https://fairshop.com.bd/api/_data/';
+// axios.defaults.withCredentials = true;
 
 
 Vue.prototype.$axios = axios;
 Vue.prototype.$apiHeader = {
     "Content-Type": "application/Json",
-    "api_token": "$2y$10$kzaYH2t9fgVMoyqKMWF7POjD45cilj"
+    "Authorization" : "Bearer $2y$10$kzaYH2t9fgVMoyqKMWF7POjD45cilj"
 };
 //
 Vue.prototype.$imageBaseUrl = "https://fairshop.com.bd/storage/app/public/";

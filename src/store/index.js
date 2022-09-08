@@ -34,9 +34,9 @@ const actions = {
                 headers: this.$apiHeader
             })
             .then(resp => {
-                console.log(resp);
-                if (resp.data.categories.data) {
-                    context.commit('categories', resp.data.categories.data)
+                // console.log(resp);
+                if (resp.data.categories) {
+                    context.commit('categories', resp.data.categories)
                 }
             })
     },
@@ -158,9 +158,9 @@ const actions = {
                 headers: this.$apiHeader,
             })
             .then(resp => {
-                console.log(resp);
+                // console.log(resp);
                 context.commit('sliders', resp.data.sliders)
-                context.commit('banner', resp.data.banner)
+                context.commit('banner', resp.data.slider_banner)
             })
 
     }

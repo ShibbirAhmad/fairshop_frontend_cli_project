@@ -32,9 +32,8 @@
          </carousel>
       </div>
 
-      <FeatureProduct />
       <!-- start feature product section  -->
-
+      <FeatureProduct />
       <!-- end feature product section  -->
 
       <!-- start flash deals here -->
@@ -43,13 +42,13 @@
 
       <!-- start trending products here  -->
 
-      <div v-if="categories.length > 0" class="__category_wise_product">
-        <div class="row category-sec" v-for="(category, ctx) in categories" :key="ctx">
+      <div v-if="home_data.length > 0" class="__category_wise_product">
+        <div class="row category-sec" v-for="(data, ctx) in home_data" :key="ctx">
           <div class="col-lg-12">
             <div class="category-heading">
-              <h3>{{ category.name }}</h3>
-                <ul
-                  class="landing_sub_c_list" :id="'landing_sub_category_'+category.id"
+              <h3>{{ data.category.name }}</h3>
+                <!-- <ul
+                  class="landing_sub_c_list" :id="'landing_sub_category_'+data.category.id"
                   v-if="category.sub_categories.length > 0"
                 >
                   <li
@@ -78,16 +77,16 @@
                   params: { slug: category.slug },
                 }"
                 >VIEW ALL
-              </router-link>
+              </router-link> -->
             </div>
           </div>
           <div class="col-lg-12 col-xl-12 col-md-12">
             <div class="row">
               <div class="col-lg-12 col-md-12">
-                <div class="row" v-if="category.products.length > 0">
+                <div class="row" v-if="data.products.length > 0">
                   <div
                     class="width-20"
-                    v-for="product in category.products"
+                    v-for="product in data.products"
                     :key="product.id"
                   >
                     <div class="__product_card">
@@ -100,8 +99,9 @@
                           class="d-block text-center"
                         >
                           <img
-                            :alt="product.thumnail"
-                            :src="$imageBaseUrl2 + product.thumnail"
+                            :alt="product.thumbnail_img"
+                            :src="$imageBaseUrl2 + product.thumbnail_img
+"
                           />
                         </router-link>
                       </div>
@@ -119,9 +119,9 @@
                           </h4>
                           </router-link>
                         <p class="price">
-                          <span><del>৳{{ product.regular_price }}</del></span
+                          <span><del>৳{{ product.price }}</del></span
                           >
-                          ৳{{ product.discount_price }}
+                          ৳{{ product.sale_price }}
                         </p>
                       </div>
                     </div>
@@ -136,7 +136,7 @@
       <InfiniteLoading
         spinner="waveDots"
         @distance="0.5"
-        @infinite="getCategoryProdductS"
+        @infinite="getCategoryProducts"
       >
         <div slot="no-more"></div>
       </InfiniteLoading>
@@ -155,7 +155,7 @@ export default {
 
   data() {
     return {
-      categories: [],
+      home_data: [],
       page: 1,
     };
   },
@@ -165,16 +165,14 @@ export default {
     toggleSubCategories(id){
        document.getElementById('landing_sub_category_'+id).classList.toggle('landing_sub_c_list_toggle');
     },
-    getCategoryProdductS($state) {
+    getCategoryProducts($state) {
       this.$axios
-        .get("category/wise/all/products?page=" + this.page, {
-          headers: this.$apiHeader,
-        })
+        .get("/products?page=" + this.page)
         .then((resp) => {
-         // console.log(resp);
-          if (resp.data.data.length) {
+         console.log(resp);
+          if ( resp.data.sub_categories.data.length > 0) {
             this.page += 1;
-            this.categories.push(...resp.data.data);
+            this.home_data = resp.data.sub_categories.data;
             $state.loaded();
           } else {
             $state.complete();
