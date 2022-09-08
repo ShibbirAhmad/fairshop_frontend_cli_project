@@ -7,7 +7,10 @@ import axios from 'axios';
 import helper from "../src/mixins/helper.vue";
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
-import { HasError, AlertError } from 'vform'
+import {
+    HasError,
+    AlertError
+} from 'vform'
 
 import 'animate.css';
 
@@ -26,17 +29,17 @@ Vue.mixin(helper);
 
 
 //Vue.use(axios)
-axios.defaults.baseURL = 'https://app.fairshop.com.bd/api/';
+axios.defaults.baseURL = 'https://fairshop.com.bd/api/_data/';
 
 
 Vue.prototype.$axios = axios;
 Vue.prototype.$apiHeader = {
     "Content-Type": "application/Json",
-    "API_TOKEN": "JHKJA78411AJF"
+    "api_token": "$2y$10$kzaYH2t9fgVMoyqKMWF7POjD45cilj"
 };
 //
-Vue.prototype.$imageBaseUrl = "https://app.fairshop.com.bd/storage/app/public/";
-Vue.prototype.$imageBaseUrl2 = "https://app.fairshop.com.bd/storage/app/public/";
+Vue.prototype.$imageBaseUrl = "https://fairshop.com.bd/storage/app/public/";
+Vue.prototype.$imageBaseUrl2 = "https://fairshop.com.bd/storage/app/public/";
 
 
 

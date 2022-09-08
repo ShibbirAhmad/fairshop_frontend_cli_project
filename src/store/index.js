@@ -28,16 +28,13 @@ const getters = {
 const actions = {
 
 
-    //get the categores
     categories(context) {
 
         axios.get("categories", {
-            headers: this.$apiHeader,
-            params: {
-                items: 50
-            }
-        })
+                headers: this.$apiHeader
+            })
             .then(resp => {
+                console.log(resp);
                 if (resp.data.categories.data) {
                     context.commit('categories', resp.data.categories.data)
                 }
@@ -45,57 +42,58 @@ const actions = {
     },
     category(context, payload) {
         axios.get("category/" + payload, {
-            headers: this.$apiHeader,
-        })
-        .then(resp => {
-            if (resp.data.category) {
-                context.commit('category', resp.data)
-            } else {
-                router.push('/')
-            }
-        })
+                headers: this.$apiHeader,
+            })
+            .then(resp => {
+                console.log(resp);
+                if (resp.data.category) {
+                    context.commit('category', resp.data)
+                } else {
+                    router.push('/')
+                }
+            })
     },
     sub_category(context, payload) {
         //   console.log(payload)
         axios.get("sub/category/" + payload.slug, {
-            headers: this.$apiHeader,
-            params: {
-                category_slug: payload.categortSlug,
-            }
-        })
+                headers: this.$apiHeader,
+                params: {
+                    category_slug: payload.categortSlug,
+                }
+            })
             .then(resp => {
-               // console.log(resp)
+                // console.log(resp)
                 if (resp.data.sub_category) {
                     context.commit('sub_category', resp.data)
                 } else {
-                   router.push('/')
+                    router.push('/')
                 }
             })
     },
     sub_sub_category(context, payload) {
         axios.get("sub/sub/category/" + payload.slug, {
-            headers: this.$apiHeader,
-            params: {
-                category_slug: payload.categortSlug,
-                sub_category_slug: payload.SubCategortSlug
+                headers: this.$apiHeader,
+                params: {
+                    category_slug: payload.categortSlug,
+                    sub_category_slug: payload.SubCategortSlug
 
-            }
-        })
+                }
+            })
             .then(resp => {
-               // console.log(resp)
+                // console.log(resp)
                 if (resp.data.sub_sub_category) {
                     context.commit('sub_sub_category', resp.data)
 
                 } else {
-                   // router.push('/')
+                    // router.push('/')
                 }
 
             })
     },
     product(context, payload) {
         axios.get("single/product/" + payload, {
-            headers: this.$apiHeader,
-        })
+                headers: this.$apiHeader,
+            })
             .then(resp => {
                 // console.log(resp)
                 if (resp.data.status == "SUCCESS") {
@@ -109,8 +107,8 @@ const actions = {
     },
     cart(context) {
         axios.get("cart/content", {
-            headers: this.$apiHeader,
-        })
+                headers: this.$apiHeader,
+            })
             .then(resp => {
 
                 context.commit('cart', resp.data)
@@ -123,11 +121,11 @@ const actions = {
         if (localStorage.getItem('user_token')) {
 
             axios.get("user", {
-                headers: this.$apiHeader,
-                params: {
-                    user_token: localStorage.getItem('user_token')
-                }
-            })
+                    headers: this.$apiHeader,
+                    params: {
+                        user_token: localStorage.getItem('user_token')
+                    }
+                })
                 .then(resp => {
                     console.log(resp.data.user);
                     if (resp.data.status == "AUTHORIZED") {
@@ -135,7 +133,7 @@ const actions = {
                     }
 
                 })
-                .catch(err=>{
+                .catch(err => {
                     console.log(err);
                 })
         }
@@ -144,10 +142,10 @@ const actions = {
     },
     campaign(context, payload) {
         axios.get("c/products/" + payload, {
-            headers: this.$apiHeader,
-        })
+                headers: this.$apiHeader,
+            })
             .then(resp => {
-              //  console.log(resp)
+                //  console.log(resp)
                 if (resp.data.status == "OK") {
                     context.commit('campaign', resp.data)
                 } else {
@@ -156,9 +154,9 @@ const actions = {
             })
     },
     sliders(context) {
-        axios.get("slider", {
-            headers: this.$apiHeader,
-        })
+        axios.get("sliders", {
+                headers: this.$apiHeader,
+            })
             .then(resp => {
                 console.log(resp);
                 context.commit('sliders', resp.data.sliders)

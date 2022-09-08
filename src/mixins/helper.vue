@@ -18,7 +18,7 @@ export default {
       }
     },
 
-    
+
     $add_to_cart(e, product, qty, variant_id, from_single_page) {
       let quantity = qty ? qty : 1;
       if (product.stock <= 0) {
@@ -58,8 +58,6 @@ export default {
                 showCancelButton: false,
               });
             }
-
-            // this.show_cart = !this.show_cart;
           } else {
             if (resp.data.variants.length > 0 && from_single_page != true) {
               let data = resp.data;
