@@ -67,17 +67,25 @@ p{
     font-size: 15px;
 }
 
-
+.facebook-icon{
+    margin-left: 10px !important;
+}
 .tacking_link_btn {
     padding: 0px 10px;
 }
 
+
 .tacking_link_btn img {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     position: absolute;
-    margin-left: -18px;
-    margin-top: -22px;
+    margin-left: 3px;
+    margin-top: -4px;
+}
+
+#user_account_d{
+    height: 30px !important;
+    width: 30px !important;
 }
 
 .tacking_link {
@@ -156,6 +164,10 @@ p{
     border-radius: .5rem;
     padding: .5rem;
     border-radius: 1rem;
+}
+#r_search{
+    margin-top: 6px;
+    margin-left: 58px !important;
 }
 
 .title-img {
@@ -247,7 +259,7 @@ ul li:hover {
 }
 
 .product-details p{
-   line-height: 10px !important;
+   line-height: 22px !important;
 }
 
 @media(min-width: 1480px) {
@@ -263,6 +275,13 @@ ul li:hover {
 
 @media screen and (max-width:768px) {
 
+    .order-large-device{
+        display: none;
+    }
+
+    .order-small-device{
+        display: block !important;
+    }
 
     .viewallcatlink {
         background: #199EFF;
@@ -352,7 +371,9 @@ ul li:hover {
 }
 
 @media screen and (max-width:600px) {
-
+    .item{
+        top: 4%;
+    }
     .product_details_row{
         margin-top: 90px !important;
     }
@@ -412,7 +433,7 @@ ul li:hover {
         position: fixed;
         bottom: 0;
         background: #fff;
-        height: 3.5rem;
+        height: 3.5rem !important;
         z-index: 9999999;
         left: 0;
         box-shadow: 5px 10px 18px #333e48;
@@ -423,6 +444,7 @@ ul li:hover {
     .__footer_nav ul {
         display: flex;
         list-style: none;
+        margin-top: -6px;
     }
     .__footer_nav ul li {
         font-size: 1.55rem;
@@ -916,7 +938,7 @@ ul.__cart-product-list li img {
 
     .cart_buy_container {
         display: flex;
-        margin-top: 27px;
+        margin-top: 50px;
     }
 
 
@@ -924,14 +946,14 @@ ul.__cart-product-list li img {
         padding: 0px 10px;
     }
 
+    
     .tacking_link_btn img {
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         position: absolute;
-        margin-left: 5px;
-        margin-top: -15px;
+        margin-left: 3px;
+        margin-top: -4px;
     }
-
     .tacking_link {
         padding: 0px 10px;
         margin-left: -30px;

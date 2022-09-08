@@ -45,19 +45,18 @@
                title="user login "
                 href="/login" >
                 <img
-                src="../../assets/images/user.png"
+                src="../../assets/images/UserLogin.png"
                 width="40px"
                 height="40px"
                 id="user_account_d"
               />
-              <br>
               Login/Register
               </a>
 
              <a  v-else href="/order">
 
                 <img
-                 src="../../assets/images/user.png"
+                 src="../../assets/images/OrderTracking.png"
                 width="40px"
                 height="40px"
               />
@@ -85,19 +84,23 @@
 
             </li>
             <li>
-              <div style="width:60px;">
+              <div class="order-large-device" style="width:60px;">
                  <router-link class="tacking_link_btn" :to="{name:'order_tracking'}"> <img  src="../../assets/images/tracking.png" ></router-link>
                  <router-link class="tacking_link" :to="{name:'order_tracking'}"> Order Track </router-link>
               </div>
 
+              <div class="order-small-device" style="width:60px; display: none;">
+                 <router-link class="tacking_link_btn" :to="{name:'order_tracking'}"> <img  src="../../assets/images/tracking.png" ></router-link>
+                 <!-- <router-link class="tacking_link" :to="{name:'order_tracking'}"> Order Track </router-link> -->
+              </div>
             </li>
 
             <!-- <li>
                <a class="merchant_link_btn" title="Merchant Login" href="https://www.app.fairshop.com.bd/merchant/login"> <img src="../../assets/images/merchant.png" > Merchant  </a>
             </li> -->
-            <li>
+            <!-- <li>
                <a class="facebook_link_btn" title="facebook page" href="https://www.facebook.com/fairshop.com.bd"> <img src="../../assets/images/facebook.png" > <br> Facebook  </a>
-            </li>
+            </li> -->
 
             <li class="font-1-5 r_search" id="r_search">
               <i
@@ -498,9 +501,16 @@ export default {
     color: #189EFF !important;
   }
   .tacking_link{
+    padding: 0px 25px;
+    position: absolute;
     color: #189EFF !important;
+    margin-top: 0;
+    margin-left: 0;
   }
   @media (max-width: 768px) {
+    .__footer_nav{
+      height: 3.5rem !important;
+    }
     .facebook_link_btn{
       display: none;
     }
@@ -524,6 +534,10 @@ export default {
     .header-items ul {
     padding: 0 0px;
     align-items: center;
+  }
+
+  .__footer_nav ul{
+    margin-top: -6px !important;
   }
   
   }
