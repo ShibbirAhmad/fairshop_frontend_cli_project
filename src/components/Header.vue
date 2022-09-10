@@ -186,7 +186,7 @@
                       :to="{
                         name: 'SubCategoryProduct',
                         params: {
-                          categortSlug: category.slug,
+                          category: category.slug,
                           slug: sub_category.slug,
                         },
                       }"
@@ -214,8 +214,8 @@
                           :to="{
                             name: 'SubSubCategoryProduct',
                             params: {
-                              categortSlug: category.slug,
-                              SubCategortSlug: sub_category.slug,
+                              category: category.slug,
+                              subcategory: sub_category.slug,
                               slug: sub_sub_category.slug,
                             },
                           }"

@@ -223,6 +223,7 @@ ul li:hover {
    line-height: 10px !important;
 }
 
+
 @media(min-width: 1480px) {
     .res {
         display: inline;

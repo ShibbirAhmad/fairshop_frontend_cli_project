@@ -23,7 +23,7 @@
                 params: { slug: cat.slug },
               }"
             >
-              <img :src="$imageBaseUrl2 + cat.icon_image" alt="men_items" />
+              <img :src="$imageBaseUrl + cat.icon_image" alt="men_items" />
               <p>{{ cat.name }}</p>
             </router-link>
           </div>

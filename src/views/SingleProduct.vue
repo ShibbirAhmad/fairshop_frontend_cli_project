@@ -34,12 +34,13 @@
       <div>
         <div class="row">
           <div class="col-md-5 mb-5 mb-md-0">
-            <image-zoom
-              v-if="zooming_img"
-              :regular="zooming_img"
+            <!-- <image-zoom
+              v-if="product_image"
+              :regular="product_image"
               img-class="single_product_image"
             >
-            </image-zoom>
+            </image-zoom> -->
+            <!-- <img :src="$imageBaseUrl + product_image" alt="product_image"> -->
 
             <div class="thumnail_img-box" v-if="product.product_image">
               <img
@@ -92,45 +93,43 @@
                 <div id="priceSection">
                   <div class="d-flex align-items-baseline">
                     <ins class="font-size-36 text-decoration-none">
-                      ৳<span id="oprice">{{ product.discount_price }}</span>
+                      ৳<span id="oprice">{{ product.discount }}</span>
                     </ins>
                     <del class="font-size-20 ml-2 text-gray-6">
-                      ৳{{ product.regular_price }}
+                      ৳{{ product.price }}
                     </del>
                   </div>
                 </div>
               </div>
 
               <div class="border-top">
-                <!-- <div v-if="Object.keys(variants).length > 0"> -->
+                <div v-if="product.product_variant  && product.product_attribute">
+                   <h4>{{ product.product_attribute.attribute.name }} : </h4>
                 <div>
-                  <div
-                    class="d-flex align-items-center"
-                    style="padding-bottom: 0.5rem"
-                    v-for="(variant, vidx) in variants"
-                    :key="vidx"
-                  >
-                    <h3 class="font-size-1rem mb-0" id="atName">
-                      {{ vidx }}
-                    </h3>
-                    <div class="ml-3">
-                      <select
-                        class="form-control ml-3"
-                        v-model="variant_id"
-                        id="attrid"
+                  <div class="attribute-values">
+                  <ul class="text-swatch attribute-swatch color-swatch">
+                    <li
+                      v-for="(variant, v) in product.product_variant"
+                      :key="v"
+                      class="attribute-swatch-item"
                       >
-                        <option selected disabled value="">
-                          Select {{ vidx }}
-                        </option>
-                        <option
-                          v-for="(v_item, viidx) in variant"
-                          :key="viidx"
-                          :value="v_item.variant_id"
-                        >
-                          {{ v_item.variant.name }}
-                        </option>
-                      </select>
-                    </div>
+                      <div>
+                          <label>
+                          <input
+                              class="product-filter-item variant_size"
+                              type="radio"
+                              :name="product.product_attribute.attribute.name.toLowerCase()"
+                              :value="v"
+                              v-model="variant_id"
+                              id="attrid"
+                          />
+                          <span>{{
+                              variant.variant.name
+                          }}</span>
+                          </label>
+                      </div>
+                      </li>
+                  </ul>
                   </div>
                 </div>
 
@@ -251,6 +250,7 @@
                       </div>
                     </div>
                   </div>
+                </div>
                 </div>
               </div>
             </div>
@@ -442,12 +442,13 @@
 <script>
 import Products from "../components/products.vue";
 import Cart from "../components/Cart";
-import imageZoom from "vue-image-zoomer";
+// import imageZoom from "vue-image-zoomer";
 import InfiniteLoading from "vue-infinite-loading";
 export default {
   name: "single-product",
   created() {
     this.$store.dispatch("product", this.$route.params.slug);
+    this.$store.dispatch("product_images", this.$route.params.slug);
     window.scroll(0, 0);
     window.addEventListener("click", this.handleBodyClick);
   },
@@ -469,19 +470,24 @@ export default {
         .get(
           "related/products/" + this.$route.params.slug + "?page=" + this.page,
           {
-            headers: this.$apiHeader,
+            // headers: this.$apiHeader,
           }
         )
         .then((resp) => {
           console.log(resp);
-          if (resp.data.products.data.length > 0) {
-            this.products.push(...resp.data.products.data);
+          if (resp.data) {
+            this.products.push(...resp.data);
             this.page += 1;
             $state.loaded();
           } else {
             $state.complete();
           }
+        })
+        .catch(error => {
+            this.$toastr.error(error.response.data.message);
         });
+        
+        
     },
     qtyChange(type) {
       if (parseInt(this.product.stock) <= 0) {
@@ -587,6 +593,9 @@ export default {
     product() {
       return this.$store.state.product;
     },
+    product_images() {
+      return this.$store.state.product_images;
+    },
     variants() {
       return this.$store.state.variants;
     },
@@ -595,7 +604,7 @@ export default {
     InfiniteLoading,
     Products,
     Cart,
-    imageZoom,
+    // imageZoom,
   },
 };
 </script>
@@ -677,4 +686,223 @@ p {
 .px-5 {
   padding-right: 2.5rem !important;
 }
+.attribute-swatch-item{
+  list-style:none;
+}
+.attribute-swatch{
+  display: flex;
+}
+
+
+ /* start attribute and variant awesome css  */
+
+
+        .attribute-swatch{
+            display: flex;
+            margin-top: 0px;
+        }
+        .attribute-swatch li{
+            list-style: none;
+            margin-right: 10px;
+        }
+
+        .Black {
+        background-color: #000;
+        }
+        .Red {
+        background-color: red;
+        }
+        .Green {
+        background-color: green;
+        }
+
+        .Yellow {
+        background-color: yellow;
+        }
+
+        .Navy {
+        background-color: navy;
+        }
+
+
+
+        .attribute-swatches-wrapper.form-group {
+        margin-bottom: 10px;
+        }
+
+        .product__color {
+        padding-bottom: 10px;
+        }
+
+        .product__attribute {
+            align-items: center;
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+        .product__attribute>label {
+            margin-bottom: 0;
+            max-width: 60px;
+            margin-right: 27px;
+        }
+
+
+        .product__attribute>* {
+          flex-basis: 100%;
+        }
+
+        .ps-product--detail .ps-product__info {
+        text-align: left;
+        }
+
+
+    .attribute-values ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .product__color .color-swatch li {
+        display: inline-block;
+        margin-right: 5px;
+        vertical-align: top;
+        }
+
+        .custom-checkbox label, .custom-radio label {
+        display: block;
+        }
+
+        .text-swatch li input[type=checkbox], .text-swatch li input[type=radio] {
+        display: none;
+        }
+        .text-swatch li input[type=checkbox]:checked~span, .text-swatch li input[type=radio]:checked~span {
+        border: 1px solid #000;
+        }
+
+        .custom-checkbox input[type=checkbox], .custom-checkbox input[type=radio], .custom-radio input[type=checkbox], .custom-radio input[type=radio] {
+        display: none;
+        }
+
+
+        .product__attribute .form-control {
+        border: none;
+        }
+
+        .product__color .color-swatch li span {
+        margin-bottom: 0;
+        }
+        .product__color .color-swatch li {
+        display: inline-block;
+        margin-right: 5px;
+        vertical-align: top;
+        }
+
+        * {
+        font-family: 'Work Sans', sans-serif ;
+        font-weight: 400;
+        }
+
+        *, ::after, ::before {
+        box-sizing: border-box;
+        }
+
+
+        .text-swatch li span {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        display: inline-block;
+        overflow: hidden;
+        padding: 0px 10px;
+        position: relative;
+        transition: .2s;
+        }
+
+        .custom-checkbox input[type=checkbox]:checked~span:before, .custom-checkbox input[type=radio]:checked~span:before, .custom-radio input[type=checkbox]:checked~span:before, .custom-radio input[type=radio]:checked~span:before {
+        border: 2px solid #fff;
+        border-radius: 50%;
+        bottom: -4px;
+        content: "";
+        display: block;
+        left: -4px;
+        position: absolute;
+        right: -4px;
+        top: -4px;
+        }
+
+        .text-swatch li input[type=checkbox]:checked~span:before, .text-swatch li input[type=radio]:checked~span:before {
+        border: 23px solid transparent;
+        border-bottom: 16px solid #000;
+        bottom: 0px;
+        content: "";
+        position: absolute;
+        right: -22px;
+        }
+
+        .text-swatch li input[type=checkbox]:checked~span:after, .text-swatch li input[type=radio]:checked~span:after {
+        bottom: 0px;
+        color: #fff;
+        content: "✓";
+        font-family: Linearicons!important;
+        font-size: 14px;
+        height: 19px;
+        overflow: hidden;
+        position: absolute;
+        right: -6px;
+        width: 16px;
+        }
+
+        [type=checkbox], [type=radio] {
+        box-sizing: border-box;
+        padding: 0;
+        }
+
+
+        button, input {
+        overflow: visible;
+        }
+
+        button, input, select, textarea {
+        font: inherit;
+        margin: 0;
+        }
+
+
+      .custom-checkbox span, .custom-radio span {
+        border-radius: 50%;
+        cursor: pointer;
+        display: block;
+        height: 25px;
+        position: relative;
+        width: 25px;
+        }
+
+
+    .product__attribute .color-swatch .attribute-swatch-item.select_none span:before,
+    .product__attribute .text-swatch .attribute-swatch-item.select_none span:before {
+        transform: rotate(45deg);
+    }
+    .product__attribute .color-swatch .attribute-swatch-item.select_none span:after,
+    .product__attribute .text-swatch .attribute-swatch-item.select_none span:after {
+        transform: rotate(-45deg);
+    }
+    .product__attribute .color-swatch .attribute-swatch-item.select_none span:after,
+    .product__attribute .color-swatch .attribute-swatch-item.select_none span:before,
+    .product__attribute .text-swatch .attribute-swatch-item.select_none span:after,
+    .product__attribute .text-swatch .attribute-swatch-item.select_none span:before {
+        border-top: 1px dashed #999;
+        content: "";
+        height: 0;
+        left: 0;
+        position: absolute;
+        top: 50%;
+        width: 100%;
+    }
+
+    .product-form.product-variations {
+        line-height: 25px;
+    }
+
+    /* end attribute and variant awesome css  */
 </style>

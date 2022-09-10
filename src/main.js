@@ -36,11 +36,11 @@ axios.defaults.baseURL = 'https://fairshop.com.bd/api/_data/';
 Vue.prototype.$axios = axios;
 Vue.prototype.$apiHeader = {
     "Content-Type": "application/Json",
-    "Authorization" : "Bearer $2y$10$kzaYH2t9fgVMoyqKMWF7POjD45cilj"
+    "api_token" : "$2y$10$kzaYH2t9fgVMoyqKMWF7POjD45cilj"
 };
 //
-Vue.prototype.$imageBaseUrl = "https://fairshop.com.bd/storage/app/public/";
-Vue.prototype.$imageBaseUrl2 = "https://fairshop.com.bd/storage/app/public/";
+Vue.prototype.$imageBaseUrl = "https://fairshop.com.bd/public/storage/";
+Vue.prototype.$imageBaseUrl2 = "https://fairshop.com.bd/public/storage/images/product_thumbnail_img/";
 
 
 

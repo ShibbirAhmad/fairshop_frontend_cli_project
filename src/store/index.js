@@ -6,9 +6,6 @@ Vue.use(Vuex);
 
 const state = {
   categories: [],
-  category: {},
-  sub_category: {},
-  sub_sub_category: {},
   product: {},
   related_products: {},
   cart: {},
@@ -18,6 +15,9 @@ const state = {
   banner: "",
   variants: [],
   show_collpase_cart: false,
+  product_images: {},
+  
+
 };
 const getters = {};
 const actions = {
@@ -33,56 +33,7 @@ const actions = {
         }
       });
   },
-  category(context, payload) {
-    axios
-      .get("category/" + payload, {
-        headers: this.$apiHeader,
-      })
-      .then((resp) => {
-        console.log(resp);
-        if (resp.data.category) {
-          context.commit("category", resp.data);
-        } else {
-          router.push("/");
-        }
-      });
-  },
-  sub_category(context, payload) {
-    //   console.log(payload)
-    axios
-      .get("sub/category/" + payload.slug, {
-        headers: this.$apiHeader,
-        params: {
-          category_slug: payload.categortSlug,
-        },
-      })
-      .then((resp) => {
-        // console.log(resp)
-        if (resp.data.sub_category) {
-          context.commit("sub_category", resp.data);
-        } else {
-          router.push("/");
-        }
-      });
-  },
-  sub_sub_category(context, payload) {
-    axios
-      .get("sub/sub/category/" + payload.slug, {
-        headers: this.$apiHeader,
-        params: {
-          category_slug: payload.categortSlug,
-          sub_category_slug: payload.SubCategortSlug,
-        },
-      })
-      .then((resp) => {
-        // console.log(resp)
-        if (resp.data.sub_sub_category) {
-          context.commit("sub_sub_category", resp.data);
-        } else {
-          // router.push('/')
-        }
-      });
-  },
+
   product(context, payload) {
     axios
       .get("product/" + payload, {
@@ -99,6 +50,17 @@ const actions = {
         }
       });
   },
+
+  //for get product images
+  product_images(context, payload) {
+    axios.get('product/images/' + payload)
+      .then(resp => {
+        console.log(resp);
+            console.log(resp.data);
+            context.commit('product_images', resp.data)
+        })
+  },
+
   cart(context) {
     axios
       .get("cart/content", {
@@ -159,17 +121,12 @@ const mutations = {
   categories(state, payload) {
     return (state.categories = payload);
   },
-  category(state, payload) {
-    return (state.category = payload);
-  },
-  sub_category(state, payload) {
-    return (state.sub_category = payload);
-  },
-  sub_sub_category(state, payload) {
-    return (state.sub_sub_category = payload);
-  },
+
   product(state, payload) {
     return (state.product = payload);
+  },
+  product_images(state, payload) {
+      return state.product_images = payload;
   },
   related_products(state, payload) {
     return (state.related_products = payload);

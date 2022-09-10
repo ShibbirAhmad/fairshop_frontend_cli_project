@@ -19,16 +19,16 @@
                 >shop
               </router-link>
             </li> -->
-
+<!-- 
             <li
               v-if="category.category"
               class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"
             >
               {{ category.category.name }}
-            </li>
+            </li> -->
           </ol>
         </nav>
-        <div class="row" v-if="category.category.sub_category">
+        <!-- <div class="row" v-if="category.category.sub_category">
           <div
             class="col-6 col-md-2-custome"
             v-for="(related_category, rcdx) in category.category.sub_category"
@@ -50,18 +50,18 @@
               </div>
             </router-link>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="container overflow-hidden">
         <div
           class="d-flex justify-content-between border-bottom border-color-1 flex-lg-nowrap flex-wrap border-md-down-top-0 border-md-down-bottView om- mb-3 mt-2"
         >
-          <h3
+          <!-- <h3
             v-if="category.category"
             class="section-title section-title__full mb-0 pb-2 font-size-22"
           >
             {{ category.category.name }}
-          </h3>
+          </h3> -->
         </div>
 
         <products :products="products"></products>
@@ -70,7 +70,7 @@
       <InfiniteLoading
         spinner="waveDots"
         @distange="0.5"
-        @infinite="allProducts"
+        @infinite="categoryProducts"
       >
         <div slot="no-more"></div>
       </InfiniteLoading>
@@ -80,12 +80,9 @@
 
 <script>
 import InfiniteLoading from "vue-infinite-loading";
-import products from "../components/products";
 import Products from "../components/products.vue";
 export default {
-  created() {
-    this.$store.dispatch("category", this.$route.params.slug);
-  },
+ 
   data() {
     return {
       page: 1,
@@ -93,17 +90,17 @@ export default {
     };
   },
   methods: {
-    allProducts($state) {
+    categoryProducts($state) {
       this.$axios
         .get(
           "category/wise/product/" + this.$route.params.slug + "?page=" +  this.page,
           {
-            headers: this.$apiHeader,
+            // headers: this.$apiHeader,
           }
         )
         .then((resp) => {
           console.log(resp)
-          if (resp.data.products.data.length > 0) {
+         if (resp.data.success == true && resp.data.products.data.length) {
             this.products.push(...resp.data.products.data);
             this.page += 1;
             $state.loaded();
@@ -115,14 +112,9 @@ export default {
   },
   components: {
     InfiniteLoading,
-    products,
     Products,
   },
-  computed: {
-    category() {
-      return this.$store.state.category;
-    },
-  },
+ 
 };
 </script>
 
