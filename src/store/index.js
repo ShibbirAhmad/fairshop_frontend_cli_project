@@ -15,9 +15,6 @@ const state = {
   banner: "",
   variants: [],
   show_collpase_cart: false,
-  product_images: {},
-  
-
 };
 const getters = {};
 const actions = {
@@ -52,14 +49,6 @@ const actions = {
   },
 
   //for get product images
-  product_images(context, payload) {
-    axios.get('product/images/' + payload)
-      .then(resp => {
-        console.log(resp);
-            console.log(resp.data);
-            context.commit('product_images', resp.data)
-        })
-  },
 
   cart(context) {
     axios
@@ -124,9 +113,6 @@ const mutations = {
 
   product(state, payload) {
     return (state.product = payload);
-  },
-  product_images(state, payload) {
-      return state.product_images = payload;
   },
   related_products(state, payload) {
     return (state.related_products = payload);

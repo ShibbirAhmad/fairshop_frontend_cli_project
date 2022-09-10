@@ -34,17 +34,16 @@
       <div>
         <div class="row">
           <div class="col-md-5 mb-5 mb-md-0">
-            <!-- <image-zoom
-              v-if="product_image"
-              :regular="product_image"
+            <image-zoom
+              v-if="zooming_img"
+              :regular="zooming_img"
               img-class="single_product_image"
             >
-            </image-zoom> -->
-            <!-- <img :src="$imageBaseUrl + product_image" alt="product_image"> -->
+            </image-zoom>
 
-            <div class="thumnail_img-box" v-if="product.product_image">
+            <div class="thumnail_img-box" v-if="product_images">
               <img
-                v-for="(image, imgdx) in product.product_image"
+                v-for="(image, imgdx) in product_images"
                 :class="{ __active_border: imgdx == 0 }"
                 :key="imgdx"
                 :src="$imageBaseUrl + image.product_image"
@@ -103,62 +102,66 @@
               </div>
 
               <div class="border-top">
-                <div v-if="product.product_variant  && product.product_attribute">
-                   <h4>{{ product.product_attribute.attribute.name }} : </h4>
-                <div>
-                  <div class="attribute-values">
-                  <ul class="text-swatch attribute-swatch color-swatch">
-                    <li
-                      v-for="(variant, v) in product.product_variant"
-                      :key="v"
-                      class="attribute-swatch-item"
-                      >
-                      <div>
-                          <label>
-                          <input
-                              class="product-filter-item variant_size"
-                              type="radio"
-                              :name="product.product_attribute.attribute.name.toLowerCase()"
-                              :value="v"
-                              v-model="variant_id"
-                              id="attrid"
-                          />
-                          <span>{{
-                              variant.variant.name
-                          }}</span>
-                          </label>
-                      </div>
-                      </li>
-                  </ul>
+                <div
+                  v-if="product.product_variant && product.product_attribute"
+                >
+                  <h4>{{ product.product_attribute.attribute.name }} :</h4>
+                  <div>
+                    <div class="attribute-values">
+                      <ul class="text-swatch attribute-swatch color-swatch">
+                        <li
+                          v-for="(variant, v) in product.product_variant"
+                          :key="v"
+                          class="attribute-swatch-item"
+                        >
+                          <div>
+                            <label>
+                              <input
+                                class="product-filter-item variant_size"
+                                type="radio"
+                                :name="
+                                  product.product_attribute.attribute.name.toLowerCase()
+                                "
+                                :value="v"
+                                v-model="variant_id"
+                                id="attrid"
+                              />
+                              <span>{{ variant.variant.name }}</span>
+                            </label>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
 
-                <div class="addtobtn  align-items-end mb-3">
-                  <div class=" max-width-300 mb-4 mb-md-0">
-                    <div class="row">
-                      <div class="col-md-6 col-xs-6">
-                        <h4 for="quantity">Quantity</h4>
-                      </div>
-                      <div class="col-xl-6 col-md-6 col-xs-6">
-                        <div class="qntt rounded-pill py-2 px-3 border-color-1">
-                          <div class="js-quantity row align-items-center">
-                            <div class="col-auto pr-1">
-                              <a
-                                type="button"
-                                @click.prevent="qtyChange(-1)"
-                                class="
+                  <div class="addtobtn  align-items-end mb-3">
+                    <div class=" max-width-300 mb-4 mb-md-0">
+                      <div class="row">
+                        <div class="col-md-6 col-xs-6">
+                          <h4 for="quantity">Quantity</h4>
+                        </div>
+                        <div class="col-xl-6 col-md-6 col-xs-6">
+                          <div
+                            class="qntt rounded-pill py-2 px-3 border-color-1"
+                          >
+                            <div class="js-quantity row align-items-center">
+                              <div class="col-auto pr-1">
+                                <a
+                                  type="button"
+                                  @click.prevent="qtyChange(-1)"
+                                  class="
                               js-minus
                               btn btn-icon btn-xs btn-outline-secondary
                               rounded-circle
                               border-0
                             "
-                              >
-                                <i class="fa fa-minus"></i>
-                              </a>
-                            </div>
-                            <div class="qnttInput col ml-2">
-                              <input
-                                class="
+                                >
+                                  <i class="fa fa-minus"></i>
+                                </a>
+                              </div>
+                              <div class="qnttInput col ml-2">
+                                <input
+                                  class="
                               js-result
                               form-control
                               h-auto
@@ -167,90 +170,90 @@
                               p-0
                               shadow-none
                             "
-                                min="1"
-                                id="quantity"
-                                type="text"
-                                v-model="qty"
-                              />
-                            </div>
-                            <div class="col-auto pr-1">
-                              <a
-                                type="button"
-                                class="
+                                  min="1"
+                                  id="quantity"
+                                  type="text"
+                                  v-model="qty"
+                                />
+                              </div>
+                              <div class="col-auto pr-1">
+                                <a
+                                  type="button"
+                                  class="
                               js-plus
                               btn btn-icon btn-xs btn-outline-secondary
                               rounded-circle
                               border-0
                             "
-                                @click.prevent="qtyChange(+1)"
-                              >
-                                <i class="fa fa-plus"></i>
-                              </a>
+                                  @click.prevent="qtyChange(+1)"
+                                >
+                                  <i class="fa fa-plus"></i>
+                                </a>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <br />
-                  <div class="ml-md-3" id="tocart">
-                    <div style="display:flex" class="cart_buy_container">
-                      <button
-                        style="background:#3645d3"
-                        @click.prevent="
-                          buyNow($event, product, qty, variant_id)
-                        "
-                        class="adtocrtphn mr-2 btn px-5 btn-primary-dark"
-                      >
-                        <i class="ec ec-add-to-cart font-size-20"></i>
-                        Buy Now
-                      </button>
+                    <br />
+                    <div class="ml-md-3" id="tocart">
+                      <div style="display:flex" class="cart_buy_container">
+                        <button
+                          style="background:#3645d3"
+                          @click.prevent="
+                            buyNow($event, product, qty, variant_id)
+                          "
+                          class="adtocrtphn mr-2 btn px-5 btn-primary-dark"
+                        >
+                          <i class="ec ec-add-to-cart font-size-20"></i>
+                          Buy Now
+                        </button>
 
-                      <button
-                        @click.prevent="
-                          add_to_cart($event, product, qty, variant_id)
-                        "
-                        id="__Add_to_cart"
-                        class="adtocrtphn btn px-5 btn-primary-dark"
-                      >
-                        <i class="ec ec-add-to-cart font-size-20"></i>
+                        <button
+                          @click.prevent="
+                            add_to_cart($event, product, qty, variant_id)
+                          "
+                          id="__Add_to_cart"
+                          class="adtocrtphn btn px-5 btn-primary-dark"
+                        >
+                          <i class="ec ec-add-to-cart font-size-20"></i>
 
-                        Add to Cart
-                      </button>
-                    </div>
-
-                    <div>
-                      <div class="order_now_container">
-                        <p>
-                          <i class="fa fa-check"></i> Order today and receive it
-                          within 02 - 05 days
-                        </p>
-                        <p>
-                          <i class="fa fa-check"></i> 130 টাকা অগ্রিম পেমেন্ট
-                          করতে হবে (ঢাকার বাহিরের কাস্টমারদের জন্য )
-                        </p>
+                          Add to Cart
+                        </button>
                       </div>
 
-                      <div class="call_now_container">
-                        <p>Have question about this product ? please call</p>
-                        <h4>
-                          <a href="tel:01762424333"
-                            ><i class="fa fa-phone"></i> 01762424333
-                          </a>
-                        </h4>
-                        <h4>
-                          <a href="tel:01723669292"
-                            ><i class="fa fa-phone"></i> 01723669292
-                          </a>
-                          <sup
-                            style="font-size:12px;border:1px dashed #199eff;padding:2px"
-                            >Bkash Merchant</sup
-                          >
-                        </h4>
+                      <div>
+                        <div class="order_now_container">
+                          <p>
+                            <i class="fa fa-check"></i> Order today and receive
+                            it within 02 - 05 days
+                          </p>
+                          <p>
+                            <i class="fa fa-check"></i> 130 টাকা অগ্রিম পেমেন্ট
+                            করতে হবে (ঢাকার বাহিরের কাস্টমারদের জন্য )
+                          </p>
+                        </div>
+
+                        <div class="call_now_container">
+                          <p>Have question about this product ? please call</p>
+                          <h4>
+                            <a href="tel:01762424333"
+                              ><i class="fa fa-phone"></i> 01762424333
+                            </a>
+                          </h4>
+                          <h4>
+                            <a href="tel:01723669292"
+                              ><i class="fa fa-phone"></i> 01723669292
+                            </a>
+                            <sup
+                              style="font-size:12px;border:1px dashed #199eff;padding:2px"
+                              >Bkash Merchant</sup
+                            >
+                          </h4>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
                 </div>
               </div>
             </div>
@@ -442,15 +445,15 @@
 <script>
 import Products from "../components/products.vue";
 import Cart from "../components/Cart";
-// import imageZoom from "vue-image-zoomer";
+import imageZoom from "vue-image-zoomer";
 import InfiniteLoading from "vue-infinite-loading";
 export default {
   name: "single-product",
-  created() {
+  mounted() {
     this.$store.dispatch("product", this.$route.params.slug);
-    this.$store.dispatch("product_images", this.$route.params.slug);
     window.scroll(0, 0);
     window.addEventListener("click", this.handleBodyClick);
+    this.productImages();
   },
   data() {
     return {
@@ -462,6 +465,7 @@ export default {
       zooming_img: "",
       products: [],
       page: 1,
+      product_images: "",
     };
   },
   methods: {
@@ -483,11 +487,9 @@ export default {
             $state.complete();
           }
         })
-        .catch(error => {
-            this.$toastr.error(error.response.data.message);
+        .catch((error) => {
+          this.$toastr.error(error.response.data.message);
         });
-        
-        
     },
     qtyChange(type) {
       if (parseInt(this.product.stock) <= 0) {
@@ -553,6 +555,15 @@ export default {
         this.cart_show = false;
       }
     },
+    productImages() {
+      this.$axios
+        .get("product/images/" + this.$route.params.slug)
+        .then((resp) => {
+          console.log(resp);
+          this.product_images = resp.data;
+          this.zooming_img = this.$imageBaseUrl + resp.data[0].product_image;
+        });
+    },
   },
   watch: {
     qty: function(value) {
@@ -577,24 +588,10 @@ export default {
         return;
       }
     },
-    product: function(value) {
-      if (Object.keys(value).length <= 0) {
-        this.loading = false;
-      } else {
-        this.loading = true;
-        if (value.product_image.length > 0) {
-          this.zooming_img =
-            this.$imageBaseUrl + value.product_image[0].product_image;
-        }
-      }
-    },
   },
   computed: {
     product() {
       return this.$store.state.product;
-    },
-    product_images() {
-      return this.$store.state.product_images;
     },
     variants() {
       return this.$store.state.variants;
@@ -604,7 +601,7 @@ export default {
     InfiniteLoading,
     Products,
     Cart,
-    // imageZoom,
+    imageZoom,
   },
 };
 </script>
@@ -686,223 +683,242 @@ p {
 .px-5 {
   padding-right: 2.5rem !important;
 }
-.attribute-swatch-item{
-  list-style:none;
+.attribute-swatch-item {
+  list-style: none;
 }
-.attribute-swatch{
+.attribute-swatch {
   display: flex;
 }
 
+/* start attribute and variant awesome css  */
 
- /* start attribute and variant awesome css  */
+.attribute-swatch {
+  display: flex;
+  margin-top: 0px;
+}
+.attribute-swatch li {
+  list-style: none;
+  margin-right: 10px;
+}
 
+.Black {
+  background-color: #000;
+}
+.Red {
+  background-color: red;
+}
+.Green {
+  background-color: green;
+}
 
-        .attribute-swatch{
-            display: flex;
-            margin-top: 0px;
-        }
-        .attribute-swatch li{
-            list-style: none;
-            margin-right: 10px;
-        }
+.Yellow {
+  background-color: yellow;
+}
 
-        .Black {
-        background-color: #000;
-        }
-        .Red {
-        background-color: red;
-        }
-        .Green {
-        background-color: green;
-        }
+.Navy {
+  background-color: navy;
+}
 
-        .Yellow {
-        background-color: yellow;
-        }
+.attribute-swatches-wrapper.form-group {
+  margin-bottom: 10px;
+}
 
-        .Navy {
-        background-color: navy;
-        }
+.product__color {
+  padding-bottom: 10px;
+}
 
+.product__attribute {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+}
 
+.product__attribute > label {
+  margin-bottom: 0;
+  max-width: 60px;
+  margin-right: 27px;
+}
 
-        .attribute-swatches-wrapper.form-group {
-        margin-bottom: 10px;
-        }
+.product__attribute > * {
+  flex-basis: 100%;
+}
 
-        .product__color {
-        padding-bottom: 10px;
-        }
+.ps-product--detail .ps-product__info {
+  text-align: left;
+}
 
-        .product__attribute {
-            align-items: center;
-            display: flex;
-            flex-flow: row nowrap;
-        }
+.attribute-values ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-        .product__attribute>label {
-            margin-bottom: 0;
-            max-width: 60px;
-            margin-right: 27px;
-        }
+.product__color .color-swatch li {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: top;
+}
 
+.custom-checkbox label,
+.custom-radio label {
+  display: block;
+}
 
-        .product__attribute>* {
-          flex-basis: 100%;
-        }
+.text-swatch li input[type="checkbox"],
+.text-swatch li input[type="radio"] {
+  display: none;
+}
+.text-swatch li input[type="checkbox"]:checked ~ span,
+.text-swatch li input[type="radio"]:checked ~ span {
+  border: 1px solid #000;
+}
 
-        .ps-product--detail .ps-product__info {
-        text-align: left;
-        }
+.custom-checkbox input[type="checkbox"],
+.custom-checkbox input[type="radio"],
+.custom-radio input[type="checkbox"],
+.custom-radio input[type="radio"] {
+  display: none;
+}
 
+.product__attribute .form-control {
+  border: none;
+}
 
-    .attribute-values ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
+.product__color .color-swatch li span {
+  margin-bottom: 0;
+}
+.product__color .color-swatch li {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: top;
+}
 
+* {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 400;
+}
 
-        .product__color .color-swatch li {
-        display: inline-block;
-        margin-right: 5px;
-        vertical-align: top;
-        }
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
 
-        .custom-checkbox label, .custom-radio label {
-        display: block;
-        }
+.text-swatch li span {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  padding: 0px 10px;
+  position: relative;
+  transition: 0.2s;
+}
 
-        .text-swatch li input[type=checkbox], .text-swatch li input[type=radio] {
-        display: none;
-        }
-        .text-swatch li input[type=checkbox]:checked~span, .text-swatch li input[type=radio]:checked~span {
-        border: 1px solid #000;
-        }
+.custom-checkbox input[type="checkbox"]:checked ~ span:before,
+.custom-checkbox input[type="radio"]:checked ~ span:before,
+.custom-radio input[type="checkbox"]:checked ~ span:before,
+.custom-radio input[type="radio"]:checked ~ span:before {
+  border: 2px solid #fff;
+  border-radius: 50%;
+  bottom: -4px;
+  content: "";
+  display: block;
+  left: -4px;
+  position: absolute;
+  right: -4px;
+  top: -4px;
+}
 
-        .custom-checkbox input[type=checkbox], .custom-checkbox input[type=radio], .custom-radio input[type=checkbox], .custom-radio input[type=radio] {
-        display: none;
-        }
+.text-swatch li input[type="checkbox"]:checked ~ span:before,
+.text-swatch li input[type="radio"]:checked ~ span:before {
+  border: 23px solid transparent;
+  border-bottom: 16px solid #000;
+  bottom: 0px;
+  content: "";
+  position: absolute;
+  right: -22px;
+}
 
+.text-swatch li input[type="checkbox"]:checked ~ span:after,
+.text-swatch li input[type="radio"]:checked ~ span:after {
+  bottom: 0px;
+  color: #fff;
+  content: "✓";
+  font-family: Linearicons !important;
+  font-size: 14px;
+  height: 19px;
+  overflow: hidden;
+  position: absolute;
+  right: -6px;
+  width: 16px;
+}
 
-        .product__attribute .form-control {
-        border: none;
-        }
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
 
-        .product__color .color-swatch li span {
-        margin-bottom: 0;
-        }
-        .product__color .color-swatch li {
-        display: inline-block;
-        margin-right: 5px;
-        vertical-align: top;
-        }
+button,
+input {
+  overflow: visible;
+}
 
-        * {
-        font-family: 'Work Sans', sans-serif ;
-        font-weight: 400;
-        }
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  margin: 0;
+}
 
-        *, ::after, ::before {
-        box-sizing: border-box;
-        }
+.custom-checkbox span,
+.custom-radio span {
+  border-radius: 50%;
+  cursor: pointer;
+  display: block;
+  height: 25px;
+  position: relative;
+  width: 25px;
+}
 
+.product__attribute
+  .color-swatch
+  .attribute-swatch-item.select_none
+  span:before,
+.product__attribute
+  .text-swatch
+  .attribute-swatch-item.select_none
+  span:before {
+  transform: rotate(45deg);
+}
+.product__attribute .color-swatch .attribute-swatch-item.select_none span:after,
+.product__attribute .text-swatch .attribute-swatch-item.select_none span:after {
+  transform: rotate(-45deg);
+}
+.product__attribute .color-swatch .attribute-swatch-item.select_none span:after,
+.product__attribute
+  .color-swatch
+  .attribute-swatch-item.select_none
+  span:before,
+.product__attribute .text-swatch .attribute-swatch-item.select_none span:after,
+.product__attribute
+  .text-swatch
+  .attribute-swatch-item.select_none
+  span:before {
+  border-top: 1px dashed #999;
+  content: "";
+  height: 0;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
 
-        .text-swatch li span {
-        background-color: #fff;
-        border: 1px solid #ccc;
-        cursor: pointer;
-        display: inline-block;
-        overflow: hidden;
-        padding: 0px 10px;
-        position: relative;
-        transition: .2s;
-        }
+.product-form.product-variations {
+  line-height: 25px;
+}
 
-        .custom-checkbox input[type=checkbox]:checked~span:before, .custom-checkbox input[type=radio]:checked~span:before, .custom-radio input[type=checkbox]:checked~span:before, .custom-radio input[type=radio]:checked~span:before {
-        border: 2px solid #fff;
-        border-radius: 50%;
-        bottom: -4px;
-        content: "";
-        display: block;
-        left: -4px;
-        position: absolute;
-        right: -4px;
-        top: -4px;
-        }
-
-        .text-swatch li input[type=checkbox]:checked~span:before, .text-swatch li input[type=radio]:checked~span:before {
-        border: 23px solid transparent;
-        border-bottom: 16px solid #000;
-        bottom: 0px;
-        content: "";
-        position: absolute;
-        right: -22px;
-        }
-
-        .text-swatch li input[type=checkbox]:checked~span:after, .text-swatch li input[type=radio]:checked~span:after {
-        bottom: 0px;
-        color: #fff;
-        content: "✓";
-        font-family: Linearicons!important;
-        font-size: 14px;
-        height: 19px;
-        overflow: hidden;
-        position: absolute;
-        right: -6px;
-        width: 16px;
-        }
-
-        [type=checkbox], [type=radio] {
-        box-sizing: border-box;
-        padding: 0;
-        }
-
-
-        button, input {
-        overflow: visible;
-        }
-
-        button, input, select, textarea {
-        font: inherit;
-        margin: 0;
-        }
-
-
-      .custom-checkbox span, .custom-radio span {
-        border-radius: 50%;
-        cursor: pointer;
-        display: block;
-        height: 25px;
-        position: relative;
-        width: 25px;
-        }
-
-
-    .product__attribute .color-swatch .attribute-swatch-item.select_none span:before,
-    .product__attribute .text-swatch .attribute-swatch-item.select_none span:before {
-        transform: rotate(45deg);
-    }
-    .product__attribute .color-swatch .attribute-swatch-item.select_none span:after,
-    .product__attribute .text-swatch .attribute-swatch-item.select_none span:after {
-        transform: rotate(-45deg);
-    }
-    .product__attribute .color-swatch .attribute-swatch-item.select_none span:after,
-    .product__attribute .color-swatch .attribute-swatch-item.select_none span:before,
-    .product__attribute .text-swatch .attribute-swatch-item.select_none span:after,
-    .product__attribute .text-swatch .attribute-swatch-item.select_none span:before {
-        border-top: 1px dashed #999;
-        content: "";
-        height: 0;
-        left: 0;
-        position: absolute;
-        top: 50%;
-        width: 100%;
-    }
-
-    .product-form.product-variations {
-        line-height: 25px;
-    }
-
-    /* end attribute and variant awesome css  */
+/* end attribute and variant awesome css  */
 </style>
