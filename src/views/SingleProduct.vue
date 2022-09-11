@@ -509,7 +509,7 @@ export default {
       }
     },
     buyNow($event, product, qty, variant_id) {
-      if (Object.keys(this.variants).length > 0 && variant_id.length == "") {
+      if (product.product_variant.length < 0 && product.product_attribute.length < 0) {
         this.$toast.open({
           message: `select product variant`,
           type: "info",

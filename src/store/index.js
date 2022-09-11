@@ -56,6 +56,7 @@ const actions = {
         headers: this.$apiHeader,
       })
       .then((resp) => {
+        console.log(resp);
         context.commit("cart", resp.data);
       });
   },
