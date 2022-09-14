@@ -52,7 +52,7 @@ const actions = {
 
   cart(context) {
     axios
-      .get("cart/content", {
+      .get("get/cart/content", {
         headers: this.$apiHeader,
       })
       .then((resp) => {

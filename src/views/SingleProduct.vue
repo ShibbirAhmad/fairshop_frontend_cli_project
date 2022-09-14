@@ -11,11 +11,11 @@
               overflow-auto overflow-xl-visible
             "
           >
-            <li class="breadcrumb-item ">
+            <li class="breadcrumb-item">
               <a href="/">Home</a>
             </li>
 
-            <li class="breadcrumb-item ">
+            <li class="breadcrumb-item">
               <a href="#">{{ product.name }}</a>
             </li>
           </ol>
@@ -123,7 +123,7 @@
                                   product.product_attribute.attribute.name.toLowerCase()
                                 "
                                 :value="v"
-                                v-model="variant_id"
+                                v-model="cart.variant_id"
                                 id="attrid"
                               />
                               <span>{{ variant.variant.name }}</span>
@@ -134,8 +134,8 @@
                     </div>
                   </div>
 
-                  <div class="addtobtn  align-items-end mb-3">
-                    <div class=" max-width-300 mb-4 mb-md-0">
+                  <div class="addtobtn align-items-end mb-3">
+                    <div class="max-width-300 mb-4 mb-md-0">
                       <div class="row">
                         <div class="col-md-6 col-xs-6">
                           <h4 for="quantity">Quantity</h4>
@@ -150,11 +150,11 @@
                                   type="button"
                                   @click.prevent="qtyChange(-1)"
                                   class="
-                              js-minus
-                              btn btn-icon btn-xs btn-outline-secondary
-                              rounded-circle
-                              border-0
-                            "
+                                    js-minus
+                                    btn btn-icon btn-xs btn-outline-secondary
+                                    rounded-circle
+                                    border-0
+                                  "
                                 >
                                   <i class="fa fa-minus"></i>
                                 </a>
@@ -162,29 +162,29 @@
                               <div class="qnttInput col ml-2">
                                 <input
                                   class="
-                              js-result
-                              form-control
-                              h-auto
-                              border-0
-                              rounded
-                              p-0
-                              shadow-none
-                            "
+                                    js-result
+                                    form-control
+                                    h-auto
+                                    border-0
+                                    rounded
+                                    p-0
+                                    shadow-none
+                                  "
                                   min="1"
                                   id="quantity"
                                   type="text"
-                                  v-model="qty"
+                                  v-model="cart.qty"
                                 />
                               </div>
                               <div class="col-auto pr-1">
                                 <a
                                   type="button"
                                   class="
-                              js-plus
-                              btn btn-icon btn-xs btn-outline-secondary
-                              rounded-circle
-                              border-0
-                            "
+                                    js-plus
+                                    btn btn-icon btn-xs btn-outline-secondary
+                                    rounded-circle
+                                    border-0
+                                  "
                                   @click.prevent="qtyChange(+1)"
                                 >
                                   <i class="fa fa-plus"></i>
@@ -197,9 +197,9 @@
                     </div>
                     <br />
                     <div class="ml-md-3" id="tocart">
-                      <div style="display:flex" class="cart_buy_container">
+                      <div style="display: flex" class="cart_buy_container">
                         <button
-                          style="background:#3645d3"
+                          style="background: #3645d3"
                           @click.prevent="
                             buyNow($event, product, qty, variant_id)
                           "
@@ -210,9 +210,7 @@
                         </button>
 
                         <button
-                          @click.prevent="
-                            add_to_cart($event, product, qty, variant_id)
-                          "
+                          @click.prevent="addToCart(product)"
                           id="__Add_to_cart"
                           class="adtocrtphn btn px-5 btn-primary-dark"
                         >
@@ -246,7 +244,11 @@
                               ><i class="fa fa-phone"></i> 01723669292
                             </a>
                             <sup
-                              style="font-size:12px;border:1px dashed #199eff;padding:2px"
+                              style="
+                                font-size: 12px;
+                                border: 1px dashed #199eff;
+                                padding: 2px;
+                              "
                               >Bkash Merchant</sup
                             >
                           </h4>
@@ -259,7 +261,7 @@
             </div>
           </div>
         </div>
-        <div class="row mt-5 bg-white p-5 shadow  product_details_row">
+        <div class="row mt-5 bg-white p-5 shadow product_details_row">
           <div class="col-md-12 mb-md-12 mb-lg-0" style="overflow: hidden">
             <div class="product-details-tabe">
               <ul v-if="product.video" class="details-tab-menu-list">
@@ -400,7 +402,7 @@
           border-md-down-top-0 border-md-down-bottom-0
           mt-5
         "
-        style="margin-bottom:1rem;"
+        style="margin-bottom: 1rem"
       >
         <h3 class="section-title section-title__full mb-0 pb-2 font-size-22">
           Related Products
@@ -457,8 +459,10 @@ export default {
   },
   data() {
     return {
-      qty: 1,
-      variant_id: "",
+      cart: {
+        qty: 1,
+        variant_id: "",
+      },
       cart_show: false,
       loading: true,
       tab_content: 1,
@@ -491,6 +495,7 @@ export default {
           this.$toastr.error(error.response.data.message);
         });
     },
+
     qtyChange(type) {
       if (parseInt(this.product.stock) <= 0) {
         this.$toast.open({
@@ -508,23 +513,40 @@ export default {
         this.qty += 1;
       }
     },
-    buyNow($event, product, qty, variant_id) {
-      if (product.product_variant.length < 0 && product.product_attribute.length < 0) {
-        this.$toast.open({
-          message: `select product variant`,
-          type: "info",
-          position: "top",
-          duration: 4000,
-        });
+
+    async addToCart(product) {
+      if (product.product_variant.length > 0 && this.cart.variant_id == "") {
+        this.$toastr.e("select product variant");
         return;
       }
-      this.$add_to_cart($event, product, qty, variant_id, true);
-      this.$router.push({ path: "/checkout" });
+
+      await this.$axios
+        .post("add/to/cart", {
+          // headers: this.$apiHeader,
+          params: {
+            slug: product.slug,
+            qty: this.cart.qty,
+            variant_id: this.cart.variant_id,
+          },
+        })
+
+        .then((resp) => {
+          console.log(resp);
+          if (resp.data.success == true) {
+            this.$toastr.s(resp.data.message);
+          }
+        })
+
+        .catch((error) => {
+          this.$toastr.e(error.response.data.message);
+        });
     },
-    add_to_cart($event, product, qty, variant_id) {
+
+    buyNow($event, product, qty, variant_id) {
       this.$add_to_cart($event, product, qty, variant_id, true);
       this.cart_show = !this.cart_show;
     },
+
     displayeImageFromBox(e) {
       let target_element = e.target;
       let active_images = document.getElementsByClassName("__active_border");
@@ -566,7 +588,7 @@ export default {
     },
   },
   watch: {
-    qty: function(value) {
+    qty: function (value) {
       if (value <= parseInt(0)) {
         this.$toast.open({
           message: `Quantity Can Not Be Smaller Than 1`,
