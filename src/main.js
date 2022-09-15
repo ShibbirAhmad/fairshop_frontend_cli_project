@@ -14,16 +14,13 @@ import {
 
 import VueToastr from "vue-toastr";
 Vue.use(VueToastr, {
-    defaultTimeout: 3000,
+    defaultTimeout: 4000,
     defaultProgressBar: false,
     defaultProgressBarValue: 0,
-    defaultType: "error",
-    defaultPosition: "toast-top-center",
+    defaultType: 'error',
     defaultCloseOnHover: false,
-    defaultStyle: {
-        "background-color": "red"
-    },
-    defaultClassNames: ["animated", "zoomInUp"]
+    defaultClassNames: ['animated', 'zoomInUp'],
+    defaultPosition: 'toast-top-center',
 });
 
 import 'animate.css';
@@ -42,7 +39,7 @@ axios.defaults.baseURL = 'https://app.fairshop.com.bd/api/_data/';
 axios.defaults.headers.common['API_TOKEN'] = "$2y$10$kzaYH2t9fgVMoyqKMWF7POjD45cilj";
 
 Vue.prototype.$axios = axios;
-Vue.prototype.$apiHeader = {
+Vue.prototype.$apiHeader = { 
     "Content-Type": "application/Json",
 };
 

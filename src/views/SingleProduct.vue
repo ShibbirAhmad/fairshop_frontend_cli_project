@@ -522,17 +522,16 @@ export default {
 
       await this.$axios
         .post("add/to/cart", {
-          // headers: this.$apiHeader,
-          params: {
+          headers: this.$apiHeader,
             slug: product.slug,
             qty: this.cart.qty,
             variant_id: this.cart.variant_id,
-          },
         })
 
         .then((resp) => {
           console.log(resp);
           if (resp.data.success == true) {
+            this.$store.dispatch('cart');
             this.$toastr.s(resp.data.message);
           }
         })
