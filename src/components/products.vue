@@ -40,8 +40,8 @@
                           class="d-block text-center"
                         >
                           <img
-                            :alt="product.thumnail"
-                            :src="$imageBaseUrl2 + product.thumnail"
+                            :alt="product.thumbnail_img"
+                            :src="$imageBaseUrl2 + product.thumbnail_img"
                           />
                         </router-link>
                       </div>
@@ -60,9 +60,9 @@
                           </router-link>
                         <p class="price">
                           <span
-                            >৳<del>{{ product.regular_price }}</del></span
+                            >৳<del>{{ product.price }}</del></span
                           >
-                           ৳{{ product.discount_price }}
+                           ৳{{ product.price }}
                         </p>
                       </div>
                     </div>

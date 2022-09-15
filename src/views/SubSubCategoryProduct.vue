@@ -20,14 +20,14 @@
               </router-link>
             </li> -->
 
-            <li
+            <!-- <li
               v-if="sub_sub_category.sub_sub_category"
               class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"
             >
               <router-link
                 :to="{
                   name: 'categoryProducts',
-                  params: { slug: $route.params.categortSlug },
+                  params: { slug: $route.params.categorySlug },
                 }"
               >
                 {{ sub_sub_category.sub_sub_category.category.name }}
@@ -42,8 +42,8 @@
                 :to="{
                   name: 'SubCategoryProduct',
                   params: {
-                    categortSlug: $route.params.categortSlug,
-                    slug: $route.params.SubCategortSlug,
+                    category: $route.params.categorySlug,
+                    slug: $route.params.SubcategorySlug,
                   },
                 }"
               >
@@ -56,7 +56,7 @@
               class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"
             >
               {{ sub_sub_category.sub_sub_category.name }}
-            </li>
+            </li> -->
           </ol>
         </nav>
         <!-- <div class="row" v-if="sub_sub_category.related_sub_sub_categories">
@@ -71,8 +71,8 @@
               :to="{
                 name: 'SubSubCategoryProduct',
                 params: {
-                  categortSlug: $route.params.categortSlug,
-                  SubCategortSlug: $route.params.SubCategortSlug,
+                  categorySlug: $route.params.categorySlug,
+                  SubcategorySlug: $route.params.SubcategorySlug,
                   slug: sub_related_category.slug,
                 },
               }"
@@ -91,12 +91,12 @@
         <div
           class="d-flex justify-content-between border-bottom border-color-1 flex-lg-nowrap flex-wrap border-md-down-top-0 border-md-down-bottView om- mb-3 mt-2"
         >
-          <h3
+          <!-- <h3
             v-if="sub_sub_category.sub_sub_category"
             class="section-title section-title__full mb-0 pb-2 font-size-22"
           >
             {{ sub_sub_category.sub_sub_category.name }}
-          </h3>
+          </h3> -->
         </div>
 
         <products :products="products"></products>
@@ -114,9 +114,9 @@ import InfiniteLoading from "vue-infinite-loading";
 import products from "../components/products";
 import Products from "../components/products.vue";
 export default {
-  name: "sub_category",
+  // name: "sub_category",
   created() {
-    this.$store.dispatch("sub_sub_category", this.$route.params);
+    // this.$store.dispatch("sub_sub_category", this.$route.params);
   },
   data() {
     return {
@@ -133,9 +133,9 @@ export default {
             "?page=" +
             this.page,
           {
-            headers: this.$apiHeader,
+            // headers: this.$apiHeader,
             params: {
-              category_slug: this.$route.params.categortSlug,
+              category_slug: this.$route.params.categorySlug,
             },
           }
         )
@@ -157,9 +157,9 @@ export default {
     Products,
   },
   computed: {
-    sub_sub_category() {
-      return this.$store.state.sub_sub_category;
-    },
+    // sub_sub_category() {
+    //   return this.$store.state.sub_sub_category;
+    // },
   },
 };
 </script>

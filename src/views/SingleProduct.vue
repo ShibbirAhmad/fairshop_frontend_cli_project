@@ -11,13 +11,12 @@
               overflow-auto overflow-xl-visible
             "
           >
-            <li class="breadcrumb-item ">
+            <li class="breadcrumb-item">
               <a href="/">Home</a>
             </li>
 
-            
-            <li class="breadcrumb-item ">
-              <a href="#">{{ product.name}}</a>
+            <li class="breadcrumb-item">
+              <a href="#">{{ product.name }}</a>
             </li>
           </ol>
         </nav>
@@ -26,50 +25,36 @@
     <!-- End breadcrumb -->
 
     <div class="container">
-      <!-- Single Product Body -->
-
-      <div
+      <!-- <div
         class="col-lg-12 text-center"
         v-if="Object.keys(product).length <= 0"
       >
         <div class="spinner-border text-primary" role="status"></div>
-      </div>
-      <div v-else>
+      </div> -->
+      <div>
         <div class="row">
           <div class="col-md-5 mb-5 mb-md-0">
-            <!-- <img
-              v-if="product.product_image.length > 0"
-              :src="$imageBaseUrl + product.product_image[0].product_image"
-              class="single_product_image"
-              id="__single_product_image"
-            /> -->
-           <image-zoom v-if="zooming_img.length"
-                    :regular="zooming_img"
-                    img-class="single_product_image"
-                    >
-             </image-zoom>
-
-            <div
-              class="thumnail_img-box"
-              v-if="product.product_image.length > 0"
+            <image-zoom
+              v-if="zooming_img"
+              :regular="zooming_img"
+              img-class="single_product_image"
             >
+            </image-zoom>
+
+            <div class="thumnail_img-box" v-if="product_images">
               <img
-                v-for="(image, imgdx) in product.product_image"
-                :class="{__active_border :imgdx==0}"
+                v-for="(image, imgdx) in product_images"
+                :class="{ __active_border: imgdx == 0 }"
                 :key="imgdx"
                 :src="$imageBaseUrl + image.product_image"
                 @click="displayeImageFromBox"
               />
             </div>
-
-
           </div>
 
           <div class="snglepdt col-md-5 mb-md-6 mb-lg-0">
             <div class="mb-2">
               <div class="border-bottom pb-md-1">
-
-
                 <h2 class="font-size-25 text-lh-1dot2 font-weight-600">
                   {{ product.name }}
                 </h2>
@@ -107,223 +92,286 @@
                 <div id="priceSection">
                   <div class="d-flex align-items-baseline">
                     <ins class="font-size-36 text-decoration-none">
-                      ৳<span id="oprice">{{ product.discount_price }}</span>
+                      ৳<span id="oprice">{{ product.discount }}</span>
                     </ins>
-                    <del
-
-                      class="font-size-20 ml-2 text-gray-6"
-                    >
-                      ৳{{ product.regular_price }}
+                    <del class="font-size-20 ml-2 text-gray-6">
+                      ৳{{ product.price }}
                     </del>
-
                   </div>
                 </div>
               </div>
 
               <div class="border-top">
-                <div v-if="Object.keys(variants).length > 0">
-                  <div
-                    class="d-flex align-items-center"
-                    style="padding-bottom: 0.5rem"
-                    v-for="(variant, vidx) in variants"
-                    :key="vidx"
-                  >
-                    <h3 class="font-size-1rem mb-0" id="atName">
-                      {{ vidx }}
-                    </h3>
-                    <div class="ml-3">
-                      <select
-                        class="form-control ml-3"
-                        v-model="variant_id"
-                        id="attrid"
-                      >
-                        <option selected disabled value="">
-                          Select {{ vidx }}
-                        </option>
-                        <option
-                          v-for="(v_item, viidx) in variant"
-                          :key="viidx"
-                          :value="v_item.variant_id"
+                <div
+                  v-if="product.product_variant && product.product_attribute"
+                >
+                  <h4>{{ product.product_attribute.attribute.name }} :</h4>
+                  <div>
+                    <div class="attribute-values">
+                      <ul class="text-swatch attribute-swatch color-swatch">
+                        <li
+                          v-for="(variant, v) in product.product_variant"
+                          :key="v"
+                          class="attribute-swatch-item"
                         >
-                          {{ v_item.variant.name }}
-                        </option>
-                      </select>
+                          <div>
+                            <label>
+                              <input
+                                class="product-filter-item variant_size"
+                                type="radio"
+                                :name="
+                                  product.product_attribute.attribute.name.toLowerCase()
+                                "
+                                :value="v"
+                                v-model="cart.variant_id"
+                                id="attrid"
+                              />
+                              <span>{{ variant.variant.name }}</span>
+                            </label>
+                          </div>
+                        </li>
+                      </ul>
                     </div>
                   </div>
-                </div>
 
-                <div  class="addtobtn  align-items-end mb-3">
-
-                  <div class=" max-width-300 mb-4 mb-md-0">
-
-                    <div class="row">
-                      <div class="col-md-6 col-xs-6">
+                  <div class="addtobtn align-items-end mb-3">
+                    <div class="max-width-300 mb-4 mb-md-0">
+                      <div class="row">
+                        <div class="col-md-6 col-xs-6">
                           <h4 for="quantity">Quantity</h4>
-                      </div>
-                      <div class="col-xl-6 col-md-6 col-xs-6">
-                    <!-- Quantity -->
-                    <div class="qntt rounded-pill py-2 px-3 border-color-1">
-                      <div class="js-quantity row align-items-center">
-                        <div class="col-auto pr-1">
+                        </div>
+                        <div class="col-xl-6 col-md-6 col-xs-6">
+                          <div
+                            class="qntt rounded-pill py-2 px-3 border-color-1"
+                          >
+                            <div class="js-quantity row align-items-center">
+                              <div class="col-auto pr-1">
                                 <a
-                            type="button"
-                            @click.prevent="qtyChange(-1)"
-                            class="
-                              js-minus
-                              btn btn-icon btn-xs btn-outline-secondary
-                              rounded-circle
-                              border-0
-                            "
-                          >
-                            <i class="fa fa-minus"></i>
-                          </a>
-                        </div>
-                        <div class="qnttInput col ml-2">
-                          <input
-                            class="
-                              js-result
-                              form-control
-                              h-auto
-                              border-0
-                              rounded
-                              p-0
-                              shadow-none
-                            "
-                            min="1"
-                            id="quantity"
-                            type="text"
-                            v-model="qty"
-                          />
-                        </div>
-                        <div class="col-auto pr-1">
-
-                          <a
-                            type="button"
-                            class="
-                              js-plus
-                              btn btn-icon btn-xs btn-outline-secondary
-                              rounded-circle
-                              border-0
-                            "
-                            @click.prevent="qtyChange(+1)"
-                          >
-                            <i class="fa fa-plus"></i>
-                          </a>
+                                  type="button"
+                                  @click.prevent="qtyChange(-1)"
+                                  class="
+                                    js-minus
+                                    btn btn-icon btn-xs btn-outline-secondary
+                                    rounded-circle
+                                    border-0
+                                  "
+                                >
+                                  <i class="fa fa-minus"></i>
+                                </a>
+                              </div>
+                              <div class="qnttInput col ml-2">
+                                <input
+                                  class="
+                                    js-result
+                                    form-control
+                                    h-auto
+                                    border-0
+                                    rounded
+                                    p-0
+                                    shadow-none
+                                  "
+                                  min="1"
+                                  id="quantity"
+                                  type="text"
+                                  v-model="cart.qty"
+                                />
+                              </div>
+                              <div class="col-auto pr-1">
+                                <a
+                                  type="button"
+                                  class="
+                                    js-plus
+                                    btn btn-icon btn-xs btn-outline-secondary
+                                    rounded-circle
+                                    border-0
+                                  "
+                                  @click.prevent="qtyChange(+1)"
+                                >
+                                  <i class="fa fa-plus"></i>
+                                </a>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    <br />
+                    <div class="ml-md-3" id="tocart">
+                      <div style="display: flex" class="cart_buy_container">
+                        <button
+                          style="background: #3645d3"
+                          @click.prevent="
+                            buyNow($event, product, qty, variant_id)
+                          "
+                          class="adtocrtphn mr-2 btn px-5 btn-primary-dark"
+                        >
+                          <i class="ec ec-add-to-cart font-size-20"></i>
+                          Buy Now
+                        </button>
 
-                    <!-- End Quantity -->
+                        <button
+                          @click.prevent="addToCart(product)"
+                          id="__Add_to_cart"
+                          class="adtocrtphn btn px-5 btn-primary-dark"
+                        >
+                          <i class="ec ec-add-to-cart font-size-20"></i>
+
+                          Add to Cart
+                        </button>
+                      </div>
+
+                      <div>
+                        <div class="order_now_container">
+                          <p>
+                            <i class="fa fa-check"></i> Order today and receive
+                            it within 02 - 05 days
+                          </p>
+                          <p>
+                            <i class="fa fa-check"></i> 130 টাকা অগ্রিম পেমেন্ট
+                            করতে হবে (ঢাকার বাহিরের কাস্টমারদের জন্য )
+                          </p>
+                        </div>
+
+                        <div class="call_now_container">
+                          <p>Have question about this product ? please call</p>
+                          <h4>
+                            <a href="tel:01762424333"
+                              ><i class="fa fa-phone"></i> 01762424333
+                            </a>
+                          </h4>
+                          <h4>
+                            <a href="tel:01723669292"
+                              ><i class="fa fa-phone"></i> 01723669292
+                            </a>
+                            <sup
+                              style="
+                                font-size: 12px;
+                                border: 1px dashed #199eff;
+                                padding: 2px;
+                              "
+                              >Bkash Merchant</sup
+                            >
+                          </h4>
+                        </div>
                       </div>
                     </div>
-
                   </div>
-                  <br>
-                  <div class="ml-md-3" id="tocart">
-
-                   <div style="display:flex" class="cart_buy_container">
-                      <button style="background:#3645d3"
-                        @click.prevent="
-                          buyNow($event, product, qty, variant_id)
-                        "
-                        class="adtocrtphn mr-2 btn px-5 btn-primary-dark"
-                      >
-                        <i class="ec ec-add-to-cart font-size-20"></i>
-                        Buy Now
-                      </button>
-
-                          <button
-                        @click.prevent="
-                          add_to_cart($event, product, qty, variant_id)
-                        "
-                        id="__Add_to_cart"
-                        class="adtocrtphn btn px-5 btn-primary-dark"
-                      >
-                        <i class="ec ec-add-to-cart font-size-20"></i>
-
-                        Add to Cart
-                      </button>
-
-                   </div>
-
-
-
-            <div>
-
-            <div class="order_now_container">
-              <p>
-                <i class="fa fa-check"></i> Order today and receive it within 02
-                - 05 days
-              </p>
-              <p> <i class="fa fa-check"></i> 130 টাকা অগ্রিম পেমেন্ট করতে হবে (ঢাকার বাহিরের কাস্টমারদের জন্য ) </p>
-            </div>
-
-            <div class="call_now_container">
-              <p>Have question about this product ? please call</p>
-              <h4>
-                <a href="tel:01762424333"
-                  ><i class="fa fa-phone"></i> 01762424333
-                </a>
-            </h4>
-            <h4>
-                <a href="tel:01723669292"
-                  ><i class="fa fa-phone"></i> 01723669292
-                </a> <sup style="font-size:12px;border:1px dashed #199eff;padding:2px">Bkash Merchant</sup>
-            </h4>
-
-            </div>
-          </div>
-
-                  </div>
-
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="row mt-5 bg-white p-5 shadow  product_details_row">
+        <div class="row mt-5 bg-white p-5 shadow product_details_row">
           <div class="col-md-12 mb-md-12 mb-lg-0" style="overflow: hidden">
-
-             <div class="product-details-tabe">
-                <ul v-if="product.video" class="details-tab-menu-list">
-                      <li class="details-tab-menu-item"  @click="tab_content=1" :class="{'tab-menu-item-active':tab_content==1}">Video</li>
-                      <li class="details-tab-menu-item"  @click="tab_content=2" :class="{'tab-menu-item-active':tab_content==2}">Description</li>
-                      <li class="details-tab-menu-item" @click="tab_content=3" :class="{'tab-menu-item-active':tab_content==3}" >How To Buy</li>
-                      <li class="details-tab-menu-item"  @click="tab_content=4" :class="{'tab-menu-item-active':tab_content==4}">Return Policy</li>
-                 </ul>
-                  <ul v-else class="details-tab-menu-list">
-                      <li class="details-tab-menu-item"  @click="tab_content=1" :class="{'tab-menu-item-active':tab_content==1}">Description</li>
-                      <li class="details-tab-menu-item" @click="tab_content=2" :class="{'tab-menu-item-active':tab_content==2}" >How To Buy</li>
-                      <li class="details-tab-menu-item"  @click="tab_content=3" :class="{'tab-menu-item-active':tab_content==3}">Return Policy</li>
-                 </ul>
-                <div class="product-tab-content">
-                  <div v-html="product.details" class="product-details" :class="{block:tab_content==1}"></div>
-                  <div class="how-to-buy" :class="{block:tab_content==2}">
-                    <ul>
-                      <li class="h-b-li">Select number of product you want to buy.</li>
-                      <li class="h-b-li">Click <strong>Add To Cart</strong> Button</li>
-                      <li class="h-b-li">Then go to checkout page</li>
-                      <li class="h-b-li">If you are a new user, please click on Sign Up.provide us your valid  information.</li>
-                      <li class="h-b-li">Complete your checkout, we received your order, and for order confirmation or customer service contact with you</li>
-                    </ul>
-                  </div>
-                  <div class="how-to-buy"  :class="{block:tab_content==3}">
-                    <ul>
-                      <li class="h-b-li"> After receiving the product you will be able to accept the modified product in case of any problem of the product (eg: product broken, torn, product not working, product does not match with the photo, etc.). In that case you have to e-mail support@fairshop.com.bd within maximum 48 hours after receiving the product or you have to inform us on our hotline number 880 1762424333. Note that you have to bear the cost of courier to replace any product as a result of your change of mind and fairshop.com.bd will bear the cost of any product by fairshop.com.bd.
-                      </li>
-                      <li class="h-b-li">
-                          Let us know your - questions - comments - complaints - phone: 880 1762424333, e-mail: support@fairshop.com.bd
-                      </li>
-                    </ul>
-                  </div>
-                  <div v-if="product.video" v-html="product.video" class="product-details"  :class="{block:tab_content==1}">
-                    {{product.video}}
-                  </div>
-
+            <div class="product-details-tabe">
+              <ul v-if="product.video" class="details-tab-menu-list">
+                <li
+                  class="details-tab-menu-item"
+                  @click="tab_content = 1"
+                  :class="{ 'tab-menu-item-active': tab_content == 1 }"
+                >
+                  Video
+                </li>
+                <li
+                  class="details-tab-menu-item"
+                  @click="tab_content = 2"
+                  :class="{ 'tab-menu-item-active': tab_content == 2 }"
+                >
+                  Description
+                </li>
+                <li
+                  class="details-tab-menu-item"
+                  @click="tab_content = 3"
+                  :class="{ 'tab-menu-item-active': tab_content == 3 }"
+                >
+                  How To Buy
+                </li>
+                <li
+                  class="details-tab-menu-item"
+                  @click="tab_content = 4"
+                  :class="{ 'tab-menu-item-active': tab_content == 4 }"
+                >
+                  Return Policy
+                </li>
+              </ul>
+              <ul v-else class="details-tab-menu-list">
+                <li
+                  class="details-tab-menu-item"
+                  @click="tab_content = 1"
+                  :class="{ 'tab-menu-item-active': tab_content == 1 }"
+                >
+                  Description
+                </li>
+                <li
+                  class="details-tab-menu-item"
+                  @click="tab_content = 2"
+                  :class="{ 'tab-menu-item-active': tab_content == 2 }"
+                >
+                  How To Buy
+                </li>
+                <li
+                  class="details-tab-menu-item"
+                  @click="tab_content = 3"
+                  :class="{ 'tab-menu-item-active': tab_content == 3 }"
+                >
+                  Return Policy
+                </li>
+              </ul>
+              <div class="product-tab-content">
+                <div
+                  v-html="product.details"
+                  class="product-details"
+                  :class="{ block: tab_content == 1 }"
+                ></div>
+                <div class="how-to-buy" :class="{ block: tab_content == 2 }">
+                  <ul>
+                    <li class="h-b-li">
+                      Select number of product you want to buy.
+                    </li>
+                    <li class="h-b-li">
+                      Click <strong>Add To Cart</strong> Button
+                    </li>
+                    <li class="h-b-li">Then go to checkout page</li>
+                    <li class="h-b-li">
+                      If you are a new user, please click on Sign Up.provide us
+                      your valid information.
+                    </li>
+                    <li class="h-b-li">
+                      Complete your checkout, we received your order, and for
+                      order confirmation or customer service contact with you
+                    </li>
+                  </ul>
+                </div>
+                <div class="how-to-buy" :class="{ block: tab_content == 3 }">
+                  <ul>
+                    <li class="h-b-li">
+                      After receiving the product you will be able to accept the
+                      modified product in case of any problem of the product
+                      (eg: product broken, torn, product not working, product
+                      does not match with the photo, etc.). In that case you
+                      have to e-mail support@fairshop.com.bd within maximum 48
+                      hours after receiving the product or you have to inform us
+                      on our hotline number 880 1762424333. Note that you have
+                      to bear the cost of courier to replace any product as a
+                      result of your change of mind and fairshop.com.bd will
+                      bear the cost of any product by fairshop.com.bd.
+                    </li>
+                    <li class="h-b-li">
+                      Let us know your - questions - comments - complaints -
+                      phone: 880 1762424333, e-mail: support@fairshop.com.bd
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  v-if="product.video"
+                  v-html="product.video"
+                  class="product-details"
+                  :class="{ block: tab_content == 1 }"
+                >
+                  {{ product.video }}
                 </div>
               </div>
-
-
+            </div>
           </div>
         </div>
 
@@ -354,7 +402,7 @@
           border-md-down-top-0 border-md-down-bottom-0
           mt-5
         "
-        style="margin-bottom:1rem;"
+        style="margin-bottom: 1rem"
       >
         <h3 class="section-title section-title__full mb-0 pb-2 font-size-22">
           Related Products
@@ -381,7 +429,7 @@
           </ul>
         </div>
       </div>
-        <InfiniteLoading
+      <InfiniteLoading
         spinner="waveDots"
         @distange="0.5"
         @infinite="relatedProducts"
@@ -399,53 +447,54 @@
 <script>
 import Products from "../components/products.vue";
 import Cart from "../components/Cart";
-import imageZoom from 'vue-image-zoomer';
+import imageZoom from "vue-image-zoomer";
 import InfiniteLoading from "vue-infinite-loading";
-
 export default {
   name: "single-product",
-  created() {
+  mounted() {
     this.$store.dispatch("product", this.$route.params.slug);
     window.scroll(0, 0);
     window.addEventListener("click", this.handleBodyClick);
+    this.productImages();
   },
   data() {
     return {
-      qty: 1,
-      variant_id: "",
+      cart: {
+        qty: 1,
+        variant_id: "",
+      },
       cart_show: false,
       loading: true,
-      tab_content:1,
-      zooming_img:'',
-      products:[],
-      page:1,
+      tab_content: 1,
+      zooming_img: "",
+      products: [],
+      page: 1,
+      product_images: "",
     };
   },
   methods: {
-
-  relatedProducts($state) {
+    relatedProducts($state) {
       this.$axios
         .get(
-          "related/products/" +
-            this.$route.params.slug +
-            "?page=" +
-            this.page,
+          "related/products/" + this.$route.params.slug + "?page=" + this.page,
           {
-            headers: this.$apiHeader,
+            // headers: this.$apiHeader,
           }
         )
         .then((resp) => {
-          console.log(resp)
-          if (resp.data.products.data.length > 0) {
-            this.products.push(...resp.data.products.data);
+          console.log(resp);
+          if (resp.data) {
+            this.products.push(...resp.data);
             this.page += 1;
             $state.loaded();
           } else {
             $state.complete();
           }
+        })
+        .catch((error) => {
+          this.$toastr.error(error.response.data.message);
         });
     },
-
 
     qtyChange(type) {
       if (parseInt(this.product.stock) <= 0) {
@@ -458,7 +507,6 @@ export default {
         this.qty = this.product.stock;
         return;
       }
-
       if (type < 0) {
         this.qty -= 1;
       } else {
@@ -466,42 +514,51 @@ export default {
       }
     },
 
-      buyNow($event, product, qty, variant_id) {
-       if (Object.keys(this.variants).length > 0 && variant_id.length=='') {
-          this.$toast.open({
-          message: `select product variant`,
-          type: "info",
-          position: "top",
-          duration: 4000,
-        });
+    async addToCart(product) {
+      if (product.product_variant.length > 0 && this.cart.variant_id == "") {
+        this.$toastr.e("select product variant");
         return;
-       }
-      this.$add_to_cart($event, product, qty, variant_id,true);
-      this.$router.push({ path: '/checkout' })
+      }
+
+      await this.$axios
+        .post("add/to/cart", {
+          // headers: this.$apiHeader,
+          params: {
+            slug: product.slug,
+            qty: this.cart.qty,
+            variant_id: this.cart.variant_id,
+          },
+        })
+
+        .then((resp) => {
+          console.log(resp);
+          if (resp.data.success == true) {
+            this.$toastr.s(resp.data.message);
+          }
+        })
+
+        .catch((error) => {
+          this.$toastr.e(error.response.data.message);
+        });
     },
 
-    add_to_cart($event, product, qty, variant_id) {
-      this.$add_to_cart($event, product, qty, variant_id,true);
+    buyNow($event, product, qty, variant_id) {
+      this.$add_to_cart($event, product, qty, variant_id, true);
       this.cart_show = !this.cart_show;
     },
 
-    displayeImageFromBox(e){
+    displayeImageFromBox(e) {
       let target_element = e.target;
       let active_images = document.getElementsByClassName("__active_border");
-
       if (active_images.length > 0) {
         for (let i = 0; i < active_images.length; i++) {
           active_images[i].classList.remove("__active_border");
         }
       }
-
-         target_element.classList.add("__active_border");
-         this.zooming_img=target_element.src
-
+      target_element.classList.add("__active_border");
+      this.zooming_img = target_element.src;
     },
-
-    handleBodyClick(e){
-
+    handleBodyClick(e) {
       ////hide cart element
       let cart = document.getElementById("__cart");
       let cart_icon = document.getElementsByClassName("cart-icon")[0];
@@ -519,7 +576,16 @@ export default {
       ) {
         this.cart_show = false;
       }
-    }
+    },
+    productImages() {
+      this.$axios
+        .get("product/images/" + this.$route.params.slug)
+        .then((resp) => {
+          console.log(resp);
+          this.product_images = resp.data;
+          this.zooming_img = this.$imageBaseUrl + resp.data[0].product_image;
+        });
+    },
   },
   watch: {
     qty: function (value) {
@@ -533,7 +599,6 @@ export default {
         this.qty = 1;
         return;
       }
-
       if (parseInt(value) > parseInt(this.product.stock)) {
         this.$toast.open({
           message: `Maximum Quantity ${this.product.stock}`,
@@ -545,24 +610,11 @@ export default {
         return;
       }
     },
-    product: function (value) {
-      if (Object.keys(value).length <= 0) {
-        this.loading = false;
-      } else {
-        this.loading = true;
-        if(value.product_image.length>0){
-            this.zooming_img=this.$imageBaseUrl+value.product_image[0].product_image;
-        }
-      }
-    },
-
   },
   computed: {
     product() {
       return this.$store.state.product;
     },
-
-
     variants() {
       return this.$store.state.variants;
     },
@@ -578,89 +630,317 @@ export default {
 
 <style scoped>
 .product-details p {
-    line-height: 20px !important;
+  line-height: 20px !important;
 }
-
 .product-details-tabe {
-    background: #fff;
-    margin-top: 25px;
-    padding: px;
-    box-shadow: 3px 3px 3px #ddd;
-    border-radius: 10px;
+  background: #fff;
+  margin-top: 25px;
+  padding: px;
+  box-shadow: 3px 3px 3px #ddd;
+  border-radius: 10px;
 }
 ul.details-tab-menu-list {
-    width: 100%;
-    display: flex;
-    text-transform: uppercase;
-    background: #ddd;
-    border-radius: 2px;
+  width: 100%;
+  display: flex;
+  text-transform: uppercase;
+  background: #ddd;
+  border-radius: 2px;
 }
-
 .details-tab-menu-item {
-    padding: 10px;
-    color: #000;
-    cursor: pointer;
-    list-style-type: none;
+  padding: 10px;
+  color: #000;
+  cursor: pointer;
+  list-style-type: none;
 }
-
-
 .tab-menu-item-active {
-    border-bottom: 4px solid #199EFF;
+  border-bottom: 4px solid #199eff;
 }
 .product-tab-content {
-    padding: 15px 15px;
-    min-height: 250px;
+  padding: 15px 15px;
+  min-height: 250px;
 }
-.product-details{
-    display: none;
+.product-details {
+  display: none;
 }
-.how-to-buy{
-    display: none;
+.how-to-buy {
+  display: none;
 }
-.block{
-    display: block;
+.block {
+  display: block;
 }
 li.h-b-li {
-    list-style-type: square;
-    padding: 2px;
-
+  list-style-type: square;
+  padding: 2px;
 }
-
 .__active_border {
-  border: 1px solid #199eff ;
+  border: 1px solid #199eff;
 }
-
-
-p{
-  line-height: 1.0 !important;
+p {
+  line-height: 1 !important;
 }
 .form-control {
   border-radius: 0% !important;
 }
-
-.breadcrumb-item+.breadcrumb-item::before {
-    display: inline-block;
-    padding-right: 1rem;
-    color: #333e48;
-    content: ">";
+.breadcrumb-item + .breadcrumb-item::before {
+  display: inline-block;
+  padding-right: 1rem;
+  color: #333e48;
+  content: ">";
 }
-.breadcrumb-item+.breadcrumb-item a {
-    background-color: transparent;
-    border-radius: 0.313rem;
-    margin-top: 3px;
+.breadcrumb-item + .breadcrumb-item a {
+  background-color: transparent;
+  border-radius: 0.313rem;
+  margin-top: 3px;
 }
-.breadcrumb-item+.breadcrumb-item {
-    padding-left: 5px;
+.breadcrumb-item + .breadcrumb-item {
+  padding-left: 5px;
 }
-.breadcrumb-item+.breadcrumb-item[data-v-63742c3d]::before {
-    display: inline-block;
-    padding-right: 5px;
-    color: #333e48;
-    content: ">";
+.breadcrumb-item + .breadcrumb-item[data-v-63742c3d]::before {
+  display: inline-block;
+  padding-right: 5px;
+  color: #333e48;
+  content: ">";
 }
-
-.pr-5, .px-5{
+.pr-5,
+.px-5 {
   padding-right: 2.5rem !important;
 }
+.attribute-swatch-item {
+  list-style: none;
+}
+.attribute-swatch {
+  display: flex;
+}
 
+/* start attribute and variant awesome css  */
+
+.attribute-swatch {
+  display: flex;
+  margin-top: 0px;
+}
+.attribute-swatch li {
+  list-style: none;
+  margin-right: 10px;
+}
+
+.Black {
+  background-color: #000;
+}
+.Red {
+  background-color: red;
+}
+.Green {
+  background-color: green;
+}
+
+.Yellow {
+  background-color: yellow;
+}
+
+.Navy {
+  background-color: navy;
+}
+
+.attribute-swatches-wrapper.form-group {
+  margin-bottom: 10px;
+}
+
+.product__color {
+  padding-bottom: 10px;
+}
+
+.product__attribute {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.product__attribute > label {
+  margin-bottom: 0;
+  max-width: 60px;
+  margin-right: 27px;
+}
+
+.product__attribute > * {
+  flex-basis: 100%;
+}
+
+.ps-product--detail .ps-product__info {
+  text-align: left;
+}
+
+.attribute-values ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.product__color .color-swatch li {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: top;
+}
+
+.custom-checkbox label,
+.custom-radio label {
+  display: block;
+}
+
+.text-swatch li input[type="checkbox"],
+.text-swatch li input[type="radio"] {
+  display: none;
+}
+.text-swatch li input[type="checkbox"]:checked ~ span,
+.text-swatch li input[type="radio"]:checked ~ span {
+  border: 1px solid #000;
+}
+
+.custom-checkbox input[type="checkbox"],
+.custom-checkbox input[type="radio"],
+.custom-radio input[type="checkbox"],
+.custom-radio input[type="radio"] {
+  display: none;
+}
+
+.product__attribute .form-control {
+  border: none;
+}
+
+.product__color .color-swatch li span {
+  margin-bottom: 0;
+}
+.product__color .color-swatch li {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: top;
+}
+
+* {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 400;
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+.text-swatch li span {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  padding: 0px 10px;
+  position: relative;
+  transition: 0.2s;
+}
+
+.custom-checkbox input[type="checkbox"]:checked ~ span:before,
+.custom-checkbox input[type="radio"]:checked ~ span:before,
+.custom-radio input[type="checkbox"]:checked ~ span:before,
+.custom-radio input[type="radio"]:checked ~ span:before {
+  border: 2px solid #fff;
+  border-radius: 50%;
+  bottom: -4px;
+  content: "";
+  display: block;
+  left: -4px;
+  position: absolute;
+  right: -4px;
+  top: -4px;
+}
+
+.text-swatch li input[type="checkbox"]:checked ~ span:before,
+.text-swatch li input[type="radio"]:checked ~ span:before {
+  border: 23px solid transparent;
+  border-bottom: 16px solid #000;
+  bottom: 0px;
+  content: "";
+  position: absolute;
+  right: -22px;
+}
+
+.text-swatch li input[type="checkbox"]:checked ~ span:after,
+.text-swatch li input[type="radio"]:checked ~ span:after {
+  bottom: 0px;
+  color: #fff;
+  content: "✓";
+  font-family: Linearicons !important;
+  font-size: 14px;
+  height: 19px;
+  overflow: hidden;
+  position: absolute;
+  right: -6px;
+  width: 16px;
+}
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  margin: 0;
+}
+
+.custom-checkbox span,
+.custom-radio span {
+  border-radius: 50%;
+  cursor: pointer;
+  display: block;
+  height: 25px;
+  position: relative;
+  width: 25px;
+}
+
+.product__attribute
+  .color-swatch
+  .attribute-swatch-item.select_none
+  span:before,
+.product__attribute
+  .text-swatch
+  .attribute-swatch-item.select_none
+  span:before {
+  transform: rotate(45deg);
+}
+.product__attribute .color-swatch .attribute-swatch-item.select_none span:after,
+.product__attribute .text-swatch .attribute-swatch-item.select_none span:after {
+  transform: rotate(-45deg);
+}
+.product__attribute .color-swatch .attribute-swatch-item.select_none span:after,
+.product__attribute
+  .color-swatch
+  .attribute-swatch-item.select_none
+  span:before,
+.product__attribute .text-swatch .attribute-swatch-item.select_none span:after,
+.product__attribute
+  .text-swatch
+  .attribute-swatch-item.select_none
+  span:before {
+  border-top: 1px dashed #999;
+  content: "";
+  height: 0;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+}
+
+.product-form.product-variations {
+  line-height: 25px;
+}
+
+/* end attribute and variant awesome css  */
 </style>

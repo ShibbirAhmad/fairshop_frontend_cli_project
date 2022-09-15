@@ -96,25 +96,25 @@ const routes = [
   {
     path: '/search/:search',
     name: 'search',
-    component: () => import(/* webpackChunkName: "shop" */'../views/SearchProducts.vue')
+    component: () => import(/* webpackChunkName: "search" */'../views/SearchProducts.vue')
   },
 
   {
-    path: '/shop/:slug',
+    path: '/category/:slug',
     name: 'categoryProducts',
-    component: () => import(/* webpackChunkName: "shop" */'../views/categoryProduct.vue')
+    component: () => import(/* webpackChunkName: "categoryProducts" */'../views/categoryProduct.vue')
   },
 
   {
-    path: '/shop/:categortSlug/:slug',
+    path: '/category/:category/:slug',
     name: 'SubCategoryProduct',
-    component: () => import(/* webpackChunkName: "shop" */'../views/SubCategoryProduct.vue')
+    component: () => import(/* webpackChunkName: "SubCategoryProduct" */'../views/SubCategoryProduct.vue')
   },
 
   {
-    path: '/shop/:categortSlug/:SubCategortSlug/:slug',
+    path: '/category/:category/:subcategory/:slug',
     name: 'SubSubCategoryProduct',
-    component: () => import(/* webpackChunkName: "shop" */'../views/SubSubCategoryProduct.vue')
+    component: () => import(/* webpackChunkName: "SubSubCategoryProduct" */'../views/SubSubCategoryProduct.vue')
   },
 
   {
@@ -233,11 +233,11 @@ const routes = [
 
   {
     path: '/gift/card',
-    name: 'giftcard',
+    name: 'gift_card',
     meta: {
       title: 'Gift Card'
     },
-    component: () => import(/* webpackChunkName: "reseller" */'../views/c_soon.vue')
+    component: () => import(/* webpackChunkName: "gift_card" */'../views/c_soon.vue')
   },
 
 

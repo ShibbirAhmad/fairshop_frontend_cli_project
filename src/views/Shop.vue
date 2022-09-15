@@ -71,10 +71,10 @@ export default {
     allProducts($state) {
       this.$axios
         .get("all/products?page=" + this.page, {
-          headers: this.$apiHeader,
+          // headers: this.$apiHeader,
         })
         .then((resp) => {
-          console.log(resp)
+          console.log(resp);
           if (resp.data.data.length) {
             this.page += 1;
             this.products.push(...resp.data.data);

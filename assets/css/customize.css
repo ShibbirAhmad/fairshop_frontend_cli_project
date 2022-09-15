@@ -223,6 +223,7 @@ ul li:hover {
    line-height: 10px !important;
 }
 
+
 @media(min-width: 1480px) {
     .res {
         display: inline;
@@ -1146,7 +1147,7 @@ ul.list-unstyled.mb-0.view-all.__category_list_sidebar {
     padding: 10px;
     margin-right: 8px;
     width: 95%;
-    height: 245px;
+    height: 300px;
     margin: 10px 0px;
     text-align: center;
     /* border-radius: 10px; */
