@@ -142,7 +142,7 @@
           <li class="__nav_resp_menu_close_active" @click="respMenuControl">
             Menu
           </li>
-          <li @click="respMenuControl">Caetgory</li>
+          <li @click="respMenuControl">Category</li>
           <li @click="hideShowMenu" class="__nav_resp_menu_close">
             <i class="ec ec-close-remove"></i>
           </li>
@@ -333,19 +333,21 @@ export default {
     remove_cart_item(id) {
       if (confirm("Are You Sure ? Remove This Item !!")) {
         this.$axios
-          .get("cart/item/remove/" + id, {
+          .post("cart/item/remove", {
             headers: this.$apiHeader,
+            id: id ,
           })
           .then((resp) => {
-            if (resp.data.success == "OK") {
+            if (resp.data.success == true) {
               this.$toast.open({
                 message: resp.data.message,
                 type: "info",
                 position: "bottom",
                 duration: 4000,
               });
+              this.$store.dispatch("cart");
             }
-            this.$store.dispatch("cart");
+
           });
       }
     },
@@ -460,7 +462,7 @@ export default {
       }
     },
   },
-  created() {
+  mounted() {
     this.$store.dispatch("categories");
     this.$store.dispatch("cart");
     this.$store.dispatch("user");
@@ -539,6 +541,6 @@ export default {
   .__footer_nav ul{
     margin-top: -6px !important;
   }
-  
+
   }
 </style>

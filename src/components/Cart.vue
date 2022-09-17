@@ -16,29 +16,29 @@
         <ul class="__cart-product-list" v-if="cart.item_count > 0">
           <li
             class="d-flex"
-            v-for="(item, idx) in cart.cart_content.cart"
+            v-for="(item, idx) in cart.contents"
             :key="idx"
           >
             <router-link
               :to="{
                 name: 'single_product',
-                params: { slug: item.product_slug },
+                params: { slug: item.product.slug },
               }"
             >
-              <img :src="$imageBaseUrl2 + item.product_image" />
+              <img :src="$imageBaseUrl2 + item.product.thumbnail_img" />
             </router-link>
             <div class="__cart_product_desc">
               <h6>
                 <router-link
                   :to="{
                     name: 'single_product',
-                    params: { slug: item.product_slug },
+                    params: { slug: item.product.slug },
                   }"
                 >
-                  <strong>{{ item.product_name }}</strong>
+                  <strong>{{ item.product.name }}  </strong>
                 </router-link>
               </h6>
-              <span>{{ item.quantity }} X {{ item.price }} ৳</span>
+              <span>{{ item.qty }} X {{ item.product.price }} ৳</span>
             </div>
             <i style="cursor:pointer"
               class="fa fa-close sideCartClose"
@@ -95,23 +95,24 @@ export default {
       this.show_cart = false;
       this.$emit("update:show:cart");
     },
-    
+
     remove_cart_item(id) {
       if (confirm("Are You Sure ? Remove This Item !!")) {
         this.$axios
-          .get("cart/item/remove/" + id, {
+          .post("cart/item/remove", {
             headers: this.$apiHeader,
+            id: id,
           })
           .then((resp) => {
-            if (resp.data.success == "OK") {
+            if (resp.data.success == true) {
               this.$toast.open({
                 message: resp.data.message,
                 type: "info",
                 position: "bottom",
                 duration: 4000,
               });
+              this.$store.dispatch("cart");
             }
-            this.$store.dispatch("cart");
           });
       }
     },

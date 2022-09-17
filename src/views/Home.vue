@@ -35,7 +35,7 @@
       <!-- end feature product section  -->
 
       <!-- start flash deals here -->
-      <FlashSale />
+      <!-- <FlashSale /> -->
       <!-- end flash deals here -->
 
       <!-- start trending products here  -->
@@ -142,7 +142,7 @@
 <script>
 import Slider from "../components/Slider";
 import FeatureProduct from "../components/FeatureProduct";
-import FlashSale from "../components/FlashSale";
+// import FlashSale from "../components/FlashSale";
 import InfiniteLoading from "vue-infinite-loading";
 import carousel from "vue-owl-carousel";
 
@@ -183,7 +183,7 @@ export default {
   components: {
     Slider,
     FeatureProduct,
-    FlashSale,
+    // FlashSale,
     // VueHorizontalList,
     InfiniteLoading,
     carousel,

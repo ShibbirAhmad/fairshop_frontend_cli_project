@@ -227,14 +227,14 @@
                       <tbody>
                         <tr
                           class="cart_item"
-                          v-for="(item, idx) in cart.cart_content.cart"
+                          v-for="(item, idx) in cart.cart_contents"
                           :key="idx"
                         >
                           <td>
                             <div class="row">
                               <div class="col-md-3">
                                 <img
-                                  :src="$imageBaseUrl + item.product_image"
+                                  :src="$imageBaseUrl2 + item.product.thumbnail_img"
                                   alt=""
                                   width="50"
                                 />
@@ -242,10 +242,10 @@
 
                               <div class="col-md-9 pl-3">
                                 <span
-                                  >{{ item.product_name }}
+                                  >{{ item.product.name }}
                                   <strong class="product-quantity"
-                                    >{{ item.price }} ×
-                                    {{ item.quantity }}</strong
+                                    >{{ item.product.price }} ×
+                                    {{ item.qty }}</strong
                                   >
                                 </span>
                               </div>
@@ -255,7 +255,7 @@
                             <span
                               >৳
                               {{
-                                parseFloat(item.quantity) *
+                                parseFloat(item.qty) *
                                 parseFloat(item.price)
                               }}</span
                             >
@@ -373,7 +373,6 @@ export default {
         discount: "",
         city: "",
         sub_city: "",
-        user_id: "",
       }),
       cities: "",
       sub_cities: "",
@@ -381,30 +380,12 @@ export default {
     };
   },
   created() {
-    this.user();
+
     this.getCity();
     this.$store.dispatch("cart");
-    console.log(localStorage.getItem("user_token"));
-    console.log("user tojken");
   },
   methods: {
-    user() {
-      this.$axios
-        .get("user", {
-          headers: this.$apiHeader,
-          params: {
-            user_token: localStorage.getItem("user_token"),
-          },
-        })
-        .then((resp) => {
-          let user = resp.data.user;
 
-          this.form.name = user.name;
-          this.form.mobile_number = user.mobile_no;
-          this.form.address = user.address;
-          this.form.user_id = user.id;
-        });
-    },
     getCity() {
       this.$axios
         .get("city", {

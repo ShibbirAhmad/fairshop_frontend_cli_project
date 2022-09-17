@@ -24,7 +24,7 @@
       </div>
 
       <div class="mb-10" v-else>
-     
+
         <div id="cartForm" v-if="cart.item_count > 0">
           <table class="table" cellspacing="0">
             <thead class="cart_t_head">
@@ -39,7 +39,7 @@
             </thead>
 
             <tbody>
-              <tr v-for="(item, idx) in cart.cart_content.cart" :key="idx" class="cart_row">
+              <tr v-for="(item, idx) in cart.contents" :key="idx" class="cart_row">
                 <td class="text-center">
                   <a
                     @click.prevent="remove_cart_item(item.id)"
@@ -52,34 +52,34 @@
                   <a
                     ><img
                       class="cart_image max-width-100 p-1 border border-color-1  __cart_img"
-                      :src="$imageBaseUrl + item.product_image"
+                      :src="$imageBaseUrl2 + item.product.thumbnail_img"
                       alt="Image Description"
                   /></a>
                 </td>
 
                 <td data-title="Product" style="max-width: 30rem">
-                  <a class="text-gray-90">{{ item.product_name }}</a>
+                  <a class="text-gray-90">{{ item.product.name }}</a>
                 </td>
 
                 <td data-title="Price">
-                  <span id="">{{ item.price }} ৳</span>
+                  <span id="">{{ item.product.sale_price }} ৳</span>
                 </td>
                 <td data-title="Quantity" class="__qty_cart_product">
                   <span class="sr-only">Quantity</span>
                   <a
                     type="button"
-                   
+
                     style="border-radius: 5px"
-                    @click.prevent="updateQunatity(item, 0)"
+                    @click.prevent="updateQuantity(item, 0)"
                   >
                     <small class="fa fa-minus"></small>
                   </a>
-                  <span >{{ item.quantity }}</span>
+                  <span >{{ item.qty }}</span>
                   <a
                     type="button"
-                    
+
                     style="border-radius: 5px"
-                    @click.prevent="updateQunatity(item, 1)"
+                    @click.prevent="updateQuantity(item, 1)"
                   >
                     <small class="fa fa-plus"></small>
                   </a>
@@ -87,12 +87,12 @@
 
                 <td data-title="Total">
                   <span id="">{{
-                    parseFloat(item.price) * parseFloat(item.quantity)
+                    parseFloat(item.product.sale_price) * parseFloat(item.qty)
                   }}</span>
                   <span>৳</span>
                 </td>
               </tr>
-              
+
             </tbody>
 
             <tr>
@@ -135,7 +135,7 @@
               </td>
             </tr>
           </table>
-          
+
         </div>
 
         <div id="emptyCart" v-else>
@@ -181,7 +181,7 @@ export default {
           });
       }
     },
-    updateQunatity(item, type) {
+    updateQuantity(item, type) {
       if (type == 1) {
         item.quantity += 1;
       } else {

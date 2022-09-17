@@ -8,7 +8,11 @@ const state = {
   categories: [],
   product: {},
   related_products: {},
-  cart: {},
+  cart: {
+    cart_total: 0,
+    item_count: 0,
+    contents :'' ,
+  },
   user: {},
   campaign: {},
   sliders: "",
@@ -119,7 +123,14 @@ const mutations = {
     return (state.related_products = payload);
   },
   cart(state, payload) {
-    return (state.cart = payload);
+
+    state.cart.cart_total = payload.total;
+    state.cart.item_count = payload.qty;
+    state.cart.contents = payload.contents;
+
+    return;
+
+
   },
   user(state, payload) {
     return (state.user = payload);
