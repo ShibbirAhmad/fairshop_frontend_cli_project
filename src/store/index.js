@@ -28,7 +28,7 @@ const actions = {
         headers: this.$apiHeader,
       })
       .then((resp) => {
-        // console.log(resp);
+        console.log(resp);
         if (resp.data.categories) {
           context.commit("categories", resp.data.categories);
         }
@@ -41,11 +41,10 @@ const actions = {
         headers: this.$apiHeader,
       })
       .then((resp) => {
-        console.log(resp);
+        // console.log(resp);
         if (resp.data.status == "SUCCESS") {
           context.commit("product", resp.data.product);
           context.commit("variants", resp.data.variants);
-          // context.commit('related_products', resp.data.related_products.data)
         } else {
           router.push("/");
         }
@@ -60,7 +59,7 @@ const actions = {
         headers: this.$apiHeader,
       })
       .then((resp) => {
-        console.log(resp);
+        // console.log(resp);
         context.commit("cart", resp.data);
       });
   },
@@ -75,7 +74,7 @@ const actions = {
           },
         })
         .then((resp) => {
-          console.log(resp.data.user);
+          // console.log(resp.data.user);
           if (resp.data.status == "AUTHORIZED") {
             context.commit("user", resp.data.user);
           }

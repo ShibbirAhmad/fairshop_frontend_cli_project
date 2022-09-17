@@ -102,7 +102,7 @@
                         name="phone"
                         placeholder="Mobile Number"
                         id="mobile"
-                        v-model="form.mobile_number"
+                        v-model="form.customer_phone"
                         data-error-class="u-has-error"
                         data-success-class="u-has-success"
                         ref="mobile"
@@ -122,7 +122,7 @@
                           id="area"
                           data-style="btn-sm bg-white font-weight-normal py-2 border"
                           name="areaCheck"
-                          v-model="form.city"
+                          v-model="form.city_id"
                           @change="subCity"
                           ref="city"
                         >
@@ -139,7 +139,7 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-12" v-if="form.city">
+                    <div class="col-md-12" v-if="form.city_id">
                       <!-- Input -->
                       <div class="js-form-message mt-3 mb-6">
                         <label class="form-label">
@@ -150,7 +150,7 @@
                         <select
                           class="form-control"
                           data-style="btn-sm bg-white font-weight-normal py-2 border"
-                          v-model="form.sub_city"
+                          v-model="form.sub_city_id"
                           ref="sub_city"
                         >
                           <option selected disabled value="">
@@ -189,20 +189,6 @@
                   </div>
                   <!-- End Billing Form -->
 
-                  <!-- Input -->
-                  <div class="col-md-12 mb-6">
-                    <label class="form-label"> Order notes (optional) </label>
-
-                    <div class="input-group">
-                      <textarea
-                        class="form-control p-5"
-                        rows="4"
-                        name="ordernotes"
-                      >
-                      </textarea>
-                    </div>
-                  </div>
-                  <!-- End Input -->
                 </div>
               </div>
             </div>
@@ -366,13 +352,13 @@ export default {
     return {
       form: new Form({
         name: "",
-        mobile_number: "",
+        customer_phone: "",
         address: "",
-        shipping_cost: "00",
+        shipping_cost:0,
         total: "",
         discount: "",
-        city: "",
-        sub_city: "",
+        city_id: "",
+        sub_city_id: "",
       }),
       cities: "",
       sub_cities: "",
@@ -381,43 +367,46 @@ export default {
   },
   created() {
 
-    this.getCity();
+    this.getCities();
     this.$store.dispatch("cart");
   },
   methods: {
 
-    getCity() {
+    getCities() {
       this.$axios
-        .get("city", {
+        .get("get/cities", {
           headers: this.$apiHeader,
         })
         .then((resp) => {
-          this.cities = resp.data;
+          this.cities = resp.data.cities;
           this.loading = false;
         })
         .catch((error) => {
           console.log(error);
         });
     },
+
     subCity() {
-      if (this.form.city) {
-        let city = this.cities.find((ele) => ele.id == this.form.city);
+      if (this.form.city_id) {
+        let city = this.cities.find((ele) => ele.id == this.form.city_id);
         this.form.shipping_cost = city.delivery_charge;
 
-        this.$axios.get("sub/city/" + this.form.city).then((resp) => {
-          if (resp.data.length) {
+        this.$axios.get("get/city-wise/sub-cities/" + this.form.city_id)
+        .then((resp) => {
+          console.log(resp);
+          if (resp.data.sub_cities.length) {
             if (this.sub_cities.length > 0) {
               this.sub_cities = "";
             }
-            if (this.form.sub_city) {
-              this.form.sub_city = "";
+            if (this.form.sub_city_id){
+              this.form.sub_city_id = "";
             }
-            this.sub_cities = resp.data;
-          } else {
-            this.form.sub_city = "";
+            this.sub_cities = resp.data.sub_cities;
+          }else{
+            this.form.sub_city_id = "";
             this.sub_cities = "";
             this.$toast.open({
-              message: "No SUb City Found On Select City",
+              message: "No sub-city found  of selected city",
               type: "info",
               position: "bottom",
               duration: 4000,
@@ -426,12 +415,13 @@ export default {
         });
       }
     },
+
     checkout() {
       if (this.validation() == false) {
-         this.form.post("checkout")
+         this.form.post("checkout/order")
          .then((resp) => {
           console.log(resp);
-          if (resp.data.status == "SUCCESS") {
+          if(resp.data.success == true){
             this.$toast.open({
               message: `${resp.data.message}`,
               type: "success",
@@ -446,41 +436,41 @@ export default {
     },
     validation() {
       const form = this.form;
-      if (form.mobile_number.length != 11) {
+      if (form.customer_phone.length != 11) {
         this.$refs.mobile.focus();
 
-        this.valiadtionMessage("Mobile Number Must Be 11 Digits");
+        this.validationMessage("Mobile Number Must Be 11 Digits");
         return true;
       }
       if (form.name.length <= 0) {
         this.$refs.name.focus();
 
-        this.valiadtionMessage("Name Can Not Be Empty");
+        this.validationMessage("Name Can Not Be Empty");
         return true;
       }
-      if (!form.city) {
+      if (!form.city_id) {
         this.$refs.city.focus();
 
-        this.valiadtionMessage("Please Select A City");
+        this.validationMessage("Please Select A City");
         return true;
       }
 
-      if (!form.sub_city) {
+      if (!form.sub_city_id) {
         this.$refs.sub_city.focus();
 
-        this.valiadtionMessage("Please Select A Sub City");
+        this.validationMessage("Please Select A Sub City");
         return true;
       }
       if (form.address.length <= 0) {
         this.$refs.address.focus();
 
-        this.valiadtionMessage("Address Can Not Be Empty");
+        this.validationMessage("Address Can Not Be Empty");
         return true;
       }
 
       return false;
     },
-    valiadtionMessage(message) {
+    validationMessage(message) {
       this.$toast.open({
         message: message,
         type: "warning",
