@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     async searchProducts() {
-  
+
         await this.$axios
           .get("search/product/" + this.$route.params.search, {
             headers: this.$apiHeader,
