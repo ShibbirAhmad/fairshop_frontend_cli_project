@@ -133,21 +133,21 @@ export default {
             "?page=" +
             this.page,
           {
-            // headers: this.$apiHeader,
-            params: {
-              category_slug: this.$route.params.categorySlug,
-            },
+            headers: this.$apiHeader,
           }
         )
         .then((resp) => {
-          console.log(resp);
-          if (resp.data.products.data.length) {
+          //console.log(resp);
+          if (resp.data.success == true && resp.data.products.data.length) {
             this.page += 1;
             this.products.push(...resp.data.products.data);
             $state.loaded();
           } else {
             $state.complete();
           }
+        })
+          .catch((error) => {
+          this.$toastr.e(error.response.data.message);
         });
     },
   },

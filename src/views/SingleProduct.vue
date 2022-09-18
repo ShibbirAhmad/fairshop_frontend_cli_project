@@ -476,13 +476,13 @@ export default {
         .get(
           "related/products/" + this.$route.params.slug + "?page=" + this.page,
           {
-            // headers: this.$apiHeader,
+            headers: this.$apiHeader,
           }
         )
         .then((resp) => {
           console.log(resp);
-          if (resp.data) {
-            this.products.push(...resp.data);
+          if (resp.data.success == true && resp.data.products.data.length) {
+            this.products.push(...resp.data.products.data);
             this.page += 1;
             $state.loaded();
           } else {
@@ -490,7 +490,7 @@ export default {
           }
         })
         .catch((error) => {
-          this.$toastr.error(error.response.data.message);
+          this.$toastr.e(error.response.data.message);
         });
     },
 
@@ -587,7 +587,7 @@ export default {
     qty: function (value) {
       if (value <= parseInt(0)) {
         this.$toast.open({
-          message: `Quantity Can Not Be Smaller Than 1`,
+          message: `Quantity can not be smaller than 1`,
           type: "warning",
           position: "bottom",
           duration: 3000,
@@ -597,7 +597,7 @@ export default {
       }
       if (parseInt(value) > parseInt(this.product.stock)) {
         this.$toast.open({
-          message: `Maximum Quantity ${this.product.stock}`,
+          message: `Maximum quantity ${this.product.stock}`,
           type: "warning",
           position: "bottom",
           duration: 3000,

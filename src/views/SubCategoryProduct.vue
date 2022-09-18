@@ -102,7 +102,7 @@ import Products from "../components/products.vue";
 export default {
   // name: "sub_category_products",
   created() {
-    
+
     // this.$store.dispatch("sub_category",this.$route.params);
   },
   data() {
@@ -117,15 +117,12 @@ export default {
         .get(
           "sub/category/wise/product/"+ this.$route.params.slug+"?page=" + this.page,
           {
-            // headers: this.$apiHeader,
-            params:{
-              category_slug:this.$route.params.categorySlug
-            }
+            headers: this.$apiHeader,
           }
         )
         .then((resp) => {
-          console.log(resp);
-          if (resp.data.products.data.length) {
+          // console.log(resp);
+          if (resp.data.success == true && resp.data.products.data.length) {
             this.page += 1;
             this.products.push(...resp.data.products.data);
             $state.loaded();

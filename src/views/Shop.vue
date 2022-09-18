@@ -3,7 +3,11 @@
     <div class="container">
       <nav aria-label="breadcrumb">
         <ol
-          class="breadcrumb flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble"
+          class="
+            breadcrumb
+            flex-nowrap flex-xl-wrap
+            overflow-auto overflow-xl-visble
+          "
         >
           <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
             <router-link to="/">Home</router-link>
@@ -38,7 +42,14 @@
     <div class="mb-4">
       <div class="container overflow-hidden">
         <div
-          class="d-flex justify-content-between border-bottom border-color-1 flex-lg-nowrap flex-wrap border-md-down-top-0 border-md-down-bottom-0 mt-2"
+          class="
+            d-flex
+            justify-content-between
+            border-bottom border-color-1
+            flex-lg-nowrap flex-wrap
+            border-md-down-top-0 border-md-down-bottom-0
+            mt-2
+          "
         >
           <h3 class="section-title section-title__full mb-0 pb-2 font-size-22">
             All products
@@ -57,7 +68,6 @@
 
 <script>
 import InfiniteLoading from "vue-infinite-loading";
-import products from "../components/products";
 import Products from "../components/products.vue";
 export default {
   name: "shop",
@@ -71,24 +81,25 @@ export default {
     allProducts($state) {
       this.$axios
         .get("all/products?page=" + this.page, {
-          // headers: this.$apiHeader,
+          headers: this.$apiHeader,
         })
         .then((resp) => {
-          console.log(resp);
-          if (resp.data.data.length) {
+        //  console.log(resp);
+          if (resp.data.success == true && resp.data.products.data.length) {
             this.page += 1;
-            this.products.push(...resp.data.data);
-
+            this.products.push(...resp.data.products.data);
             $state.loaded();
           } else {
             $state.complete();
           }
+        })
+        .catch((error) => {
+          this.$toastr.e(error.response.data.message);
         });
     },
   },
   components: {
     InfiniteLoading,
-    products,
     Products,
   },
   computed: {
@@ -100,24 +111,24 @@ export default {
 </script>
 
 <style scoped>
-  .breadcrumb-item+.breadcrumb-item::before {
-    display: inline-block;
-    padding-right: 1rem;
-    color: #333e48;
-    content: ">";
-  }
-  .breadcrumb-item+.breadcrumb-item a {
-      background-color: transparent;
-      border-radius: 0.313rem;
-      margin-top: 3px;
-  }
-  .breadcrumb-item+.breadcrumb-item {
-      padding-left: 5px;
-  }
-  .breadcrumb-item+.breadcrumb-item[data-v-63742c3d]::before {
-      display: inline-block;
-      padding-right: 5px;
-      color: #333e48;
-      content: ">";
-  }
+.breadcrumb-item + .breadcrumb-item::before {
+  display: inline-block;
+  padding-right: 1rem;
+  color: #333e48;
+  content: ">";
+}
+.breadcrumb-item + .breadcrumb-item a {
+  background-color: transparent;
+  border-radius: 0.313rem;
+  margin-top: 3px;
+}
+.breadcrumb-item + .breadcrumb-item {
+  padding-left: 5px;
+}
+.breadcrumb-item + .breadcrumb-item[data-v-63742c3d]::before {
+  display: inline-block;
+  padding-right: 5px;
+  color: #333e48;
+  content: ">";
+}
 </style>
