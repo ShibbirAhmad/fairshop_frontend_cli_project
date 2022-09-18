@@ -419,7 +419,9 @@ export default {
     async checkout() {
       if (this.validation() == false) {
         await this.form
-          .post("checkout/order")
+          .post("checkout/order",{
+             headers: this.$apiHeader,
+          })
           .then((resp) => {
             console.log(resp);
             if (resp.data.success == true) {

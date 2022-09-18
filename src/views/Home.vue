@@ -93,26 +93,26 @@
                   >
                     <div class="__product_card">
                       <div class="__product_card_img">
-                        <a
-                          :href="'/product/' + product.slug"
+                         <router-link
+                          :to="{name:'single_product',params:{slug:product.slug},} "
                           class="d-block text-center"
                         >
                           <img
                             :alt="product.thumbnail_img"
                             :src="$imageBaseUrl2 + product.thumbnail_img"
                           />
-                        </a>
+                         </router-link>
                       </div>
                       <div class="__product_details">
-                        <a
-                          :href="'/product/' + product.slug"
+                        <router-link
+                          :to="{name:'single_product',params:{slug:product.slug},} "
                           class="d-block text-center"
                         >
                           <h4>
                             {{ product.name.substring(0, 15) }}
                             <span v-if="product.name.length > 15"> ... </span>
                           </h4>
-                        </a>
+                        </router-link>
                         <p class="price">
                           <span
                             ><del>৳{{ product.price }}</del></span
@@ -162,12 +162,13 @@ export default {
         .getElementById("landing_sub_category_" + id)
         .classList.toggle("landing_sub_c_list_toggle");
     },
+
     getCategoryProducts($state) {
       this.$axios
         .get("/products?page=" + this.page)
         .then((resp) => {
           console.log(resp);
-          if (resp.data.sub_categories.data.length > 0) {
+          if (resp.data.success ==true &&  resp.data.sub_categories.data.length > 0) {
             this.page += 1;
             this.home_data = resp.data.sub_categories.data;
             $state.loaded();
@@ -175,11 +176,12 @@ export default {
             $state.complete();
           }
         })
-        .catch((e) => {
-          console.log(e);
+        .catch((error) => {
+          this.$toastr.e(error.response.data.message);
         });
     },
   },
+
   components: {
     Slider,
     FeatureProduct,

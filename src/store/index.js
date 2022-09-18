@@ -11,13 +11,12 @@ const state = {
   cart: {
     cart_total: 0,
     item_count: 0,
-    contents :'' ,
+    contents: '',
   },
   user: {},
   campaign: {},
   sliders: "",
   banner: "",
-  variants: [],
   show_collpase_cart: false,
 };
 const getters = {};
@@ -29,7 +28,7 @@ const actions = {
       })
       .then((resp) => {
         console.log(resp);
-        if (resp.data.categories) {
+        if (resp.data.success == true) {
           context.commit("categories", resp.data.categories);
         }
       });
@@ -42,9 +41,8 @@ const actions = {
       })
       .then((resp) => {
         // console.log(resp);
-        if (resp.data.status == "SUCCESS") {
+        if (resp.data.success == true) {
           context.commit("product", resp.data.product);
-          context.commit("variants", resp.data.variants);
         } else {
           router.push("/");
         }
@@ -105,8 +103,11 @@ const actions = {
       })
       .then((resp) => {
         // console.log(resp);
-        context.commit("sliders", resp.data.sliders);
-        context.commit("banner", resp.data.slider_banner);
+        if (resp.data.success == true) {
+          context.commit("sliders", resp.data.sliders);
+          context.commit("banner", resp.data.slider_banner);
+        }
+
       });
   },
 };
@@ -143,9 +144,7 @@ const mutations = {
   banner(state, payload) {
     return (state.banner = payload);
   },
-  variants(state, payload) {
-    return (state.variants = payload);
-  },
+
 };
 
 const store = new Vuex.Store({

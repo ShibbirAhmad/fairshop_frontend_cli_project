@@ -13,15 +13,16 @@
               </router-link>
             </li>
             <li class="__serach_box">
-              <form @submit.prevent="search_products">
+              <form @submit.prevent="redirectSearch">
                 <input
                   type="text"
+                  @keyup="searchProducts"
                   placeholder="search products"
                   class="search-box"
                   v-model="search"
                 />
                 <button
-                  type="buttton"
+                  type="button"
                   style="background: #199eff; color: #fff"
                   class="btn height-42 py-2 px-3 rounded-right-pill search_icon"
                 >
@@ -95,48 +96,7 @@
                 >
                   <img src="../../assets/images/tracking.png"
                 /></router-link>
-                <!-- <router-link class="tacking_link" :to="{name:'order_tracking'}"> Order Track </router-link> -->
               </div>
-            </li>
-
-            <!-- <li>
-               <a class="merchant_link_btn" title="Merchant Login" href="https://www.app.fairshop.com.bd/merchant/login"> <img src="../../assets/images/merchant.png" > Merchant  </a>
-            </li> -->
-            <!-- <li>
-               <a class="facebook_link_btn" title="facebook page" href="https://www.facebook.com/fairshop.com.bd"> <img src="../../assets/images/facebook.png" > <br> Facebook  </a>
-            </li> -->
-
-            <li class="font-1-5 r_search" id="r_search">
-              <i
-                class="fa fa-search"
-                @click.prevent="
-                  responsive_search_from = !responsive_search_from
-                "
-                style="color: #199eff"
-                id="r_search_i"
-              ></i>
-              <transition
-                enter-active-class="animate__animated animate__fadeInDown"
-                leave-active-class="animate__animated animate__fadeOutUp"
-              >
-                <ul
-                  class="__responsive_search"
-                  v-show="responsive_search_from"
-                  id="__responsive_search"
-                >
-                  <form @submit.prevent="search_products">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Search Products"
-                      v-model="search"
-                    />
-                    <button class="rSearchBtn" type="submit">
-                      <i class="fa fa-search"></i>
-                    </button>
-                  </form>
-                </ul>
-              </transition>
             </li>
           </ul>
         </div>
@@ -180,8 +140,8 @@
                 ></i>
                 <ul class="__c_sub" v-if="category.sub_category.length > 0">
                   <li
-                    v-for="(sub_category, scdx) in category.sub_category"
-                    :key="scdx"
+                    v-for="(sub_category, sc_index) in category.sub_category"
+                    :key="sc_index"
                   >
                     <router-link
                       :to="{
@@ -207,9 +167,9 @@
                       <a
                         class="finalSub"
                         v-for="(
-                          sub_sub_category, sscdx
+                          sub_sub_category, ssc_index
                         ) in sub_category.sub_sub_category"
-                        :key="sscdx"
+                        :key="ssc_index"
                       >
                         <router-link
                           :to="{
@@ -315,8 +275,8 @@ export default {
   data() {
     return {
       search: "",
+      search_products: "",
       show_cart: false,
-      responsive_search_from: false,
     };
   },
   methods: {
@@ -344,7 +304,6 @@ export default {
           });
       }
     },
-
 
     showCart() {
       let cart_elements = document.getElementById("__cart");
@@ -392,11 +351,11 @@ export default {
         }
       }
 
-      ///hide the category mennu, when click the out side of element
-      let catagory_menu = document.getElementById("__category-menu");
+      ///hide the category menu, when click the out side of element
+      let category_menu = document.getElementById("__category-menu");
       let c_link = document.getElementById("__c_link");
       if (!c_link.contains(e.target) && e.target !== c_link) {
-        catagory_menu.classList.add("d-none");
+        category_menu.classList.add("d-none");
       }
 
       ////hide cart element
@@ -413,43 +372,49 @@ export default {
       ) {
         this.show_cart = false;
       }
-
-      ///responsive search form
-
-      let r_i_click = document.getElementById("r_search");
-      if (r_i_click !== e.target && !r_i_click.contains(e.target)) {
-        this.responsive_search_from = false;
-      }
-    },
-    show_responsive_search() {
-      let element = document.getElementById("__responsive_search");
-
-      element.classList.toggle("__show");
     },
 
     logout() {
       localStorage.removeItem("user_token");
-
       this.$router.push({ name: "login" });
       location.reload();
     },
-    search_products() {
+
+    redirectSearch() {
       if (this.search.length <= 0) {
         alert("Please Write Something");
         return;
       }
-      if (this.responsive_search_from) {
-        this.responsive_search_from = false;
-      }
-
       this.$router.push({ name: "search", params: { search: this.search } });
+    },
+
+    async searchProducts() {
+      if (this.search.length <= 0) {
+        this.$toastr.w("Please search something");
+        return;
+      }
+      if (this.search.length > 3) {
+        await this.$axios
+          .get("search/product/"+this.search,{
+             headers: this.$apiHeader,
+          })
+          .then((resp) => {
+            console.log(resp);
+            if (resp.data.success == true) {
+               this.search_products = resp.data.products ;
+            }
+          })
+          .catch((error) => {
+            this.$toastr.e(error.response.data.message);
+          });
+      }
     },
 
     update_show_cart() {
       this.show_cart = false;
     },
 
-    handleScrol() {
+    handleScroll() {
       if (window.pageYOffset >= 100) {
         document.getElementById("header").classList.add("__sticky");
       } else {
@@ -462,7 +427,7 @@ export default {
     this.$store.dispatch("cart");
     this.$store.dispatch("user");
     window.addEventListener("click", this.handleBodyClick);
-    window.addEventListener("scroll", this.handleScrol);
+    window.addEventListener("scroll", this.handleScroll);
   },
   computed: {
     categories() {

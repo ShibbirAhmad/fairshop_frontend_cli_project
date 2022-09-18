@@ -577,9 +577,9 @@ export default {
       this.$axios
         .get("product/images/" + this.$route.params.slug)
         .then((resp) => {
-          console.log(resp);
-          this.product_images = resp.data;
-          this.zooming_img = this.$imageBaseUrl + resp.data[0].product_image;
+       //   console.log(resp);
+           this.zooming_img = this.$imageBaseUrl + resp.data[0].product_image;
+           this.product_images = resp.data.product_images;
         });
     },
   },
@@ -610,9 +610,6 @@ export default {
   computed: {
     product() {
       return this.$store.state.product;
-    },
-    variants() {
-      return this.$store.state.variants;
     },
   },
   components: {
