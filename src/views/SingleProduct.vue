@@ -43,11 +43,11 @@
 
             <div class="thumnail_img-box" v-if="product_images">
               <img
-                v-for="(image, imgdx) in product_images"
-                :class="{ __active_border: imgdx == 0 }"
-                :key="imgdx"
+                v-for="(image, img_index) in product_images"
+                :class="{ __active_border: img_index == 0 }"
+                :key="img_index"
                 :src="$imageBaseUrl + image.product_image"
-                @click="displayeImageFromBox"
+                @click="displayImageFromBox"
               />
             </div>
           </div>
@@ -63,9 +63,9 @@
 
               <div class="skustk">
                 <div class="skusct">
-                  <strong>SKU</strong>: {{ product.product_code }}
+                  <strong>Code </strong>: {{ product.product_code }}
                 </div>
-                <div class="text-gray-9 font-size-1rem">
+                <!-- <div class="text-gray-9 font-size-1rem">
                   Availability:
                   <span
                     v-if="product.stock > 0"
@@ -75,7 +75,7 @@
                   <span v-else class="text-danger font-weight-bold"
                     >Out Of Stock
                   </span>
-                </div>
+                </div> -->
               </div>
               <div class="priceall">
                 <div class="pricepn">
@@ -103,10 +103,10 @@
 
               <div class="border-top">
                 <div
-                  v-if="product.product_variant && product.product_attribute"
+
                 >
-                  <h4>{{ product.product_attribute.attribute.name }} :</h4>
-                  <div>
+                  <h4  v-if="product.product_variant && product.product_attribute">{{ product.product_attribute.attribute.name }} :</h4>
+                  <div  v-if="product.product_variant && product.product_attribute">
                     <div class="attribute-values">
                       <ul class="text-swatch attribute-swatch color-swatch">
                         <li
@@ -200,9 +200,7 @@
                       <div style="display: flex" class="cart_buy_container">
                         <button
                           style="background: #3645d3"
-                          @click.prevent="
-                            buyNow($event, product, qty, variant_id)
-                          "
+                          @click.prevent="addToCart(product,2)"
                           class="adtocrtphn mr-2 btn px-5 btn-primary-dark"
                         >
                           <i class="ec ec-add-to-cart font-size-20"></i>
@@ -210,7 +208,7 @@
                         </button>
 
                         <button
-                          @click.prevent="addToCart(product)"
+                          @click.prevent="addToCart(product,1)"
                           id="__Add_to_cart"
                           class="adtocrtphn btn px-5 btn-primary-dark"
                         >
@@ -514,7 +512,8 @@ export default {
       }
     },
 
-    async addToCart(product) {
+    async addToCart(product,type) {
+
       if (product.product_variant.length > 0 && this.cart.variant_id == "") {
         this.$toastr.e("select product variant");
         return;
@@ -527,26 +526,24 @@ export default {
             qty: this.cart.qty,
             variant_id: this.cart.variant_id,
         })
-
         .then((resp) => {
           console.log(resp);
           if (resp.data.success == true) {
-            this.$store.dispatch('cart');
+            if (type==1) {
+               this.$store.dispatch('cart');
+            } else {
+              this.$router.push({name: 'checkout'});
+            }
             this.$toastr.s(resp.data.message);
           }
         })
-
         .catch((error) => {
           this.$toastr.e(error.response.data.message);
         });
     },
 
-    buyNow($event, product, qty, variant_id) {
-      this.$add_to_cart($event, product, qty, variant_id, true);
-      this.cart_show = !this.cart_show;
-    },
 
-    displayeImageFromBox(e) {
+    displayImageFromBox(e) {
       let target_element = e.target;
       let active_images = document.getElementsByClassName("__active_border");
       if (active_images.length > 0) {

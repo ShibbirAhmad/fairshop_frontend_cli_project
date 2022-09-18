@@ -188,7 +188,6 @@
                     </div>
                   </div>
                   <!-- End Billing Form -->
-
                 </div>
               </div>
             </div>
@@ -213,15 +212,16 @@
                       <tbody>
                         <tr
                           class="cart_item"
-                          v-for="(item, idx) in cart.cart_contents"
+                          v-for="(item, idx) in cart.contents"
                           :key="idx"
                         >
                           <td>
                             <div class="row">
                               <div class="col-md-3">
                                 <img
-                                  :src="$imageBaseUrl2 + item.product.thumbnail_img"
-                                  alt=""
+                                  :src="
+                                    $imageBaseUrl2 + item.product.thumbnail_img
+                                  "
                                   width="50"
                                 />
                               </div>
@@ -230,7 +230,7 @@
                                 <span
                                   >{{ item.product.name }}
                                   <strong class="product-quantity"
-                                    >{{ item.product.price }} ×
+                                    >{{ item.product.sale_price }} ×
                                     {{ item.qty }}</strong
                                   >
                                 </span>
@@ -242,7 +242,7 @@
                               >৳
                               {{
                                 parseFloat(item.qty) *
-                                parseFloat(item.price)
+                                parseFloat(item.product.sale_price)
                               }}</span
                             >
                             <br />
@@ -354,9 +354,10 @@ export default {
         name: "",
         customer_phone: "",
         address: "",
-        shipping_cost:0,
-        total: "",
-        discount: "",
+        shipping_cost: 0,
+        total: 0,
+        discount: 0,
+        coupon_discount: 0,
         city_id: "",
         sub_city_id: "",
       }),
@@ -366,12 +367,10 @@ export default {
     };
   },
   created() {
-
     this.getCities();
     this.$store.dispatch("cart");
   },
   methods: {
-
     getCities() {
       this.$axios
         .get("get/cities", {
@@ -391,47 +390,47 @@ export default {
         let city = this.cities.find((ele) => ele.id == this.form.city_id);
         this.form.shipping_cost = city.delivery_charge;
 
-        this.$axios.get("get/city-wise/sub-cities/" + this.form.city_id)
-        .then((resp) => {
-          console.log(resp);
-          if (resp.data.sub_cities.length) {
-            if (this.sub_cities.length > 0) {
-              this.sub_cities = "";
-            }
-            if (this.form.sub_city_id){
+        this.$axios
+          .get("get/city-wise/sub-cities/" + this.form.city_id)
+          .then((resp) => {
+            console.log(resp);
+            if (resp.data.sub_cities.length) {
+              if (this.sub_cities.length > 0) {
+                this.sub_cities = "";
+              }
+              if (this.form.sub_city_id) {
+                this.form.sub_city_id = "";
+              }
+              this.sub_cities = resp.data.sub_cities;
+            } else {
               this.form.sub_city_id = "";
+              this.sub_cities = "";
+              this.$toast.open({
+                message: "No sub-city found  of selected city",
+                type: "info",
+                position: "bottom",
+                duration: 4000,
+              });
             }
-            this.sub_cities = resp.data.sub_cities;
-          }else{
-            this.form.sub_city_id = "";
-            this.sub_cities = "";
-            this.$toast.open({
-              message: "No sub-city found  of selected city",
-              type: "info",
-              position: "bottom",
-              duration: 4000,
-            });
-          }
-        });
+          });
       }
     },
 
-    checkout() {
+    async checkout() {
       if (this.validation() == false) {
-         this.form.post("checkout/order")
-         .then((resp) => {
-          console.log(resp);
-          if(resp.data.success == true){
-            this.$toast.open({
-              message: `${resp.data.message}`,
-              type: "success",
-              position: "top-center",
-              duration: 4000,
-            });
-            this.$store.dispatch("cart");
-            this.$router.push({ name: "order_success" });
-          }
-        });
+        await this.form
+          .post("checkout/order")
+          .then((resp) => {
+            console.log(resp);
+            if (resp.data.success == true) {
+              this.$toastr.s(resp.data.message);
+              this.$store.dispatch("cart");
+              this.$router.push({ name: "order_success" });
+            }
+          })
+          .catch((error) => {
+            this.$toastr.e(error.response.data.message);
+          });
       }
     },
     validation() {
@@ -496,19 +495,19 @@ export default {
 </script>
 
 <style scoped>
-  .breadcrumb-item+.breadcrumb-item::before {
-    display: inline-block;
-    padding-right: 1rem;
-    color: #333e48;
-    content: ">";
-    padding-right: 5px;
-    }
-    .breadcrumb-item+.breadcrumb-item a {
-        background-color: transparent;
-        border-radius: 0.313rem;
-        margin-top: 3px;
-    }
-    .breadcrumb-item+.breadcrumb-item {
-        padding-left: 5px;
-    }
+.breadcrumb-item + .breadcrumb-item::before {
+  display: inline-block;
+  padding-right: 1rem;
+  color: #333e48;
+  content: ">";
+  padding-right: 5px;
+}
+.breadcrumb-item + .breadcrumb-item a {
+  background-color: transparent;
+  border-radius: 0.313rem;
+  margin-top: 3px;
+}
+.breadcrumb-item + .breadcrumb-item {
+  padding-left: 5px;
+}
 </style>

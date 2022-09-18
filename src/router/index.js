@@ -136,7 +136,6 @@ const routes = [
     path: '/checkout',
     name: 'checkout',
     meta: {
-      // requiresAuthUser: true,
       title: 'Checkout'
     },
     component: () => import(/* webpackChunkName: "checkout" */'../views/Checkout.vue')

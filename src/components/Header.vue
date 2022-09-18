@@ -22,52 +22,40 @@
                 />
                 <button
                   type="buttton"
-                  style="background:#199eff;color:#fff"
-                  class="
-                    btn
-                    height-42
-                    py-2
-                    px-3
-                    rounded-right-pill
-                    search_icon
-                  "
+                  style="background: #199eff; color: #fff"
+                  class="btn height-42 py-2 px-3 rounded-right-pill search_icon"
                 >
                   <i class="fa fa-search"></i>
                 </button>
               </form>
             </li>
-            <li
-              class="__user_account pointer"
-            >
-
+            <li class="__user_account pointer">
               <a
-               v-if="Object.keys($store.state.user).length <= 0"
-               title="user login "
-                href="/login" >
+                v-if="Object.keys($store.state.user).length <= 0"
+                title="user login "
+                href="/login"
+              >
                 <img
-                src="../../assets/images/UserLogin.png"
-                width="40px"
-                height="40px"
-                id="user_account_d"
-              />
-              Login/Register
+                  src="../../assets/images/UserLogin.png"
+                  width="40px"
+                  height="40px"
+                  id="user_account_d"
+                />
+                Login/Register
               </a>
 
-             <a  v-else href="/order">
-
+              <a v-else href="/order">
                 <img
-                 src="../../assets/images/OrderTracking.png"
-                width="40px"
-                height="40px"
-              />
+                  src="../../assets/images/OrderTracking.png"
+                  width="40px"
+                  height="40px"
+                />
               </a>
-
 
               <ul
                 v-if="Object.keys($store.state.user).length <= 0"
                 class="user-account-link-drop-down-link"
                 style="height: 120px"
-
               >
                 <div class="__prifile_name">
                   {{ $store.user ? $store.user.name : "" }}
@@ -80,18 +68,34 @@
                   <a @click.prevent="logout" href="#"> Logout </a>
                 </div>
               </ul>
-
-
             </li>
             <li>
-              <div class="order-large-device" style="width:60px;">
-                 <router-link class="tacking_link_btn" :to="{name:'order_tracking'}"> <img  src="../../assets/images/tracking.png" ></router-link>
-                 <router-link class="tacking_link" :to="{name:'order_tracking'}"> Order Track </router-link>
+              <div class="order-large-device" style="width: 60px">
+                <router-link
+                  class="tacking_link_btn"
+                  :to="{ name: 'order_tracking' }"
+                >
+                  <img src="../../assets/images/tracking.png"
+                /></router-link>
+                <router-link
+                  class="tacking_link"
+                  :to="{ name: 'order_tracking' }"
+                >
+                  Order Track
+                </router-link>
               </div>
 
-              <div class="order-small-device" style="width:60px; display: none;">
-                 <router-link class="tacking_link_btn" :to="{name:'order_tracking'}"> <img  src="../../assets/images/tracking.png" ></router-link>
-                 <!-- <router-link class="tacking_link" :to="{name:'order_tracking'}"> Order Track </router-link> -->
+              <div
+                class="order-small-device"
+                style="width: 60px; display: none"
+              >
+                <router-link
+                  class="tacking_link_btn"
+                  :to="{ name: 'order_tracking' }"
+                >
+                  <img src="../../assets/images/tracking.png"
+                /></router-link>
+                <!-- <router-link class="tacking_link" :to="{name:'order_tracking'}"> Order Track </router-link> -->
               </div>
             </li>
 
@@ -106,9 +110,9 @@
               <i
                 class="fa fa-search"
                 @click.prevent="
-                  responsove_search_form = !responsove_search_form
+                  responsive_search_from = !responsive_search_from
                 "
-                style="color: #199EFF"
+                style="color: #199eff"
                 id="r_search_i"
               ></i>
               <transition
@@ -117,7 +121,7 @@
               >
                 <ul
                   class="__responsive_search"
-                  v-show="responsove_search_form"
+                  v-show="responsive_search_from"
                   id="__responsive_search"
                 >
                   <form @submit.prevent="search_products">
@@ -150,10 +154,7 @@
         </ul>
         <div class="container d-flex">
           <ul class="__category_nav">
-            <li
-              class="c-link pointer __nav_list_highlight_link"
-              id="__c_link"
-            >
+            <li class="c-link pointer __nav_list_highlight_link" id="__c_link">
               SHOP BY CATEGORY
 
               <i class="fa fa-angle-down"></i>
@@ -246,18 +247,14 @@
             <router-link class="__nav_list_highlight_link" to="/gift/card"
               >Gift Card</router-link
             >
-
-
           </ul>
           <ul class="__nav_list_right">
-            <li  class="__nav_list_highlight_link">
+            <li class="__nav_list_highlight_link">
               <a href="https://wa.me/01762424333" target="_blank">
-                <i class="fa fa-whatsapp" style="font-size: 18px;"
-                ></i>
+                <i class="fa fa-whatsapp" style="font-size: 18px"></i>
                 01762424333</a
               >
             </li>
-
           </ul>
         </div>
       </div>
@@ -319,48 +316,46 @@ export default {
     return {
       search: "",
       show_cart: false,
-      responsove_search_form: false,
+      responsive_search_from: false,
     };
   },
   methods: {
     showMenu() {
-      document.getElementById("__category-menu").style.display='block';
-
+      document.getElementById("__category-menu").style.display = "block";
     },
-    hideMegamenu(){
-      document.getElementById("__category-menu").style.display='none';
+    hideMegaMenu() {
+      document.getElementById("__category-menu").style.display = "none";
     },
     remove_cart_item(id) {
-      if (confirm("Are You Sure ? Remove This Item !!")) {
+      if (confirm("Are You Sure ? Remove This Item ")) {
         this.$axios
           .post("cart/item/remove", {
             headers: this.$apiHeader,
-            id: id ,
+            id: id,
           })
           .then((resp) => {
             if (resp.data.success == true) {
-              this.$toast.open({
-                message: resp.data.message,
-                type: "info",
-                position: "bottom",
-                duration: 4000,
-              });
+              this.$toastr.s(resp.data.message);
               this.$store.dispatch("cart");
             }
-
+          })
+          .catch((error) => {
+            this.$toastr.e(error.response.data.message);
           });
       }
     },
+
+
     showCart() {
-      let cart_elemnets = document.getElementById("__cart");
-      cart_elemnets.classList.toggle("__cart_collapse");
+      let cart_elements = document.getElementById("__cart");
+      cart_elements.classList.toggle("__cart_collapse");
     },
     respMenuControl(e) {
-      let elemens = document.getElementsByClassName(
+      let element = document.getElementsByClassName(
         "__nav_resp_menu_close_active"
       );
-      for (let index = 0; index < elemens.length; index++) {
-        elemens[index].classList.remove("__nav_resp_menu_close_active");
+      for (let index = 0; index < element.length; index++) {
+        element[index].classList.remove("__nav_resp_menu_close_active");
       }
 
       e.target.classList.toggle("__nav_resp_menu_close_active");
@@ -423,7 +418,7 @@ export default {
 
       let r_i_click = document.getElementById("r_search");
       if (r_i_click !== e.target && !r_i_click.contains(e.target)) {
-        this.responsove_search_form = false;
+        this.responsive_search_from = false;
       }
     },
     show_responsive_search() {
@@ -443,8 +438,8 @@ export default {
         alert("Please Write Something");
         return;
       }
-      if (this.responsove_search_form) {
-        this.responsove_search_form = false;
+      if (this.responsive_search_from) {
+        this.responsive_search_from = false;
       }
 
       this.$router.push({ name: "search", params: { search: this.search } });
@@ -488,59 +483,58 @@ export default {
 </script>
 
 <style scoped>
-  .top-8 {
-    top: 2.2rem;
-  }
-  .header-items ul {
-    padding: 0 70px;
-    align-items: center;
+.top-8 {
+  top: 2.2rem;
+}
+.header-items ul {
+  padding: 0 70px;
+  align-items: center;
+}
+.facebook_link_btn {
+  padding: 0px 10px;
+  color: #189eff;
+}
+.__user_account a {
+  color: #189eff !important;
+}
+.tacking_link {
+  padding: 0px 25px;
+  position: absolute;
+  color: #189eff !important;
+  margin-top: 0;
+  margin-left: 0;
+}
+@media (max-width: 768px) {
+  .__footer_nav {
+    height: 3.5rem !important;
   }
   .facebook_link_btn {
-      padding: 0px 10px;
-      color: #189EFF;
+    display: none;
   }
-  .__user_account a{
-    color: #189EFF !important;
+  .tacking_link {
+    margin-top: 22px;
+    margin-left: -15px;
+    color: #27a4ff;
   }
-  .tacking_link{
-    padding: 0px 25px;
-    position: absolute;
-    color: #189EFF !important;
-    margin-top: 0;
-    margin-left: 0;
+  .tacking_link_btn img {
+    margin-top: -6px;
   }
-  @media (max-width: 768px) {
-    .__footer_nav{
-      height: 3.5rem !important;
-    }
-    .facebook_link_btn{
-      display: none;
-    }
-    .tacking_link{
-      margin-top: 22px;
-      margin-left: -15px;
-      color: #27A4FF;
-    }
-    .tacking_link_btn img{
-      margin-top: -6px;
-    }
-    .tacking_link{
-      margin-top: 28px;
-    }
-    header#header li{
-      margin-left: 17px;
-    }
-    #r_search_i{
-      font-size: 30px;
-    }
-    .header-items ul {
+  .tacking_link {
+    margin-top: 28px;
+  }
+  header#header li {
+    margin-left: 17px;
+  }
+  #r_search_i {
+    font-size: 30px;
+  }
+  .header-items ul {
     padding: 0 0px;
     align-items: center;
   }
 
-  .__footer_nav ul{
+  .__footer_nav ul {
     margin-top: -6px !important;
   }
-
-  }
+}
 </style>

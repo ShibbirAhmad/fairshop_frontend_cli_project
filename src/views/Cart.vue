@@ -7,7 +7,11 @@
     <div class="container">
       <nav aria-label="breadcrumb">
         <ol
-          class="breadcrumb flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble"
+          class="
+            breadcrumb
+            flex-nowrap flex-xl-wrap
+            overflow-auto overflow-xl-visble
+          "
         >
           <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
             <a href="/">Home</a>
@@ -16,15 +20,14 @@
       </nav>
 
       <div class="mb-10" v-if="Object.keys(cart).length <= 0">
-         <div class="row justify-content-center" >
-        <div class="col-lg-12 text-center">
-          <div class="spinner-border text-primary" role="status"></div>
+        <div class="row justify-content-center">
+          <div class="col-lg-12 text-center">
+            <div class="spinner-border text-primary" role="status"></div>
+          </div>
         </div>
-      </div>
       </div>
 
       <div class="mb-10" v-else>
-
         <div id="cartForm" v-if="cart.item_count > 0">
           <table class="table" cellspacing="0">
             <thead class="cart_t_head">
@@ -39,7 +42,11 @@
             </thead>
 
             <tbody>
-              <tr v-for="(item, idx) in cart.contents" :key="idx" class="cart_row">
+              <tr
+                v-for="(item, idx) in cart.contents"
+                :key="idx"
+                class="cart_row"
+              >
                 <td class="text-center">
                   <a
                     @click.prevent="remove_cart_item(item.id)"
@@ -51,7 +58,13 @@
                 <td class="d-md-table-cell">
                   <a
                     ><img
-                      class="cart_image max-width-100 p-1 border border-color-1  __cart_img"
+                      class="
+                        cart_image
+                        max-width-100
+                        p-1
+                        border border-color-1
+                        __cart_img
+                      "
                       :src="$imageBaseUrl2 + item.product.thumbnail_img"
                       alt="Image Description"
                   /></a>
@@ -68,16 +81,14 @@
                   <span class="sr-only">Quantity</span>
                   <a
                     type="button"
-
                     style="border-radius: 5px"
                     @click.prevent="updateQuantity(item, 0)"
                   >
                     <small class="fa fa-minus"></small>
                   </a>
-                  <span >{{ item.qty }}</span>
+                  <span>{{ item.qty }}</span>
                   <a
                     type="button"
-
                     style="border-radius: 5px"
                     @click.prevent="updateQuantity(item, 1)"
                   >
@@ -92,7 +103,6 @@
                   <span>৳</span>
                 </td>
               </tr>
-
             </tbody>
 
             <tr>
@@ -125,7 +135,13 @@
 
                       <router-link
                         :to="{ name: 'checkout' }"
-                        class="btn btn-primary-dark-w px-5 px-md-4 px-lg-5 mt-5 ml-4 d-md-inline-block"
+                        class="
+                          btn btn-primary-dark-w
+                          px-5 px-md-4 px-lg-5
+                          mt-5
+                          ml-4
+                          d-md-inline-block
+                        "
                       >
                         Proceed to checkout
                       </router-link>
@@ -135,14 +151,13 @@
               </td>
             </tr>
           </table>
-
         </div>
 
         <div id="emptyCart" v-else>
           <div class="row">
             <div class="col-lg-12 text-center">
               <div class="empty-box">
-              <img :src="$imageBaseUrl + 'emptycart.png'" alt="" />
+                <img :src="$imageBaseUrl + 'emptycart.png'" alt="" />
               </div>
             </div>
           </div>
@@ -162,59 +177,50 @@ export default {
     },
   },
   methods: {
-    remove_cart_item(id) {
-      if (confirm("Are You Sure ? Remove This Item !!")) {
-        this.$axios
-          .get("cart/item/remove/" + id, {
-            headers: this.$apiHeader,
-          })
-          .then((resp) => {
-            if (resp.data.success == "OK") {
-              this.$toast.open({
-                message: resp.data.message,
-                type: "info",
-                position: "bottom",
-                duration: 4000,
-              });
-            }
+    async remove_cart_item(id) {
+      await this.$axios
+        .post("cart/item/remove", {
+          headers: this.$apiHeader,
+          id: id,
+        })
+        .then((resp) => {
+          console.log(resp);
+          if (resp.data.success == true) {
+            this.$toastr.s(resp.data.message);
             this.$store.dispatch("cart");
-          });
-      }
-    },
-    updateQuantity(item, type) {
-      if (type == 1) {
-        item.quantity += 1;
-      } else {
-        item.quantity -= 1;
-      }
-      if (parseInt(item.quantity) <= 0) {
-        this.$toast.open({
-          message: `Quantity At least One`,
-          type: "warning",
-          position: "bottom",
-          duration: 40000,
+          }
+        })
+        .catch((error) => {
+          this.$toastr.e(error.response.data.message);
         });
-        item.quantity = 1;
+    },
+
+    async updateQuantity(item, type) {
+      if (type == 1) {
+        item.qty = parseInt(item.qty) + 1;
+      } else {
+        item.qty = parseInt(item.qty) - 1;
+      }
+      if (parseInt(item.qty) <= 0) {
+        this.$toastr.e("Quantity should be at least one");
+        item.qty = 1;
         return;
       }
 
-      this.$axios
-        .get("cart/item/update/" + item.id, {
+      await this.$axios
+        .post("cart/item/update", {
           header: this.$apiHeader,
-          params: {
-            quantity: item.quantity,
-          },
+          qty: item.qty,
+          id: item.id,
         })
         .then((resp) => {
-          if (resp.data.success == "OK") {
-            this.$toast.open({
-              message: `${resp.data.message}`,
-              type: "success",
-              position: "bottom",
-              duration: 2000,
-            });
+          if (resp.data.success == true) {
+            this.$toastr.s(resp.data.message);
             this.$store.dispatch("cart");
           }
+        })
+        .catch((error) => {
+          this.$toastr.e(error.response.data.message);
         });
     },
   },
@@ -222,24 +228,24 @@ export default {
 </script>
 
 <style scoped>
-    .breadcrumb-item+.breadcrumb-item::before {
-    display: inline-block;
-    padding-right: 1rem;
-    color: #333e48;
-    content: ">";
-  }
-  .breadcrumb-item+.breadcrumb-item a {
-      background-color: transparent;
-      border-radius: 0.313rem;
-      margin-top: 3px;
-  }
-  .breadcrumb-item+.breadcrumb-item {
-      padding-left: 5px;
-  }
-  .breadcrumb-item+.breadcrumb-item[data-v-63742c3d]::before {
-      display: inline-block;
-      padding-right: 5px;
-      color: #333e48;
-      content: ">";
-  }
+.breadcrumb-item + .breadcrumb-item::before {
+  display: inline-block;
+  padding-right: 1rem;
+  color: #333e48;
+  content: ">";
+}
+.breadcrumb-item + .breadcrumb-item a {
+  background-color: transparent;
+  border-radius: 0.313rem;
+  margin-top: 3px;
+}
+.breadcrumb-item + .breadcrumb-item {
+  padding-left: 5px;
+}
+.breadcrumb-item + .breadcrumb-item[data-v-63742c3d]::before {
+  display: inline-block;
+  padding-right: 5px;
+  color: #333e48;
+  content: ">";
+}
 </style>
