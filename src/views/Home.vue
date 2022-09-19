@@ -165,7 +165,7 @@ export default {
 
     getCategoryProducts($state) {
       this.$axios
-        .get("/products?page=" + this.page)
+        .get("/landing/category/wise/products?page=" + this.page)
         .then((resp) => {
           console.log(resp);
           if (resp.data.success ==true &&  resp.data.sub_categories.data.length > 0) {
