@@ -14,8 +14,8 @@
         >
           <div
             class="category-icon"
-            v-for="(cat, ocidx) in only_categories"
-            :key="ocidx"
+            v-for="(cat, c_index) in only_categories"
+            :key="c_index"
           >
             <router-link
               :to="{
@@ -40,55 +40,56 @@
 
       <!-- start trending products here  -->
 
-      <div v-if="home_data.length > 0" class="__category_wise_product">
+      <div v-if="landing_sub_categories.length > 0" class="__category_wise_product">
         <div
           class="row category-sec"
-          v-for="(data, ctx) in home_data"
+          v-for="(item, ctx) in landing_sub_categories"
           :key="ctx"
         >
           <div class="col-lg-12">
             <div class="category-heading">
-              <h3>{{ data.category.name }}</h3>
-              <!-- <ul
-                  class="landing_sub_c_list" :id="'landing_sub_category_'+data.category.id"
-                  v-if="category.sub_categories.length > 0"
+              <h3>{{ item.name }}</h3>
+              <ul
+                  class="landing_sub_c_list" :id="'landing_sub_category_'+item.id"
+                  v-if="item.sub_sub_category.length > 0"
                 >
                   <li
-                    v-for="(sub_category, sbx) in category.sub_categories"
+                    v-for="(sub_sub_c, sbx) in item.sub_sub_category"
                     :key="sbx"
                   >
-                    <router-link v-if="sbx < 5"
+                    <router-link v-if="sbx < 7"
                       :to="{
-                        name: 'SubCategoryProduct',
+                        name: 'SubSubCategoryProduct',
                         params: {
-                          categortSlug: category.slug,
-                          slug: sub_category.slug,
+                          category: item.category.slug,
+                          subcategory: item.slug,
+                          slug: sub_sub_c.slug,
                         },
                       }"
                     >
-                      {{ sub_category.name }}
+                      {{ sub_sub_c.name }}
 
                     </router-link>
                   </li>
                 </ul>
-                <button @click="toggleSubCategories(category.id)" class="btn btn-sm landing_sub_c "> <i class="fa fa-list"></i> </button>
+                <button @click="toggleSubCategories(item.id)" class="btn btn-sm landing_sub_c "> <i class="fa fa-list"></i> </button>
               <router-link
-                class="d-block viewallcatlink"
+                class="d-block view_all_category_link"
                 :to="{
-                  name: 'categoryProducts',
-                  params: { slug: category.slug },
+                  name: 'SubCategoryProduct',
+                  params: { category: item.category.slug,  slug: item.slug },
                 }"
                 >VIEW ALL
-              </router-link> -->
+              </router-link>
             </div>
           </div>
           <div class="col-lg-12 col-xl-12 col-md-12">
             <div class="row">
               <div class="col-lg-12 col-md-12">
-                <div class="row" v-if="data.products.length > 0">
+                <div class="row" v-if="item.products.length > 0">
                   <div
                     class="width-20"
-                    v-for="product in data.products"
+                    v-for="product in item.products"
                     :key="product.id"
                   >
                     <div class="__product_card">
@@ -151,7 +152,7 @@ export default {
 
   data() {
     return {
-      home_data: [],
+      landing_sub_categories: [],
       page: 1,
     };
   },
@@ -170,7 +171,7 @@ export default {
           console.log(resp);
           if (resp.data.success ==true &&  resp.data.sub_categories.data.length > 0) {
             this.page += 1;
-            this.home_data = resp.data.sub_categories.data;
+            this.landing_sub_categories.push(...resp.data.sub_categories.data);
             $state.loaded();
           } else {
             $state.complete();

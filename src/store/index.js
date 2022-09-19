@@ -5,6 +5,9 @@ import router from "../router/index.js";
 Vue.use(Vuex);
 
 const state = {
+  category: {},
+  subCategory: {},
+  subSubCategory: {},
   categories: [],
   product: {},
   related_products: {},
@@ -19,20 +22,74 @@ const state = {
   banner: "",
   show_collpase_cart: false,
 };
-const getters = {};
+const getters = {
+    category(state) {
+        return state.category;
+      },
+      subCategory(state) {
+        return state.subCategory;
+      },
+      subSubCategory(state) {
+        return state.subSubCategory;
+      },
+};
 const actions = {
+
   categories(context) {
     axios
       .get("categories", {
         headers: this.$apiHeader,
       })
       .then((resp) => {
-        console.log(resp);
+      //  console.log(resp);
         if (resp.data.success == true) {
           context.commit("categories", resp.data.categories);
         }
       });
   },
+
+   category(context, payload) {
+       axios.get("category/" + payload, {
+         headers: this.$apiHeader,
+       })
+         .then((resp) => {
+           //console.log(resp);
+           if (resp.data.success == true) {
+             context.commit('category', resp.data.category)
+           }
+           // else {
+           //     router.push({name: 'not_found'});
+           //  }
+         })
+     },
+     subCategory(context, payload) {
+       axios.get("sub/category/" + payload, {
+         headers: this.$apiHeader,
+       })
+         .then((resp) => {
+            console.log(resp);
+           if (resp.data.success == true) {
+             context.commit('subCategory', resp.data.sub_category)
+           }
+           // else {
+           //     router.push({name: 'not_found'});
+           //  }
+         })
+     },
+     subSubCategory(context, payload) {
+       axios.get("sub/sub/category/" + payload, {
+         headers: this.$apiHeader,
+       })
+         .then((resp) => {
+           //   console.log(resp);
+           if (resp.data.success == true) {
+             context.commit('subSubCategory', resp.data.sub_sub_category)
+           }
+           // else {
+           //     router.push({name: 'not_found'});
+           //  }
+         })
+     },
 
   product(context, payload) {
     axios
@@ -49,7 +106,6 @@ const actions = {
       });
   },
 
-  //for get product images
 
   cart(context) {
     axios
@@ -112,8 +168,19 @@ const actions = {
   },
 };
 const mutations = {
+
   categories(state, payload) {
     return (state.categories = payload);
+  },
+
+  category(state, payload) {
+      return state.category = payload;
+    },
+  subCategory(state, payload) {
+    return state.subCategory = payload;
+  },
+  subSubCategory(state, payload) {
+    return state.subSubCategory = payload;
   },
 
   product(state, payload) {
@@ -123,14 +190,10 @@ const mutations = {
     return (state.related_products = payload);
   },
   cart(state, payload) {
-
     state.cart.cart_total = payload.total;
     state.cart.item_count = payload.qty;
     state.cart.contents = payload.contents;
-
     return;
-
-
   },
   user(state, payload) {
     return (state.user = payload);

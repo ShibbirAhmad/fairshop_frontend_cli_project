@@ -15,46 +15,43 @@
               <router-link to="/">Home </router-link>
             </li>
 
-            <!-- <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
+            <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
               <router-link
                 :to="{
                   name: 'shop',
                 }"
                 >shop
               </router-link>
-            </li> -->
-            <!--
-            <li
-              v-if="category.category"
-              class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"
-            >
-              {{ category.category.name }}
-            </li> -->
+            </li>
+
+            <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
+              {{ $route.params.slug }}
+            </li>
           </ol>
         </nav>
-        <!-- <div class="row" v-if="category.category.sub_category">
+        <div class="row" v-if="category">
           <div
             class="col-6 col-md-2-custome"
-            v-for="(related_category, rcdx) in category.category.sub_category"
-            :key="rcdx"
+            v-for="(sub_c, sub_c_idx) in category.sub_category"
+            :key="sub_c_idx"
           >
             <router-link
               :to="{
                 name: 'SubCategoryProduct',
                 params: {
-                  categortSlug: $route.params.slug,
-                  slug: related_category.slug,
+                  category: category.slug,
+                  slug: sub_c.slug,
                 },
               }"
             >
               <div class="box">
                 <span class="box-txt">
-                  {{ related_category.name }}
+                  {{ sub_c.name }}
                 </span>
               </div>
             </router-link>
           </div>
-        </div> -->
+        </div>
       </div>
       <div class="container overflow-hidden">
         <div
@@ -69,12 +66,9 @@
             mt-2
           "
         >
-          <!-- <h3
-            v-if="category.category"
-            class="section-title section-title__full mb-0 pb-2 font-size-22"
-          >
-            {{ category.category.name }}
-          </h3> -->
+          <h3 class="section-title section-title__full mb-0 pb-2 font-size-22">
+            {{ $route.params.slug }}
+          </h3>
         </div>
 
         <products :products="products"></products>
@@ -94,13 +88,23 @@
 <script>
 import InfiniteLoading from "vue-infinite-loading";
 import Products from "../components/products.vue";
+
 export default {
+  mounted() {
+    this.$store.dispatch("category", this.$route.params.slug);
+  },
+  computed: {
+    category() {
+      return this.$store.getters.category;
+    },
+  },
   data() {
     return {
       page: 1,
       products: [],
     };
   },
+
   methods: {
     categoryProducts($state) {
       this.$axios

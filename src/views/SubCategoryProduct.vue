@@ -11,74 +11,73 @@
               <router-link to="/">Home </router-link>
             </li>
 
-            <!-- <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
+            <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
               <router-link
                 :to="{
                   name: 'shop',
                 }"
                 >shop
               </router-link>
-            </li> -->
+            </li>
 
-            <!-- <li
-              v-if="sub_category.sub_category"
+            <li
+
               class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"
             >
               <router-link
                 :to="{
                   name: 'categoryProducts',
-                  params: { slug: $route.params.categorySlug },
+                  params: { slug: $route.params.category  },
                 }"
               >
-                {{ sub_category.sub_category.category.name }}
+                {{  $route.params.category }}
               </router-link>
-            </li> -->
+            </li>
 
-            <!-- <li
-              v-if="sub_category.sub_category"
+           <li
+
               class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"
             >
-              {{ sub_category.sub_category.name }}
-            </li> -->
+              {{ $route.params.slug }}
+            </li>
           </ol>
         </nav>
-        <!-- <div class="row" v-if="sub_category.sub_category.sub_sub_category">
+        <div class="row" v-if="subCategory.sub_sub_category">
           <div
             class="col-6 col-md-2-custome"
-            v-for="(sub_related_category, rcdx) in sub_category.sub_category
-              .sub_sub_category"
-            :key="rcdx"
+            v-for="(sub_c, sub_c_idx) in subCategory.sub_sub_category"
+            :key="sub_c_idx"
           >
             <router-link
               :to="{
                 name: 'SubSubCategoryProduct',
                 params: {
-                  category: $route.params.categorySlug,
-                  subcategory: $route.params.slug,
-                  slug: sub_related_category.slug,
+                  category: subCategory.category.slug,
+                  subcategory: subCategory.slug,
+                  slug: sub_c.slug,
                 },
               }"
             >
               <div class="box">
                 <span class="box-txt">
-                  {{ sub_related_category.name }}
+                  {{ sub_c.name }}
                 </span>
               </div>
             </router-link>
           </div>
-        </div> -->
+        </div>
       </div>
 
       <div class="container overflow-hidden">
         <div
           class="d-flex justify-content-between border-bottom border-color-1 flex-lg-nowrap flex-wrap border-md-down-top-0 border-md-down-bottView om- mb-3 mt-2"
         >
-          <!-- <h3
-            v-if="sub_category.sub_category"
+          <h3
+            v-if="subCategory"
             class="section-title section-title__full mb-0 pb-2 font-size-22"
           >
-            {{ sub_category.sub_category.name }}
-          </h3> -->
+            {{ subCategory.name }}
+          </h3>
         </div>
 
         <products :products="products"></products>
@@ -97,13 +96,11 @@
 
 <script>
 import InfiniteLoading from "vue-infinite-loading";
-import products from "../components/products";
 import Products from "../components/products.vue";
 export default {
-  // name: "sub_category_products",
-  created() {
 
-    // this.$store.dispatch("sub_category",this.$route.params);
+  mounted() {
+    this.$store.dispatch("subCategory",this.$route.params.slug);
   },
   data() {
     return {
@@ -137,13 +134,12 @@ export default {
   },
   components: {
     InfiniteLoading,
-    products,
     Products,
   },
   computed: {
-    // sub_category() {
-    //   return this.$store.state.sub_category;
-    // },
+    subCategory() {
+      return this.$store.state.subCategory;
+    },
   },
 };
 </script>

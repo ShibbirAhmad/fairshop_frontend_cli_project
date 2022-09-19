@@ -44,7 +44,7 @@
                   <div class="line"></div>
                   <ul class="link_line">
                     <li><a href="/" class="router-link-active">Home</a></li>
-                    <li><a href="https://www.app.fairshop.com.bd/merchant/login" class="">Merchant Login </a></li>
+                    <li><a href="/merchant/login" class="">Merchant Login </a></li>
                     <li><a href="/about/us" class="">About Us</a></li>
                     <li><a href="/contact/us" class="">Contact Us</a></li>
                     <li><a href="/privacy/policy" class="">Privacy </a></li>
@@ -172,7 +172,7 @@
               ></path>
             </svg>
             <h6 class="footer_nav_name">Home</h6>
-            
+
           </router-link>
         </li>
 
@@ -251,7 +251,7 @@
           <h6 class="footer_nav_name">Login</h6>
         </li>
         <li>
-          <a href="tel:01762424333"><i class="fa fa-phone"></i></a> 
+          <a href="tel:01762424333"><i class="fa fa-phone"></i></a>
           <h6 class="footer_nav_call">Call</h6>
         </li>
       </ul>
@@ -286,8 +286,8 @@
           <ul class="__footer_category">
             <li
 
-              v-for="(category, fcdx) in categories"
-              :key="fcdx"
+              v-for="(category, c_index) in categories"
+              :key="c_index"
               class="__footer_category_item"
 
             >
@@ -311,15 +311,15 @@
                 v-if="category.sub_category.length > 0"
               >
                 <li
-                  v-for="(sub_category, scdx) in category.sub_category"
-                  :key="scdx"
+                  v-for="(sub_category, s_index) in category.sub_category"
+                  :key="s_index"
 
                 >
                   <router-link
                     :to="{
                       name: 'SubCategoryProduct',
                       params: {
-                        categortSlug: category.slug,
+                        category: category.slug,
                         slug: sub_category.slug,
                       },
                     }"
@@ -339,16 +339,16 @@
                   >
                     <li
                       v-for="(
-                        sub_sub_category, sscdx
+                        sub_sub_category, index
                       ) in sub_category.sub_sub_category"
-                      :key="sscdx"
+                      :key="index"
                     >
                       <router-link
                         :to="{
                           name: 'SubSubCategoryProduct',
                           params: {
-                            categortSlug: category.slug,
-                            SubCategortSlug: sub_category.slug,
+                            category: category.slug,
+                            subcategory: sub_category.slug,
                             slug: sub_sub_category.slug,
                           },
                         }"

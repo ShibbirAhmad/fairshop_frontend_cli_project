@@ -71,7 +71,6 @@
                         name="name"
                         v-model="form.name"
                         placeholder="Customer Name"
-                        ref="name"
                       />
                     </div>
                     <!-- End Input -->
@@ -101,11 +100,11 @@
                         class="form-control"
                         name="phone"
                         placeholder="Mobile Number"
-                        id="mobile"
                         v-model="form.customer_phone"
                         data-error-class="u-has-error"
                         data-success-class="u-has-success"
-                        ref="mobile"
+                        minlength="11"
+                        maxlength="11"
                       />
                     </div>
 
@@ -181,7 +180,6 @@
                           placeholder="Address"
                           v-model="form.address"
                           required
-                          ref="address"
                         />
                       </div>
                       <!-- End Input -->
@@ -318,10 +316,7 @@
                     <div class="col d-flex justify-content-center">
                       <button
                         type="submit"
-                        name="placeOrder"
-                        value="placeOrder"
                         class="btn btn-primary btn-sm ml-3"
-                        id="submit"
                         :disabled="form.busy"
                       >
                         <div
@@ -345,8 +340,10 @@
   </main>
 </template>
 <script>
+import Vue from "vue";
 import { Form } from "vform";
-
+import ObjectToFD from "vue-object-to-formdata";
+Vue.use(ObjectToFD);
 export default {
   data() {
     return {
@@ -393,7 +390,7 @@ export default {
         this.$axios
           .get("get/city-wise/sub-cities/" + this.form.city_id)
           .then((resp) => {
-            console.log(resp);
+         //   console.log(resp);
             if (resp.data.sub_cities.length) {
               if (this.sub_cities.length > 0) {
                 this.sub_cities = "";
@@ -419,7 +416,7 @@ export default {
     async checkout() {
       if (this.validation() == false) {
         await this.form
-          .post("checkout/order",{
+          .post("checkout/order", this.$objectToFD(this.form),{
              headers: this.$apiHeader,
           })
           .then((resp) => {

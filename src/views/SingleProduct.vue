@@ -102,11 +102,15 @@
               </div>
 
               <div class="border-top">
-                <div
-
-                >
-                  <h4  v-if="product.product_variant && product.product_attribute">{{ product.product_attribute.attribute.name }} :</h4>
-                  <div  v-if="product.product_variant && product.product_attribute">
+                <div>
+                  <h4
+                    v-if="product.product_variant && product.product_attribute"
+                  >
+                    {{ product.product_attribute.attribute.name }} :
+                  </h4>
+                  <div
+                    v-if="product.product_variant && product.product_attribute"
+                  >
                     <div class="attribute-values">
                       <ul class="text-swatch attribute-swatch color-swatch">
                         <li
@@ -200,7 +204,7 @@
                       <div style="display: flex" class="cart_buy_container">
                         <button
                           style="background: #3645d3"
-                          @click.prevent="addToCart(product,2)"
+                          @click.prevent="addToCart(product, 2)"
                           class="adtocrtphn mr-2 btn px-5 btn-primary-dark"
                         >
                           <i class="ec ec-add-to-cart font-size-20"></i>
@@ -208,7 +212,7 @@
                         </button>
 
                         <button
-                          @click.prevent="addToCart(product,1)"
+                          @click.prevent="addToCart(product, 1)"
                           id="__Add_to_cart"
                           class="adtocrtphn btn px-5 btn-primary-dark"
                         >
@@ -512,8 +516,7 @@ export default {
       }
     },
 
-    async addToCart(product,type) {
-
+    async addToCart(product, type) {
       if (product.product_variant.length > 0 && this.cart.variant_id == "") {
         this.$toastr.e("select product variant");
         return;
@@ -522,17 +525,17 @@ export default {
       await this.$axios
         .post("add/to/cart", {
           headers: this.$apiHeader,
-            slug: product.slug,
-            qty: this.cart.qty,
-            variant_id: this.cart.variant_id,
+          slug: product.slug,
+          qty: this.cart.qty,
+          variant_id: this.cart.variant_id,
         })
         .then((resp) => {
           console.log(resp);
           if (resp.data.success == true) {
-            if (type==1) {
-               this.$store.dispatch('cart');
+            if (type == 1) {
+              this.$store.dispatch("cart");
             } else {
-              this.$router.push({name: 'checkout'});
+              this.$router.push({ name: "checkout" });
             }
             this.$toastr.s(resp.data.message);
           }
@@ -541,7 +544,6 @@ export default {
           this.$toastr.e(error.response.data.message);
         });
     },
-
 
     displayImageFromBox(e) {
       let target_element = e.target;
@@ -577,9 +579,11 @@ export default {
       this.$axios
         .get("product/images/" + this.$route.params.slug)
         .then((resp) => {
-       //   console.log(resp);
-           this.zooming_img = this.$imageBaseUrl + resp.data[0].product_image;
-           this.product_images = resp.data.product_images;
+          //   console.log(resp);
+          if (resp.data.success == true) {
+            this.zooming_img = this.$imageBaseUrl + resp.data.product_images[0].product_image;
+            this.product_images = resp.data.product_images;
+          }
         });
     },
   },

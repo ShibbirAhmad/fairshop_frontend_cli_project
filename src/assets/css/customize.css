@@ -283,7 +283,7 @@ ul li:hover {
         display: block !important;
     }
 
-    .viewallcatlink {
+    .view_all_category_link {
         background: #199EFF;
         color: #fff !important;
         padding: .3rem;
@@ -293,7 +293,6 @@ ul li:hover {
     }
 
     .landing_sub_c_list {
-        display: none;
         position: absolute;
         z-index: 55555;
         margin-top: 181px;
@@ -946,7 +945,7 @@ ul.__cart-product-list li img {
         padding: 0px 10px;
     }
 
-    
+
     .tacking_link_btn img {
         width: 30px;
         height: 30px;

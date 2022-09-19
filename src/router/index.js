@@ -13,43 +13,26 @@ const routes = [
   {
     path: '/about/us',
     name: 'About',
-    // route level code-splittingNfoun
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */'../views/StaticPages/About')
   },
 
   {
     path: '/return/policy',
     name: 'ReturnPolicy',
-    // route level code-splittingNfoun
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */'../views/StaticPages/ReturnPolicy')
+    component: () => import( /* webpackChunkName: "ReturnPolicy" */ '../views/StaticPages/ReturnPolicy')
   },
 
-  {
-    path: '/privacy/policy',
-    name: 'PrivacyPolicy',
-    // route level code-splittingNfoun
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */'../views/StaticPages/PrivacyPolicy')
-  },
 
   {
     path: '/faq',
     name: 'FAQ',
-    // route level code-splittingNfoun
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */'../views/StaticPages/Faq')
+    component: () => import( /* webpackChunkName: "FAQ" */ '../views/StaticPages/Faq')
   },
 
   {
     path: '/contact/us',
     name: 'contact-us',
-    component: () => import(/* webpackChunkName: "about" */'../views/StaticPages/ContactUs.vue')
+    component: () => import( /* webpackChunkName: "contact-us" */ '../views/StaticPages/ContactUs.vue')
   },
 
    {
@@ -65,7 +48,7 @@ const routes = [
   },
 
  {
-    path: 'privacy/policy',
+    path: '/privacy/policy',
     name: 'privacy_policy',
     component: () => import(/* webpackChunkName: "privacy_policy" */'../views/StaticPages/PrivacyPolicy.vue')
   },
@@ -76,12 +59,6 @@ const routes = [
   },
 
 
-
-  {
-    path: '/campaign',
-    name: 'campaign',
-    component: () => import(/* webpackChunkName: "campaign" */'../views/Campaign.vue')
-  },
   {
     path: '/campaign/:slug',
     name: 'singleCampaign',
@@ -136,7 +113,7 @@ const routes = [
     path: '/checkout',
     name: 'checkout',
     meta: {
-      title: 'Checkout'
+      title: 'checkout cart || place order '
     },
     component: () => import(/* webpackChunkName: "checkout" */'../views/Checkout.vue')
   },
