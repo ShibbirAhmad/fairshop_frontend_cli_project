@@ -184,7 +184,7 @@ export default {
           id: id,
         })
         .then((resp) => {
-          console.log(resp);
+       //  console.log(resp);
           if (resp.data.success == true) {
             this.$toastr.s(resp.data.message);
             this.$store.dispatch("cart");

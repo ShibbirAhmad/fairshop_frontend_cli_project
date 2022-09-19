@@ -67,7 +67,7 @@ const actions = {
          headers: this.$apiHeader,
        })
          .then((resp) => {
-            console.log(resp);
+        //    console.log(resp);
            if (resp.data.success == true) {
              context.commit('subCategory', resp.data.sub_category)
            }

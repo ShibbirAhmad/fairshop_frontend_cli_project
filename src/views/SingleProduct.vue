@@ -484,7 +484,7 @@ export default {
           }
         )
         .then((resp) => {
-          console.log(resp);
+         // console.log(resp);
           if (resp.data.success == true && resp.data.products.data.length) {
             this.products.push(...resp.data.products.data);
             this.page += 1;

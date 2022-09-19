@@ -168,7 +168,7 @@ export default {
       this.$axios
         .get("/landing/category/wise/products?page=" + this.page)
         .then((resp) => {
-          console.log(resp);
+         // console.log(resp);
           if (resp.data.success ==true &&  resp.data.sub_categories.data.length > 0) {
             this.page += 1;
             this.landing_sub_categories.push(...resp.data.sub_categories.data);
