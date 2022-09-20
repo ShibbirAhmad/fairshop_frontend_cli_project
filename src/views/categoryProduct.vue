@@ -29,12 +29,14 @@
             </li>
           </ol>
         </nav>
+        <!-- sub category buttons -->
         <div class="row" v-if="category">
           <div
             class="col-6 col-md-2-custome"
             v-for="(sub_c, sub_c_idx) in category.sub_category"
             :key="sub_c_idx"
           >
+          
             <router-link
               :to="{
                 name: 'SubCategoryProduct',
@@ -44,8 +46,11 @@
                 },
               }"
             >
+            
               <div class="box">
+                
                 <span class="box-txt">
+                  <span class="spinner-grow text-light spinner-grow-sm" role="status" aria-hidden="true"></span>
                   {{ sub_c.name }}
                 </span>
               </div>

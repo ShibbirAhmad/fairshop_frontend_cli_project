@@ -42658,7 +42658,7 @@ span.text-gray-90 {
 ------------------------------------*/
 
 ul li:hover {
-  background-color: #fff0 !important;
+  background-color: #fff !important;
 }
 
 #navBar {
@@ -43381,10 +43381,11 @@ ul.__c_sub {
   color: #fff;
   right: 0;
   top: 50%;
-  border-top-left-radius: 6rem;
-  border-bottom-left-radius: 6rem;
+  justify-content: end;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  gap:6px;
   cursor: pointer;
 }
 

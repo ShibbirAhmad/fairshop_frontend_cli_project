@@ -31,6 +31,7 @@
           >
             <div class="box">
               <span class="box-txt">
+                <span class="spinner-grow text-light spinner-grow-sm" role="status" aria-hidden="true"></span>
                 {{ category.name }}
               </span>
             </div>

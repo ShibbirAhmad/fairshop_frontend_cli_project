@@ -2,8 +2,11 @@
   <div>
     <header id="header" class="u-header u-header-left-aligned-nav">
       <div class="header-items">
+        <!-- Header container -->
         <div class="container">
+          <!-- Header options -->
           <ul class="d-flex">
+            <!-- Logo -->
             <li>
               <router-link to="/">
                 <img
@@ -12,6 +15,7 @@
                 />
               </router-link>
             </li>
+            <!-- Search -->
             <li class="__serach_box">
               <form @submit.prevent="redirectSearch">
                 <input
@@ -23,13 +27,16 @@
                 />
                 <button
                   type="button"
+                  @click="redirectSearch"
                   style="background: #199eff; color: #fff"
                   class="btn height-42 py-2 px-3 rounded-right-pill search_icon"
                 >
                   <i class="fa fa-search"></i>
                 </button>
               </form>
+              <!-- //TODO: show realtime Search result -->
             </li>
+            <!-- User Account -->
             <li class="__user_account pointer">
               <a
                 v-if="Object.keys($store.state.user).length <= 0"
@@ -70,8 +77,9 @@
                 </div>
               </ul>
             </li>
+            <!-- Track Delivery -->
             <li>
-              <div class="order-large-device" style="width: 60px">
+              <div class="order-large-device" style="width: 124px;">
                 <router-link
                   class="tacking_link_btn"
                   :to="{ name: 'order_tracking' }"
@@ -98,10 +106,24 @@
                 /></router-link>
               </div>
             </li>
+            <!-- Call Us -->
+            <li>
+              <div class="call__us">
+                <div>
+                  <i class="fa fa-phone call-icon" aria-hidden="true"></i>
+                </div>
+                <div class="call-info">
+                  <h4>Call Now</h4>
+                  <h4>01762424333</h4>
+                </div>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
+      <!-- Category Navigation -->
       <div class="__nav" id="__nav">
+        <!-- responsive menu -->
         <ul class="__nav_resp_menu">
           <li class="__nav_resp_menu_close_active" @click="respMenuControl">
             Menu
@@ -112,6 +134,7 @@
           </li>
           <li></li>
         </ul>
+        <!-- desktop menu -->
         <div class="container d-flex">
           <ul class="__category_nav">
             <li class="c-link pointer __nav_list_highlight_link" id="__c_link">
@@ -166,9 +189,8 @@
                     >
                       <a
                         class="finalSub"
-                        v-for="(
-                          sub_sub_category, ssc_index
-                        ) in sub_category.sub_sub_category"
+                        v-for="(sub_sub_category,
+                        ssc_index) in sub_category.sub_sub_category"
                         :key="ssc_index"
                       >
                         <router-link
@@ -208,23 +230,21 @@
               >Gift Card</router-link
             >
           </ul>
-          <ul class="__nav_list_right">
-            <li class="__nav_list_highlight_link">
-              <a href="https://wa.me/01762424333" target="_blank">
-                <i class="fa fa-whatsapp" style="font-size: 18px"></i>
-                01762424333</a
-              >
-            </li>
-          </ul>
         </div>
       </div>
 
       <!-- cart -->
     </header>
     <div class="cart-icon" @click="show_cart = !show_cart">
-      <h4 style="margin-left: 5px; font-size: 35px; display: flex">
-        <i class="ec ec-shopping-bag cart-icon-fa font-size-22"></i>
-        <span
+      <h4
+        style="margin-bottom: 0px; font-size: 35px; display: flex; flex-direction:column; align-items: center;"
+      >
+        <i
+          class="fa fa-shopping-bag"
+          aria-hidden="true"
+          style="font-size:18px;"
+        ></i>
+        <!-- <span
           class="
             width-22
             height-22
@@ -241,15 +261,15 @@
           "
         >
           {{ cart ? cart.item_count : 0 }}
-        </span>
+        </span> -->
 
-        <span
-          id="__cart_total"
-          style="font-size: 16px; margin-top: 0px; margin-left: 5px"
-        >
+        <span id="__cart_total" style="font-size: 16px; margin-top: 0px;">
           ৳{{ cart ? cart.cart_total : 0 }}
         </span>
       </h4>
+      <div style="width:100%" class="item-counter__container">
+        <h4 class="item-counter">{{ cart ? cart.item_count : 0 }} items</h4>
+      </div>
 
       <!-- <span>
         {{  }}
@@ -395,13 +415,13 @@ export default {
       }
       if (this.search.length > 3) {
         await this.$axios
-          .get("search/product/"+this.search,{
-             headers: this.$apiHeader,
+          .get("search/product/" + this.search, {
+            headers: this.$apiHeader,
           })
           .then((resp) => {
             console.log(resp);
             if (resp.data.success == true) {
-               this.search_products = resp.data.products ;
+              this.search_products = resp.data.products;
             }
           })
           .catch((error) => {
@@ -452,8 +472,8 @@ export default {
   top: 2.2rem;
 }
 .header-items ul {
-  padding: 0 70px;
   align-items: center;
+  justify-content: space-between;
 }
 .facebook_link_btn {
   padding: 0px 10px;

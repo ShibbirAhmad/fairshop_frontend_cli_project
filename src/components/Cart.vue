@@ -5,11 +5,8 @@
   >
     <div class="__cart" id="__cart" v-show="show_cart">
       <div class="__cart_header d-flex">
-        <img @click="hideCart" style="cursor:pointer;margin-right:5px"
-          src="../../assets/images/close_sign.png"
-          width="30px" height="30"
-        />
-        <h5>My Cart</h5>
+        <h5 style="padding-right:6px">{{ cart ? cart.item_count : 0 }}</h5>
+        <h5>Items</h5>
         <i class="fa fa-close pointer" @click="hideCart"></i>
       </div>
       <div class="__cartcart_body">

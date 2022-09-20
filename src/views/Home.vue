@@ -40,12 +40,14 @@
 
       <!-- start trending products here  -->
 
+      <!-- category wise product -->
       <div v-if="landing_sub_categories.length > 0" class="__category_wise_product">
         <div
           class="row category-sec"
           v-for="(item, ctx) in landing_sub_categories"
           :key="ctx"
         >
+        <!-- category title and sub menu -->
           <div class="col-lg-12">
             <div class="category-heading">
               <h3>{{ item.name }}</h3>
@@ -56,7 +58,9 @@
                   <li
                     v-for="(sub_sub_c, sbx) in item.sub_sub_category"
                     :key="sbx"
+                    style="cursor:pointer;"
                   >
+                  <span class="spinner-grow text-info spinner-grow-sm" role="status" aria-hidden="true"></span>
                     <router-link v-if="sbx < 7"
                       :to="{
                         name: 'SubSubCategoryProduct',
@@ -83,16 +87,22 @@
               </router-link>
             </div>
           </div>
+
+          <!-- product container -->
           <div class="col-lg-12 col-xl-12 col-md-12">
             <div class="row">
               <div class="col-lg-12 col-md-12">
                 <div class="row" v-if="item.products.length > 0">
+
+                  <!-- product card -->
                   <div
                     class="width-20"
                     v-for="product in item.products"
                     :key="product.id"
                   >
+                  <!-- product card start -->
                     <div class="__product_card">
+                      <!-- product Image -->
                       <div class="__product_card_img">
                          <router-link
                           :to="{name:'single_product',params:{slug:product.slug},} "
@@ -104,7 +114,9 @@
                           />
                          </router-link>
                       </div>
+                      <!-- product name and details -->
                       <div class="__product_details">
+                        <!-- product name -->
                         <router-link
                           :to="{name:'single_product',params:{slug:product.slug},} "
                           class="d-block text-center"
@@ -114,12 +126,22 @@
                             <span v-if="product.name.length > 15"> ... </span>
                           </h4>
                         </router-link>
+                        <!-- product price -->
                         <p class="price">
                           <span
                             ><del>৳{{ product.price }}</del></span
                           >
                           ৳{{ product.sale_price }}
                         </p>
+                      </div>
+                      <!-- order Now Button -->
+                      <div class="__product_order_btn">
+                        <router-link
+                          :to="{name:'single_product',params:{slug:product.slug},} "
+                          class="d-block text-center"
+                        >
+                          <button>Order Now</button>
+                        </router-link>
                       </div>
                     </div>
                   </div>
