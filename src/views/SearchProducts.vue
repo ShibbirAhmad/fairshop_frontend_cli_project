@@ -50,7 +50,7 @@ export default {
             headers: this.$apiHeader,
           })
           .then((resp) => {
-         //   console.log(resp);
+           console.log(resp);
             if (resp.data.success == true) {
               this.products = resp.data.products;
             }

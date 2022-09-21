@@ -31,6 +31,7 @@
                     :key="product.id"
                   >
                     <div class="__product_card">
+                      <!-- product image -->
                       <div class="__product_card_img">
                         <router-link
                           :to="{
@@ -45,17 +46,18 @@
                           />
                         </router-link>
                       </div>
+                      <!-- product details -->
                       <div class="__product_details">
                          <router-link
                           :to="{
                             name: 'single_product',
                             params: { slug: product.slug },
                           }"
-                          class="d-block text-center"
+                          class="d-block"
                         >
                         <h4>
-                          {{ product.name.substring(0,15) }}
-                             <span v-if="product.name.length > 15"> ... </span>
+                          {{ product.name.substring(0,18) }}
+                             <span v-if="product.name.length > 18"> ... </span>
                           </h4>
                           </router-link>
                         <p class="price">
@@ -64,6 +66,15 @@
                           >
                            ৳{{ product.price }}
                         </p>
+                      </div>
+                      <!-- order Now Button -->
+                      <div class="__product_order_btn">
+                        <router-link
+                          :to="{name:'single_product',params:{slug:product.slug},} "
+                          class="d-block text-center"
+                        >
+                          <button>Order Now</button>
+                        </router-link>
                       </div>
                     </div>
                   </div>

@@ -3,6 +3,7 @@
     <!-- Slider & Banner Section -->
     <div class="mb-4">
       <div class="container">
+        <!-- breadcrumb -->
         <nav aria-label="breadcrumb">
           <ol
             class="
@@ -57,7 +58,37 @@
             </router-link>
           </div>
         </div>
+        <!-- filter & sort By -->
+        <div class="d-flex">
+          <!-- Sort By -->
+          <div class="sort_by">
+            <h5>Sort By: </h5>
+            <!-- Dropdown -->
+            <div style="margin-top: 20px" class="sort-box">
+              <select
+                  v-model="sort_by_price"
+                  @change="price_sorting_asec_desc"
+                  class="form-control"
+              >
+                  <option value="select_by" disabled
+                      >Select Best Match</option
+                  >
+                  <option value="1"
+                      >price less to high</option
+                  >
+                  <option value="2"
+                      >price high to less</option
+                  >
+              </select>
+          </div>
+          </div>
+          <!-- Filter By Price -->
+          <div class="filter_price">Filter by Price</div>
+        </div>
+
       </div>
+
+      <!-- products -->
       <div class="container overflow-hidden">
         <div
           class="

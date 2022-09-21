@@ -21,6 +21,7 @@
                 <input
                   type="text"
                   @keyup="searchProducts"
+                  @input="searchProducts"
                   placeholder="search products"
                   class="search-box"
                   v-model="search"
@@ -34,7 +35,37 @@
                   <i class="fa fa-search"></i>
                 </button>
               </form>
-              <!-- //TODO: show realtime Search result -->
+              <!-- Realtime Search result -->
+              <ul class="search_result" v-if="search">
+                <li
+                  v-for="product in search_products"
+                  :key="product.id"
+                  style="border-bottom:solid 1px #cbd5e1"
+                >
+                  <router-link
+                    :to="{
+                      name: 'single_product',
+                      params: { slug: product.slug },
+                    }"
+                    class="d-flex"
+                  >
+                    <!-- Product Image -->
+                    <img
+                      class="search_img"
+                      :alt="product.thumbnail_img"
+                      :src="$imageBaseUrl2 + product.thumbnail_img"
+                    />
+                    <!-- Product details -->
+                    <div class="s_product_info">
+                      <h4 class="s_product_name">{{ product.name }}</h4>
+                      <div class="s_price">
+                        <p>৳ {{ product.sale_price }}</p>
+                        <p class="previous_price">৳ {{ product.price }}</p>
+                      </div>
+                    </div>
+                  </router-link>
+                </li>
+              </ul>
             </li>
             <!-- User Account -->
             <li class="__user_account pointer">
@@ -107,7 +138,7 @@
               </div>
             </li>
             <!-- Call Us -->
-            <li>
+            <li class="call_us-box">
               <div class="call__us">
                 <div>
                   <i class="fa fa-phone call-icon" aria-hidden="true"></i>
@@ -134,33 +165,35 @@
           </li>
           <li></li>
         </ul>
-        <!-- desktop menu -->
-        <div class="container d-flex">
-          <ul class="__category_nav">
-            <li class="c-link pointer __nav_list_highlight_link" id="__c_link">
-              SHOP BY CATEGORY
 
-              <i class="fa fa-angle-down"></i>
-            </li>
-            <div class="__category-menu d-none" id="__category-menu">
-              <li
-                class="c-item"
-                v-for="(category, cdx) in categories"
-                :key="cdx"
+        <!-- desktop Menu new -->
+        <div class="container d-flex">
+          <ul class="__nav_list" id="__nav_list">
+            <!-- home -->
+            <li class="c-item">
+              <router-link class="__nav_list_highlight_link" to="/"
+                >Home</router-link
               >
+            </li>
+            <!-- other dynamic category -->
+            <ul v-for="(category, cdx) in categories" :key="cdx">
+              <li class="c-item" v-if="cdx < 8">
                 <router-link
                   :to="{
                     name: 'categoryProducts',
                     params: { slug: category.slug },
                   }"
+                  @click="nextElement"
                 >
                   {{ category.name }}
                 </router-link>
                 <i
-                  v-if="category.sub_category.length > 0"
-                  class="fa fa-angle-right c-icon"
-                  @click="nextElement"
-                ></i>
+              v-if="category.sub_category.length > 0"
+              class="fa fa-angle-down" 
+              @click="nextElement"
+            ></i>
+            
+                <!-- Sub Category -->
                 <ul class="__c_sub" v-if="category.sub_category.length > 0">
                   <li
                     v-for="(sub_category, sc_index) in category.sub_category"
@@ -179,10 +212,11 @@
                     >
 
                     <i
-                      v-if="sub_category.sub_sub_category.length > 0"
-                      class="fa fa-angle-right c-icon"
-                    ></i>
+                  v-if="sub_category.sub_sub_category.length > 0"
+                  class="fa fa-angle-right c-icon"
+                ></i>
 
+                    <!-- Sub Sub Category -->
                     <ul
                       class="__c_sub_sub"
                       v-if="sub_category.sub_sub_category.length > 0"
@@ -209,26 +243,15 @@
                   </li>
                 </ul>
               </li>
-            </div>
-          </ul>
-          <ul class="__nav_list" id="__nav_list">
-            <router-link class="__nav_list_highlight_link" to="/"
-              >Home</router-link
-            >
-
-            <router-link
-              class="__nav_list_highlight_link"
-              :to="{ name: 'shop' }"
-              >Shop</router-link
-            >
-            <router-link
-              class="__nav_list_highlight_link"
-              :to="{ name: 'campaign' }"
-              >Campaign</router-link
-            >
-            <router-link class="__nav_list_highlight_link" to="/gift/card"
-              >Gift Card</router-link
-            >
+            </ul>
+            <!-- campaign -->
+            <li class="c-item">
+              <router-link
+                class="__nav_list_highlight_link"
+                :to="{ name: 'campaign' }"
+                >Campaign</router-link
+              >
+            </li>
           </ul>
         </div>
       </div>

@@ -216,7 +216,7 @@
                           id="__Add_to_cart"
                           class="adtocrtphn btn px-5 btn-primary-dark"
                         >
-                          <i class="ec ec-add-to-cart font-size-20"></i>
+                        <i class="fa-solid fa-cart-plus"></i>
 
                           Add to Cart
                         </button>

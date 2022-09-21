@@ -17,7 +17,7 @@ export default {
               this.$swal({
               position: 'top-center',
               icon: "success",
-              title: '<strong><h2>Your order has been confirmed, Thanks</h2></strong>',
+              title: '<strong><h2>Your order has been Placed, Thanks</h2></strong>',
               html:'<h4> We will call you to inform about order details(at 9:00 AM to 9:00 PM)</h4>',
               confirmButtonText: `<h6><a style="color:#fff;padding:20px 0px;" href="/">View More</a></h6>`,
               showCancelButton: true,

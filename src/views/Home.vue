@@ -119,11 +119,11 @@
                         <!-- product name -->
                         <router-link
                           :to="{name:'single_product',params:{slug:product.slug},} "
-                          class="d-block text-center"
+                          class="d-block"
                         >
                           <h4>
-                            {{ product.name.substring(0, 15) }}
-                            <span v-if="product.name.length > 15"> ... </span>
+                            {{ product.name.substring(0, 18) }}
+                            <span v-if="product.name.length > 18">.. </span>
                           </h4>
                         </router-link>
                         <!-- product price -->
@@ -229,7 +229,6 @@ export default {
 .category-icon img {
   width: 75px !important;
   height: 75px;
-  border-radius: 50%;
   border: 1.5px dashed;
   margin: auto;
 }
