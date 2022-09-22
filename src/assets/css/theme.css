@@ -773,9 +773,7 @@ pre code {
 }
 
 @media (min-width: 768px) {
-  .snglepdt {
-    padding-left: 1.5rem !important;
-  }
+
 
   .container {
     max-width: 720px;
@@ -3072,7 +3070,7 @@ pre code {
   background-color: #f0f5f5;
   background-clip: padding-box;
   border: 1px solid #767676;
-  border-radius: 1.4rem;
+  /* border-radius: 1.4rem; */
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -6523,7 +6521,7 @@ input[type="button"].btn-block {
   white-space: nowrap;
   background-color: #fff;
   border: 1px solid #767676;
-  border-radius: 1.4rem;
+  /* border-radius: 1.4rem; */
 }
 
 .input-group-text input[type="radio"],
@@ -10748,7 +10746,7 @@ a.close.disabled {
   display: inline-block;
   width: 2rem;
   height: 2rem;
-  vertical-align: text-bottom;
+  vertical-align: sub !important;
   background-color: currentColor;
   border-radius: 50%;
   opacity: 0;
@@ -43427,10 +43425,6 @@ a.nav-link.u-header__sub-menu-nav-link {
   background-color: #199eff !important;
 }
 
-.adtocrtphn i {
-  margin-right: 0.674rem !important;
-}
-
 .qntt {
   padding: 0.53rem 0 0.53rem 1rem !important;
   border: 1px solid #199eff75 !important;
@@ -43516,10 +43510,7 @@ a.nav-link.u-header__sub-menu-nav-link {
     margin: 0.2rem;
   }
 
-  .adtocrtphn {
-    padding: 0.2rem 1rem !important;
-    margin-bottom: 0.3rem;
-  }
+
 
   .qnttbox {
     max-width: 9.375rem !important;
@@ -43584,7 +43575,6 @@ a.nav-link.u-header__sub-menu-nav-link {
     padding-right: 0;
     padding-left: 0;
     width: 48.7%;
-    box-shadow: 0 0 3px 0 rgb(0 0 0 / 0.09);
     border-radius: 0.5rem;
   }
 
@@ -43942,8 +43932,8 @@ ul.__c_sub {
   z-index: 999;
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
-.__c_sub li:hover{
-  background: #199eff  !important;
+.__c_sub li:hover {
+  background: #199eff !important;
   cursor: pointer;
 }
 .__category-menu li:hover > .__c_sub {
@@ -43961,18 +43951,18 @@ ul.__c_sub {
   border-left: 1px solid #eee;
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
-.__c_sub_sub:hover{
-    color: #fff !important;
+.__c_sub_sub:hover {
+  color: #fff !important;
 }
-.__c_sub_sub a:hover{
+.__c_sub_sub a:hover {
   background: #199eff;
   cursor: pointer;
 }
 .finalSub {
   padding: 12px;
 }
-.__c_sub a:hover{
-  color:#fff !important;
+.__c_sub a:hover {
+  color: #fff !important;
 }
 .__c_sub li:hover > .__c_sub_sub {
   display: flex !important;

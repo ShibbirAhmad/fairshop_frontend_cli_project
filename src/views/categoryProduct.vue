@@ -34,10 +34,10 @@
         <div class="row" v-if="category">
           <div
             class="col-6 col-md-2-custome"
+            style="margin-left: 0px;"
             v-for="(sub_c, sub_c_idx) in category.sub_category"
             :key="sub_c_idx"
           >
-          
             <router-link
               :to="{
                 name: 'SubCategoryProduct',
@@ -47,11 +47,13 @@
                 },
               }"
             >
-            
               <div class="box">
-                
                 <span class="box-txt">
-                  <span class="spinner-grow text-light spinner-grow-sm" role="status" aria-hidden="true"></span>
+                  <span
+                    class="spinner-grow text-light spinner-grow-sm"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
                   {{ sub_c.name }}
                 </span>
               </div>
@@ -59,33 +61,45 @@
           </div>
         </div>
         <!-- filter & sort By -->
-        <div class="d-flex">
-          <!-- Sort By -->
-          <div class="sort_by">
-            <h5>Sort By: </h5>
-            <!-- Dropdown -->
-            <div style="margin-top: 20px" class="sort-box">
+        <div class="sort_filter-box">
+          <!-- Sort By Price -->
+          <div class="sort_filter">
+            <h5>Sort By:</h5>
+            <!-- sort by Price Dropdown -->
+            <div>
               <select
-                  v-model="sort_by_price"
-                  @change="price_sorting_asec_desc"
-                  class="form-control"
+                v-model="sort_by_price"
+                @change="price_sorting_asec_desc"
+                class="sort_form"
               >
-                  <option value="select_by" disabled
-                      >Select Best Match</option
-                  >
-                  <option value="1"
-                      >price less to high</option
-                  >
-                  <option value="2"
-                      >price high to less</option
-                  >
+                <option value="sort_by" disabled>Select Best Match</option>
+                <option value="1">price less to high</option>
+                <option value="2">price high to less</option>
               </select>
-          </div>
+            </div>
           </div>
           <!-- Filter By Price -->
-          <div class="filter_price">Filter by Price</div>
-        </div>
+          <div class="sort_filter">
+            <h5>Filter By Price:</h5>
+            <!-- Filter By Price Input -->
+            <form action="" class="min_max_form">
+              <div class="price_form">
+                <div class="price_input ">
+                  <label for="">Min Price</label>
+                  <input type="number" placeholder="Min" />
+                </div>
 
+                <div class="price_input">
+                  <label for="">Max Price</label>
+                  <input type="number" placeholder="Max" />
+                </div>
+              </div>
+              <button type="submit" class="filter_btn">
+                Filter <i class="fa fa-lg fa-filter"></i>
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
 
       <!-- products -->
@@ -136,12 +150,29 @@ export default {
   },
   data() {
     return {
+      sort_by_price: "sort_by",
       page: 1,
       products: [],
     };
   },
 
   methods: {
+    // Sort By Price
+    price_sorting_asec_desc() {
+      this.$axios
+        .get("/_public/api/sort/product/according/to/asc/desc", {
+          params: {
+            sort_value: this.sort_by_price,
+            slug: this.$route.params.slug,
+          },
+        })
+        .then((resp) => {
+          this.products = [];
+          this.products.push(...resp.data.products);
+        })
+        .catch();
+    },
+
     categoryProducts($state) {
       this.$axios
         .get(

@@ -33,7 +33,7 @@
       </div> -->
       <div>
         <div class="row">
-          <div class="col-md-5 mb-5 mb-md-0">
+          <div class="col-md-12 col-lg-6 mb-6">
             <image-zoom
               v-if="zooming_img"
               :regular="zooming_img"
@@ -52,7 +52,7 @@
             </div>
           </div>
 
-          <div class="snglepdt col-md-5 mb-md-6 mb-lg-0">
+          <div class="snglepdt col-md-12 col-lg-6 mb-lg-0">
             <div class="mb-2">
               <div class="border-bottom pb-md-1">
                 <h2 class="font-size-25 text-lh-1dot2 font-weight-600">
@@ -200,27 +200,29 @@
                       </div>
                     </div>
                     <br />
-                    <div class="ml-md-3" id="tocart">
+                    <div class="" id="tocart">
+                      <!-- Order Button -->
                       <div style="display: flex" class="cart_buy_container">
+                        <!-- Buy Now Button -->
                         <button
-                          style="background: #3645d3"
+                          style="background-color:#199eff"
                           @click.prevent="addToCart(product, 2)"
-                          class="adtocrtphn mr-2 btn px-5 btn-primary-dark"
+                          class="adtocrtphn c-primary"
                         >
-                          <i class="ec ec-add-to-cart font-size-20"></i>
                           Buy Now
                         </button>
 
+                        <!-- Add to cart Button -->
                         <button
+                          style="background-color:#0d4f80; margin-left:12px;"
                           @click.prevent="addToCart(product, 1)"
                           id="__Add_to_cart"
-                          class="adtocrtphn btn px-5 btn-primary-dark"
+                          class="adtocrtphn"
                         >
-                        <i class="fa-solid fa-cart-plus"></i>
-
                           Add to Cart
                         </button>
                       </div>
+
 
                       <div>
                         <div class="order_now_container">
@@ -484,7 +486,7 @@ export default {
           }
         )
         .then((resp) => {
-         // console.log(resp);
+          // console.log(resp);
           if (resp.data.success == true && resp.data.products.data.length) {
             this.products.push(...resp.data.products.data);
             this.page += 1;
@@ -581,14 +583,15 @@ export default {
         .then((resp) => {
           //   console.log(resp);
           if (resp.data.success == true) {
-            this.zooming_img = this.$imageBaseUrl + resp.data.product_images[0].product_image;
+            this.zooming_img =
+              this.$imageBaseUrl + resp.data.product_images[0].product_image;
             this.product_images = resp.data.product_images;
           }
         });
     },
   },
   watch: {
-    qty: function (value) {
+    qty: function(value) {
       if (value <= parseInt(0)) {
         this.$toast.open({
           message: `Quantity can not be smaller than 1`,

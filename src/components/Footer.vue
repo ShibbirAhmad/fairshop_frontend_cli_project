@@ -4,150 +4,202 @@
       <div class="bg-gray-14 py-2 hide">
         <div class="container">
           <div class="foooter desktop_footer">
+            <div class="fpart-first">
+              <div class="container">
+                <div class="row">
+                  <div class="contact col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <ul>
+                      <li style="list-style-type:none" class="address">
+                        <router-link to="/">
+                          <img
+                            src="../../assets/images/logo.png"
+                            class="img-fluid site_logo"
+                          />
+                        </router-link>
 
-      <div class="fpart-first">
-        <div class="container">
-          <div class="row">
-            <div class="contact col-lg-3 col-md-3 col-sm-12 col-xs-12">
-              <ul>
-                <li style="list-style-type:none" class="address">
-
-              <router-link to="/">
-                <img
-                  src="../../assets/images/logo.png"
-                  class="img-fluid site_logo"
-                />
-              </router-link>
-
-                  <p class="short_desc">
-                    <span
-                      style="
+                        <p class="short_desc">
+                          <span
+                            style="
                         font-size: 16px;
                         color: #199EFF;
                         font-weight: 700;
                       "
-                      >fairshop.com.bd</span
-                    >
-                    is a complete e-commerce market place.
-                    Here, consumers of all ages can buy every essential product
-                    of the day, from gadgets, electronics, home appliances,
-                    leather goods, jewelry, baby accessories, cosmetics, fashion
-                    and lifestyle products to affordable prices at home
-                  </p>
-                </li>
-              </ul>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-             <div class="quick_link_container">
-                <div class="quick_link">
-                  <h5>Quick Links</h5>
-                  <div class="line"></div>
-                  <ul class="link_line">
-                    <li><a href="/" class="router-link-active">Home</a></li>
-                    <li><a href="/merchant/login" class="">Merchant Login </a></li>
-                    <li><a href="/about/us" class="">About Us</a></li>
-                    <li><a href="/contact/us" class="">Contact Us</a></li>
-                    <li><a href="/privacy/policy" class="">Privacy </a></li>
-                  </ul>
-                </div>
-
-              <div class="quick_link">
-                <h5>Information</h5>
-                <div class="line"></div>
-                <ul class="link_line">
-                  <li><a href="/how/to/buy" class="">How to order</a></li>
-                  <li><a href="/return/policy" class="">Return Policy</a></li>
-                  <li><a href="/shipment" class="">Shipment </a></li>
-                  <li><a href="/about/seller" class="">About Seller </a></li>
-                </ul>
-              </div>
-
-             </div>
-            </div>
-
-            <div class=" col-lg-4 col-md-4 col-sm-12 col-xs-12">
-              <div class="news_letter">
-                <h5>Follow Us</h5>
-                <div class="line"></div>
-                <form>
-                  <div class="row">
-                    <div class="subscribe_container">
-                      <form @submit.prevent="subscribe()">
-                        <div class="form-group s_form">
-                          <label
-                            for="subscribe"
-                            class="form-label"
-                            >submit email to recieve latest offer .</label
+                            >fairshop.com.bd</span
                           >
-                          <input
-                            type="email"
-                            required
-                            placeholder="example@gmail.com"
-                            class="form-control"
-                            v-model="email"
-                          />
+                          is a complete e-commerce market place. Here, consumers
+                          of all ages can buy every essential product of the
+                          day, from gadgets, electronics, home appliances,
+                          leather goods, jewelry, baby accessories, cosmetics,
+                          fashion and lifestyle products to affordable prices at
+                          home
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="quick_link_container">
+                      <div class="quick_link">
+                        <h5>Quick Links</h5>
+                        <div class="line"></div>
+                        <ul class="link_line">
+                          <li>
+                            <a href="/" class="router-link-active">Home</a>
+                          </li>
+                          <li>
+                            <a href="/merchant/login" class=""
+                              >Merchant Login
+                            </a>
+                          </li>
+                          <li><a href="/about/us" class="">About Us</a></li>
+                          <li><a href="/contact/us" class="">Contact Us</a></li>
+                          <li>
+                            <a href="/privacy/policy" class="">Privacy </a>
+                          </li>
+                        </ul>
+                      </div>
 
-                            <button type="submit" class="email_btn">
-                              <i class="fa fa-envelope-open"></i>
-                            </button>
-
-                        </div>
-
-                    </form>
-                    <div class="social-icon" >
-                       <a
-                          href="https://www.facebook.com/fairshop.com.bd/"
-                          target="_blank"
-                          class="social-wrape facebook-icon"
-                          style="margin-top: 10px; margin-bottom: 10px;"
-                          ><i class="fa fa-facebook f-icon facebook-icon"></i></a>
-                        <a
-                          href="https://www.youtube.com/channel/UCTE_0AVcFBp-GDI5HuuG1TQ"
-                          target="_blank"
-                          class="social-wrape"
-                          ><i class="fa fa-youtube-square f-icon"></i >
-
-                          </a>
-                        <!-- <a
-                          href="www.pinterest.com/fairshop21"
-                          target="_blank"
-                          class="social-wrape"
-                          style="margin-top: 10px"
-                          >
-                          <i class="fa fa-pinterest f-icon"></i>
-                          </a> -->
-                        <!-- <a
-                          href="https://www.linkedin.com/company/fairshop/"
-                          target="_blank"
-                          class="social-wrape"
-                          style="margin-top: 10px"
-                          ><i class="fa fa-linkedin f-icon"></i></a> -->
+                      <div class="quick_link">
+                        <h5>Information</h5>
+                        <div class="line"></div>
+                        <ul class="link_line">
+                          <li>
+                            <a href="/how/to/buy" class="">How to order</a>
+                          </li>
+                          <li>
+                            <a href="/return/policy" class="">Return Policy</a>
+                          </li>
+                          <li><a href="/shipment" class="">Shipment </a></li>
+                          <li>
+                            <a href="/about/seller" class="">About Seller </a>
+                          </li>
+                        </ul>
                       </div>
                     </div>
-
                   </div>
-                </form>
+
+                  <!-- old social link -->
+                  <div class=" col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="news_letter">
+                      <h5>Follow Us</h5>
+                      <div class="line"></div>
+                      <div class="social-link">
+                        <a href="" class="social-link-facebook"
+                          ><i class="fa fa-instagram social-link-icon"></i
+                        ></a>
+                        <a href="" class="social-link-text"
+                          ><i class="fa fa-youtube social-link-icon"></i
+                        ></a>
+                        <a href="" class="social-link-text"
+                          ><i class="fa fa-twitter social-link-icon"></i
+                        ></a>
+                        <!-- <a href="general_setting.instagram" class="social-link-text"><i class="fa fa-twitter social-link-icon"></i></a> -->
+                      </div>
+
+                      <div class="">
+                        <iframe
+                          width="100%"
+                          height="250"
+                          style="border:none;overflow:hidden"
+                          scrolling="no"
+                          frameborder="0"
+                          allowfullscreen="true"
+                          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                        ></iframe>
+                      </div>
+                      <!-- <form>
+                        <div class="row">
+                          <div class="subscribe_container">
+                            <form @submit.prevent="subscribe()">
+                              <div class="form-group s_form">
+                                <label for="subscribe" class="form-label"
+                                  >submit email to recieve latest offer .</label
+                                >
+                                <input
+                                  type="email"
+                                  required
+                                  placeholder="example@gmail.com"
+                                  class="form-control"
+                                  v-model="email"
+                                />
+
+                                <button type="submit" class="email_btn">
+                                  <i class="fa fa-envelope-open"></i>
+                                </button>
+                              </div>
+                            </form>
+                            <div class="social-icon">
+                              <a
+                                href="https://www.facebook.com/fairshop.com.bd/"
+                                target="_blank"
+                                class="social-wrape facebook-icon"
+                                style="margin-top: 10px; margin-bottom: 10px;"
+                                ><i
+                                  class="fa fa-facebook f-icon facebook-icon"
+                                ></i
+                              ></a>
+                              <a
+                                href="https://www.youtube.com/channel/UCTE_0AVcFBp-GDI5HuuG1TQ"
+                                target="_blank"
+                                class="social-wrape"
+                                ><i class="fa fa-youtube-square f-icon"></i>
+                              </a>
+                              <a
+                                href="www.pinterest.com/fairshop21"
+                                target="_blank"
+                                class="social-wrape"
+                                style="margin-top: 10px"
+                              >
+                                <i class="fa fa-pinterest f-icon"></i>
+                              </a>
+                              <a
+                                href="https://www.linkedin.com/company/fairshop/"
+                                target="_blank"
+                                class="social-wrape"
+                                style="margin-top: 10px"
+                                ><i class="fa fa-linkedin f-icon"></i
+                              ></a>
+                            </div>
+                          </div>
+                        </div>
+                      </form> -->
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
 
+            <!-- SSL Logos -->
+            <div class="fpart-second">
+              <div class="container">
+                <!-- <div id="powered" class="clearfix"></div> -->
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="payment-card">
+                      <img
+                        src=""
+                        style="width: 100%; height: auto; margin-top: -30px"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        <div class="row">
-          <div class="end_footer">
-            <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
-              <p class="f_info_left">
-                Copyright © fairshop.com.bd 2022. All rights reserved.
-              </p>
+            <div class="row">
+              <div class="end_footer">
+                <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                  <p class="f_info_left">
+                    Copyright © fairshop.com.bd 2022. All rights reserved.
+                  </p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                  <p class="f_info_right">
+                    Design &amp; Developed by: Mohasagor it Solution
+                  </p>
+                </div>
+              </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
-              <p class="f_info_right">
-                Design &amp; Developed by: Mohasagor it Solution
-              </p>
-            </div>
-          </div>
-        </div>
           </div>
         </div>
       </div>
@@ -172,7 +224,6 @@
               ></path>
             </svg>
             <h6 class="footer_nav_name">Home</h6>
-
           </router-link>
         </li>
 
@@ -263,7 +314,10 @@
     >
       <div v-show="show_footer_nav" class="__footer_menu" id="__footer_menu">
         <div class="__header">
-          <li @click="category_show = true" :class="{ active: category_show==true }">
+          <li
+            @click="category_show = true"
+            :class="{ active: category_show == true }"
+          >
             Category
           </li>
           <li @click="show_footer_nav = !show_footer_nav">
@@ -282,14 +336,11 @@
         </div>
 
         <div class="__footer_mneu_body">
-
           <ul class="__footer_category">
             <li
-
               v-for="(category, c_index) in categories"
               :key="c_index"
               class="__footer_category_item"
-
             >
               <router-link
                 :to="{
@@ -313,7 +364,6 @@
                 <li
                   v-for="(sub_category, s_index) in category.sub_category"
                   :key="s_index"
-
                 >
                   <router-link
                     :to="{
@@ -338,9 +388,8 @@
                     v-if="sub_category.sub_sub_category.length > 0"
                   >
                     <li
-                      v-for="(
-                        sub_sub_category, index
-                      ) in sub_category.sub_sub_category"
+                      v-for="(sub_sub_category,
+                      index) in sub_category.sub_sub_category"
                       :key="index"
                     >
                       <router-link
@@ -361,7 +410,6 @@
             </li>
           </ul>
         </div>
-
       </div>
     </transition>
 
@@ -385,36 +433,36 @@ export default {
       category_show: false,
       show_footer_nav: false,
       show_footer_cart: false,
-      email:''
+      email: "",
     };
   },
   methods: {
-
-    subscribe(){
-         this.axios.post('add/subscriber',{
-             email: this.email ,
-         })
-         .then((resp)=>{
-           console.log(resp);
-            if (resp.data.success == "OK") {
+    subscribe() {
+      this.axios
+        .post("add/subscriber", {
+          email: this.email,
+        })
+        .then((resp) => {
+          console.log(resp);
+          if (resp.data.success == "OK") {
             this.email = "";
             this.$toast.open({
               message: resp.data.message,
               type: "success",
               position: "bottom",
               duration: 3000,
-           });
+            });
           } else {
             this.email = "";
-             this.$toast.open({
+            this.$toast.open({
               message: resp.data.message,
               type: "warning",
               position: "bottom",
               duration: 3000,
-           });
+            });
           }
-         })
-      },
+        });
+    },
 
     hideShowMenu() {
       document.getElementById("__nav").classList.toggle("__show_menu");
@@ -475,265 +523,237 @@ export default {
 };
 </script>
 
-
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .foooter {
-    background: #eee;
-    padding: 20px;
+  background: #eee;
+  padding: 20px;
 }
 
+.fpart-first {
+  background-color: #eee;
+}
 
+.fpart-first {
+  padding-top: 50px;
+  padding-bottom: 10px;
+}
 
+.fpart-second {
+  color: #000;
+  background-color: #eee;
+}
 
-   .fpart-first {
-        background-color: #eee;
-    }
+h5 {
+  color: #000;
+}
 
-   .fpart-first {
-        padding-top: 50px;
-        padding-bottom: 10px;
-    }
+.fpart-first a {
+  color: #000;
+}
 
-   .fpart-second {
-        color: #000;
-        background-color: #eee;
-    }
+.short_desc {
+  color: #000;
+  font-size: 14px;
+  line-height: 24px;
+}
 
-   h5 {
-        color: #000;
-    }
+.payment-card {
+  padding-top: 20px;
+}
 
+.payment-card img {
+  width: 100%;
+  height: auto;
+}
 
-   .fpart-first a {
-        color: #000;
-    }
+.quick_link_container {
+  display: flex;
+}
 
+.quick_link {
+  margin: 0px 25px;
+}
 
-    .short_desc {
-      color: #000;
-      font-size: 14px;
-      line-height: 24px;
-    }
+.link_line li {
+  padding: 6px 0px;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  display: -webkit-flex;
+  display: flex;
+  transition: all 0.2s ease;
+}
 
-    .payment-card {
-      padding-top: 20px;
-    }
+.link_line li:hover {
+  background-color: #2a2b2b;
+  padding-left: 0.275rem;
+}
 
-    .payment-card img {
-      width:100% ;
-      height: auto ;
-    }
+.line {
+  width: 72px;
+  height: 2px;
+  background: #199eff;
+  margin-top: -10px;
+  margin-bottom: 12px;
+}
 
+.subscribe_container {
+  display: flex;
+  box-shadow: 0 1pt 12pt rgb(150 165 237);
+  padding: 10px 0px;
+  margin-bottom: 10px;
+}
 
-    .quick_link_container {
-        display: flex;
-      }
+.s_form {
+  width: 400px;
+  padding: 10px;
+  margin-top: 22px;
+}
 
+.email_btn {
+  width: 62px;
+  height: 44px;
+  background: #199eff;
+  margin-top: -44px;
+  border: none;
+  float: right;
+  border-radius: 0px 10px 10px 0px;
+}
 
-    .quick_link {
-        margin: 0px 25px;
-      }
+.email_btn i {
+  color: #fff;
+  font-size: 26px;
+}
 
+.social_container {
+  display: flex;
+  margin: 10px 0px;
+  box-shadow: 0 1pt 12pt rgb(150 165 237);
+  padding: 5px 0px;
+}
 
+.social-icon {
+  margin: 10px;
+}
 
-    .link_line li{
-        padding: 6px 0px;
-        width: 100%;
-        border-bottom: 1px solid #ddd;
-        display: -webkit-flex;
-        display: flex;
-        transition: all .2s ease;
-    }
+.social-wrape {
+  float: left;
+  width: 40px;
+  height: 40px;
+  border: 1.5px dashed;
+  border-radius: 50%;
+  margin-left: 10px;
+  background: #199eff;
+}
 
-    .link_line li:hover {
-        background-color: #2a2b2b;
-        padding-left: 0.275rem;
-    }
+.social-wrape:hover {
+  background: #199eff;
+}
 
+.social-wrape:hover > i {
+  color: #fff;
+}
 
-    .line {
-      width: 72px;
-      height: 2px;
-      background: #199EFF;
-      margin-top: -10px;
-      margin-bottom: 12px;
-    }
+.f-icon {
+  font-size: 26px;
+  cursor: pointer;
+  color: #fff;
+  position: absolute;
+  margin: 6px 6px;
+}
 
-    .subscribe_container{
-      display: flex;
-      box-shadow: 0 1pt 12pt rgb(150 165 237);
-      padding: 10px 0px;
-      margin-bottom: 10px;
-    }
+.end_footer {
+  display: flex;
+  background: #199eff;
+  height: 50px;
+  width: 100%;
+}
 
-    .s_form {
-      width: 400px;
-      padding:10px;
-      margin-top: 22px;
-    }
+.f_info_left {
+  margin-left: 70px !important;
+  color: #fff;
+  margin-top: 10px;
+  margin-left: 5px;
+  font-family: serif;
+  font-size: 16px;
+}
 
-  .email_btn {
-      width: 62px;
-      height: 44px;
-      background: #199EFF;
-      margin-top: -44px;
-      border: none;
-      float: right;
-      border-radius: 0px 10px 10px 0px;
+.f_info_right {
+  float: right;
+  color: #fff;
+  margin-top: 10px;
+  margin-left: 120px;
+  font-size: 16px;
+  font-family: serif;
+  margin-right: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .s_form {
+    width: 330px;
   }
 
-    .email_btn i
-    {
-        color: #fff;
-        font-size: 26px;
-    }
+  .social-wrape {
+    margin-left: 12px;
+    margin-top: 10px;
+  }
 
-    .social_container{
-      display: flex;
-      margin: 10px 0px;
-      box-shadow: 0 1pt 12pt rgb(150 165 237);
-      padding: 5px 0px;
-    }
+  .social_container {
+    margin: 60px 0px;
+  }
 
-    .social-icon {
-      margin: 10px;
-    }
+  .social-icon {
+    margin: 45% 20%;
+    position: absolute;
+  }
 
-    .social-wrape {
-          float: left;
-          width: 40px;
-          height: 40px;
-          border: 1.5px dashed;
-          border-radius: 50%;
-          margin-left: 10px;
-          background: #199EFF;
-    }
+  .end_footer {
+    display: none;
+  }
 
-    .social-wrape:hover {
-      background: #199EFF;
-    }
+  .short_desc {
+    margin-left: -20px;
+    padding: 5px;
+  }
 
-    .social-wrape:hover > i {
-      color: #fff ;
-    }
+  .news_letter {
+    padding: 0px 20px;
+  }
 
+  .payment-card {
+    padding-top: 20px;
+    margin-top: -20px;
+    margin-bottom: 35px;
+  }
+  .__footer_nav {
+    height: 4.5rem;
+  }
 
-    .f-icon {
-        font-size: 26px;
-        cursor: pointer;
-        color: #fff;
-        position: absolute;
-        margin: 6px 6px;
-    }
+  .footer_nav_name {
+    margin-left: -6px;
+    font-size: 14px;
+    margin-top: -2px;
+  }
 
+  .footer_nav_category {
+    margin-left: -15px;
+    font-size: 14px;
+    margin-top: -2px;
+  }
 
-    .end_footer {
-      display: flex;
-      background: #199EFF;
-      height: 50px;
-      width: 100%;
-    }
+  .footer_nav_cart {
+    margin-left: 0px;
+    font-size: 14px;
+    margin-top: -2px;
+  }
 
-    .f_info_left {
-      margin-left: 70px !important;
-      color: #fff;
-      margin-top: 10px;
-      margin-left: 5px;
-      font-family: serif;
-      font-size: 16px;
-    }
-
-    .f_info_right {
-      float: right;
-      color: #fff;
-      margin-top: 10px;
-      margin-left: 120px;
-      font-size: 16px;
-      font-family: serif;
-      margin-right: 20px ;
-    }
-
-
-
-
-    @media only screen and (max-width:768px) {
-
-      .s_form {
-          width: 330px;
-        }
-
-      .social-wrape {
-        margin-left: 12px;
-        margin-top: 10px;
-      }
-
-      .social_container{
-        margin: 60px 0px;
-      }
-
-      .social-icon {
-        margin: 45% 20%;
-        position: absolute;
-      }
-
-      .end_footer {
-        display: none;
-      }
-
-        .short_desc {
-            margin-left: -20px;
-            padding: 5px;
-        }
-
-        .news_letter {
-          padding:0px 20px;
-        }
-
-        .payment-card {
-            padding-top: 20px;
-            margin-top: -20px;
-            margin-bottom: 35px;
-        }
-        .__footer_nav {
-          height: 4.5rem;
-        }
-
-        .footer_nav_name{
-          margin-left: -6px;
-          font-size: 14px;
-          margin-top: -2px;
-        }
-
-        .footer_nav_category{
-          margin-left: -15px;
-          font-size: 14px;
-          margin-top: -2px;
-        }
-
-        .footer_nav_cart{
-          margin-left: 0px;
-          font-size: 14px;
-          margin-top: -2px;
-        }
-
-        .item {
-          left: 48%;
-        }
-        .footer_nav_call{
-          margin-left: 0px;
-          font-size: 14px;
-          margin-top: -2px;
-        }
-
-      }
-
-
-
-
-
-
-
-
+  .item {
+    left: 48%;
+  }
+  .footer_nav_call {
+    margin-left: 0px;
+    font-size: 14px;
+    margin-top: -2px;
+  }
+}
 </style>

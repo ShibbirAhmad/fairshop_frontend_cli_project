@@ -15,7 +15,7 @@
                 />
               </router-link>
             </li>
-            <!-- Search -->
+            <!-- Search desktop -->
             <li class="__serach_box">
               <form @submit.prevent="redirectSearch">
                 <input
@@ -66,6 +66,64 @@
                   </router-link>
                 </li>
               </ul>
+            </li>
+            <!-- search Mobile -->
+            <li class="mobile_search_container">
+              <div class="mobile_search_icon" @click="showHideMobileSearch">
+                <i class="fa fa-search"></i>
+              </div>
+              <!-- searchbox mobile  -->
+              <div id="mobileSearch" class="mobile_search_box">
+                <form @submit.prevent="redirectSearch">
+                  <input
+                    type="text"
+                    @keyup="searchProducts"
+                    @input="searchProducts"
+                    placeholder="search products"
+                    class="mobile-search-box"
+                    v-model="search"
+                  />
+                  <button
+                    type="button"
+                    @click="redirectSearch"
+                    style="background: #199eff; color: #fff"
+                    class="btn height-42 py-2 px-3 rounded-right-pill m_search_icon"
+                  >
+                    <i class="fa fa-search"></i>
+                  </button>
+                </form>
+                <!-- Realtime Search result -->
+                <ul class="search_result" v-if="search">
+                  <li
+                    v-for="product in search_products"
+                    :key="product.id"
+                    style="border-bottom:solid 1px #cbd5e1"
+                  >
+                    <router-link
+                      :to="{
+                        name: 'single_product',
+                        params: { slug: product.slug },
+                      }"
+                      class="d-flex"
+                    >
+                      <!-- Product Image -->
+                      <img
+                        class="search_img"
+                        :alt="product.thumbnail_img"
+                        :src="$imageBaseUrl2 + product.thumbnail_img"
+                      />
+                      <!-- Product details -->
+                      <div class="s_product_info">
+                        <h4 class="s_product_name">{{ product.name }}</h4>
+                        <div class="s_price">
+                          <p>৳ {{ product.sale_price }}</p>
+                          <p class="previous_price">৳ {{ product.price }}</p>
+                        </div>
+                      </div>
+                    </router-link>
+                  </li>
+                </ul>
+              </div>
             </li>
             <!-- User Account -->
             <li class="__user_account pointer">
@@ -323,6 +381,9 @@ export default {
     };
   },
   methods: {
+    showHideMobileSearch(){
+      document.getElementById("mobileSearch").classList.toggle("show_mobile_search_box");
+    },
     showMenu() {
       document.getElementById("__category-menu").style.display = "block";
     },
