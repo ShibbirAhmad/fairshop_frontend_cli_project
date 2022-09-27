@@ -39,7 +39,7 @@ axios.defaults.baseURL = 'https://app.fairshop.com.bd/api/_data/';
 axios.defaults.headers.common['API_TOKEN'] = "$2y$10$kzaYH2t9fgVMoyqKMWF7POjD45cilj";
 
 Vue.prototype.$axios = axios;
-Vue.prototype.$apiHeader = { 
+Vue.prototype.$apiHeader = {
     "Content-Type": "application/Json",
 };
 

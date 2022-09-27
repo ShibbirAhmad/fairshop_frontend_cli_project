@@ -92,7 +92,7 @@
                 <div id="priceSection">
                   <div class="d-flex align-items-baseline">
                     <ins class="font-size-36 text-decoration-none">
-                      ৳<span id="oprice">{{ product.discount }}</span>
+                      ৳<span id="oprice">{{ product.sale_price }}</span>
                     </ins>
                     <del class="font-size-20 ml-2 text-gray-6">
                       ৳{{ product.price }}
@@ -152,7 +152,7 @@
                               <div class="col-auto pr-1">
                                 <a
                                   type="button"
-                                  @click.prevent="qtyChange(-1)"
+                                  @click.prevent="decrementQty()"
                                   class="
                                     js-minus
                                     btn btn-icon btn-xs btn-outline-secondary
@@ -189,7 +189,7 @@
                                     rounded-circle
                                     border-0
                                   "
-                                  @click.prevent="qtyChange(+1)"
+                                  @click.prevent="incrementQty()"
                                 >
                                   <i class="fa fa-plus"></i>
                                 </a>
@@ -500,23 +500,18 @@ export default {
         });
     },
 
-    qtyChange(type) {
-      if (parseInt(this.product.stock) <= 0) {
-        this.$toast.open({
-          message: `${this.product.name} - Stock Out`,
-          type: "warning",
-          position: "bottom",
-          duration: 3000,
-        });
-        this.qty = this.product.stock;
-        return;
-      }
-      if (type < 0) {
-        this.qty -= 1;
-      } else {
-        this.qty += 1;
-      }
+    decrementQty() {
+        this.cart.qty -= 1;
     },
+
+    incrementQty() {
+        this.cart.qty += 1;
+        if (this.cart.qty < 1) {
+          this.$toastr.e("quantity can't be less then one ");
+           this.cart.qty = 1;
+        }
+    },
+
 
     async addToCart(product, type) {
       if (product.product_variant.length > 0 && this.cart.variant_id == "") {
@@ -602,16 +597,7 @@ export default {
         this.qty = 1;
         return;
       }
-      if (parseInt(value) > parseInt(this.product.stock)) {
-        this.$toast.open({
-          message: `Maximum quantity ${this.product.stock}`,
-          type: "warning",
-          position: "bottom",
-          duration: 3000,
-        });
-        this.qty = this.product.stock;
-        return;
-      }
+
     },
   },
   computed: {
