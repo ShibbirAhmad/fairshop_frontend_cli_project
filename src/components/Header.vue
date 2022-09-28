@@ -125,8 +125,7 @@
                 </ul>
               </div>
             </li>
-            <!-- User Account -->
-            <li class="__user_account pointer">
+            <div class="icon_container"><li class="__user_account pointer">
               <a
                 v-if="Object.keys($store.state.user).length <= 0"
                 title="user login "
@@ -206,7 +205,9 @@
                   <h4>01762424333</h4>
                 </div>
               </div>
-            </li>
+            </li></div>
+            <!-- User Account -->
+            
           </ul>
         </div>
       </div>
@@ -563,9 +564,7 @@ export default {
   padding: 0px 10px;
   color: #189eff;
 }
-.__user_account a {
-  color: #189eff !important;
-}
+
 .tacking_link {
   padding: 0px 25px;
   position: absolute;

@@ -52,6 +52,14 @@
   width: 100%;
   display: none;
 }
+.__user_account a {
+  color: #189eff !important;
+}
+.icon_container{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 .show_mobile_search_box{
   display: block;
 }
@@ -107,9 +115,8 @@ price_input input::-webkit-inner-spin-button {
   float: left;
   padding: 4px 6px;
   list-style-type: none;
-  background: #d1ecff;
   margin: 0px 5px;
-  box-shadow: 0px 3px 5px -3px rgba(0, 0, 0, 0.1);
+  
 }
 
 .adtocrtphn {
@@ -118,6 +125,9 @@ price_input input::-webkit-inner-spin-button {
   border: none;
   color: #fff;
   margin-right: 6px;
+}
+.place_order_btn{
+  padding: 12px 56px;
 }
 
 
@@ -128,8 +138,11 @@ price_input input::-webkit-inner-spin-button {
 .landing_sub_c_list li a {
   color: #000;
   font-family: sans-serif;
-  font-size: 16px;
-  text-transform: uppercase;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+.landing_sub_c_list li a:hover{
+  color: #199eff;
 }
 
 p {
@@ -137,7 +150,7 @@ p {
 }
 
 #content {
-  margin-top: 35px;
+  margin-top: 21px;
 }
 
 /* header  */
@@ -222,8 +235,8 @@ p {
 }
 
 #user_account_d {
-  height: 30px !important;
-  width: 30px !important;
+  height: 24px !important;
+  width: 24px !important;
 }
 
 .tacking_link {
@@ -412,6 +425,9 @@ p {
   .order-large-device {
     display: none;
   }
+  .product_details_row {
+    margin-top: 158px !important;
+  }
 
   .order-small-device {
     display: block !important;
@@ -513,9 +529,7 @@ p {
   .sort_filter-box {
     flex-direction: column;
   }
-  .product_details_row {
-    margin-top: 90px !important;
-  }
+
   .right_side_of_slider {
     display: none;
   }
@@ -845,9 +859,6 @@ ul.user-account-link-drop-down-link a:hover {
   display: block !important;
 }
 
-.slider-img {
-  border-radius: 10px;
-}
 
 /* .section-title {
     font-weight: 600 !important;
@@ -1085,7 +1096,7 @@ ul.__cart-product-list li img {
 
   .cart_buy_container {
     display: flex;
-    margin-top: 50px;
+    margin-top: 94px;
   }
 
   .tacking_link_btn {
@@ -1187,7 +1198,7 @@ img.responsive-image.preview-box {
 
 .thumnail_img-box {
   display: flex;
-  max-height: 70px;
+  max-height: 80px;
   max-width: 400px;
   margin-top: 20px;
   overflow-y: auto;
@@ -1196,14 +1207,13 @@ img.responsive-image.preview-box {
 }
 
 .thumnail_img-box img {
-  max-width: 10%;
+  max-width: 16%;
   max-height: 100%;
   border-radius: 5px;
   margin-right: 10px;
 }
 
 .thumnail_img-box {
-  max-height: 45px;
   margin-top: 5px;
   margin-bottom: 0;
 }
@@ -1263,6 +1273,9 @@ td.__qty_cart_product a:hover {
 @media only screen and (max-width: 600px) {
   div#notfound {
     width: 90% !important;
+  }
+  .cart-icon{
+    display: none;
   }
   .__hide_resp {
     display: none !important;
@@ -1405,12 +1418,60 @@ ul.list-unstyled.mb-0.view-all.__category_list_sidebar {
 
 .advertise_banner_1 {
   width: 98%;
-  max-height: 100px;
+  max-height: 160px;
 }
 
 .advertise_banner_2 {
   width: 98%;
-  max-height: 100px;
+  max-height: 160px;
+}
+.product_title{
+  font-size: 24px;
+  font-weight: bold !important;
+}
+.code_price-section{
+  display: flex;
+  flex-direction: column;
+  gap: 6px 0;
+}
+.quantity_counter{
+  display: flex;
+}
+
+.in_dic_btn{
+  font-size: 18px;
+  font-weight: bold;
+  padding: 6px 12px;
+  color: #fff;
+  background-color: rgb(25, 158, 255);
+}
+.in_dic_btn-checkout{
+  font-size: 18px;
+  font-weight: bold;
+  padding: 2px 12px;
+  color: #fff;
+  background-color: rgb(25, 158, 255);
+}
+.quantity_input input{
+  width: 48px;
+  height: 100%;
+  text-align: center;
+  font-size: 24px;
+  border: solid 2px rgb(25, 158, 255);
+}
+.quantity_input-checkout input{
+  width: 48px;
+  height: 100%;
+  text-align: center;
+  font-size: 14px;
+  border: solid 2px rgb(25, 158, 255);
+}
+
+
+.price_box{
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .search_result {
@@ -1516,6 +1577,9 @@ ul.__category_list_sidebar {
   .width-20 {
     width: 33.33%;
   }
+  .adtocrtphn{
+    width: 50% !important;
+  }
   .call_us-box {
     display: none;
   }
@@ -1537,7 +1601,6 @@ ul.__category_list_sidebar {
   .category-icon {
     width: 100px;
     height: 120px;
-    padding: 3px 20px;
     margin-top: 10px;
   }
 

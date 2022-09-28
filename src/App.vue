@@ -60,7 +60,8 @@ export default {
 @import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap");
-/* @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"); */
+/* @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"); 
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css");*/
 
 .v-toast__item .v-toast__text {
   color: #fff !important;

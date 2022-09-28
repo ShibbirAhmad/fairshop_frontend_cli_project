@@ -1,4 +1,3 @@
-
 <template>
   <main id="content" role="main" class="checkout-page height">
     <div class="container">
@@ -108,11 +107,12 @@
                       />
                     </div>
 
+                    <!-- city -->
                     <div class="col-md-12">
                       <!-- Input -->
                       <div class="js-form-message mt-3 mb-6">
                         <label class="form-label">
-                          Select City
+                          Select City (Zilla)
                           <span class="text-danger">*</span>
                         </label>
 
@@ -138,11 +138,13 @@
                         </select>
                       </div>
                     </div>
+
+                    <!-- post office -->
                     <div class="col-md-12" v-if="form.city_id">
                       <!-- Input -->
                       <div class="js-form-message mt-3 mb-6">
                         <label class="form-label">
-                          Select Sub City
+                          Select Sub City (Thana)
                           <span class="text-danger">*</span>
                         </label>
 
@@ -166,6 +168,7 @@
                       </div>
                     </div>
 
+                    <!-- address -->
                     <div class="col-md-12">
                       <!-- Input -->
                       <div class="js-form-message mb-6">
@@ -232,6 +235,32 @@
                                     {{ item.qty }}</strong
                                   >
                                 </span>
+
+                                <div class="quantity_counter">
+                                  <div class="in_dic_btn-checkout">
+                                    <a
+                                      type="button"
+                                      @click.prevent="decrementQty()"
+                                      >-</a
+                                    >
+                                  </div>
+                                  <div class="quantity_input-checkout">
+                                    <input
+                                      class="js-result"
+                                      min="1"
+                                      id="quantity"
+                                      type="text"
+                                      v-model="item.qty"
+                                    />
+                                  </div>
+                                  <div class="in_dic_btn-checkout">
+                                    <a
+                                      type="button"
+                                      @click.prevent="incrementQty()"
+                                      >+</a
+                                    >
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </td>
@@ -240,9 +269,10 @@
                               >৳
                               {{
                                 parseFloat(item.qty) *
-                                parseFloat(item.product.sale_price)
+                                  parseFloat(item.product.sale_price)
                               }}</span
                             >
+
                             <br />
                             <!-- <span><b>Shipping:</b> ৳ {60}</span> -->
                           </td>
@@ -274,7 +304,7 @@
                               >৳
                               <span id="final">{{
                                 parseFloat(form.total) +
-                                parseFloat(form.shipping_cost)
+                                  parseFloat(form.shipping_cost)
                               }}</span></strong
                             >
                           </td>
@@ -316,7 +346,7 @@
                     <div class="col d-flex justify-content-center">
                       <button
                         type="submit"
-                        class="btn btn-primary btn-sm ml-3"
+                        class="btn btn-primary place_order_btn"
                         :disabled="form.busy"
                       >
                         <div
@@ -390,7 +420,7 @@ export default {
         this.$axios
           .get("get/city-wise/sub-cities/" + this.form.city_id)
           .then((resp) => {
-         //   console.log(resp);
+            //   console.log(resp);
             if (resp.data.sub_cities.length) {
               if (this.sub_cities.length > 0) {
                 this.sub_cities = "";
@@ -416,11 +446,11 @@ export default {
     async checkout() {
       if (this.validation() == false) {
         await this.form
-          .post("checkout/order", this.$objectToFD(this.form),{
-             headers: this.$apiHeader,
+          .post("checkout/order", this.$objectToFD(this.form), {
+            headers: this.$apiHeader,
           })
           .then((resp) => {
-           // console.log(resp);
+            // console.log(resp);
             if (resp.data.success == true) {
               this.$toastr.s(resp.data.message);
               this.$store.dispatch("cart");
@@ -484,7 +514,7 @@ export default {
     },
   },
   watch: {
-    loading: function (value) {
+    loading: function(value) {
       if (value == false) {
         this.form.total = this.$store.state.cart.cart_total;
       }

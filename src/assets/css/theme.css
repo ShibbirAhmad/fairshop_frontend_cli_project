@@ -6505,6 +6505,9 @@ input[type="button"].btn-block {
 .input-group-append {
   margin-left: -1px;
 }
+.__product_details {
+  margin-top: 10px;
+}
 
 .input-group-text {
   display: -ms-flexbox;
@@ -43520,7 +43523,6 @@ a.nav-link.u-header__sub-menu-nav-link {
 
   #tocart {
     position: absolute;
-    right: 4%;
     top: 240px;
   }
 
@@ -43813,7 +43815,7 @@ img.img-fluid.site_logo {
 }
 
 input.search-box {
-  width: 500px;
+  width: 300px;
   padding: 10px 20px;
   background: #f0f5f5;
   border: 1px solid #199eff;
@@ -44276,7 +44278,7 @@ ul.__nav_resp_menu {
 
 @media only screen and (min-width: 1380px) {
   input.search-box {
-    width: 700px;
+    width: 346px;
   }
 }
 

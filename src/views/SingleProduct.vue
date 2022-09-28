@@ -54,55 +54,65 @@
 
           <div class="snglepdt col-md-12 col-lg-6 mb-lg-0">
             <div class="mb-2">
+              <!-- product title -->
               <div class="border-bottom pb-md-1">
-                <h2 class="font-size-25 text-lh-1dot2 font-weight-600">
+                <h2 class="product_title">
                   {{ product.name }}
                 </h2>
                 <div class="d-md-flex align-items-center"></div>
               </div>
 
-              <div class="skustk">
-                <div class="skusct">
-                  <strong>Code </strong>: {{ product.product_code }}
-                </div>
-                <!-- <div class="text-gray-9 font-size-1rem">
-                  Availability:
-                  <span
-                    v-if="product.stock > 0"
-                    class="text-green font-weight-bold"
-                    >In Stock
-                  </span>
-                  <span v-else class="text-danger font-weight-bold"
-                    >Out Of Stock
-                  </span>
-                </div> -->
-              </div>
-              <div class="priceall">
-                <div class="pricepn">
-                  <div class="d-flex align-items-baseline">
-                    <ins class="font-size-36 text-decoration-none"
-                      ><span id="atrSec" style="display: none">৳</span>
-                      <span id="aprice"></span
-                    ></ins>
-                    <del class="font-size-20 ml-2 text-gray-6">
-                      <span id="ofprice"></span
-                    ></del>
+              <!-- product code and price section -->
+              <div class="code_price-section">
+                <!-- product code -->
+                <div class="skustk">
+                  <div class="skusct">
+                    <strong>Code </strong>: {{ product.product_code }}
                   </div>
+                  <!-- <div class="text-gray-9 font-size-1rem">
+                    Availability:
+                    <span
+                      v-if="product.stock > 0"
+                      class="text-green font-weight-bold"
+                      >In Stock
+                    </span>
+                    <span v-else class="text-danger font-weight-bold"
+                      >Out Of Stock
+                    </span>
+                  </div> -->
                 </div>
-                <div id="priceSection">
-                  <div class="d-flex align-items-baseline">
-                    <ins class="font-size-36 text-decoration-none">
-                      ৳<span id="oprice">{{ product.sale_price }}</span>
-                    </ins>
-                    <del class="font-size-20 ml-2 text-gray-6">
-                      ৳{{ product.price }}
-                    </del>
+
+                <!-- product price -->
+                <div class="priceall">
+                  <div class="pricepn">
+                    <div class="d-flex align-items-baseline">
+                      <ins class="font-size-36 text-decoration-none"
+                        ><span id="atrSec" style="display: none">৳</span>
+                        <span id="aprice"></span
+                      ></ins>
+                      <del class="font-size-20 ml-2 text-gray-6">
+                        <span id="ofprice"></span
+                      ></del>
+                    </div>
+                  </div>
+                  <div id="priceSection">
+                    <div class=" price_box">
+                      <h3 style="margin:0;font-size:24px">Price:</h3>
+                      <ins class="font-size-24 text-decoration-none">
+                        ৳<span id="oprice">{{ product.sale_price }}</span>
+                      </ins>
+                      <del class="font-size-20 ml-2 text-gray-6">
+                        ৳{{ product.price }}
+                      </del>
+                    </div>
                   </div>
                 </div>
               </div>
 
+              <!-- product size and quantity -->
               <div class="border-top">
                 <div>
+                  <!-- product size and color -->
                   <h4
                     v-if="product.product_variant && product.product_attribute"
                   >
@@ -138,29 +148,49 @@
                     </div>
                   </div>
 
+                  <!-- product quantity -->
                   <div class="addtobtn align-items-end mb-3">
                     <div class="max-width-300 mb-4 mb-md-0">
-                      <div class="row">
+                      <div class="row align-items-center">
                         <div class="col-md-6 col-xs-6">
-                          <h4 for="quantity">Quantity</h4>
+                          <h4 for="quantity" style="margin:0">Quantity</h4>
                         </div>
-                        <div class="col-xl-6 col-md-6 col-xs-6">
-                          <div
-                            class="qntt rounded-pill py-2 px-3 border-color-1"
-                          >
+
+                        <!-- new increment decrement button -->
+                        <div class="quantity_counter">
+                          <div class="in_dic_btn">
+                            <a type="button" @click.prevent="decrementQty()"
+                              >-</a
+                            >
+                          </div>
+                          <div class="quantity_input">
+                            <input
+                              class="js-result"
+                              min="1"
+                              id="quantity"
+                              type="text"
+                              v-model="cart.qty"
+                            />
+                          </div>
+                          <div class="in_dic_btn">
+                            <a type="button" @click.prevent="incrementQty()"
+                              >+</a
+                            >
+                          </div>
+                        </div>
+                        <!-- <div class="col-xl-6 col-md-6 col-xs-6">
+                          <div class="quantity_box border-color-1">
                             <div class="js-quantity row align-items-center">
-                              <div class="col-auto pr-1">
+                              <div class="">
                                 <a
                                   type="button"
                                   @click.prevent="decrementQty()"
                                   class="
                                     js-minus
-                                    btn btn-icon btn-xs btn-outline-secondary
-                                    rounded-circle
                                     border-0
                                   "
                                 >
-                                  <i class="fa fa-minus"></i>
+                                  -
                                 </a>
                               </div>
                               <div class="qnttInput col ml-2">
@@ -180,23 +210,21 @@
                                   v-model="cart.qty"
                                 />
                               </div>
-                              <div class="col-auto pr-1">
+                              <div class="">
                                 <a
                                   type="button"
                                   class="
                                     js-plus
-                                    btn btn-icon btn-xs btn-outline-secondary
-                                    rounded-circle
                                     border-0
                                   "
                                   @click.prevent="incrementQty()"
                                 >
-                                  <i class="fa fa-plus"></i>
+                                  +
                                 </a>
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                     <br />
@@ -223,7 +251,7 @@
                         </button>
                       </div>
 
-
+                      <!-- other information's -->
                       <div>
                         <div class="order_now_container">
                           <p>
@@ -501,17 +529,16 @@ export default {
     },
 
     decrementQty() {
-        this.cart.qty -= 1;
+      this.cart.qty -= 1;
     },
 
     incrementQty() {
-        this.cart.qty += 1;
-        if (this.cart.qty < 1) {
-          this.$toastr.e("quantity can't be less then one ");
-           this.cart.qty = 1;
-        }
+      this.cart.qty += 1;
+      if (this.cart.qty < 1) {
+        this.$toastr.e("quantity can't be less then one ");
+        this.cart.qty = 1;
+      }
     },
-
 
     async addToCart(product, type) {
       if (product.product_variant.length > 0 && this.cart.variant_id == "") {
@@ -597,7 +624,6 @@ export default {
         this.qty = 1;
         return;
       }
-
     },
   },
   computed: {
