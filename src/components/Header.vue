@@ -42,11 +42,8 @@
                   :key="product.id"
                   style="border-bottom:solid 1px #cbd5e1"
                 >
-                  <router-link
-                    :to="{
-                      name: 'single_product',
-                      params: { slug: product.slug },
-                    }"
+                  <a
+                    :href="'/product/'+product.slug"
                     class="d-flex"
                   >
                     <!-- Product Image -->
@@ -63,7 +60,7 @@
                         <p class="previous_price">৳ {{ product.price }}</p>
                       </div>
                     </div>
-                  </router-link>
+                  </a>
                 </li>
               </ul>
             </li>
@@ -207,7 +204,7 @@
               </div>
             </li></div>
             <!-- User Account -->
-            
+
           </ul>
         </div>
       </div>
@@ -248,10 +245,10 @@
                 </router-link>
                 <i
               v-if="category.sub_category.length > 0"
-              class="fa fa-angle-down" 
+              class="fa fa-angle-down"
               @click="nextElement"
             ></i>
-            
+
                 <!-- Sub Category -->
                 <ul class="__c_sub" v-if="category.sub_category.length > 0">
                   <li

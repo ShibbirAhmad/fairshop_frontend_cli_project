@@ -240,7 +240,7 @@
                                   <div class="in_dic_btn-checkout">
                                     <a
                                       type="button"
-                                      @click.prevent="decrementQty()"
+                                      @click.prevent="updateQuantity(item, 0)"
                                       >-</a
                                     >
                                   </div>
@@ -256,7 +256,7 @@
                                   <div class="in_dic_btn-checkout">
                                     <a
                                       type="button"
-                                      @click.prevent="incrementQty()"
+                                      @click.prevent="updateQuantity(item, 1)"
                                       >+</a
                                     >
                                   </div>
@@ -398,50 +398,6 @@ export default {
     this.$store.dispatch("cart");
   },
   methods: {
-    getCities() {
-      this.$axios
-        .get("get/cities", {
-          headers: this.$apiHeader,
-        })
-        .then((resp) => {
-          this.cities = resp.data.cities;
-          this.loading = false;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-
-    subCity() {
-      if (this.form.city_id) {
-        let city = this.cities.find((ele) => ele.id == this.form.city_id);
-        this.form.shipping_cost = city.delivery_charge;
-
-        this.$axios
-          .get("get/city-wise/sub-cities/" + this.form.city_id)
-          .then((resp) => {
-            //   console.log(resp);
-            if (resp.data.sub_cities.length) {
-              if (this.sub_cities.length > 0) {
-                this.sub_cities = "";
-              }
-              if (this.form.sub_city_id) {
-                this.form.sub_city_id = "";
-              }
-              this.sub_cities = resp.data.sub_cities;
-            } else {
-              this.form.sub_city_id = "";
-              this.sub_cities = "";
-              this.$toast.open({
-                message: "No sub-city found  of selected city",
-                type: "info",
-                position: "bottom",
-                duration: 4000,
-              });
-            }
-          });
-      }
-    },
 
     async checkout() {
       if (this.validation() == false) {
@@ -506,6 +462,102 @@ export default {
         duration: 3000,
       });
     },
+
+
+      getCities() {
+      this.$axios
+        .get("get/cities", {
+          headers: this.$apiHeader,
+        })
+        .then((resp) => {
+          this.cities = resp.data.cities;
+          this.loading = false;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    subCity() {
+      if (this.form.city_id) {
+        let city = this.cities.find((ele) => ele.id == this.form.city_id);
+        this.form.shipping_cost = city.delivery_charge;
+
+        this.$axios
+          .get("get/city-wise/sub-cities/" + this.form.city_id)
+          .then((resp) => {
+            //   console.log(resp);
+            if (resp.data.sub_cities.length) {
+              if (this.sub_cities.length > 0) {
+                this.sub_cities = "";
+              }
+              if (this.form.sub_city_id) {
+                this.form.sub_city_id = "";
+              }
+              this.sub_cities = resp.data.sub_cities;
+            } else {
+              this.form.sub_city_id = "";
+              this.sub_cities = "";
+              this.$toast.open({
+                message: "No sub-city found  of selected city",
+                type: "info",
+                position: "bottom",
+                duration: 4000,
+              });
+            }
+          });
+      }
+    },
+
+   async remove_cart_item(id) {
+      await this.$axios
+        .post("cart/item/remove", {
+          headers: this.$apiHeader,
+          id: id,
+        })
+        .then((resp) => {
+       //  console.log(resp);
+          if (resp.data.success == true) {
+            this.$toastr.s(resp.data.message);
+            this.$store.dispatch("cart");
+          }
+        })
+        .catch((error) => {
+          this.$toastr.e(error.response.data.message);
+        });
+    },
+
+    async updateQuantity(item, type) {
+      if (type == 1) {
+        item.qty = parseInt(item.qty) + 1;
+      } else {
+        item.qty = parseInt(item.qty) - 1;
+      }
+      if (parseInt(item.qty) <= 0) {
+        this.$toastr.e("Quantity should be at least one");
+        item.qty = 1;
+        return;
+      }
+
+      await this.$axios
+        .post("cart/item/update", {
+          header: this.$apiHeader,
+          qty: item.qty,
+          id: item.id,
+        })
+        .then((resp) => {
+          if (resp.data.success == true) {
+            this.$toastr.s(resp.data.message);
+            this.$store.dispatch("cart");
+          }
+        })
+        .catch((error) => {
+          this.$toastr.e(error.response.data.message);
+        });
+    },
+
+
+
   },
 
   computed: {
