@@ -2,7 +2,16 @@
   margin: 0;
   padding: 0;
 }
-
+.icon_size{
+  width:16px;
+  height:16px;
+  margin-bottom: -3px;
+}
+.icon_size-big{
+  width:20px;
+  height:20px;
+  margin-bottom: -1px;
+}
 .landing_sub_c {
   display: none;
 }
@@ -750,7 +759,7 @@ html {
 
 .search_icon {
   position: absolute;
-  right: 1%;
+  right: 0%;
 }
 .m_search_icon {
   position: absolute;

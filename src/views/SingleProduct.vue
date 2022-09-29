@@ -255,11 +255,18 @@
                       <div>
                         <div class="order_now_container">
                           <p>
-                            <i class="fa fa-check"></i> Order today and receive
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon_size">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                            </svg>
+                             Order today and receive
                             it within 02 - 05 days
                           </p>
                           <p>
-                            <i class="fa fa-check"></i> 130 টাকা অগ্রিম পেমেন্ট
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="icon_size">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            
+                             130 টাকা অগ্রিম পেমেন্ট
                             করতে হবে (ঢাকার বাহিরের কাস্টমারদের জন্য )
                           </p>
                         </div>
@@ -268,12 +275,18 @@
                           <p>Have question about this product ? please call</p>
                           <h4>
                             <a href="tel:01762424333"
-                              ><i class="fa fa-phone"></i> 01762424333
+                              ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon_size-big">
+                                <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />
+                              </svg>
+                               01762424333
                             </a>
                           </h4>
                           <h4>
                             <a href="tel:01723669292"
-                              ><i class="fa fa-phone"></i> 01723669292
+                              ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon_size-big">
+                                <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />
+                              </svg>
+                              01723669292
                             </a>
                             <sup
                               style="
