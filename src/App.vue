@@ -14,54 +14,20 @@
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
 export default {
-  // created() {
-  //   this.getData();
-  // },
-  // data() {
-  //   return {
-  //     abc: "",
-  //   };
-  // },
   components: {
     Header,
     Footer,
   },
-  // methods: {
-  //   getData() {
-  //     this.$axios
-  //       .get("get/data", {
-  //         headers: this.$apiHeader,
-  //       })
-  //       .then((resp) => {
-  //      console.log('resp.data')
-  //         console.log(resp.data);
-  //         this.abc = resp.data;
-  //       });
-  //   },
-  //   storeData() {
-  //     this.$axios
-  //       .post("store/data", {
-  //         headers: this.$apiHeader,
-  //         abc: this.abc,
-  //       })
-  //       .then((resp) => {
-  //         console.log(resp);
-  //       });
-  //   },
-  // },
+
 };
 </script>
 <style>
 @import "./assets/css/theme.css";
 @import "./assets/css/customize.css";
-/* @import "./assets/css/font-electro.css";
-@import "./assets/css/font-awesome/css/fontawesome-all.min.css"; */
-
 @import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
-
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.js";
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap");
-/* @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"); 
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css");*/
+
 
 .v-toast__item .v-toast__text {
   color: #fff !important;

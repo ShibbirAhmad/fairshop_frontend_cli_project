@@ -36,7 +36,7 @@ Vue.mixin(helper);
 
 //Vue.use(axios)
 axios.defaults.baseURL = 'https://app.fairshop.com.bd/api/_data/';
-axios.defaults.headers.common['API_TOKEN'] = "$2y$10$kzaYH2t9fgVMoyqKMWF7POjD45cilj";
+axios.defaults.headers.common['x-api-key'] = "$2y$10$kzaYH2t9fgVMoyqKMWF7POjD45cilj";
 
 Vue.prototype.$axios = axios;
 Vue.prototype.$apiHeader = {

@@ -146,8 +146,8 @@
                           class="d-block"
                         >
                           <h4>
-                            {{ product.name.substring(0, 24) }}
-                            <span v-if="product.name.length > 24">.. </span>
+                            {{ product.name.substring(0, 18) }}
+                            <span v-if="product.name.length > 18">.. </span>
                           </h4>
                         </router-link>
                         <!-- product price -->
