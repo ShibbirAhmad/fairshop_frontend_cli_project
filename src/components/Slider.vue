@@ -1,27 +1,30 @@
 <template>
   <div class="mb-4">
-    <div class="container-fluid overflow-hidden">
+    <div class="container-fluid overflow-hidden" style="border-radius: 0px !important;">
       <div class="row mb-4">
         <!-- slider -->
         <!-- Slider -->
 
-        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12" style="border-radius: 0px !important;">
           <carousel
             :items="1"
             :nav="false"
             :autoplay="true"
             :autoplayTimeout="5000"
             v-if="sliders"
+            style="border-radius: 0px !important;"
           >
             <a
               v-for="(slider, i) in sliders"
               :key="i"
               :href="slider.url"
+              style="border-radius: 0px !important;"
             >
               <img
                 v-if="slider.image"
                 :src="$imageBaseUrl + slider.image"
                 class="slider-img"
+                style="border-radius: 0px !important;"
               />
             </a>
           </carousel>

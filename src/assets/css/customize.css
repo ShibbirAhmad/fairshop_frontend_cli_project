@@ -15,6 +15,21 @@
 .landing_sub_c {
   display: none;
 }
+.text_Header{
+  font-weight: bold;
+  margin: 6px 0;
+}
+
+.sub_total{
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+  font-weight: 600;
+  border-bottom:solid 1px #64748b ;
+}
+.delete_icon:hover{
+  cursor: pointer;
+}
 .social-link-facebook {
   padding: 7px;
   background: #ddd;
@@ -159,7 +174,7 @@ p {
 }
 
 #content {
-  margin-top: 21px;
+  margin-top: 16px;
 }
 
 /* header  */
@@ -388,6 +403,9 @@ p {
   font-size: 30px;
 }
 
+.padding_checkout-info{
+  padding: 20px;
+}
 /* cart page css */
 
 .floating-cart {
@@ -431,6 +449,15 @@ p {
 }
 
 @media screen and (max-width: 768px) {
+  .checkout_info{
+    gap: 6px;
+  }
+  .padding_checkout-info{
+  padding: 0px;
+}
+  .padding_none{
+    padding: 0 !important;
+  }
   .order-large-device {
     display: none;
   }
@@ -524,6 +551,11 @@ p {
 
 .__footer_nav {
   display: none;
+}
+.checkout_info{
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
 }
 @media screen and (max-width: 600px) {
   .item {
@@ -753,6 +785,9 @@ html {
   scroll-behavior: smooth;
 }
 
+.owl-carousel .owl-stage-outer{
+    border-radius: 0 !important;
+  }
 .__serach_box {
   position: relative;
 }
@@ -1446,34 +1481,64 @@ ul.list-unstyled.mb-0.view-all.__category_list_sidebar {
 .quantity_counter{
   display: flex;
 }
+.quantity_counter-checkout{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ width: 25%;
+}
 
 .in_dic_btn{
   font-size: 18px;
   font-weight: bold;
-  padding: 6px 12px;
+  padding: 0 12px;
   color: #fff;
   background-color: rgb(25, 158, 255);
+}
+.product_name{
+  font-size: 14px;
+}
+ins{
+  color:  rgb(25, 158, 255);
+}
+.place_order-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .in_dic_btn-checkout{
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
-  padding: 2px 12px;
+  text-align: center;
   color: #fff;
+  padding: 0px 6px;
   background-color: rgb(25, 158, 255);
 }
+.single_page_info-title{
+  font-size: 20px;
+  margin: 6px 0;
+}
+.size_container{
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin: 6px 0;
+}
+.quantity_counter{
+  height: 30px;
+}
 .quantity_input input{
-  width: 48px;
+  width: 96px;
   height: 100%;
   text-align: center;
   font-size: 24px;
   border: solid 2px rgb(25, 158, 255);
 }
-.quantity_input-checkout input{
-  width: 48px;
-  height: 100%;
+.quantity_input-checkout p{
+height: 24px;
   text-align: center;
   font-size: 14px;
-  border: solid 2px rgb(25, 158, 255);
+  margin-bottom: 0;
 }
 
 
@@ -1481,6 +1546,7 @@ ul.list-unstyled.mb-0.view-all.__category_list_sidebar {
   display: flex;
   align-items: center;
   gap: 6px;
+  margin-bottom:6px ;
 }
 
 .search_result {

@@ -110,8 +110,8 @@
           <!-- product container -->
           <div class="col-lg-12 col-xl-12 col-md-12">
             <div class="row">
-              <div class="col-lg-12 col-md-12">
-                <div class="row" v-if="item.products.length > 0">
+              <div class="col-lg-12 col-md-12" style="justify-content: space-between;">
+                <div class="row" style="justify-content: space-between;" v-if="item.products.length > 0">
                   <!-- product card -->
                   <div
                     class="width-20"
@@ -267,7 +267,7 @@ export default {
 }
 @media (max-width: 768px) {
   #content {
-    margin-top: 15px;
+    margin-top: 4px;
   }
   .facebook_link_btn {
     display: none;
