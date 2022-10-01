@@ -64,7 +64,7 @@
                           <span
                             >৳<del>{{ product.price }}</del></span
                           >
-                           ৳{{ product.price }}
+                           ৳{{ product.sale_price }}
                         </p>
                       </div>
                       <!-- order Now Button -->

@@ -96,8 +96,8 @@
                     </div>
                   </div>
                   <div id="priceSection">
-                    <div class=" price_box">
-                      <h3 style="margin:0;font-size:24px">Price:</h3>
+                    <div class="price_box">
+                      <h3 style="margin: 0; font-size: 24px">Price:</h3>
                       <ins class="font-size-24 text-decoration-none">
                         ৳<span id="oprice">{{ product.sale_price }}</span>
                       </ins>
@@ -153,10 +153,12 @@
                     <div class="max-width-300 mb-4 mb-md-0">
                       <div class="row align-items-center">
                         <div class="col-md-6 col-xs-6">
-                          <h4 for="quantity" style="margin:0">Quantity</h4>
+                          <h4 for="quantity" style="margin: 0">Quantity</h4>
                         </div>
 
-                        <!-- new increment decrement button -->
+                        <div class="col-md-6 col-xs-6">
+
+     <!-- new increment decrement button -->
                         <div class="quantity_counter">
                           <div class="in_dic_btn">
                             <a type="button" @click.prevent="decrementQty()"
@@ -173,58 +175,12 @@
                             />
                           </div>
                           <div class="in_dic_btn">
-                            <a type="button" @click.prevent="incrementQty()"
-                              >+</a
-                            >
+                            <a type="button" @click.prevent="cart.qty++">+</a>
                           </div>
                         </div>
-                        <!-- <div class="col-xl-6 col-md-6 col-xs-6">
-                          <div class="quantity_box border-color-1">
-                            <div class="js-quantity row align-items-center">
-                              <div class="">
-                                <a
-                                  type="button"
-                                  @click.prevent="decrementQty()"
-                                  class="
-                                    js-minus
-                                    border-0
-                                  "
-                                >
-                                  -
-                                </a>
-                              </div>
-                              <div class="qnttInput col ml-2">
-                                <input
-                                  class="
-                                    js-result
-                                    form-control
-                                    h-auto
-                                    border-0
-                                    rounded
-                                    p-0
-                                    shadow-none
-                                  "
-                                  min="1"
-                                  id="quantity"
-                                  type="text"
-                                  v-model="cart.qty"
-                                />
-                              </div>
-                              <div class="">
-                                <a
-                                  type="button"
-                                  class="
-                                    js-plus
-                                    border-0
-                                  "
-                                  @click.prevent="incrementQty()"
-                                >
-                                  +
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </div> -->
+                        </div>
+
+
                       </div>
                     </div>
                     <br />
@@ -233,7 +189,7 @@
                       <div style="display: flex" class="cart_buy_container">
                         <!-- Buy Now Button -->
                         <button
-                          style="background-color:#199eff"
+                          style="background-color: #199eff"
                           @click.prevent="addToCart(product, 2)"
                           class="adtocrtphn c-primary"
                         >
@@ -242,7 +198,7 @@
 
                         <!-- Add to cart Button -->
                         <button
-                          style="background-color:#0d4f80; margin-left:12px;"
+                          style="background-color: #0d4f80; margin-left: 12px"
                           @click.prevent="addToCart(product, 1)"
                           id="__Add_to_cart"
                           class="adtocrtphn"
@@ -255,19 +211,40 @@
                       <div>
                         <div class="order_now_container">
                           <p>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon_size">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke-width="1.5"
+                              stroke="currentColor"
+                              class="icon_size"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+                              />
                             </svg>
-                             Order today and receive
-                            it within 02 - 05 days
+                            Order today and receive it within 02 - 05 days
                           </p>
                           <p>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="icon_size">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke-width="2"
+                              stroke="currentColor"
+                              class="icon_size"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                              />
                             </svg>
-                            
-                             130 টাকা অগ্রিম পেমেন্ট
-                            করতে হবে (ঢাকার বাহিরের কাস্টমারদের জন্য )
+
+                            130 টাকা অগ্রিম পেমেন্ট করতে হবে (ঢাকার বাহিরের
+                            কাস্টমারদের জন্য )
                           </p>
                         </div>
 
@@ -275,16 +252,34 @@
                           <p>Have question about this product ? please call</p>
                           <h4>
                             <a href="tel:01762424333"
-                              ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon_size-big">
-                                <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />
+                              ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                class="icon_size-big"
+                              >
+                                <path
+                                  fill-rule="evenodd"
+                                  d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z"
+                                  clip-rule="evenodd"
+                                />
                               </svg>
-                               01762424333
+                              01762424333
                             </a>
                           </h4>
                           <h4>
                             <a href="tel:01723669292"
-                              ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon_size-big">
-                                <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />
+                              ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                class="icon_size-big"
+                              >
+                                <path
+                                  fill-rule="evenodd"
+                                  d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z"
+                                  clip-rule="evenodd"
+                                />
                               </svg>
                               01723669292
                             </a>
@@ -626,7 +621,7 @@ export default {
     },
   },
   watch: {
-    qty: function(value) {
+    qty: function (value) {
       if (value <= parseInt(0)) {
         this.$toast.open({
           message: `Quantity can not be smaller than 1`,
