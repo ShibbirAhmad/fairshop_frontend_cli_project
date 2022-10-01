@@ -5,11 +5,7 @@
       <div class="container">
         <nav aria-label="breadcrumb">
           <ol
-            class="
-              breadcrumb
-              flex-nowrap flex-xl-wrap
-              overflow-auto overflow-xl-visible
-            "
+            class="breadcrumb flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visible"
           >
             <li class="breadcrumb-item">
               <a href="/">Home</a>
@@ -66,8 +62,8 @@
               <div class="code_price-section">
                 <!-- product code -->
                 <div class="skustk">
-                  <div class="skusct">
-                    <strong>Code </strong>: {{ product.product_code }}
+                  <div class="skusct single_page_info-title" >
+                    <strong >Code </strong>: {{ product.product_code }}
                   </div>
                   <!-- <div class="text-gray-9 font-size-1rem">
                     Availability:
@@ -83,7 +79,7 @@
                 </div>
 
                 <!-- product price -->
-                <div class="priceall">
+                <div class="priceall single_page_info-title">
                   <div class="pricepn">
                     <div class="d-flex align-items-baseline">
                       <ins class="font-size-36 text-decoration-none"
@@ -112,48 +108,54 @@
               <!-- product size and quantity -->
               <div class="border-top">
                 <div>
-                  <!-- product size and color -->
-                  <h4
-                    v-if="product.product_variant && product.product_attribute"
-                  >
-                    {{ product.product_attribute.attribute.name }} :
-                  </h4>
-                  <div
-                    v-if="product.product_variant && product.product_attribute"
-                  >
-                    <div class="attribute-values">
-                      <ul class="text-swatch attribute-swatch color-swatch">
-                        <li
-                          v-for="(variant, v) in product.product_variant"
-                          :key="v"
-                          class="attribute-swatch-item"
-                        >
-                          <div>
-                            <label>
-                              <input
-                                class="product-filter-item variant_size"
-                                type="radio"
-                                :name="
-                                  product.product_attribute.attribute.name.toLowerCase()
-                                "
-                                :value="v"
-                                v-model="cart.variant_id"
-                                id="attrid"
-                              />
-                              <span>{{ variant.variant.name }}</span>
-                            </label>
-                          </div>
-                        </li>
-                      </ul>
+                  <div class="size_container">
+                    <h4 class="single_page_info-title"
+                      v-if="
+                        product.product_variant && product.product_attribute
+                      "
+                    >
+                      {{ product.product_attribute.attribute.name }} :
+                    </h4>
+                    <div
+                      v-if="
+                        product.product_variant && product.product_attribute
+                      "
+                    >
+                      <div class="attribute-values">
+                        <ul class="text-swatch attribute-swatch color-swatch">
+                          <li
+                            v-for="(variant, v) in product.product_variant"
+                            :key="v"
+                            class="attribute-swatch-item"
+                          >
+                            <div>
+                              <label style="margin:0;">
+                                <input
+                                  class="product-filter-item variant_size"
+                                  type="radio"
+                                  :name="
+                                    product.product_attribute.attribute.name.toLowerCase()
+                                  "
+                                  :value="v"
+                                  v-model="cart.variant_id"
+                                  id="attrid"
+                                />
+                                <span>{{ variant.variant.name }}</span>
+                              </label>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
+                  <!-- product size and color -->
 
                   <!-- product quantity -->
                   <div class="addtobtn align-items-end mb-3">
-                    <div class="max-width-300 mb-4 mb-md-0">
-                      <div class="row align-items-center">
-                        <div class="col-md-6 col-xs-6">
-                          <h4 for="quantity" style="margin: 0">Quantity</h4>
+                    <div class="mb-4 mb-md-0">
+                      <div class="row align-items-center" style="gap: 24px; margin:6px 0;">
+                        <div class="col-md-2 col-xs-2" style="margin: 0">
+                          <h4 class="single_page_info-title" for="quantity" style="margin: 0">Quantity:</h4>
                         </div>
 
                         <div class="col-md-6 col-xs-6">
@@ -416,17 +418,7 @@
         </div>
 
         <div
-          class="
-            js-next
-            d-none d-lg-inline-block
-            u-slick__arrow-classic u-slick__arrow-centered--y
-            rounded-circle
-            fas
-            fa-arrow-right
-            u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right
-            mr-lg-2 mr-xl-4
-            slick-arrow
-          "
+          class="js-next d-none d-lg-inline-block u-slick__arrow-classic u-slick__arrow-centered--y rounded-circle fas fa-arrow-right u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-lg-2 mr-xl-4 slick-arrow"
           style=""
         ></div>
       </div>
@@ -434,14 +426,7 @@
 
     <div class="container">
       <div
-        class="
-          d-flex
-          justify-content-between
-          border-bottom border-color-1
-          flex-lg-nowrap flex-wrap
-          border-md-down-top-0 border-md-down-bottom-0
-          mt-5
-        "
+        class="d-flex justify-content-between border-bottom border-color-1 flex-lg-nowrap flex-wrap border-md-down-top-0 border-md-down-bottom-0 mt-5"
         style="margin-bottom: 1rem"
       >
         <h3 class="section-title section-title__full mb-0 pb-2 font-size-22">
@@ -852,7 +837,7 @@ p {
   cursor: pointer;
   display: inline-block;
   overflow: hidden;
-  padding: 0px 10px;
+  padding: 3px 14px;
   position: relative;
   transition: 0.2s;
 }

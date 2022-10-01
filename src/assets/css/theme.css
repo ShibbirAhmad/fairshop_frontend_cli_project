@@ -43205,10 +43205,10 @@ span.text-gray-90 {
 }
 
 @media (min-width: 1480px) {
-  .cart-page .container,
+  /* .cart-page .container,
   .checkout-page .container {
     max-width: 1200px;
-  }
+  } */
 }
 
 @media (max-width: 1480px) {

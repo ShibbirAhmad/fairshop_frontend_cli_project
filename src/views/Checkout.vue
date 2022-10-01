@@ -3,11 +3,7 @@
     <div class="container">
       <nav aria-label="breadcrumb">
         <ol
-          class="
-            breadcrumb
-            flex-nowrap flex-xl-wrap
-            overflow-auto overflow-xl-visble
-          "
+          class="breadcrumb flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble"
         >
           <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
             <router-link to="/">Home</router-link>
@@ -44,8 +40,8 @@
           </div>
         </div>
         <form v-else method="post" @submit.prevent="checkout" name="order">
-          <div class="row">
-            <div class="col-md-7">
+          <div class="row" style="justify-content: space-between;">
+            <div class="col-md-12 col-lg-5">
               <div class="pb-7">
                 <!-- Title -->
                 <div class="border-bottom border-color-1 mb-5">
@@ -193,171 +189,181 @@
               </div>
             </div>
 
-            <div class="col-md-5">
+            <div class="col-md-12 col-lg-6">
               <div class="pl-lg-3">
                 <div class="bg-gray-1 rounded-lg">
-                  <div class="mb-4 checkout-table">
+                  <div class="mb-4 checkout-table padding_checkout-info">
                     <div class="border-bottom border-color-1 mb-5">
                       <h3 class="section-title mb-0 pb-2 font-size-25">
                         Your order
                       </h3>
                     </div>
 
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th class="product-name">Product</th>
-                          <th class="product-total">Total</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr
-                          class="cart_item"
-                          v-for="(item, idx) in cart.contents"
-                          :key="idx"
+                    <div>
+                      <!-- head title -->
+                      <div
+                        class="row"
+                        style="
+                          align-items: center;
+                          justify-content: space-between;
+                          flex-wrap: nowrap;
+                          text-align: left;
+                          background-color: #e2e8f0;
+                          padding: 0 6px;
+                        "
+                      >
+                        <div class="col-md-3 text_Header">Products</div>
+                        <div class="col-md-2 text_Header">Quantity</div>
+                        <div class="col-md-2 text_Header">Price</div>
+                        <div class="col-md-1 text_Header">Action</div>
+                        <div
+                          class="col-md-2 text_Header"
+                          style="text-align: end"
                         >
-                          <td>
-                            <div class="row">
-                              <div class="col-md-3">
-                                <img
-                                  :src="
-                                    $imageBaseUrl2 + item.product.thumbnail_img
-                                  "
-                                  width="50"
-                                />
-                              </div>
+                          Total
+                        </div>
+                      </div>
 
-                              <div class="col-md-9 pl-3">
+                      <!-- dynamic product information -->
+                      <div
+                        class="cart_item"
+                        v-for="(item, idx) in cart.contents"
+                        :key="idx"
+                      >
+                        <div
+                          style="
+                            width: 100%;
+                            border-bottom: solid 1px #64748b;
+                            margin: 6px;
+                          "
+                        >
+                          <div
+                            class="row checkout_info"
+                          >
+                            <!-- image and title -->
+                            <div class="col-md-4">
+                              <img
+                                :src="
+                                  $imageBaseUrl2 + item.product.thumbnail_img
+                                "
+                                width="50"
+                              />
+                              <h4 class="product_name">
                                 <span
-                                  >{{ item.product.name }}
-                                  <strong class="product-quantity"
-                                    >{{ item.product.sale_price }} ×
-                                    {{ item.qty }}</strong
-                                  >
+                                  >{{ item.product.name.substring(0, 18)
+                                  }}<span v-if="item.product.name.length > 18">
+                                    ...
+                                  </span>
                                 </span>
+                              </h4>
+                            </div>
 
-                                <div class="quantity_counter">
-                                  <div class="in_dic_btn-checkout">
-                                    <a
-                                      type="button"
-                                      @click.prevent="updateQuantity(item, 0)"
-                                      >-</a
-                                    >
-                                  </div>
-                                  <div class="quantity_input-checkout">
-                                    <input
-                                      class="js-result"
-                                      min="1"
-                                      id="quantity"
-                                      type="text"
-                                      v-model="item.qty"
-                                    />
-                                  </div>
-                                  <div class="in_dic_btn-checkout">
-                                    <a
-                                      type="button"
-                                      @click.prevent="updateQuantity(item, 1)"
-                                      >+</a
-                                    >
-                                  </div>
+                            <!-- quantity -->
+                            <div class="col-md-2" >
+                              <div class="quantity_counter-checkout">
+                                <div class="in_dic_btn-checkout">
+                                  <a
+                                    type="button"
+                                    @click.prevent="updateQuantity(item, 1)"
+                                    >+</a
+                                  >
+                                </div>
+                                <div class="quantity_input-checkout">
+                                  <p>{{ item.qty }}</p>
+                                </div>
+                                <div class="in_dic_btn-checkout">
+                                  <a
+                                    type="button"
+                                    @click.prevent="updateQuantity(item, 0)"
+                                    >-</a
+                                  >
                                 </div>
                               </div>
                             </div>
-                          </td>
-                          <td>
-                            <span
-                              >৳
-                              {{
-                                parseFloat(item.qty) *
-                                  parseFloat(item.product.sale_price)
-                              }}</span
-                            >
 
-                            <br />
-                            <!-- <span><b>Shipping:</b> ৳ {60}</span> -->
-                          </td>
-                        </tr>
-                      </tbody>
-                      <tfoot>
-                        <tr>
-                          <th>Subtotal</th>
-                          <td class="width-40">
+                            <!-- product price X quantity -->
+                            <div class="col-md-3 pl-3 padding_none">
+                              <strong class="product-quantity"
+                                >{{ item.product.sale_price }} ×
+                                {{ item.qty }}</strong
+                              >
+                            </div>
+
+                            <!-- action -->
+                            <div
+                              class="col-md-1 delete_icon"
+                              @click="remove_cart_item(item)"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="red"
+                                class="icon_size"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                                />
+                              </svg>
+                            </div>
+
+                            <!-- total price -->
+                            <div
+                              class="col-md-2"
+                              style="text-align: center; margin-right: 0"
+                            >
+                              <span
+                                >৳
+                                {{
+                                  parseFloat(item.qty) *
+                                  parseFloat(item.product.sale_price)
+                                }}</span
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- total subtotal -->
+                      <div>
+                        <!-- sub total -->
+                        <div class="sub_total">
+                          <div>Subtotal</div>
+                          <div>
                             ৳
                             <span id="subtotal">
                               {{ cart ? cart.cart_total : 0 }}</span
                             >
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>Total Shipping</th>
+                          </div>
+                        </div>
+                        <!-- delivery charge -->
+                        <div class="sub_total">
+                          <div>Shipping Charge</div>
 
-                          <td class="width-40">
+                          <div>
                             <span id="msg" style="float: left"></span>
                             <span>৳ </span
                             ><span id="shipping">{{ form.shipping_cost }}</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>Total</th>
-                          <td class="width-40">
+                          </div>
+                        </div>
+                        <!-- total -->
+                        <div class="sub_total">
+                          <div>Payable Amount</div>
+                          <div>
                             <strong
                               >৳
                               <span id="final">{{
                                 parseFloat(form.total) +
-                                  parseFloat(form.shipping_cost)
+                                parseFloat(form.shipping_cost)
                               }}</span></strong
                             >
-                          </td>
-                        </tr>
-                      </tfoot>
-                    </table>
-                    <!-- End Product Content -->
-
-                    <div
-                      class="
-                        form-group
-                        d-flex
-                        align-items-center
-                        justify-content-between
-                        mb-5
-                        mt-3
-                      "
-                    >
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="checkbox"
-                          id="terms"
-                          checked
-                        />
-                        <label
-                          class="form-check-label form-label"
-                          for="defaultCheck10"
-                        >
-                          I have read and agree to the website
-                          <a href="/return-refund-policy"
-                            >terms and conditions
-                          </a>
-                          <span class="text-danger">*</span>
-                        </label>
+                          </div>
+                        </div>
                       </div>
                     </div>
-
-                    <div class="col d-flex justify-content-center">
-                      <button
-                        type="submit"
-                        class="btn btn-primary place_order_btn"
-                        :disabled="form.busy"
-                      >
-                        <div
-                          v-if="form.busy"
-                          class="spinner-border text-primary text-white"
-                          role="status"
-                        ></div>
-                        <span v-else> Place order </span>
-                      </button>
-                    </div>
-
                     <!-- End Order Summary -->
                   </div>
                 </div>
@@ -365,6 +371,43 @@
             </div>
           </div>
         </form>
+
+        <!-- End Product Content -->
+
+        <div class="place_order-container">
+          <div
+            class="form-group d-flex align-items-center justify-content-between mb-5 mt-3"
+          >
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="terms"
+                checked
+              />
+              <label class="form-check-label form-label" for="defaultCheck10">
+                I have read and agree to the website
+                <a href="/return-refund-policy">terms and conditions </a>
+                <span class="text-danger">*</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="col d-flex justify-content-center">
+            <button
+              type="submit"
+              class="btn btn-primary place_order_btn"
+              :disabled="form.busy"
+            >
+              <div
+                v-if="form.busy"
+                class="spinner-border text-primary text-white"
+                role="status"
+              ></div>
+              <span v-else> Place order </span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -398,7 +441,6 @@ export default {
     this.$store.dispatch("cart");
   },
   methods: {
-
     async checkout() {
       if (this.validation() == false) {
         await this.form
@@ -463,8 +505,7 @@ export default {
       });
     },
 
-
-      getCities() {
+    getCities() {
       this.$axios
         .get("get/cities", {
           headers: this.$apiHeader,
@@ -509,14 +550,14 @@ export default {
       }
     },
 
-   async remove_cart_item(id) {
+    async remove_cart_item(id) {
       await this.$axios
         .post("cart/item/remove", {
           headers: this.$apiHeader,
           id: id,
         })
         .then((resp) => {
-       //  console.log(resp);
+          //  console.log(resp);
           if (resp.data.success == true) {
             this.$toastr.s(resp.data.message);
             this.$store.dispatch("cart");
@@ -555,9 +596,6 @@ export default {
           this.$toastr.e(error.response.data.message);
         });
     },
-
-
-
   },
 
   computed: {
@@ -566,7 +604,7 @@ export default {
     },
   },
   watch: {
-    loading: function(value) {
+    loading: function (value) {
       if (value == false) {
         this.form.total = this.$store.state.cart.cart_total;
       }
