@@ -134,7 +134,7 @@
                   height="40px"
                   id="user_account_d"
                 />
-                Login/Register
+                <h4>Login/Register</h4> 
               </a>
 
               <a v-else href="/order">
@@ -164,7 +164,7 @@
             </li>
             <!-- Track Delivery -->
             <li>
-              <div class="order-large-device" style="width: 124px;">
+              <div class="order-large-device" >
                 <router-link
                   class="tacking_link_btn"
                   :to="{ name: 'order_tracking' }"
@@ -562,13 +562,13 @@ export default {
   color: #189eff;
 }
 
-.tacking_link {
+/* .tacking_link {
   padding: 0px 25px;
   position: absolute;
   color: #189eff !important;
   margin-top: 0;
   margin-left: 0;
-}
+} */
 @media (max-width: 768px) {
   .__footer_nav {
     height: 3.5rem !important;
