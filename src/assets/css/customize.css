@@ -6,6 +6,7 @@
   width:16px;
   height:16px;
   margin-bottom: -3px;
+  margin-left: -20px;
 }
 .icon_size-big{
   width:20px;
@@ -140,7 +141,7 @@ price_input input::-webkit-inner-spin-button {
   padding: 4px 6px;
   list-style-type: none;
   margin: 0px 5px;
-  
+
 }
 
 .adtocrtphn {
@@ -1489,6 +1490,7 @@ ul.list-unstyled.mb-0.view-all.__category_list_sidebar {
 }
 
 .in_dic_btn{
+  cursor: pointer;
   font-size: 18px;
   font-weight: bold;
   padding: 0 12px;
