@@ -6,7 +6,6 @@
   width:16px;
   height:16px;
   margin-bottom: -3px;
-  margin-left: -20px;
 }
 .__user_account h4{
   font-size: 12px;
@@ -155,7 +154,7 @@ price_input input::-webkit-inner-spin-button {
 
 .adtocrtphn {
   width: 30% !important;
-  padding: 8px 0 !important;
+  padding: 14px 0 !important;
   border: none;
   color: #fff;
   margin-right: 6px;
@@ -330,7 +329,7 @@ p {
   display: block;
   padding: 10px;
   border: 2px dotted #199eff;
-  margin: 10% 0%;
+  margin: 24px 0;
 }
 
 .res {
@@ -472,6 +471,12 @@ p {
 }
 
 @media screen and (max-width: 768px) {
+  .category-heading{
+    align-items: flex-start !important;
+  }
+  .addtobtn{
+    flex-direction: column;
+  }
   .checkout_info{
     gap: 6px;
   }
@@ -504,7 +509,7 @@ p {
   .landing_sub_c_list {
     position: absolute;
     z-index: 55555;
-    margin-top: 270px;
+    margin-top: 46px;
     display: none;
     margin-left: 72px;
     width: 60%;
@@ -1166,7 +1171,7 @@ ul.__cart-product-list li img {
 
   .cart_buy_container {
     display: flex;
-    margin-top: 104px;
+
   }
 
   /* .tacking_link_btn {
@@ -1500,14 +1505,17 @@ ul.list-unstyled.mb-0.view-all.__category_list_sidebar {
   color: #fff;
   background-color: #199eff;
 }
+.banner_row{
+  justify-content: space-between;
+}
 
 .advertise_banner_1 {
-  width: 98%;
+  width: 100%;
   max-height: 160px;
 }
 
 .advertise_banner_2 {
-  width: 98%;
+  width: 100%;
   max-height: 160px;
 }
 .product_title{
