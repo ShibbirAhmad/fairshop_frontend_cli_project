@@ -196,21 +196,22 @@ export default {
     },
 
     async updateQuantity(item, type) {
+      let quantity = 0 ;
       if (type == 1) {
-        item.qty = parseInt(item.qty) + 1;
+        quantity = parseInt(item.qty) +  parseInt(1)  ;
       } else {
-        item.qty = parseInt(item.qty) - 1;
+         quantity = parseInt(item.qty) - parseInt(1) ;
       }
-      if (parseInt(item.qty) <= 0) {
+      if (parseInt(quantity) <= 0) {
         this.$toastr.e("Quantity should be at least one");
-        item.qty = 1;
+        quantity = 1;
         return;
       }
 
       await this.$axios
         .post("cart/item/update", {
           header: this.$apiHeader,
-          qty: item.qty,
+          qty: quantity,
           id: item.id,
         })
         .then((resp) => {

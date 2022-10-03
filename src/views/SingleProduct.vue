@@ -162,8 +162,8 @@
 
      <!-- new increment decrement button -->
                         <div class="quantity_counter">
-                          <div class="in_dic_btn">
-                            <a type="button" @click.prevent="decrementQty()"
+                          <div  @click.prevent="decrementQty()" class="in_dic_btn">
+                            <a type="button"
                               >-</a
                             >
                           </div>
@@ -176,8 +176,8 @@
                               v-model="cart.qty"
                             />
                           </div>
-                          <div class="in_dic_btn">
-                            <a type="button" @click.prevent="cart.qty++">+</a>
+                          <div @click.prevent="cart.qty++" class="in_dic_btn">
+                            <a type="button" >+</a>
                           </div>
                         </div>
                         </div>
