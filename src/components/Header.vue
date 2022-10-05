@@ -444,8 +444,7 @@ export default {
       )[0];
       let user_account_d = document.getElementById("user_account_d");
       if (
-        user_dropdown_link !== e.target &&
-        !user_dropdown_link.contains(e.target) &&
+        user_dropdown_link !== e.target && !user_dropdown_link.contains(e.target) &&
         e.target !== user_account_d
       ) {
         if (user_dropdown_link.classList.contains("__show")) {
