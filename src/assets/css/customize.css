@@ -217,7 +217,7 @@ p {
   padding: 10px 20px;
   background: #f0f5f5;
   border: 1px solid #199eff;
-  border-radius: 50px;
+  /* border-radius: 50px; */
   margin-left: 15px;
 }
 .mobile_search_container{

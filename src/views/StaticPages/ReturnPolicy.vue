@@ -1,7 +1,7 @@
 <template>
   <div class="mt-3">
     <div class="container">
-      <nav aria-label="breadcrumb">
+      <!-- <nav aria-label="breadcrumb">
         <ol
           class="breadcrumb flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble"
         >
@@ -13,28 +13,20 @@
             <a href="#">return-policy</a>
           </li>
         </ol>
-      </nav>
+      </nav> -->
     </div>
     <div class="container">
       <div id="content">
-
+        <h4>RETURN POLICY</h4>
         <p>
-          পণ্য ও সার্ভিস সম্পর্কিত কোনো অভিযোগের জন্য আমাদের কমপ্লেইন্ট টীম
-          আপনাকে ফোন করবেন। এ জন্য আপনার অভিযোগটি সমাধান না হওয়া পর্যন্ত আপনাকে
-          আমরা ফোনে সক্রিয় পেতে চাই। আপনার যোগাযোগে দেওয়া নম্বরটি সক্রিয় না
-          থাকলে বিকল্প কোনো নম্বর সক্রিয় থাকতে হবে। রিফান্ডের জন্য আপনাকে টাকাটি
-          ফেরতের মাধ্যম আমাদের জানাতে হবে। আমরা আপনার কোনো প্রকার সহযোগিতা
-          <b>১৫</b> কার্যদিবসের মধ্যে ফোনে অথবা ইমেইলে না পেলে আপনার অভিযোগটি
-          নিস্পত্তি বলে মনে করবো।
+         পণ্য গ্রহনের পরে আপনি পণ্যের যে কোন সমস্যায় (যেমন : পণ্য ভাঙ্গা , ছেঁড়া, পণ্য কাজ না করা, ছবির সাথে পণ্যের মিল না থাকা ইত্যাদি) ক্ষেত্রে আপনি পরিবর্তিত পণ্য গ্রহণ করতে পারবেন। সেক্ষেত্রে পণ্য গ্রহনের পর সর্বোচ্চ ৭২ ঘণ্টার মধ্যে আপনি support@fairshop.com.bd এ ই-মেইল করতে হবে অথবা আমাদের হটলাইন নাম্বার 880 1762424333 এ আমাদের অবহিত করতে হবে। উল্লেখ্য যে, আপনার মনের পরিবর্তনের ফলে কোন পণ্য রিপ্লেস করতে হলে কুরিয়ার খরচ আপনাকে বহন করতে হবে এবং fairshop.com.bd কর্তৃক কোন পণ্যে সমস্যা থাকলে সেটা fairshop.com.bd বহন করবে। 
+         <br>
+         আপনার - প্রশ্ন - মতামত – অভিযোগ আমাদের জানান- ফোন: 880 1762424333, <br> ই-মেইল: support@fairshop.com.bd
+
+          After receiving the product you will be able to accept the modified product in case of any problem of the product (eg: product broken, torn, product not working, product does not match with the photo, etc.). In that case you have to e-mail support@fairshop.com.bd within maximum 72 hours after receiving the product or you have to inform us on our hotline number 880 1762424333. Note that you have to bear the cost of courier to replace any product as a result of your change of mind and fairshop.com.bd will bear the cost of any product by fairshop.com.bd.
+          <br>
+          Let us know your - questions - comments - complaints - phone: 880 1762424333, e-mail: support@fairshop.com.bd
         </p>
-
-        <p>আপনার - প্রশ্ন - মতামত – অভিযোগ আমাদের জানান- ফোন: 880 1762424333, ই-মেইল: support@fairshop.com.bd</p>
-
-         <p>
-             After receiving the product you will be able to accept the modified product in case of any problem of the product (eg: product broken, torn, product not working, product does not match with the photo, etc.). In that case you have to e-mail support@fairshop.com.bd within maximum 48 hours after receiving the product or you have to inform us on our hotline number 880 1762424333. Note that you have to bear the cost of courier to replace any product as a result of your change of mind and fairshop.com.bd will bear the cost of any product by fairshop.com.bd.
-        </p>
-
-        <p>Let us know your - questions - comments - complaints - phone: 880 1762424333, e-mail: support@fairshop.com.bd</p>
 
 
 

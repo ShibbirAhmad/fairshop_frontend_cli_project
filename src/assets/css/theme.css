@@ -36895,8 +36895,8 @@ label.btn {
 }
 
 .rounded-right-pill {
-  border-top-right-radius: 6.1875rem;
-  border-bottom-right-radius: 6.1875rem;
+  /* border-top-right-radius: 6.1875rem;
+  border-bottom-right-radius: 6.1875rem; */
 }
 
 .rounded-bottom-pill {
@@ -43815,11 +43815,11 @@ img.img-fluid.site_logo {
 }
 
 input.search-box {
-  width: 300px;
+  width: 400px;
   padding: 10px 20px;
   background: #f0f5f5;
   border: 1px solid #199eff;
-  border-radius: 50px;
+  /* border-radius: 50px; */
   margin-left: 15px;
 }
 
@@ -43840,7 +43840,7 @@ input.search-box {
   background: #199eff;
   align-items: center;
   color: #fff;
-  height: 36px;
+  height: 40px;
 }
 .__c_sub a {
   color: #000 !important;
@@ -44279,7 +44279,7 @@ ul.__nav_resp_menu {
 
 @media only screen and (min-width: 1380px) {
   input.search-box {
-    width: 600px;
+    width: 400px;
   }
 }
 

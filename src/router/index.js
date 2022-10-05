@@ -18,6 +18,13 @@ const routes = [
   },
 
   {
+    path: "/about/seller",
+    name: "AboutSeller",
+    component: () =>
+      import(/* webpackChunkName: "aboutSeller" */ "../views/StaticPages/AboutSeller"),
+  },
+
+  {
     path: "/return/policy",
     name: "ReturnPolicy",
     component: () =>
@@ -66,6 +73,15 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "privacy_policy" */ "../views/StaticPages/PrivacyPolicy.vue"
+      ),
+  },
+
+   {
+    path: "/term/condition",
+    name: "term_condition",
+    component: () =>
+      import(
+        /* webpackChunkName: "term_condition" */ "../views/StaticPages/termCondition.vue"
       ),
   },
   {
