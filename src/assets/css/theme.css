@@ -6012,7 +6012,7 @@ input:focus {
   padding: 0.625rem 1.125rem;
   font-size: 0.875rem;
   line-height: 1.5;
-  border-radius: 1.3rem;
+  /* border-radius: 1.3rem; */
 }
 
 .btn-block {
@@ -43521,10 +43521,10 @@ a.nav-link.u-header__sub-menu-nav-link {
     left: 3%;
   }
 
-  #tocart {
+  /* #tocart {
     position: absolute;
     top: 240px;
-  }
+  } */
 
   .snglepdt {
     height: 600px;
@@ -43951,6 +43951,7 @@ ul.__c_sub {
   width: 245px;
   top: 0px;
   border-left: 1px solid #eee;
+  min-height: 260px;
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 .__c_sub_sub:hover {

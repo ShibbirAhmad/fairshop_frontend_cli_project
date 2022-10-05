@@ -151,7 +151,7 @@
                   <!-- product size and color -->
 
                   <!-- product quantity -->
-                  <div class="addtobtn align-items-end mb-3">
+                  <div class="addtobtn mb-3">
                     <div class="mb-4 mb-md-0">
                       <div class="row align-items-center" style="gap: 24px; margin:6px 0;">
                         <div class="col-md-2 col-xs-2" style="margin: 0">

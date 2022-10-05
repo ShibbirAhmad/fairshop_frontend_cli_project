@@ -1,8 +1,8 @@
 <template>
   <div>
     <footer>
-      <div class="bg-gray-14 py-2 hide">
-        <div class="container">
+      <div class="">
+        <div class="">
           <div class="foooter desktop_footer">
             <div class="fpart-first">
               <div class="container">
@@ -519,7 +519,7 @@ export default {
 <style scoped>
 .foooter {
   background: #eee;
-  padding: 20px;
+  padding: 0;
 }
 
 .fpart-first {
@@ -665,8 +665,8 @@ h5 {
   margin-left: 70px !important;
   color: #fff;
   margin-top: 10px;
+  margin-bottom: 0;
   margin-left: 5px;
-  font-family: serif;
   font-size: 16px;
 }
 
@@ -675,8 +675,8 @@ h5 {
   color: #fff;
   margin-top: 10px;
   margin-left: 120px;
+  margin-bottom: 0;
   font-size: 16px;
-  font-family: serif;
   margin-right: 20px;
 }
 
