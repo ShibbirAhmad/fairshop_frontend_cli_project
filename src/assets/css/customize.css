@@ -214,7 +214,7 @@ p {
 }
 .mobile-search-box{
   width: 92%;
-  padding: 10px 20px;
+  padding: 8px 20px;
   background: #f0f5f5;
   border: 1px solid #199eff;
   /* border-radius: 50px; */
@@ -823,7 +823,7 @@ html {
 .search_icon {
   position: absolute;
   right: 0%;
-  height: 2.7rem;
+  height: 2.48rem;
 }
 .m_search_icon {
   position: absolute;

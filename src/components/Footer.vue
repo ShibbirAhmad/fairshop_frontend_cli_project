@@ -7,7 +7,7 @@
             <div class="fpart-first">
               <div class="container">
                 <div class="row">
-                  <div class="contact col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  <div class="contact col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <ul>
                       <li style="list-style-type:none" class="address">
                         <router-link to="/">
@@ -27,9 +27,11 @@
                             >fairshop.com.bd</span
                           >
                          simply better online shopping and ecommerce site in Bangladesh. Here, consumers of all ages can buy every essential product of the day, from gadgets, electronics, home appliances, leather goods, jewelry, baby accessories, cosmetics, fashion and lifestyle products to affordable prices at home.
-
+                        <br>
                         Address: Shop#19, 3rd Floor, Muktiplaza, Mirpur-1, Dhaka-1216
+                        <br>
                         Phone: 880 176 2424333
+                        <br>
                         Email: support@fairshop.com.bd
                         </p>
                       </li>
@@ -99,7 +101,7 @@
                       </div>
 
                       <div class="">
-                       <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffairshop.com.bd&tabs=timeline&width=340&height=70&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"></iframe>
+                      <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffairshop.com.bd&tabs=timeline&width=380&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="380" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                       </div>
                       <!-- <form>
                         <div class="row">
@@ -707,12 +709,16 @@ h5 {
   }
 
   .short_desc {
-    margin-left: -20px;
+    margin-left: 0px;
     padding: 5px;
+  }
+  .quick_link{
+    margin-left: 0px;
   }
 
   .news_letter {
     padding: 0px 20px;
+    padding-left: 0px;
   }
 
   .payment-card {
