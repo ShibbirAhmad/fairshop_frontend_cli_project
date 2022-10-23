@@ -173,6 +173,7 @@ export default {
         .catch();
     },
 
+
     categoryProducts($state) {
       this.$axios
         .get(
@@ -198,6 +199,9 @@ export default {
           this.$toastr.e(error.response.data.message);
         });
     },
+
+
+
   },
   components: {
     InfiniteLoading,
