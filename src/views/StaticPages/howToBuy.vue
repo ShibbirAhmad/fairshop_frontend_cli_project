@@ -1,7 +1,7 @@
 <template>
   <div class="mt-3">
     <div class="container">
-      <nav aria-label="breadcrumb">
+      <!-- <nav aria-label="breadcrumb">
         <ol
           class="breadcrumb flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble"
         >
@@ -13,24 +13,21 @@
             <a href="#">How To Buy</a>
           </li>
         </ol>
-      </nav>
+      </nav> -->
     </div>
     <div class="container">
       <div id="content">
-        <h4>কিভাবে পণ্য ক্রয় করবেন। </h4>
+        <h4>How to Buy </h4>
        <ul>
-         <li>
-           <p> আপনি যদি আমাদের নতুন ক্রেতা হয়ে থাকেন তাহলে যেকোন পণ্য কিনতে এখনই সাইন-আপ/রেজিস্ট্রেশন করুন।</p>
-         </li>
-         <li>আপনার পছন্দের পন্যটি কেনার জন্য পণ্যের ছবির উপরে ক্লিক করুন এবং পরবর্তী পাতায় পণ্যের বিস্তারিত দেখে ছবির পাশে Order Now (এখনি অর্ডার করুন) এই বাটনে ক্লিক করুন।  </li>
-         <li> আপনি যদি একাধিক পন্য কিনতে চান তাহলে ‘কার্ট এ যোগ করুন’ এই বাটনে ক্লিক করে আপনার নির্বাচিত সকল পন্য একবারে অর্ডার করুন।  </li>
-         <li>যদি ইতোমধ্যেই fairshop.com.bdতে আপনার একাউন্ট থেকে থাকে,তাহলে আপনার ইউজার নেম ও পাসওয়ার্ড দিয়ে সাইন ইন / লগইন করুন অথবা নতুন ক্রেতা হিসেবে সাইন-আপ/রেজিস্ট্রেশন করে আপনার নতুন একাউন্টের জন্য ইউজার নেম ও পাসওয়ার্ড তৈরি করুন।  </li>
-         <li>  ডেলিভারী ঠিকানায় আপনি যেখানে ডেলিভারী নিতে ইচ্ছুক সেখানকার বিস্তারিত ঠিকানাসহ শহরটি সেলেক্ট করুন। আপনার প্রদানকৃত সঠিক তথ্য আপনার পন্যের ডেলিভারী প্রক্রিয়াকে দ্রততর করবে। </li>
-         <li> এরপরে আপনি পরবর্তী ধাপে যেতে ‘কার্ট তথ্য সংরক্ষণ’ বাটনে ক্লিক করুন।  </li>
-         <li> অর্ডার সফল হলে আপনার ই-মেইলে বুকিং কোড সহ একটি মেইল যাবে । </li>
-         <li>অর্ডার সাবমিটের পর 12 ঘন্টার মধ্যে আমাদের প্রতিনিধি আপনার সাথে যোগাযোগ করে পণ্য ডেলিভারী প্রক্রিয়া শুরু করবে।  </li>
-         <li> সাধারণত ঢাকার মধ্যে 48 ঘন্টা (প্রায়) এবং ঢাকার বাহিরে যে কোন জেলায় 72-120 ঘন্টার (প্রায়) মধ্যে আপনার পণ্য হাতে পাবেন। </li>
-         <li>   অর্ডার সংক্রান্ত যে কোন তথ্য বা সরাসরি অর্ডার দিতে ফোন করুন 01 (সকাল ৯টা থেকে রাত ১০ টার মধ্যে)। </li>
+          1. If you are our new purchaser, sign-up / register now to buy any product. <br>
+          2. To purchase the product of your choice, click on the product image and click the Order Now button next to the image to see the product details on the next page. <br>
+          3. If you want to purchase more than one product, order all your selected products at once by clicking the 'Add to Cart' button. <br>
+          4. If you already have an account at “fairshop.com.bd”, sign in / login with your username and password or create a username and password for your new account by signing up / registering as a new customer. If you don't want to create an account, you can still order. First click on image you can appear details, then click on ‘Buy Now’ button, and fill up the information such as name, phone no, zilla, upozilla and address then click on place order button <br>
+          5. Delivery Address Select the city with the detailed address of the place where you wish to take delivery. Accurate information you provide will speed up the delivery process of your product. <br>
+          6. You can then click the ‘Place order' button to go to the next step. <br>
+          7. If the order is successful placed, you can get a message in your phone. <br>
+          8. Our representative will contact you within 12 hours after the order is submitted and the product delivery process will begin. <br>
+          09. For any order related information or to order directly call 01723669292 (between 10am and 10pm). <br>
        </ul>
 
 

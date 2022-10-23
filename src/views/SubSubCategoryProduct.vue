@@ -56,7 +56,7 @@
             </li>
           </ol>
         </nav>
-        <div class="row" v-if="subSubCategory.similar_categories">
+        <!-- <div class="row" v-if="subSubCategory.similar_categories">
           <div
             class="col-6 col-md-2-custome"
             v-for="(
@@ -82,7 +82,7 @@
               </div>
             </router-link>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div class="container overflow-hidden">

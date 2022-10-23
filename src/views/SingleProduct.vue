@@ -133,10 +133,8 @@
                                 <input
                                   class="product-filter-item variant_size"
                                   type="radio"
-                                  :name="
-                                    product.product_attribute.attribute.name.toLowerCase()
-                                  "
-                                  :value="v"
+                                  :name="product.product_attribute.attribute.name.toLowerCase()"
+                                  :value="v + 1"
                                   v-model="cart.variant_id"
                                   id="attrid"
                                 />
@@ -151,7 +149,7 @@
                   <!-- product size and color -->
 
                   <!-- product quantity -->
-                  <div class="addtobtn align-items-end mb-3">
+                  <div class="addtobtn mb-3">
                     <div class="mb-4 mb-md-0">
                       <div class="row align-items-center" style="gap: 24px; margin:6px 0;">
                         <div class="col-md-2 col-xs-2" style="margin: 0">
@@ -160,7 +158,7 @@
 
                         <div class="col-md-6 col-xs-6">
 
-     <!-- new increment decrement button -->
+                      <!-- new increment decrement button -->
                         <div class="quantity_counter">
                           <div  @click.prevent="decrementQty()" class="in_dic_btn">
                             <a type="button"
@@ -488,6 +486,7 @@ export default {
         qty: 1,
         variant_id: "",
       },
+      variant_id: '',
       cart_show: false,
       loading: true,
       tab_content: 1,

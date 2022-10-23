@@ -1,13 +1,13 @@
 <template>
   <div>
     <footer>
-      <div class="bg-gray-14 py-2 hide">
-        <div class="container">
+      <div class="">
+        <div class="">
           <div class="foooter desktop_footer">
             <div class="fpart-first">
               <div class="container">
                 <div class="row">
-                  <div class="contact col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  <div class="contact col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <ul>
                       <li style="list-style-type:none" class="address">
                         <router-link to="/">
@@ -26,12 +26,13 @@
                       "
                             >fairshop.com.bd</span
                           >
-                          is a complete e-commerce market place. Here, consumers
-                          of all ages can buy every essential product of the
-                          day, from gadgets, electronics, home appliances,
-                          leather goods, jewelry, baby accessories, cosmetics,
-                          fashion and lifestyle products to affordable prices at
-                          home
+                         simply better online shopping and ecommerce site in Bangladesh. Here, consumers of all ages can buy every essential product of the day, from gadgets, electronics, home appliances, leather goods, jewelry, baby accessories, cosmetics, fashion and lifestyle products to affordable prices at home.
+                        <br>
+                        Address: Shop#19, 3rd Floor, Muktiplaza, Mirpur-1, Dhaka-1216
+                        <br>
+                        Phone: 880 176 2424333
+                        <br>
+                        Email: support@fairshop.com.bd
                         </p>
                       </li>
                     </ul>
@@ -72,6 +73,10 @@
                           <li>
                             <a href="/about/seller" class="">About Seller </a>
                           </li>
+
+                          <li>
+                            <a href="/term/condition" class="">Term And Condition </a>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -96,7 +101,7 @@
                       </div>
 
                       <div class="">
-                       <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffairshopwhoesale&tabs=timeline&width=450&height=200&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=582776743146405" width="450" height="200" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                      <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffairshop.com.bd&tabs=timeline&width=380&height=130&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="380" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                       </div>
                       <!-- <form>
                         <div class="row">
@@ -519,7 +524,7 @@ export default {
 <style scoped>
 .foooter {
   background: #eee;
-  padding: 20px;
+  padding: 0;
 }
 
 .fpart-first {
@@ -577,7 +582,7 @@ h5 {
 }
 
 .link_line li:hover {
-  background-color: #2a2b2b;
+  background-color: #fff;
   padding-left: 0.275rem;
 }
 
@@ -665,8 +670,8 @@ h5 {
   margin-left: 70px !important;
   color: #fff;
   margin-top: 10px;
+  margin-bottom: 0;
   margin-left: 5px;
-  font-family: serif;
   font-size: 16px;
 }
 
@@ -675,8 +680,8 @@ h5 {
   color: #fff;
   margin-top: 10px;
   margin-left: 120px;
+  margin-bottom: 0;
   font-size: 16px;
-  font-family: serif;
   margin-right: 20px;
 }
 
@@ -704,12 +709,16 @@ h5 {
   }
 
   .short_desc {
-    margin-left: -20px;
+    margin-left: 0px;
     padding: 5px;
+  }
+  .quick_link{
+    margin-left: 0px;
   }
 
   .news_letter {
     padding: 0px 20px;
+    padding-left: 0px;
   }
 
   .payment-card {

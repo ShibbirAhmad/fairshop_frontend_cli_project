@@ -59,7 +59,7 @@
           <!-- category title and sub menu -->
           <div class="col-lg-12">
             <div class="category-heading">
-              <h3>{{ item.name }}</h3>
+              <h3 class="section-title section-title__full mb-0 pb-2 font-size-22">{{ item.name }}</h3>
               <ul
                 class="landing_sub_c_list"
                 :id="'landing_sub_category_' + item.id"

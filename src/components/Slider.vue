@@ -37,13 +37,13 @@
 
        <div v-if="banner.status == 1" class="row banner_row">
 
-          <div class="col-md-6 col-lg-6 col-xs-6">
+          <div class="col-md-6 col-lg-6 col-xs-6" style="flex: 0 0 49% !important; max-width: 49% !important;">
                <a :href="banner.url_1">
                  <img  class="advertise_banner_1" :src="$imageBaseUrl+banner.banner_1">
                 </a>
           </div>
 
-             <div class="col-md-6 col-lg-6 col-xs-6">
+             <div class="col-md-6 col-lg-6 col-xs-6" style="flex: 0 0 49% !important; max-width: 49% !important;">
                <a :href="banner.url_2">
                  <img  class="advertise_banner_2" :src="$imageBaseUrl+banner.banner_2">
                 </a>
