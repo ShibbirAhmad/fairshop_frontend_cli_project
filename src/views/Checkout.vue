@@ -357,8 +357,7 @@
                             <strong
                               >৳
                               <span id="final">{{
-                                parseFloat(form.total) +
-                                parseFloat(form.shipping_cost)
+                                (parseInt(form.total) + parseInt(form.shipping_cost))
                               }}</span></strong
                             >
                           </div>
@@ -441,11 +440,14 @@ export default {
       cities: "",
       sub_cities: "",
       loading: true,
+
     };
   },
   created() {
+    window.scrollTo(0, 0);
     this.getCities();
     this.$store.dispatch("cart");
+    this.getCartData();
   },
   methods: {
     async checkout() {
@@ -467,6 +469,8 @@ export default {
           });
       }
     },
+
+
     validation() {
       const form = this.form;
       if (form.customer_phone.length != 11) {
@@ -605,6 +609,13 @@ export default {
         });
     },
 
+    getCartData() {
+      this.$axios.get("/get/cart/content").then((resp) => {
+        console.log(resp);
+        this.form.total = resp.data.total;
+      });
+    },
+
 
   },
 
@@ -613,12 +624,11 @@ export default {
       return this.$store.state.cart;
     },
   },
-  watch: {
-    loading: function (value) {
-      if (value == false) {
-        this.form.total = this.$store.state.cart.cart_total;
-      }
-    },
+  mounted() {
+    setTimeout(() => {
+      this.selectCity();
+    }, 1000);
+    this.$store.dispatch("cart");
   },
 };
 </script>

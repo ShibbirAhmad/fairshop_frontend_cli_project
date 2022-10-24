@@ -97,7 +97,7 @@ const actions = {
         headers: this.$apiHeader,
       })
       .then((resp) => {
-        // console.log(resp);
+        console.log(resp);
         if (resp.data.success == true) {
           context.commit("product", resp.data.product);
         } else {
@@ -117,6 +117,7 @@ const actions = {
         context.commit("cart", resp.data);
       });
   },
+  
 
   user(context) {
     if (localStorage.getItem("user_token")) {

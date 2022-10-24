@@ -134,7 +134,7 @@
                                   class="product-filter-item variant_size"
                                   type="radio"
                                   :name="product.product_attribute.attribute.name.toLowerCase()"
-                                  :value="v + 1"
+                                  :value="variant.id"
                                   v-model="cart.variant_id"
                                   id="attrid"
                                 />
