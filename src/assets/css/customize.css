@@ -80,6 +80,13 @@
   width: 100%;
   display: none;
 }
+.footer_content{
+  text-align: center;
+  background: #0078D7;
+  padding: 15px 0;
+  margin-bottom: 0;
+  font-size: 16px;
+}
 
 .__user_account a {
   color: #189eff !important;
@@ -161,6 +168,7 @@ price_input input::-webkit-inner-spin-button {
 }
 .place_order_btn{
   padding: 12px 56px;
+  width: 100%;
 }
 
 

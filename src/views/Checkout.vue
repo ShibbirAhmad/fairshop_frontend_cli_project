@@ -363,6 +363,40 @@
                             >
                           </div>
                         </div>
+
+                         <div
+                            class="form-group d-flex align-items-center justify-content-between mb-5 mt-3"
+                          >
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="terms"
+                                checked
+                              />
+                              <label class="form-check-label form-label" for="defaultCheck10">
+                                I have read and agree to the website
+                                <a href="/term/condition">terms and conditions </a>
+                                <span class="text-danger">*</span>
+                              </label>
+                            </div>
+                          </div>
+                
+                          <div class="col d-flex justify-content-center">
+                            <button
+                              type="submit"
+                              class="btn btn-primary place_order_btn"
+                              :disabled="form.busy"
+                            >
+                              <div
+                                v-if="form.busy"
+                                class="spinner-border text-primary text-white"
+                                role="status"
+                              ></div>
+                              <span v-else> Place order </span>
+                            </button>
+                          </div>
+
                       </div>
                     </div>
                     <!-- End Order Summary -->
@@ -375,38 +409,7 @@
 
           <!-- place order btn and terms and conditions -->
           <div class="place_order-container">
-            <div
-              class="form-group d-flex align-items-center justify-content-between mb-5 mt-3"
-            >
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="terms"
-                  checked
-                />
-                <label class="form-check-label form-label" for="defaultCheck10">
-                  I have read and agree to the website
-                  <a href="/return-refund-policy">terms and conditions </a>
-                  <span class="text-danger">*</span>
-                </label>
-              </div>
-            </div>
-  
-            <div class="col d-flex justify-content-center">
-              <button
-                type="submit"
-                class="btn btn-primary place_order_btn"
-                :disabled="form.busy"
-              >
-                <div
-                  v-if="form.busy"
-                  class="spinner-border text-primary text-white"
-                  role="status"
-                ></div>
-                <span v-else> Place order </span>
-              </button>
-            </div>
+           
           </div>
         </form>
 

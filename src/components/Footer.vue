@@ -184,17 +184,10 @@
             </div>
 
             <div class="row">
-              <div class="end_footer">
-                <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
-                  <p class="f_info_left">
-                    Copyright © fairshop.com.bd 2022. All rights reserved.
+              <div class="col-12">
+                  <p class="footer_content">
+                    Copyright © M/S fairshop, All rights reserved | Design & Developed by: <a style="color: #000;" href="https://mohasagorit.solutions/all-projects">Mohasagor it Solution</a> 
                   </p>
-                </div>
-                <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
-                  <p class="f_info_right">
-                    Design &amp; Developed by: Mohasagor it Solution
-                  </p>
-                </div>
               </div>
             </div>
           </div>
@@ -661,7 +654,7 @@ h5 {
 
 .end_footer {
   display: flex;
-  background: #199eff;
+  background: #199EFF;
   height: 50px;
   width: 100%;
 }
