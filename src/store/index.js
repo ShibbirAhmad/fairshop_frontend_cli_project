@@ -71,9 +71,7 @@ const actions = {
            if (resp.data.success == true) {
              context.commit('subCategory', resp.data.sub_category)
            }
-           // else {
-           //     router.push({name: 'not_found'});
-           //  }
+     
          })
      },
      subSubCategory(context, payload) {
@@ -85,9 +83,6 @@ const actions = {
            if (resp.data.success == true) {
              context.commit('subSubCategory', resp.data.sub_sub_category)
            }
-           // else {
-           //     router.push({name: 'not_found'});
-           //  }
          })
      },
 
