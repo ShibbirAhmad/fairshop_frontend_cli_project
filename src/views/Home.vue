@@ -70,11 +70,7 @@
                   :key="sbx"
                   style="cursor:pointer;"
                 >
-                  <span
-                    class="spinner-grow text-info spinner-grow-sm"
-                    role="status"
-                    aria-hidden="true"
-                  ></span>
+         
                   <router-link
                     v-if="sbx < 7"
                     :to="{
