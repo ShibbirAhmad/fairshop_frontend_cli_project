@@ -60,7 +60,7 @@
             >
               <div class="box">
                 <span class="box-txt">
-                  <span class="spinner-grow text-light spinner-grow-sm" role="status" aria-hidden="true"></span>
+                  <span class="" role="status" aria-hidden="true"></span>
                   {{ sub_c.name }}
                 </span>
               </div>

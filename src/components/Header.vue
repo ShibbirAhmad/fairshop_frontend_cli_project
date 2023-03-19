@@ -134,7 +134,7 @@
                   height="40px"
                   id="user_account_d"
                 />
-                <h4>Login/Register</h4> 
+                <h4>Login/Register</h4>
               </a>
 
               <a v-else href="/order">
@@ -342,7 +342,7 @@
           {{ cart ? cart.item_count : 0 }}
         </span> -->
 
-        <span id="__cart_total" style="font-size: 16px; margin-top: 0px;">
+        <span id="__cart_total" style="font-size: 13px; margin-top: 0px;margin-top: 3px;">
           ৳{{ cart ? cart.cart_total : 0 }}
         </span>
       </h4>

@@ -52,9 +52,9 @@
             <div class="mb-2">
               <!-- product title -->
               <div class="border-bottom pb-md-1">
-                <h2 class="product_title">
+                <h1 class="product_title">
                   {{ product.name }}
-                </h2>
+                </h1>
                 <div class="d-md-flex align-items-center"></div>
               </div>
 
@@ -521,7 +521,10 @@ export default {
     },
 
     decrementQty() {
-      this.cart.qty -= 1;
+      if(this.cart.qty > 1){
+        this.cart.qty -= 1;
+      }
+
     },
 
     incrementQty() {

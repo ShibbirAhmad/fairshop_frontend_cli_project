@@ -319,7 +319,7 @@ ul li:hover {
     .__footer-menu {
         display: block;
     }
-    
+
 }
 
 .__footer_nav {
@@ -1112,7 +1112,7 @@ ul.list-unstyled.mb-0.view-all.__category_list_sidebar {
     width: 75px !important;
     height: 75px;
     border-radius: 50%;
-    border: 1.5px dashed;
+    /* border: 1.5px dashed; */
     margin:auto;
 
 }

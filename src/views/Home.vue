@@ -36,6 +36,36 @@
         </carousel>
       </div>
 
+
+      <!-- add banner start -->
+      <div class="home_banner_area">
+        <div class="row">
+          <div class="col-md-12 mb-2">
+            <div class="custom_column">
+              <div class="home_banner_image">
+                <img src="../../assets/images/banner.png" alt="">
+              </div>
+            </div>
+            <div class="custom_column">
+              <div class="home_banner_image">
+                <img src="../../assets/images/banner.png" alt="">
+              </div>
+            </div>
+            <div class="custom_column">
+              <div class="home_banner_image">
+                <img src="../../assets/images/banner.png" alt="">
+              </div>
+            </div>
+            <div class="custom_column">
+              <div class="home_banner_image">
+                <img src="../../assets/images/banner.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- add banner end -->
+
       <!-- start feature product section  -->
       <FeatureProduct />
       <!-- end feature product section  -->
@@ -70,7 +100,7 @@
                   :key="sbx"
                   style="cursor:pointer;"
                 >
-         
+
                   <router-link
                     v-if="sbx < 7"
                     :to="{
@@ -142,8 +172,8 @@
                           class="d-block"
                         >
                           <h4>
-                            {{ product.name.substring(0, 18) }}
-                            <span v-if="product.name.length > 18">.. </span>
+                            {{ product.name.substring(0, 19) }}
+                            <span v-if="product.name.length > 19">.. </span>
                           </h4>
                         </router-link>
                         <!-- product price -->
@@ -255,7 +285,7 @@ export default {
 .category-icon img {
   width: 100px !important;
   height: 100px;
-  border: 1.5px dashed;
+  /* border: 1.5px dashed; */
   margin: auto;
 }
 .category-icon {
@@ -273,7 +303,7 @@ export default {
   .category-icon img {
     width: 80px !important;
     height: 80px;
-    border: 1.5px dashed;
+    /* border: 1.5px dashed; */
     margin: auto;
   }
   .category-icon {
