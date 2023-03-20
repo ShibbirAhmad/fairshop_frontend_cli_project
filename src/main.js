@@ -36,6 +36,7 @@ Vue.mixin(helper);
 
 //Vue.use(axios)
 axios.defaults.baseURL = 'https://app.fairshop.com.bd/api/_data/';
+// axios.defaults.baseURL = 'http://127.0.0.1:8000/api/_data/';
 axios.defaults.headers.common['x-api-key'] = "$2y$10$kzaYH2t9fgVMoyqKMWF7POjD45cilj";
 
 Vue.prototype.$axios = axios;
@@ -44,7 +45,9 @@ Vue.prototype.$apiHeader = {
 };
 
 Vue.prototype.$imageBaseUrl = "https://app.fairshop.com.bd/public/storage/";
+// Vue.prototype.$imageBaseUrl = "http://127.0.0.1:8000/public/storage/";
 Vue.prototype.$imageBaseUrl2 = "https://app.fairshop.com.bd/public/storage/images/product_thumbnail_img/";
+// Vue.prototype.$imageBaseUrl2 = "http://127.0.0.1:8000/public/storage/images/product_thumbnail_img/";
 
 
 

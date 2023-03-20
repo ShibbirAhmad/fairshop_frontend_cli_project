@@ -36,7 +36,7 @@
                 </button>
               </form>
               <!-- Realtime Search result -->
-              <ul class="search_result" v-if="search">
+              <ul class="search_result" v-if="search" id="search_product">
                 <li
                   v-for="product in search_products"
                   :key="product.id"
@@ -482,18 +482,13 @@ export default {
     },
 
     redirectSearch() {
-      if (this.search.length <= 0) {
-        alert("Please Write Something");
-        return;
-      }
       this.$router.push({ name: "search", params: { search: this.search } });
+      document.getElementById('search_product').style = 'display:none';
+      this.search = '';
     },
 
+
     async searchProducts() {
-      if (this.search.length <= 0) {
-        this.$toastr.w("Please search something");
-        return;
-      }
       if (this.search.length > 3) {
         await this.$axios
           .get("search/product/" + this.search, {

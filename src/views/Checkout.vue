@@ -357,7 +357,7 @@
                             <strong
                               >৳
                               <span id="final">{{
-                                (parseInt(form.total) + parseInt(form.shipping_cost))
+                                (parseInt(cart.cart_total) + parseInt(form.shipping_cost))
                               }}</span></strong
                             >
                           </div>

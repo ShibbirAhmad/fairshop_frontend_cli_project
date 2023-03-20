@@ -553,6 +553,10 @@ export default {
           if (resp.data.success == true) {
             if (type == 1) {
               this.$store.dispatch("cart");
+                this.cart_show = true;
+              setTimeout(() => {
+                this.cart_show = false;
+              }, 3000);
             } else {
               this.$router.push({ name: "checkout" });
             }
