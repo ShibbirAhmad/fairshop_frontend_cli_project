@@ -41,26 +41,23 @@
       <div class="home_banner_area">
         <div class="row">
           <div class="col-md-12 mb-2">
+
             <div class="custom_column">
               <div class="home_banner_image">
-                <img src="../../assets/images/banner.png" alt="">
+                <a :href="category_after_banner_first.url">
+                <img :src="$imageBaseUrl + category_after_banner_first.banner" alt="">
+                </a>
               </div>
             </div>
+
             <div class="custom_column">
               <div class="home_banner_image">
-                <img src="../../assets/images/banner.png" alt="">
+                <a :href="category_after_banner_second.url">
+                <img :src="$imageBaseUrl + category_after_banner_second.banner" alt="">
+                </a>
               </div>
             </div>
-            <div class="custom_column">
-              <div class="home_banner_image">
-                <img src="../../assets/images/banner.png" alt="">
-              </div>
-            </div>
-            <div class="custom_column">
-              <div class="home_banner_image">
-                <img src="../../assets/images/banner.png" alt="">
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
@@ -68,6 +65,34 @@
 
       <!-- start feature product section  -->
       <FeatureProduct />
+      <NewArrivalProduct />
+
+
+      <div class="home_banner_area">
+        <div class="row">
+          <div class="col-md-12 mb-2">
+
+            <div class="custom_column">
+              <div class="home_banner_image">
+                <a :href="new_after_banner_first.url">
+                <img :src="$imageBaseUrl + new_after_banner_first.banner" alt="">
+                </a>
+              </div>
+            </div>
+
+            <div class="custom_column">
+              <div class="home_banner_image">
+                <a :href="new_after_banner_second.url">
+                <img :src="$imageBaseUrl + new_after_banner_second.banner" alt="">
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
       <!-- end feature product section  -->
 
       <!-- start flash deals here -->
@@ -78,12 +103,11 @@
 
       <!-- category wise product -->
       <div
-        v-if="landing_sub_categories.length > 0"
         class="__category_wise_product"
       >
         <div
           class="row category-sec"
-          v-for="(item, ctx) in landing_sub_categories"
+          v-for="(item, ctx) in categories"
           :key="ctx"
         >
           <!-- category title and sub menu -->
@@ -93,10 +117,10 @@
               <ul
                 class="landing_sub_c_list"
                 :id="'landing_sub_category_' + item.id"
-                v-if="item.sub_sub_category.length > 0"
+                v-if="item.sub_category.length > 0"
               >
                 <li
-                  v-for="(sub_sub_c, sbx) in item.sub_sub_category"
+                  v-for="(sub_c, sbx) in item.sub_category"
                   :key="sbx"
                   style="cursor:pointer;"
                 >
@@ -104,15 +128,14 @@
                   <router-link
                     v-if="sbx < 7"
                     :to="{
-                      name: 'SubSubCategoryProduct',
+                      name: 'SubCategoryProduct',
                       params: {
-                        category: item.category.slug,
-                        subcategory: item.slug,
-                        slug: sub_sub_c.slug,
+                        category: item.slug,
+                        slug: sub_c.slug,
                       },
                     }"
                   >
-                    {{ sub_sub_c.name }}
+                    {{ sub_c.name }}
                   </router-link>
                 </li>
               </ul>
@@ -125,8 +148,8 @@
               <router-link
                 class="d-block view_all_category_link"
                 :to="{
-                  name: 'SubCategoryProduct',
-                  params: { category: item.category.slug, slug: item.slug },
+                  name: 'categoryProducts',
+                  params: {slug: item.slug },
                 }"
                 >VIEW ALL
               </router-link>
@@ -137,7 +160,7 @@
           <div class="col-lg-12 col-xl-12 col-md-12">
             <div class="row">
               <div class="col-lg-12 col-md-12" style="justify-content: space-between;">
-                <div class="row" style="justify-content: space-between;" v-if="item.products.length > 0">
+                <div class="row" style="justify-content: space-between;">
                   <!-- product card -->
                   <div
                     class="width-20"
@@ -198,10 +221,44 @@
                       </div>
                     </div>
                   </div>
+
+
+
+
+               
+
+
+
                 </div>
               </div>
             </div>
           </div>
+         <div class="container">
+           <div class="home_banner_area" v-if="ctx == 1">
+              <div class="row">
+                <div class="col-md-12 mb-2">
+
+                  <div class="custom_column">
+                    <div class="home_banner_image">
+                      <a :href="women_after_banner_first.url">
+                      <img :src="$imageBaseUrl + women_after_banner_first.banner" alt="">
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="custom_column">
+                    <div class="home_banner_image">
+                      <a :href="women_after_banner_second.url">
+                      <img :src="$imageBaseUrl + women_after_banner_second.banner" alt="">
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+           </div>
+
         </div>
       </div>
 
@@ -218,17 +275,26 @@
 <script>
 import Slider from "../components/Slider";
 import FeatureProduct from "../components/FeatureProduct";
+import NewArrivalProduct from "../components/NewArrivalProduct";
 // import FlashSale from "../components/FlashSale";
 import InfiniteLoading from "vue-infinite-loading";
 import carousel from "vue-owl-carousel";
 
 export default {
   name: "welcome",
-
+  created(){
+    this.afterCategory();
+  },
   data() {
     return {
-      landing_sub_categories: [],
+      categories: [],
       page: 1,
+      category_after_banner_first: '',
+      category_after_banner_second: '',
+      new_after_banner_first: '',
+      new_after_banner_second: '',
+      women_after_banner_first: '',
+      women_after_banner_second: '',
     };
   },
 
@@ -239,17 +305,33 @@ export default {
         .classList.toggle("landing_sub_c_list_toggle");
     },
 
+
+    afterCategory(){
+        this.$axios.get('/category/after/banner')
+        .then((resp)=>{
+          // console.log(resp);
+            if(resp.data.success == true){
+              this.category_after_banner_first = resp.data.category_after_banner_first;
+              this.category_after_banner_second = resp.data.category_after_banner_second;
+              this.new_after_banner_first = resp.data.new_after_banner_first;
+              this.new_after_banner_second = resp.data.new_after_banner_second;
+              this.women_after_banner_first = resp.data.women_after_banner_first;
+              this.women_after_banner_second = resp.data.women_after_banner_second;
+            }
+        })
+    },
+
     getCategoryProducts($state) {
       this.$axios
         .get("/landing/category/wise/products?page=" + this.page)
         .then((resp) => {
-          // console.log(resp);
+          console.log(resp);
           if (
             resp.data.success == true &&
-            resp.data.sub_categories.data.length > 0
+            resp.data.categories.data.length > 0
           ) {
             this.page += 1;
-            this.landing_sub_categories.push(...resp.data.sub_categories.data);
+            this.categories.push(...resp.data.categories.data);
             $state.loaded();
           } else {
             $state.complete();
@@ -264,6 +346,7 @@ export default {
   components: {
     Slider,
     FeatureProduct,
+    NewArrivalProduct,
     // FlashSale,
     // VueHorizontalList,
     InfiniteLoading,
