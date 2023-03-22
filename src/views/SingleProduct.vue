@@ -11,6 +11,10 @@
               <a href="/">Home</a>
             </li>
 
+            <li>
+              <img class="custom_angle_right_icon" src="../../assets/images/product_details_angle_right_icon.png" alt="">
+            </li>
+            
             <li class="breadcrumb-item">
               <a href="#">{{ product.name }}</a>
             </li>
@@ -688,7 +692,7 @@ p {
 .form-control {
   border-radius: 0% !important;
 }
-.breadcrumb-item + .breadcrumb-item::before {
+/* .breadcrumb-item + .breadcrumb-item::before {
   display: inline-block;
   padding-right: 1rem;
   color: #333e48;
@@ -707,7 +711,7 @@ p {
   padding-right: 5px;
   color: #333e48;
   content: ">";
-}
+} */
 .pr-5,
 .px-5 {
   padding-right: 2.5rem !important;

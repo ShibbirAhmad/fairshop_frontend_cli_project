@@ -8,6 +8,11 @@
           <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
             <a href="/">Home</a>
           </li>
+
+          <li>
+              <img class="custom_angle_right_icon" src="../../assets/images/product_details_angle_right_icon.png" alt="">
+          </li>
+
           <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
             <a href="#">Campaign</a>
           </li>
@@ -47,7 +52,7 @@
           </div>
           <div class="row mt-5 mb-5">
             <div
-            
+
               v-for="(item, idx) in campain_image"
               :key="idx"
               :class="`${item.image_width=='50%' ? 'cmpposter' : 'cmpposter_full_width'}`"
