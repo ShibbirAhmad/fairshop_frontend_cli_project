@@ -7,6 +7,15 @@
   height:16px;
   margin-bottom: -3px;
 }
+.custom_angle_right_icon {
+    width: 13px;
+}
+.breadcrumb .breadcrumb-item {
+    padding: 0px 5px;
+}
+.breadcrumb .breadcrumb-item:first-child{
+  padding-left: 0px;
+}
 .__user_account h4{
   font-size: 12px;
   margin: 0;
@@ -205,9 +214,9 @@ p {
   color: #000 !important;
 }
 
-#content {
+/* #content {
   margin-top: 16px;
-}
+} */
 
 /* header  */
 .call__us {

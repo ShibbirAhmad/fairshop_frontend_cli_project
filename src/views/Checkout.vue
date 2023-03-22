@@ -8,6 +8,12 @@
           <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
             <router-link to="/">Home</router-link>
           </li>
+
+          <li>
+              <img class="custom_angle_right_icon" src="../../assets/images/product_details_angle_right_icon.png" alt="">
+          </li>
+
+
           <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
             <a href="#">Checkout</a>
           </li>
@@ -380,7 +386,7 @@
                               </label>
                             </div>
                           </div>
-                
+
                           <div class="col d-flex justify-content-center">
                             <button
                               type="submit"
@@ -408,12 +414,12 @@
 
           <!-- place order btn and terms and conditions -->
           <div class="place_order-container">
-           
+
           </div>
         </form>
 
 
-        
+
       </div>
     </div>
   </main>

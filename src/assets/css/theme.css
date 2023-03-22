@@ -7925,12 +7925,12 @@ input[type="button"].btn-block {
   padding-left: 1rem;
 }
 
-.breadcrumb-item + .breadcrumb-item::before {
+/* .breadcrumb-item + .breadcrumb-item::before {
   display: inline-block;
   padding-right: 1rem;
   color: #333e48;
   content: "e";
-}
+} */
 
 .breadcrumb-item + .breadcrumb-item:hover::before {
   text-decoration: underline;
@@ -39591,10 +39591,10 @@ blockquote:not(.blockquote) p {
   color: #333e48;
 }
 
-.breadcrumb-item + .breadcrumb-item::before {
+/* .breadcrumb-item + .breadcrumb-item::before {
   font-family: "font-electro";
   margin-top: 4px;
-}
+} */
 
 .breadcrumb-item + .breadcrumb-item a {
   background-color: transparent;
@@ -43141,7 +43141,8 @@ span.text-gray-90 {
 
 #content {
   background: #f7f8fa !important;
-  padding-top: 1.5rem;
+  /* padding-top: 1.5rem; */
+  padding-top: 12px;
 }
 
 @media (min-width: 1480px) {
