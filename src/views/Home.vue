@@ -42,7 +42,7 @@
         <div class="row">
           <div class="col-md-12 mb-2">
 
-            <div class="custom_column">
+            <div class="custom_column" v-if="category_after_banner_first">
               <div class="home_banner_image">
                 <a :href="category_after_banner_first.url">
                 <img :src="$imageBaseUrl + category_after_banner_first.banner" alt="">
@@ -50,7 +50,7 @@
               </div>
             </div>
 
-            <div class="custom_column">
+            <div class="custom_column" v-if="category_after_banner_second">
               <div class="home_banner_image">
                 <a :href="category_after_banner_second.url">
                 <img :src="$imageBaseUrl + category_after_banner_second.banner" alt="">
@@ -72,7 +72,7 @@
         <div class="row">
           <div class="col-md-12 mb-2">
 
-            <div class="custom_column">
+            <div class="custom_column" v-if="new_after_banner_first">
               <div class="home_banner_image">
                 <a :href="new_after_banner_first.url">
                 <img :src="$imageBaseUrl + new_after_banner_first.banner" alt="">
@@ -80,7 +80,7 @@
               </div>
             </div>
 
-            <div class="custom_column">
+            <div class="custom_column" v-if="new_after_banner_second">
               <div class="home_banner_image">
                 <a :href="new_after_banner_second.url">
                 <img :src="$imageBaseUrl + new_after_banner_second.banner" alt="">
@@ -233,12 +233,12 @@
               </div>
             </div>
           </div>
-         <div class="container">
+         <div class="container padding_none">
            <div class="home_banner_area" v-if="ctx == 0">
               <div class="row">
                 <div class="col-md-12 mb-2">
 
-                  <div class="custom_column">
+                  <div class="custom_column" v-if="women_after_banner_first">
                     <div class="home_banner_image">
                       <a :href="women_after_banner_first.url">
                       <img :src="$imageBaseUrl + women_after_banner_first.banner" alt="">
@@ -246,7 +246,7 @@
                     </div>
                   </div>
 
-                  <div class="custom_column">
+                  <div class="custom_column" v-if="women_after_banner_first">
                     <div class="home_banner_image">
                       <a :href="women_after_banner_second.url">
                       <img :src="$imageBaseUrl + women_after_banner_second.banner" alt="">
@@ -361,6 +361,10 @@ export default {
 </script>
 
 <style scoped>
+
+.padding_none{
+  padding: 0;
+}
 #content {
   background: #f7f8fa !important;
   padding-top: 0px !important;
