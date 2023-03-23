@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="top_selling_product_area"  v-if="products.length > 0">
-      <div class="container">
+      <div class="">
           <div class="row">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding:0px">
                 <div class="top_selling_product_area_title">
@@ -12,9 +12,8 @@
           <div class="row">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding:0px">
                   <carousel
-                      :autoplay="true"
+                      :autoplay="false"
                       :nav="false"
-                      :margin="30"
                       v-if="products.length  > 0"
                       :responsive="{ 0: { items: 2 }, 600: { items: 4 }, 1000: { items: 5 }, 1366: { items: 6 } }"
                   >
@@ -50,8 +49,8 @@
                                       </h4>
                                   </div>
                                   <div class="top_selling_product_price">
-                                      <span class="top_selling_product_selling_price">&#2547; {{ item.sale_price }} </span>
                                       <span class="top_selling_product_discount_price" v-if="item.discount">  &#2547;{{ item.price }} </span>
+                                      <span class="top_selling_product_selling_price">&#2547; {{ item.sale_price }} </span>
                                   </div>
                                   <div class="top_selling_product_btn">
                                        <router-link
@@ -66,8 +65,8 @@
                                          <button
                                             v-else
                                             @click="buyNow(item.slug)"
-                                            class="btn btn-orderNow"
-                                            style="cursor: pointer"
+                                            class="btn btn-orderNow custom_btn_order_now"
+
                                         >
                                             Order Now
                                         </button>
@@ -76,7 +75,7 @@
                           </div>
                       </div>
 
-                      
+
                   </carousel>
               </div>
           </div>
@@ -127,48 +126,17 @@ export default {
   .top_selling_product_area_title h4 {
       font-size: 18px;
       font-weight: bold;
-      margin-bottom: 20px;
+      margin-bottom: 0px;
       color: rgb(68, 68, 68);
   }
-  .single-top_selling_product {
-      min-height: fit-content;
-      padding: 8px;
-      background-color: #f2f2f2;
-      border-radius: 12px;
-      margin-bottom: 16px;
-  }
-  
+
   .top_selling_product_name a:hover {
       color: var(--primary-color);
   }
-  .top_selling_product_price {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      padding-bottom: 16px;
-  }
+
   .top_selling_product_selling_price {
       font-family: 'Lato', sans-serif;
   }
-  .top_selling_product_discount_price {
-      font-size: 14px;
-      color: #94a3b8;
-      text-decoration: line-through;
-  }
-  .top_selling_product_btn {
-      text-decoration: none;
-      background-color: var(--primary-color);
-      padding: 7px;
-      max-width: 100%;
-      border-radius: 6px;
-      display: block;
-      text-align: center;
-  }
-  .top_selling_product_btn a {
-      color: #ffffff;
-      font-weight: 500;
-      transition: .3s;
-      display: block;
-      font-size: 13px;
-  }
+
+
 </style>

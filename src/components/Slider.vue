@@ -1,6 +1,6 @@
 <template>
   <div class="mb-4">
-    <div class="container-fluid overflow-hidden" style="border-radius: 0px !important;">
+    <div class="overflow-hidden custom_margin_top" style="border-radius: 0px !important;">
       <div class="row mb-4">
         <!-- slider -->
         <!-- Slider -->
