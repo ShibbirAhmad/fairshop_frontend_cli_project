@@ -234,7 +234,7 @@
             </div>
           </div>
          <div class="container">
-           <div class="home_banner_area" v-if="ctx == 1">
+           <div class="home_banner_area" v-if="ctx == 0">
               <div class="row">
                 <div class="col-md-12 mb-2">
 
@@ -309,7 +309,7 @@ export default {
     afterCategory(){
         this.$axios.get('/category/after/banner')
         .then((resp)=>{
-          // console.log(resp);
+          console.log(resp);
             if(resp.data.success == true){
               this.category_after_banner_first = resp.data.category_after_banner_first;
               this.category_after_banner_second = resp.data.category_after_banner_second;
@@ -325,7 +325,7 @@ export default {
       this.$axios
         .get("/landing/category/wise/products?page=" + this.page)
         .then((resp) => {
-          console.log(resp);
+          // console.log(resp);
           if (
             resp.data.success == true &&
             resp.data.categories.data.length > 0

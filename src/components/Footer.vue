@@ -18,11 +18,6 @@
                         </router-link>
 
                         <p class="short_desc">
-                          <span
-                            style="
-                        font-size: 16px;
-                        color: #199EFF;
-                        font-weight: 700;">fairshop.com.bd</span>
                         <br>
                         Address: Shop#19, 3rd Floor, Muktiplaza, Mirpur-1, Dhaka-1216
                         <br>
@@ -505,7 +500,7 @@ export default {
     footerSetting(){
         this.$axios.get('/footer/settings')
         .then((resp)=>{
-          console.log(resp);
+          // console.log(resp);
           this.footer_setting = resp.data.footer_setting;
         })
     },

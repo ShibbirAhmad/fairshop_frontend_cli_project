@@ -41,7 +41,7 @@ const actions = {
         headers: this.$apiHeader,
       })
       .then((resp) => {
-       console.log(resp);
+      //  console.log(resp);
         if (resp.data.success == true) {
           context.commit("categories", resp.data.categories);
         }
@@ -53,7 +53,7 @@ const actions = {
          headers: this.$apiHeader,
        })
          .then((resp) => {
-           console.log(resp);
+          //  console.log(resp);
            if (resp.data.success == true) {
              context.commit('category', resp.data.category)
            }
@@ -92,7 +92,7 @@ const actions = {
         headers: this.$apiHeader,
       })
       .then((resp) => {
-        console.log(resp);
+        // console.log(resp);
         if (resp.data.success == true) {
           context.commit("product", resp.data.product);
         } else {
