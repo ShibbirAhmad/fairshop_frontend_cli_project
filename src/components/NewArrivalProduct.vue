@@ -12,7 +12,7 @@
           <div class="row">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding:0px">
                   <carousel
-                      :autoplay="false"
+                      :autoplay="true"
                       :nav="false"
                       v-if="products.length  > 0"
                       :responsive="{ 0: { items: 2 }, 600: { items: 4 }, 1000: { items: 5 }, 1366: { items: 6 } }"
