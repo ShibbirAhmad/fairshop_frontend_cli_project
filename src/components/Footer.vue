@@ -156,26 +156,32 @@
               </div>
             </div>
 
+
+
+
+
+
+
+
+
             <!-- SSL Logos -->
-            <div class="fpart-second">
+            <div class="fpart-second"  v-if="$route.name == 'Home'">
               <div class="container">
-                <!-- <div id="powered" class="clearfix"></div> -->
                 <div class="row">
                   <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="footer_330_word_description">
                       <p v-html="footer_setting.footer_description"></p>
                     </div>
-                    <!-- <div class="payment-card">
-                      <img
-                        src=""
-                        style="width: 100%; height: auto; margin-top: -30px"
-                        alt=""
-                      />
-                    </div> -->
                   </div>
                 </div>
               </div>
             </div>
+
+
+
+
+
+
 
             <div class="row">
               <div class="col-12">
@@ -498,6 +504,7 @@ export default {
 
 
     footerSetting(){
+
         this.$axios.get('/footer/settings')
         .then((resp)=>{
           // console.log(resp);
