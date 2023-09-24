@@ -16,6 +16,10 @@
               <router-link to="/">Home </router-link>
             </li>
 
+            <li>
+              <img class="custom_angle_right_icon" src="../../assets/images/product_details_angle_right_icon.png" alt="">
+            </li>
+
             <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
               <router-link
                 :to="{
@@ -23,6 +27,10 @@
                 }"
                 >shop
               </router-link>
+            </li>
+
+            <li>
+              <img class="custom_angle_right_icon" src="../../assets/images/product_details_angle_right_icon.png" alt="">
             </li>
 
             <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1">
@@ -50,9 +58,7 @@
               <div class="box">
                 <span class="box-txt">
                   <span
-                    class="spinner-grow text-light spinner-grow-sm"
-                    role="status"
-                    aria-hidden="true"
+                    class=""
                   ></span>
                   {{ sub_c.name }}
                 </span>

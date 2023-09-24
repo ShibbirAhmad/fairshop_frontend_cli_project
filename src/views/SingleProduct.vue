@@ -11,6 +11,10 @@
               <a href="/">Home</a>
             </li>
 
+            <li>
+              <img class="custom_angle_right_icon" src="../../assets/images/product_details_angle_right_icon.png" alt="">
+            </li>
+            
             <li class="breadcrumb-item">
               <a href="#">{{ product.name }}</a>
             </li>
@@ -52,9 +56,9 @@
             <div class="mb-2">
               <!-- product title -->
               <div class="border-bottom pb-md-1">
-                <h2 class="product_title">
+                <h1 class="product_title">
                   {{ product.name }}
-                </h2>
+                </h1>
                 <div class="d-md-flex align-items-center"></div>
               </div>
 
@@ -521,7 +525,10 @@ export default {
     },
 
     decrementQty() {
-      this.cart.qty -= 1;
+      if(this.cart.qty > 1){
+        this.cart.qty -= 1;
+      }
+
     },
 
     incrementQty() {
@@ -550,6 +557,10 @@ export default {
           if (resp.data.success == true) {
             if (type == 1) {
               this.$store.dispatch("cart");
+                this.cart_show = true;
+              setTimeout(() => {
+                this.cart_show = false;
+              }, 3000);
             } else {
               this.$router.push({ name: "checkout" });
             }
@@ -685,7 +696,7 @@ p {
 .form-control {
   border-radius: 0% !important;
 }
-.breadcrumb-item + .breadcrumb-item::before {
+/* .breadcrumb-item + .breadcrumb-item::before {
   display: inline-block;
   padding-right: 1rem;
   color: #333e48;
@@ -704,7 +715,7 @@ p {
   padding-right: 5px;
   color: #333e48;
   content: ">";
-}
+} */
 .pr-5,
 .px-5 {
   padding-right: 2.5rem !important;

@@ -1,6 +1,6 @@
 <template>
   <div class="mb-4">
-    <div class="container-fluid overflow-hidden" style="border-radius: 0px !important;">
+    <div class="overflow-hidden custom_margin_top" style="border-radius: 0px !important;">
       <div class="row mb-4">
         <!-- slider -->
         <!-- Slider -->
@@ -35,17 +35,15 @@
         <!-- End Banner -->
       </div>
 
-       <div v-if="banner.status == 1" class="row banner_row">
 
-          <div class="col-md-6 col-lg-6 col-xs-6" style="flex: 0 0 49% !important; max-width: 49% !important;">
-               <a :href="banner.url_1">
-                 <img  class="advertise_banner_1" :src="$imageBaseUrl+banner.banner_1">
-                </a>
-          </div>
+    </div>
 
-             <div class="col-md-6 col-lg-6 col-xs-6" style="flex: 0 0 49% !important; max-width: 49% !important;">
-               <a :href="banner.url_2">
-                 <img  class="advertise_banner_2" :src="$imageBaseUrl+banner.banner_2">
+    <div class="container">
+      <div v-if="after_slider.status == 1" class="row banner_row">
+
+          <div class="col-md-12 col-lg-12 col-xs-12">
+               <a :href="after_slider.url">
+                 <img  class="advertise_banner_1" :src="$imageBaseUrl+after_slider.banner">
                 </a>
           </div>
 
@@ -61,6 +59,24 @@ import carousel from "vue-owl-carousel";
 export default {
   created() {
     this.$store.dispatch("sliders");
+    this.getSliderAfterBanner();
+  },
+
+  data(){
+    return{
+      after_slider: '',
+    }
+  },
+  methods:{
+    getSliderAfterBanner(){
+        this.$axios.get('/slider/after/banner')
+        .then((resp)=>{
+          // console.log(resp);
+            if(resp.data.success == true){
+              this.after_slider = resp.data.after_slider;
+            }
+        })
+    },
   },
   components: {
     carousel,

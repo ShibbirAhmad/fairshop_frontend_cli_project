@@ -12,21 +12,12 @@
                       <li style="list-style-type:none" class="address">
                         <router-link to="/">
                           <img
-                            src="../../assets/images/logo.png"
+                            src="../../assets/images/footer_logo.png"
                             class="img-fluid site_logo"
                           />
                         </router-link>
 
                         <p class="short_desc">
-                          <span
-                            style="
-                        font-size: 16px;
-                        color: #199EFF;
-                        font-weight: 700;
-                      "
-                            >fairshop.com.bd</span
-                          >
-                         simply better online shopping and ecommerce site in Bangladesh. Here, consumers of all ages can buy every essential product of the day, from gadgets, electronics, home appliances, leather goods, jewelry, baby accessories, cosmetics, fashion and lifestyle products to affordable prices at home.
                         <br>
                         Address: Shop#19, 3rd Floor, Muktiplaza, Mirpur-1, Dhaka-1216
                         <br>
@@ -95,7 +86,7 @@
                           ><i class="fa fa-youtube social-link-icon"></i
                         ></a>
                         <a href="" class="social-link-text"
-                          ><i class="fa fa-twitter social-link-icon"></i
+                          ><i class="fa fa-linkedin social-link-icon"></i
                         ></a>
                         <!-- <a href="general_setting.instagram" class="social-link-text"><i class="fa fa-twitter social-link-icon"></i></a> -->
                       </div>
@@ -165,28 +156,37 @@
               </div>
             </div>
 
+
+
+
+
+
+
+
+
             <!-- SSL Logos -->
-            <div class="fpart-second">
+            <div class="fpart-second"  v-if="$route.name == 'Home'">
               <div class="container">
-                <!-- <div id="powered" class="clearfix"></div> -->
                 <div class="row">
                   <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="payment-card">
-                      <img
-                        src=""
-                        style="width: 100%; height: auto; margin-top: -30px"
-                        alt=""
-                      />
+                    <div class="footer_330_word_description">
+                      <p v-html="footer_setting.footer_description"></p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
+
+
+
+
+
+
             <div class="row">
               <div class="col-12">
                   <p class="footer_content">
-                    Copyright © M/S fairshop, All rights reserved | Design & Developed by: <a style="color: #000;" href="https://mohasagorit.solutions/all-projects">Mohasagor it Solution</a> 
+                    Copyright © M/S fairshop, All rights reserved | Design & Developed by: <a style="color: #000;" href="https://mohasagorit.solutions/all-projects">Mohasagor it Solution</a>
                   </p>
               </div>
             </div>
@@ -417,6 +417,7 @@ export default {
   name: "Footer",
   created() {
     window.addEventListener("click", this.handleBodyClick);
+    this.footerSetting();
   },
   data() {
     return {
@@ -424,6 +425,7 @@ export default {
       show_footer_nav: false,
       show_footer_cart: false,
       email: "",
+      footer_setting: '',
     };
   },
   methods: {
@@ -499,6 +501,18 @@ export default {
     hideMenu() {
       this.show_footer_nav = false;
     },
+
+
+    footerSetting(){
+
+        this.$axios.get('/footer/settings')
+        .then((resp)=>{
+          // console.log(resp);
+          this.footer_setting = resp.data.footer_setting;
+        })
+    },
+
+
   },
 
   computed: {
