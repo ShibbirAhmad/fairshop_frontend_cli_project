@@ -22,7 +22,9 @@
     <div class="content">
       <div class="container">
         <div v-if="campaign_page.length <= 0">
-          <div class="spinner-border text-primary" role="status"></div>
+          <div class="text-primary" role="status">
+            <p class="text-center mt-4">No Campaign Found</p>
+          </div>
         </div>
         <div v-else>
           <div class="row">

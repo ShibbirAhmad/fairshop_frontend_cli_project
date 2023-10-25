@@ -35,7 +35,7 @@
                   <strong>{{ item.product.name }}  </strong>
                 </router-link>
               </h6>
-              <span>{{ item.qty }} X {{ item.product.price }} ৳</span>
+              <span>{{ item.qty }} X {{ item.product.sale_price }} ৳</span>
             </div>
             <i style="cursor:pointer"
               class="fa fa-close sideCartClose"

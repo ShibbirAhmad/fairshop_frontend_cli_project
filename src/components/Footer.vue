@@ -79,13 +79,13 @@
                       <h5>Follow Us</h5>
                       <div class="line"></div>
                       <div class="social-link">
-                        <a href="" class="social-link-facebook"
+                        <a :href="footer_setting.twitter_url" class="social-link-facebook"
                           ><i class="fa fa-instagram social-link-icon"></i
                         ></a>
-                        <a href="" class="social-link-text"
+                        <a :href="footer_setting.youtube_url" class="social-link-text"
                           ><i class="fa fa-youtube social-link-icon"></i
                         ></a>
-                        <a href="" class="social-link-text"
+                        <a :href="footer_setting.linkedin_url" class="social-link-text"
                           ><i class="fa fa-linkedin social-link-icon"></i
                         ></a>
                         <!-- <a href="general_setting.instagram" class="social-link-text"><i class="fa fa-twitter social-link-icon"></i></a> -->
@@ -164,13 +164,34 @@
 
 
 
+
+
+
             <!-- SSL Logos -->
             <div class="fpart-second"  v-if="$route.name == 'Home'">
               <div class="container">
                 <div class="row">
                   <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="footer_330_word_description">
+                      <h1 style="font-weight: bold;">FAIRSHOP.COM.BD – A PLACE FOR ONLINE SHOPPING IN BANGLADESH</h1>
                       <p v-html="footer_setting.footer_description"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="fpart-second" v-if="$route.params.slug">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="footer_330_word_description">
+                      <span v-for="(category, index) in categories" :key="index">
+                        <span v-if="category.slug == $route.params.slug">
+                          <p>{{ category.description }}</p>
+                        </span>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -270,8 +291,7 @@
               <path
                 fill-rule="evenodd"
                 d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
-              ></path></svg
-          ></a>
+              ></path></svg></a>
           <h6 class="footer_nav_cart">Cart</h6>
         </li>
 

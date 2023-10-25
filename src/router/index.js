@@ -282,14 +282,14 @@ const routes = [
       import(/* webpackChunkName: "gift_card" */ "../views/c_soon.vue"),
   },
 
-  {
-    path: "*",
-    name: "notfound",
-    component: () =>
-      import(
-        /* webpackChunkName: "notFound" */ "../views/StaticPages/nFound.vue"
-      ),
-  },
+  // {
+  //   path: "*",
+  //   name: "notfound",
+  //   component: () =>
+  //     import(
+  //       /* webpackChunkName: "notFound" */ "../views/StaticPages/nFound.vue"
+  //     ),
+  // },
 ];
 
 const router = new VueRouter({

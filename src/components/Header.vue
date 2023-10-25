@@ -69,6 +69,7 @@
               <div class="mobile_search_icon" @click="showHideMobileSearch">
                 <i class="fa fa-search"></i>
               </div>
+             
               <!-- searchbox mobile  -->
               <div id="mobileSearch" class="mobile_search_box">
                 <form @submit.prevent="redirectSearch">
@@ -121,6 +122,18 @@
                   </li>
                 </ul>
               </div>
+              
+            </li>
+            <li class="">
+              <router-link
+                  class="tacking_link_btn"
+                  :to="{ name: 'order_tracking' }"
+                >
+                <div id="mobileOrderTracking" class="mobile_search_icon">
+                  <i class="fa fa-truck"></i>
+                </div>
+              </router-link>
+              
             </li>
             <div class="icon_container"><li class="__user_account pointer">
               <a
