@@ -101,7 +101,7 @@
                       <ins class="font-size-24 text-decoration-none">
                         ৳<span id="oprice">{{ product.sale_price }}</span>
                       </ins>
-                      <del class="font-size-20 ml-2 text-gray-6">
+                      <del class="font-size-20 ml-2 text-gray-6" v-if="product.sale_price < product.price">
                         ৳{{ product.price }}
                       </del>
                     </div>

@@ -224,6 +224,10 @@ ul li:hover {
 }
 
 
+.footer_330_word_description h1{
+    font-size: 1.5 rem;
+}
+
 @media(min-width: 1480px) {
     .res {
         display: inline;

@@ -110,32 +110,6 @@ const routes = [
       import(/* webpackChunkName: "search" */ "../views/SearchProducts.vue"),
   },
 
-  {
-    path: "/category/:slug",
-    name: "categoryProducts",
-    component: () =>
-      import(
-        /* webpackChunkName: "categoryProducts" */ "../views/categoryProduct.vue"
-      ),
-  },
-
-  {
-    path: "/category/:category/:slug",
-    name: "SubCategoryProduct",
-    component: () =>
-      import(
-        /* webpackChunkName: "SubCategoryProduct" */ "../views/SubCategoryProduct.vue"
-      ),
-  },
-
-  {
-    path: "/category/:category/:subcategory/:slug",
-    name: "SubSubCategoryProduct",
-    component: () =>
-      import(
-        /* webpackChunkName: "SubSubCategoryProduct" */ "../views/SubSubCategoryProduct.vue"
-      ),
-  },
 
   {
     path: "/product/:slug",
@@ -145,6 +119,54 @@ const routes = [
         /* webpackChunkName: "single_product" */ "../views/SingleProduct.vue"
       ),
   },
+
+
+
+  {
+    path: "/:category/:subcategory/:slug",
+    name: "SubSubCategoryProduct",
+    component: () =>
+      import(
+        /* webpackChunkName: "SubSubCategoryProduct" */ "../views/SubSubCategoryProduct.vue"
+      ),
+  },
+
+
+  
+  {
+    path: "/user/checkout",
+    name: "checkout",
+    meta: {
+      title: "checkout cart || place order ",
+    },
+    component: () =>
+      import(/* webpackChunkName: "checkout" */ "../views/Checkout.vue"),
+  },
+
+
+
+  {
+    path: "/:category/:slug",
+    name: "SubCategoryProduct",
+    component: () =>
+      import(
+        /* webpackChunkName: "SubCategoryProduct" */ "../views/SubCategoryProduct.vue"
+      ),
+  },
+
+
+  
+
+  {
+    path: "/:slug",
+    name: "categoryProducts",
+    component: () =>
+      import(
+        /* webpackChunkName: "categoryProducts" */ "../views/categoryProduct.vue"
+      ),
+  },
+
+
 
   {
     path: "/order-tracking",
@@ -158,15 +180,7 @@ const routes = [
       ),
   },
 
-  {
-    path: "/checkout",
-    name: "checkout",
-    meta: {
-      title: "checkout cart || place order ",
-    },
-    component: () =>
-      import(/* webpackChunkName: "checkout" */ "../views/Checkout.vue"),
-  },
+  
   {
     path: "/user/checkout/success",
     component: () =>
@@ -282,14 +296,14 @@ const routes = [
       import(/* webpackChunkName: "gift_card" */ "../views/c_soon.vue"),
   },
 
-  // {
-  //   path: "*",
-  //   name: "notfound",
-  //   component: () =>
-  //     import(
-  //       /* webpackChunkName: "notFound" */ "../views/StaticPages/nFound.vue"
-  //     ),
-  // },
+  {
+    path: "*",
+    name: "notfound",
+    component: () =>
+      import(
+        /* webpackChunkName: "notFound" */ "../views/StaticPages/nFound.vue"
+      ),
+  },
 ];
 
 const router = new VueRouter({

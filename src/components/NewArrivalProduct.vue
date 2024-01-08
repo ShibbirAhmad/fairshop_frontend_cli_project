@@ -49,7 +49,7 @@
                                       </h4>
                                   </div>
                                   <div class="top_selling_product_price">
-                                      <span class="top_selling_product_discount_price" v-if="item.discount">  &#2547;{{ item.price }} </span>
+                                      <span class="top_selling_product_discount_price" v-if="item.sale_price < item.price">  &#2547;{{ item.price }} </span>
                                       <span class="top_selling_product_selling_price">&#2547; {{ item.sale_price }} </span>
                                   </div>
                                   <div class="top_selling_product_btn">

@@ -156,17 +156,6 @@
               </div>
             </div>
 
-
-
-
-
-
-
-
-
-
-
-
             <!-- SSL Logos -->
             <div class="fpart-second"  v-if="$route.name == 'Home'">
               <div class="container">
@@ -189,7 +178,9 @@
                     <div class="footer_330_word_description">
                       <span v-for="(category, index) in categories" :key="index">
                         <span v-if="category.slug == $route.params.slug">
-                          <p>{{ category.description }}</p>
+                          <p>
+                              {{ category.description }}
+                          </p>
                         </span>
                       </span>
                     </div>
@@ -352,14 +343,11 @@
               :key="c_index"
               class="__footer_category_item"
             >
-              <router-link
-                :to="{
-                  name: 'categoryProducts',
-                  params: { slug: category.slug },
-                }"
+              <a
+                :href="'/' + category.slug"
               >
                 {{ category.name }}
-              </router-link>
+              </a>
               <i
                 class="fa fa-sort-down"
                 style="color: #333e48 !important; cursor: pointer"
@@ -375,17 +363,8 @@
                   v-for="(sub_category, s_index) in category.sub_category"
                   :key="s_index"
                 >
-                  <router-link
-                    :to="{
-                      name: 'SubCategoryProduct',
-                      params: {
-                        category: category.slug,
-                        slug: sub_category.slug,
-                      },
-                    }"
-                  >
-                    {{ sub_category.name }}</router-link
-                  >
+                  <a :href="'/' + category.slug +  '/'  + sub_category.slug">
+                    {{ sub_category.name }}</a>
                   <i
                     class="fa fa-sort-down"
                     style="color: #333e48 !important; cursor: pointer"
@@ -402,17 +381,8 @@
                       index) in sub_category.sub_sub_category"
                       :key="index"
                     >
-                      <router-link
-                        :to="{
-                          name: 'SubSubCategoryProduct',
-                          params: {
-                            category: category.slug,
-                            subcategory: sub_category.slug,
-                            slug: sub_sub_category.slug,
-                          },
-                        }"
-                        >{{ sub_sub_category.name }}</router-link
-                      >
+                      <a :href="'/' + category.slug + '/'  + sub_category.slug + '/' + sub_sub_category.slug">
+                      {{ sub_category.name }}</a>
                     </li>
                   </ul>
                 </li>

@@ -201,8 +201,7 @@
                         </router-link>
                         <!-- product price -->
                         <p class="price">
-                          <span
-                            ><del>৳{{ product.price }}</del></span
+                          <span v-if="product.sale_price < product.price"><del>৳{{ product.price }}</del></span
                           >
                           ৳{{ product.sale_price }}
                         </p>

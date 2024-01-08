@@ -53,7 +53,7 @@
                 <!-- Title -->
                 <div class="border-bottom border-color-1 mb-5">
                   <h3 class="section-title mb-0 pb-2 font-size-25">
-                    Billing details
+                    Billing details 
                   </h3>
                 </div>
                 <!-- End Title -->
@@ -190,6 +190,30 @@
                       </div>
                       <!-- End Input -->
                     </div>
+
+
+
+
+                    <!-- note -->
+                    <div class="col-md-12">
+                      <!-- Input -->
+                      <div class="js-form-message mb-6">
+                        <label class="form-label">
+                          Note(Optional)
+                        </label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="note"
+                          placeholder="note"
+                          v-model="form.note"
+                        />
+                      </div>
+                      <!-- End Input -->
+                    </div>
+
+
+
                   </div>
                   <!-- End Billing Form -->
                 </div>
@@ -442,10 +466,12 @@ export default {
         coupon_discount: 0,
         city_id: "",
         sub_city_id: "",
+        note: "",
       }),
       cities: "",
       sub_cities: "",
       loading: true,
+      product_shipping_cost: 0,
 
     };
   },
@@ -454,6 +480,7 @@ export default {
     this.getCities();
     this.$store.dispatch("cart");
     this.getCartData();
+
   },
   methods: {
     async checkout() {
@@ -539,7 +566,11 @@ export default {
     subCity() {
       if (this.form.city_id) {
         let city = this.cities.find((ele) => ele.id == this.form.city_id);
-        this.form.shipping_cost = city.delivery_charge;
+        if(this.product_shipping_cost == 0){
+          this.form.shipping_cost = city.delivery_charge;
+        }else{
+          this.form.shipping_cost = parseInt(this.product_shipping_cost) + parseInt(city.delivery_charge);
+        }
 
         this.$axios
           .get("get/city-wise/sub-cities/" + this.form.city_id)
@@ -568,16 +599,18 @@ export default {
     },
 
     async remove_cart_item(id) {
+      
       await this.$axios
         .post("cart/item/remove", {
           headers: this.$apiHeader,
           id: id,
         })
         .then((resp) => {
-          //  console.log(resp);
+           console.log(resp);
           if (resp.data.success == true) {
             this.$toastr.s(resp.data.message);
             this.$store.dispatch("cart");
+            this.getCartData();
           }
         })
         .catch((error) => {
@@ -619,6 +652,9 @@ export default {
       this.$axios.get("/get/cart/content").then((resp) => {
         console.log(resp);
         this.form.total = resp.data.total;
+        this.product_shipping_cost = resp.data.delivery_charge;
+        this.form.shipping_cost = resp.data.delivery_charge;
+        this.subCity();
       });
     },
 
@@ -631,9 +667,6 @@ export default {
     },
   },
   mounted() {
-    setTimeout(() => {
-      this.selectCity();
-    }, 1000);
     this.$store.dispatch("cart");
   },
 };

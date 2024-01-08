@@ -61,10 +61,9 @@
                           </h4>
                           </router-link>
                         <p class="price">
-                          <span
-                            >৳<del>{{ product.price }}</del></span
-                          >
-                           ৳{{ product.sale_price }}
+                          <span v-if="product.sale_price < product.price">৳<del>{{ product.price }}</del></span>
+                            ৳{{ product.sale_price }}
+                          
                         </p>
                       </div>
                       <!-- order Now Button -->

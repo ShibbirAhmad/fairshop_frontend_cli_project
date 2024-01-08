@@ -70,9 +70,9 @@
           View Cart
         </router-link>
 
-        <router-link :to="{ name: 'checkout' }" class="btn btn-primary">
+        <a href="/user/checkout" class="btn btn-primary">
           Checkout
-        </router-link>
+        </a>
       </div>
     </div>
   </transition>
