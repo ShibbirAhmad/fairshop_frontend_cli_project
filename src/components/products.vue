@@ -33,33 +33,26 @@
                     <div class="__product_card">
                       <!-- product image -->
                       <div class="__product_card_img">
-                        <router-link
-                          :to="{
-                            name: 'single_product',
-                            params: { slug: product.slug },
-                          }"
+                        <a :href="'/product/' + product.slug"
                           class="d-block text-center"
                         >
                           <img
                             :alt="product.thumbnail_img"
                             :src="$imageBaseUrl2 + product.thumbnail_img"
                           />
-                        </router-link>
+                        </a>
                       </div>
                       <!-- product details -->
                       <div class="__product_details">
-                         <router-link
-                          :to="{
-                            name: 'single_product',
-                            params: { slug: product.slug },
-                          }"
+                         <a
+                         :href="'/product/' + product.slug"
                           class="d-block"
                         >
                         <h4>
                           {{ product.name.substring(0,18) }}
                              <span v-if="product.name.length > 18"> ... </span>
                           </h4>
-                          </router-link>
+                        </a>
                         <p class="price">
                           <span v-if="product.sale_price < product.price">৳<del>{{ product.price }}</del></span>
                             ৳{{ product.sale_price }}
@@ -68,12 +61,11 @@
                       </div>
                       <!-- order Now Button -->
                       <div class="__product_order_btn">
-                        <router-link
-                          :to="{name:'single_product',params:{slug:product.slug},} "
+                        <a  :href="'/product/' + product.slug"
                           class="d-block text-center"
                         >
                           <button>Order Now</button>
-                        </router-link>
+                      </a>
                       </div>
                     </div>
                   </div>

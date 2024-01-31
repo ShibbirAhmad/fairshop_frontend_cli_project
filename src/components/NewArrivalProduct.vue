@@ -20,32 +20,21 @@
                       <div class="top_selling_product_body" v-for="(item, index) in products" :key="index">
                           <div class="single-top_selling_product" >
                               <div class="top_selling_product_image">
-                                     <router-link
-                                        :to="{
-                                            name: 'single_product',
-                                            params: {
-                                                slug: item.slug,
-                                            },
-                                        }"
+                                     <a
+                                      :href="'/product/' + item.slug"
                                     >
                                   <img :src="$imageBaseUrl2 + item.thumbnail_img" :alt="item.name" />
 
-                                 </router-link>
+                                      </a>
                               </div>
                               <div class="top_selling_product_content">
                                   <div class="top_selling_product_name __product_details">
                                       <h4>
-                                        <router-link
-                                            :to="{
-                                                name: 'single_product',
-                                                params: {
-                                                    slug: item.slug,
-                                                },
-                                            }"
+                                        <a :href="'/product/' + item.slug"
                                         >
                                             {{ item.name.substring(0, 22) }}
                                             <span v-if="item.name.length > 22">...</span>
-                                        </router-link>
+                                          </a>
                                       </h4>
                                   </div>
                                   <div class="top_selling_product_price">
@@ -53,15 +42,11 @@
                                       <span class="top_selling_product_selling_price">&#2547; {{ item.sale_price }} </span>
                                   </div>
                                   <div class="top_selling_product_btn">
-                                       <router-link
+                                       <a :href="'/product/' + item.slug"
                                             v-if="item.product_variant"
-                                            :to="{
-                                                name: 'single_product',
-                                                params: { slug: item.slug },
-                                            }"
                                         >
                                             Order Now
-                                        </router-link>
+                                          </a>
                                          <button
                                             v-else
                                             @click="buyNow(item.slug)"

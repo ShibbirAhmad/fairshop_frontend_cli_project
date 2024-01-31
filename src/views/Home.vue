@@ -171,34 +171,27 @@
                     <div class="__product_card">
                       <!-- product Image -->
                       <div class="__product_card_img">
-                        <router-link
-                          :to="{
-                            name: 'single_product',
-                            params: { slug: product.slug },
-                          }"
+                        <a :href="'/product/' + product.slug "
                           class="d-block text-center"
                         >
                           <img
                             :alt="product.thumbnail_img"
                             :src="$imageBaseUrl2 + product.thumbnail_img"
                           />
-                        </router-link>
+                        </a>
                       </div>
                       <!-- product name and details -->
                       <div class="__product_details">
                         <!-- product name -->
-                        <router-link
-                          :to="{
-                            name: 'single_product',
-                            params: { slug: product.slug },
-                          }"
+                        <a
+                        :href="'/product/' + product.slug "
                           class="d-block"
                         >
                           <h4>
                             {{ product.name.substring(0, 19) }}
                             <span v-if="product.name.length > 19">.. </span>
                           </h4>
-                        </router-link>
+                        </a>
                         <!-- product price -->
                         <p class="price">
                           <span v-if="product.sale_price < product.price"><del>৳{{ product.price }}</del></span
@@ -208,15 +201,12 @@
                       </div>
                       <!-- order Now Button -->
                       <div class="__product_order_btn">
-                        <router-link
-                          :to="{
-                            name: 'single_product',
-                            params: { slug: product.slug },
-                          }"
+                        <a
+                        :href="'/product/' + product.slug "
                           class="d-block text-center"
                         >
                           <button>Order Now</button>
-                        </router-link>
+                        </a>
                       </div>
                     </div>
                   </div>

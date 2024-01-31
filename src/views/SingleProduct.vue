@@ -563,6 +563,8 @@ export default {
               }, 3000);
             } else {
               this.$router.push({ name: "checkout" });
+              window.open('/user/checkout', '_self')
+
             }
             this.$toastr.s(resp.data.message);
           }

@@ -45,11 +45,7 @@
                     <div class="product-item__inner px-xl-2 p-3">
                       <div class="product-item__body pb-xl-2">
                         <div class="mb-2">
-                          <router-link
-                            :to="{
-                              name: 'single_product',
-                              params: { slug: flas_sale_product.slug },
-                            }"
+                          <a :href="'/product/' + flas_sale_product.slug"
                             class="d-block text-center"
                           >
                             <img
@@ -57,17 +53,11 @@
                               alt="Image Description"
                               style="min-width: 100%"
                               :src="$imageBaseUrl + flas_sale_product.thumnail"
-                          /></router-link>
+                          /></a>
                           <h5 class="mb-1 product-item__title">
-                            <router-link
-                              :to="{
-                                name: 'single_product',
-                                params: { slug: flas_sale_product.slug },
-                              }"
-                              class="text-blue font-weight-bold"
-                            >
-                              {{ flas_sale_product.name }}
-                            </router-link>
+                          <a :href="'/product/' + flas_sale_product.slug"  class="text-blue font-weight-bold">
+                            {{ flas_sale_product.name }}
+                          </a>
                           </h5>
                         </div>
                         <div class="flex-center-between mb-1">

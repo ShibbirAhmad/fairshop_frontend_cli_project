@@ -16,24 +16,12 @@
             v-for="(item, idx) in cart.contents"
             :key="idx"
           >
-            <router-link
-              :to="{
-                name: 'single_product',
-                params: { slug: item.product.slug },
-              }"
-            >
-              <img :src="$imageBaseUrl2 + item.product.thumbnail_img" />
-            </router-link>
+          <a :href="'/product/' + item.product.slug">
+            <img :src="$imageBaseUrl2 + item.product.thumbnail_img" />
+          </a>
             <div class="__cart_product_desc">
               <h6>
-                <router-link
-                  :to="{
-                    name: 'single_product',
-                    params: { slug: item.product.slug },
-                  }"
-                >
-                  <strong>{{ item.product.name }}  </strong>
-                </router-link>
+              <a :href="'/product/' + item.product.slug"> <strong>{{ item.product.name }}  </strong> </a>
               </h6>
               <span>{{ item.qty }} X {{ item.product.sale_price }} ৳</span>
             </div>
@@ -66,9 +54,9 @@
         Sub Total: ৳ {{ cart ? cart.cart_total : 0 }}
       </div>
       <div class="__cart__footer">
-        <router-link :to="{ name: 'cart' }" class="btn btn-primary cart">
+        <a href="/cart" class="btn btn-primary cart">
           View Cart
-        </router-link>
+        </a>
 
         <a href="/user/checkout" class="btn btn-primary">
           Checkout

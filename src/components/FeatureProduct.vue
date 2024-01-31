@@ -18,18 +18,13 @@
           :key="fpdx"
           class="feature-col "
         >
-          <router-link
-            :to="{
-              name: 'single_product',
-              params: { slug: product.slug },
-            }"
-          >
-            <img :src="$imageBaseUrl2 + product.thumnail" :alt="product.name" />
+        <a :href="'/product/' + product.slug"> 
+          <img :src="$imageBaseUrl2 + product.thumnail" :alt="product.name" />
             <div class="title-img">
               <span> {{ product.name.substring(0,15) }} </span>
                 <span v-if="product.name.length > 15"> ... </span>
             </div>
-          </router-link>
+          </a>
         </div>
 
        </carousel>
@@ -54,7 +49,7 @@ export default {
   methods: {
     getFeatureProducts() {
       this.$axios
-        .get("feature/products", {
+        .get("feature/product/s", {
           headers: this.$apiHeader,
         })
         .then((resp) => {
